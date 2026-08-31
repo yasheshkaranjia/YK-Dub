@@ -22,7 +22,7 @@ from tqdm import tqdm
 
 MODEL_SIZE = "small"
 OLLAMA_URL = "http://localhost:11434/api/generate"
-OLLAMA_MODEL = "qwen3:4b"
+OLLAMA_MODEL = "qwen3:1.7b"
 CONTEXT_LINES = 2
 MATCH_THRESHOLD = 0.55
 
