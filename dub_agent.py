@@ -39,7 +39,7 @@ def stretch_to_duration(in_wav: str, out_wav: str, target_sec: float) -> None:
     )
 
 
-def build_track(segments: list, work_dir: Path, total_duration: float) -> Path:
+def build_vocal_track(segments: list, work_dir: Path, total_duration: float) -> Path:
     track = AudioSegment.silent(duration=int(total_duration * 1000))
     for i, seg in enumerate(tqdm(segments, desc="[dub] synthesizing lines", unit="line")):
         raw = work_dir / f"seg_{i:04d}_raw.wav"
@@ -48,8 +48,19 @@ def build_track(segments: list, work_dir: Path, total_duration: float) -> Path:
         stretch_to_duration(str(raw), str(fitted), max(seg["end"] - seg["start"], 0.3))
         clip = AudioSegment.from_wav(fitted)
         track = track.overlay(clip, position=int(seg["start"] * 1000))
-    out_path = work_dir / "dubbed_track.wav"
+    out_path = work_dir / "dubbed_vocals.wav"
     track.export(out_path, format="wav")
+    return out_path
+
+
+def mix_with_instrumental(vocals_path: Path, instrumental_path: str, work_dir: Path) -> Path:
+    out_path = work_dir / "final_mix.wav"
+    subprocess.run(
+        ["ffmpeg", "-y", "-i", str(vocals_path), "-i", instrumental_path,
+         "-filter_complex", "amix=inputs=2:duration=longest:dropout_transition=0",
+         str(out_path)],
+        check=True, capture_output=True,
+    )
     return out_path
 
 
@@ -67,8 +78,9 @@ def run(translated_manifest_path: str, out_video: str) -> dict:
     work_dir = Path(translated_manifest_path).parent / "tts_work"
     work_dir.mkdir(exist_ok=True)
 
-    track = build_track(data["segments"], work_dir, data["duration_sec"])
-    mux(data["video_path"], track, out_video)
+    track = build_vocal_track(data["segments"], work_dir, data["duration_sec"])
+    final_mix = mix_with_instrumental(track, data["instrumental_path"], work_dir)
+    mux(data["video_path"], final_mix, out_video)
 
     result = {**data, "dubbed_video": str(Path(out_video).resolve())}
     result_path = Path(str(translated_manifest_path).replace(".translated.json", ".dubbed.json"))
