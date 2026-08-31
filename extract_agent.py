@@ -57,7 +57,7 @@ def run(video_path: str, work_dir: str, external_srt: str = None) -> dict:
         "duration_sec": get_duration(video_path),
     }
     manifest_path = work / f"{stem}.manifest.json"
-    manifest_path.write_text(json.dumps(manifest, indent=2))
+    manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     print(f"[extract] {stem}: audio + "
           f"{'subs' if manifest['subtitle_path'] else 'no subs found'} -> {manifest_path}")
     return manifest

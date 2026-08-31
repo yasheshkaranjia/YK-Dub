@@ -1,0 +1,4040 @@
+{
+  "video_path": "C:\\Users\\Yashesh\\Downloads\\O-01.mkv",
+  "audio_path": "C:\\Users\\Yashesh\\vs code projects\\YK-Dub\\work\\O-01\\O-01.wav",
+  "subtitle_path": "C:\\Users\\Yashesh\\vs code projects\\YK-Dub\\work\\O-01\\O-01.srt",
+  "duration_sec": 1404.04,
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.0,
+      "asr_text": "What is it?",
+      "subtitle_text": null,
+      "final_text": "What is it?",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 2.0,
+      "end": 4.0,
+      "asr_text": "Do you want to warp in such a place?",
+      "subtitle_text": "Detecting spatial distortion!",
+      "final_text": "Detecting spatial distortion!",
+      "similarity": 0.246,
+      "flag": "mismatch"
+    },
+    {
+      "start": 4.0,
+      "end": 5.0,
+      "asr_text": "I'm coming up in a short time.",
+      "subtitle_text": "What? They're trying to warp here?",
+      "final_text": "What? They're trying to warp here?",
+      "similarity": 0.344,
+      "flag": "mismatch"
+    },
+    {
+      "start": 5.0,
+      "end": 7.0,
+      "asr_text": "The enemy's output is expected to start.",
+      "subtitle_text": "What? They're trying to warp here?",
+      "final_text": "What? They're trying to warp here?",
+      "similarity": 0.378,
+      "flag": "mismatch"
+    },
+    {
+      "start": 7.0,
+      "end": 10.0,
+      "asr_text": "All units, go to the expected output.",
+      "subtitle_text": "Short-distance warp incoming.",
+      "final_text": "Short-distance warp incoming.",
+      "similarity": 0.242,
+      "flag": "mismatch"
+    },
+    {
+      "start": 10.0,
+      "end": 13.0,
+      "asr_text": "At the same time that the enemy is warped out, start the attack.",
+      "subtitle_text": "Aim all cannons at the coordinates,",
+      "final_text": "Aim all cannons at the coordinates,",
+      "similarity": 0.263,
+      "flag": "mismatch"
+    },
+    {
+      "start": 13.0,
+      "end": 16.0,
+      "asr_text": "Warp Gate, confirm the completion of the existing probability.",
+      "subtitle_text": "and open fire as soon as\n the enemy ship appears.",
+      "final_text": "and open fire as soon as\n the enemy ship appears.",
+      "similarity": 0.378,
+      "flag": "mismatch"
+    },
+    {
+      "start": 16.0,
+      "end": 18.0,
+      "asr_text": "Captain, the output is...",
+      "subtitle_text": "Warp gate probabilities converging.",
+      "final_text": "Warp gate probabilities converging.",
+      "similarity": 0.133,
+      "flag": "mismatch"
+    },
+    {
+      "start": 18.0,
+      "end": 19.0,
+      "asr_text": "What's wrong?",
+      "subtitle_text": "Warp gate probabilities converging.",
+      "final_text": "Warp gate probabilities converging.",
+      "similarity": 0.333,
+      "flag": "mismatch"
+    },
+    {
+      "start": 20.0,
+      "end": 21.0,
+      "asr_text": "I can't use it.",
+      "subtitle_text": "Captain! The coordinates!",
+      "final_text": "Captain! The coordinates!",
+      "similarity": 0.3,
+      "flag": "mismatch"
+    },
+    {
+      "start": 21.0,
+      "end": 22.0,
+      "asr_text": "I can't use it!",
+      "subtitle_text": "Captain! The coordinates!",
+      "final_text": "Captain! The coordinates!",
+      "similarity": 0.35,
+      "flag": "mismatch"
+    },
+    {
+      "start": 22.0,
+      "end": 23.0,
+      "asr_text": "What's wrong?",
+      "subtitle_text": "What about them?",
+      "final_text": "What about them?",
+      "similarity": 0.483,
+      "flag": "mismatch"
+    },
+    {
+      "start": 23.0,
+      "end": 25.0,
+      "asr_text": "I can't use it. I can't use it!",
+      "subtitle_text": "They're close! Way too close!",
+      "final_text": "They're close! Way too close!",
+      "similarity": 0.367,
+      "flag": "mismatch"
+    },
+    {
+      "start": 30.0,
+      "end": 31.0,
+      "asr_text": "Are you stupid?",
+      "subtitle_text": "No way...",
+      "final_text": "No way...",
+      "similarity": 0.167,
+      "flag": "mismatch"
+    },
+    {
+      "start": 31.0,
+      "end": 33.0,
+      "asr_text": "Are you going to destroy it?",
+      "subtitle_text": "Are they suicidal?!",
+      "final_text": "Are they suicidal?!",
+      "similarity": 0.426,
+      "flag": "mismatch"
+    },
+    {
+      "start": 33.0,
+      "end": 35.0,
+      "asr_text": "It's not a warp!",
+      "subtitle_text": "It's not a ship!",
+      "final_text": "It's not a ship!",
+      "similarity": 0.812,
+      "flag": "ok"
+    },
+    {
+      "start": 35.0,
+      "end": 37.0,
+      "asr_text": "It's a mobile weapon!",
+      "subtitle_text": "It's a mobile knight!",
+      "final_text": "It's a mobile knight!",
+      "similarity": 0.762,
+      "flag": "ok"
+    },
+    {
+      "start": 37.0,
+      "end": 38.0,
+      "asr_text": "What?",
+      "subtitle_text": "What?!",
+      "final_text": "What?!",
+      "similarity": 0.909,
+      "flag": "ok"
+    },
+    {
+      "start": 38.0,
+      "end": 39.0,
+      "asr_text": "That is...",
+      "subtitle_text": "It can't be...",
+      "final_text": "It can't be...",
+      "similarity": 0.417,
+      "flag": "mismatch"
+    },
+    {
+      "start": 39.0,
+      "end": 41.0,
+      "asr_text": "A black-legged raku-daku!",
+      "subtitle_text": "That's the Plundering Count\n and his Black Titan!",
+      "final_text": "That's the Plundering Count\n and his Black Titan!",
+      "similarity": 0.27,
+      "flag": "mismatch"
+    },
+    {
+      "start": 42.0,
+      "end": 43.0,
+      "asr_text": "Is it a tank?",
+      "subtitle_text": "All by himself? Open fire!",
+      "final_text": "All by himself? Open fire!",
+      "similarity": 0.205,
+      "flag": "mismatch"
+    },
+    {
+      "start": 43.0,
+      "end": 45.0,
+      "asr_text": "Is it an air cannon?",
+      "subtitle_text": "All by himself? Open fire!",
+      "final_text": "All by himself? Open fire!",
+      "similarity": 0.304,
+      "flag": "mismatch"
+    },
+    {
+      "start": 52.0,
+      "end": 54.0,
+      "asr_text": "I can't use it!",
+      "subtitle_text": null,
+      "final_text": "I can't use it!",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 82.0,
+      "end": 84.0,
+      "asr_text": "It's too weak! It's too weak, you guys!",
+      "subtitle_text": null,
+      "final_text": "It's too weak! It's too weak, you guys!",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 84.0,
+      "end": 86.0,
+      "asr_text": "Have fun with me more!",
+      "subtitle_text": null,
+      "final_text": "Have fun with me more!",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 86.0,
+      "end": 89.0,
+      "asr_text": "The weak are the ones who can defeat me.",
+      "subtitle_text": null,
+      "final_text": "The weak are the ones who can defeat me.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 89.0,
+      "end": 92.0,
+      "asr_text": "Arrogate them and destroy their existence!",
+      "subtitle_text": "Weak, you're too weak! Can you\n at least make this a little interesting?",
+      "final_text": "Weak, you're too weak! Can you\n at least make this a little interesting?",
+      "similarity": 0.298,
+      "flag": "mismatch"
+    },
+    {
+      "start": 94.0,
+      "end": 96.0,
+      "asr_text": "Are you all right, sir?",
+      "subtitle_text": "Weak, you're too weak! Can you\n at least make this a little interesting?",
+      "final_text": "Weak, you're too weak! Can you\n at least make this a little interesting?",
+      "similarity": 0.295,
+      "flag": "mismatch"
+    },
+    {
+      "start": 96.0,
+      "end": 98.0,
+      "asr_text": "Yes, as expected, Amagi.",
+      "subtitle_text": "You weaklings exist to be my prey.",
+      "final_text": "You weaklings exist to be my prey.",
+      "similarity": 0.345,
+      "flag": "mismatch"
+    },
+    {
+      "start": 98.0,
+      "end": 99.0,
+      "asr_text": "It's as calculated.",
+      "subtitle_text": "Fight for your lives and fulfill your purpose!",
+      "final_text": "Fight for your lives and fulfill your purpose!",
+      "similarity": 0.277,
+      "flag": "mismatch"
+    },
+    {
+      "start": 99.0,
+      "end": 102.0,
+      "asr_text": "I was able to warp in the best position.",
+      "subtitle_text": "Fight for your lives and fulfill your purpose!",
+      "final_text": "Fight for your lives and fulfill your purpose!",
+      "similarity": 0.302,
+      "flag": "mismatch"
+    },
+    {
+      "start": 102.0,
+      "end": 104.0,
+      "asr_text": "I can warp in the best position.",
+      "subtitle_text": "Master, are you all right?",
+      "final_text": "Master, are you all right?",
+      "similarity": 0.207,
+      "flag": "mismatch"
+    },
+    {
+      "start": 104.0,
+      "end": 106.0,
+      "asr_text": "I can warp in the best position.",
+      "subtitle_text": "Master, are you all right?",
+      "final_text": "Master, are you all right?",
+      "similarity": 0.207,
+      "flag": "mismatch"
+    },
+    {
+      "start": 106.0,
+      "end": 108.0,
+      "asr_text": "I can warp in the best position.",
+      "subtitle_text": "I am. Impressive as always, Amagi. \nYou planned this perfectly.",
+      "final_text": "I am. Impressive as always, Amagi. \nYou planned this perfectly.",
+      "similarity": 0.274,
+      "flag": "mismatch"
+    },
+    {
+      "start": 108.0,
+      "end": 110.0,
+      "asr_text": "I can warp in the best position.",
+      "subtitle_text": "I got to warp out\n in the best possible position.",
+      "final_text": "I got to warp out\n in the best possible position.",
+      "similarity": 0.716,
+      "flag": "ok"
+    },
+    {
+      "start": 110.0,
+      "end": 111.0,
+      "asr_text": "I can warp in the best position.",
+      "subtitle_text": "I got to warp out\n in the best possible position.",
+      "final_text": "I got to warp out\n in the best possible position.",
+      "similarity": 0.716,
+      "flag": "ok"
+    },
+    {
+      "start": 111.0,
+      "end": 113.0,
+      "asr_text": "I can warp in the best position.",
+      "subtitle_text": "I was right to let you handle the projections.",
+      "final_text": "I was right to let you handle the projections.",
+      "similarity": 0.462,
+      "flag": "mismatch"
+    },
+    {
+      "start": 113.0,
+      "end": 114.0,
+      "asr_text": "I can warp in the best position.",
+      "subtitle_text": "I was right to let you handle the projections.",
+      "final_text": "I was right to let you handle the projections.",
+      "similarity": 0.462,
+      "flag": "mismatch"
+    },
+    {
+      "start": 114.0,
+      "end": 116.0,
+      "asr_text": "I can warp in the best position.",
+      "subtitle_text": "Your words honor me.",
+      "final_text": "Your words honor me.",
+      "similarity": 0.308,
+      "flag": "mismatch"
+    },
+    {
+      "start": 116.0,
+      "end": 118.0,
+      "asr_text": "Mom, that was my first time using Zeff.",
+      "subtitle_text": "Now, I've personally set the table.",
+      "final_text": "Now, I've personally set the table.",
+      "similarity": 0.243,
+      "flag": "mismatch"
+    },
+    {
+      "start": 118.0,
+      "end": 120.0,
+      "asr_text": "Mom, that was my first time using Zeff.",
+      "subtitle_text": "Now, I've personally set the table.",
+      "final_text": "Now, I've personally set the table.",
+      "similarity": 0.243,
+      "flag": "mismatch"
+    },
+    {
+      "start": 120.0,
+      "end": 122.0,
+      "asr_text": "I'll send Zeff to Dagwon.",
+      "subtitle_text": "Show me what the rest of you can do.",
+      "final_text": "Show me what the rest of you can do.",
+      "similarity": 0.328,
+      "flag": "mismatch"
+    },
+    {
+      "start": 122.0,
+      "end": 123.0,
+      "asr_text": "Don't worry.",
+      "subtitle_text": "Show me what the rest of you can do.",
+      "final_text": "Show me what the rest of you can do.",
+      "similarity": 0.125,
+      "flag": "mismatch"
+    },
+    {
+      "start": 123.0,
+      "end": 125.0,
+      "asr_text": "We'll be in a hurry.",
+      "subtitle_text": "As you wish, Master.",
+      "final_text": "As you wish, Master.",
+      "similarity": 0.2,
+      "flag": "mismatch"
+    },
+    {
+      "start": 125.0,
+      "end": 127.0,
+      "asr_text": "We'll be in a hurry.",
+      "subtitle_text": "Time to have some fun.",
+      "final_text": "Time to have some fun.",
+      "similarity": 0.286,
+      "flag": "mismatch"
+    },
+    {
+      "start": 127.0,
+      "end": 129.0,
+      "asr_text": "I'll wait for your arrival.",
+      "subtitle_text": "Attention, all ships.\n Proceed at level-three combat speed.",
+      "final_text": "Attention, all ships.\n Proceed at level-three combat speed.",
+      "similarity": 0.233,
+      "flag": "mismatch"
+    },
+    {
+      "start": 129.0,
+      "end": 131.0,
+      "asr_text": "We'll be back in a bit.",
+      "subtitle_text": "Attention, all ships.\n Proceed at level-three combat speed.",
+      "final_text": "Attention, all ships.\n Proceed at level-three combat speed.",
+      "similarity": 0.244,
+      "flag": "mismatch"
+    },
+    {
+      "start": 131.0,
+      "end": 133.0,
+      "asr_text": "You must be exhausted.",
+      "subtitle_text": "Open fire as soon as you enter combat range.",
+      "final_text": "Open fire as soon as you enter combat range.",
+      "similarity": 0.273,
+      "flag": "mismatch"
+    },
+    {
+      "start": 133.0,
+      "end": 138.0,
+      "asr_text": "The Mobile Knight has been launched. Please use it, Mr. Liam.",
+      "subtitle_text": "All mobile knights are to mobilize. \nFollow Master Liam's orders.",
+      "final_text": "All mobile knights are to mobilize. \nFollow Master Liam's orders.",
+      "similarity": 0.397,
+      "flag": "mismatch"
+    },
+    {
+      "start": 138.0,
+      "end": 141.0,
+      "asr_text": "Cristiano, Del, please lead the way.",
+      "subtitle_text": "Christiana moving out. Requesting guidance.",
+      "final_text": "Christiana moving out. Requesting guidance.",
+      "similarity": 0.329,
+      "flag": "mismatch"
+    },
+    {
+      "start": 141.0,
+      "end": 145.0,
+      "asr_text": "The Warp's success rate is decreasing.",
+      "subtitle_text": "Detecting gravity waves in the battlefield.",
+      "final_text": "Detecting gravity waves in the battlefield.",
+      "similarity": 0.247,
+      "flag": "mismatch"
+    },
+    {
+      "start": 145.0,
+      "end": 149.0,
+      "asr_text": "Don't worry, what will we do with Mr. Liam's voice?",
+      "subtitle_text": "It matters not.\n I would risk it all to guard Lord Liam.",
+      "final_text": "It matters not.\n I would risk it all to guard Lord Liam.",
+      "similarity": 0.393,
+      "flag": "mismatch"
+    },
+    {
+      "start": 149.0,
+      "end": 154.0,
+      "asr_text": "We will enter the outer space and fly at maximum speed.",
+      "subtitle_text": "Plotting cross-dimensional detour\n around distortion.",
+      "final_text": "Plotting cross-dimensional detour\n around distortion.",
+      "similarity": 0.315,
+      "flag": "mismatch"
+    },
+    {
+      "start": 154.0,
+      "end": 157.0,
+      "asr_text": "Please stand at the limit of your presence.",
+      "subtitle_text": "Please fight through\n the downturn in probability.",
+      "final_text": "Please fight through\n the downturn in probability.",
+      "similarity": 0.473,
+      "flag": "mismatch"
+    },
+    {
+      "start": 157.0,
+      "end": 159.0,
+      "asr_text": "Lead the way.",
+      "subtitle_text": "Commencing guidance.",
+      "final_text": "Commencing guidance.",
+      "similarity": 0.242,
+      "flag": "mismatch"
+    },
+    {
+      "start": 159.0,
+      "end": 162.0,
+      "asr_text": "Warp Drive, move out of the way.",
+      "subtitle_text": "Initiating warp drive sequence!",
+      "final_text": "Initiating warp drive sequence!",
+      "similarity": 0.444,
+      "flag": "mismatch"
+    },
+    {
+      "start": 164.0,
+      "end": 168.0,
+      "asr_text": "I will take you to the outer space as soon as you get lost.",
+      "subtitle_text": null,
+      "final_text": "I will take you to the outer space as soon as you get lost.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 168.0,
+      "end": 171.0,
+      "asr_text": "Warp Drive, move out of the way.",
+      "subtitle_text": "Warp!",
+      "final_text": "Warp!",
+      "similarity": 0.216,
+      "flag": "mismatch"
+    },
+    {
+      "start": 185.0,
+      "end": 187.0,
+      "asr_text": "More speed.",
+      "subtitle_text": null,
+      "final_text": "More speed.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 187.0,
+      "end": 189.0,
+      "asr_text": "You are so cowardly!",
+      "subtitle_text": "You were nothing!",
+      "final_text": "You were nothing!",
+      "similarity": 0.486,
+      "flag": "mismatch"
+    },
+    {
+      "start": 189.0,
+      "end": 191.0,
+      "asr_text": "Be careful, Tim.",
+      "subtitle_text": "You're late, Tia!",
+      "final_text": "You're late, Tia!",
+      "similarity": 0.485,
+      "flag": "mismatch"
+    },
+    {
+      "start": 191.0,
+      "end": 193.48,
+      "asr_text": "I'm sorry, Mr. Miyamu!",
+      "subtitle_text": "I'm terribly sorry, Lord Liam!",
+      "final_text": "I'm terribly sorry, Lord Liam!",
+      "similarity": 0.654,
+      "flag": "ok"
+    },
+    {
+      "start": 193.48,
+      "end": 197.16,
+      "asr_text": "All of the children in the village will be protected by this Cristiana!",
+      "subtitle_text": "I, Christiana, will get rid of \nthese insolent scrubs for you!",
+      "final_text": "I, Christiana, will get rid of \nthese insolent scrubs for you!",
+      "similarity": 0.18,
+      "flag": "mismatch"
+    },
+    {
+      "start": 197.16,
+      "end": 198.76,
+      "asr_text": "Don't make a mistake!",
+      "subtitle_text": "Don't get the wrong idea.",
+      "final_text": "Don't get the wrong idea.",
+      "similarity": 0.391,
+      "flag": "mismatch"
+    },
+    {
+      "start": 198.76,
+      "end": 202.84,
+      "asr_text": "If you keep doing this, I'll defeat you all!",
+      "subtitle_text": "I'm saying I'll get rid of them all\n if you take your sweet time.",
+      "final_text": "I'm saying I'll get rid of them all\n if you take your sweet time.",
+      "similarity": 0.257,
+      "flag": "mismatch"
+    },
+    {
+      "start": 202.84,
+      "end": 206.04,
+      "asr_text": "With this Cristiana and Mr. Miyamu!",
+      "subtitle_text": "will fight proudly alongside you!",
+      "final_text": "will fight proudly alongside you!",
+      "similarity": 0.382,
+      "flag": "mismatch"
+    },
+    {
+      "start": 207.08,
+      "end": 210.6,
+      "asr_text": "The enemy ship has entered the enemy ship's main ship.",
+      "subtitle_text": "The enemy battleships are \nnow within firing range.",
+      "final_text": "The enemy battleships are \nnow within firing range.",
+      "similarity": 0.495,
+      "flag": "mismatch"
+    },
+    {
+      "start": 210.6,
+      "end": 213.72,
+      "asr_text": "All of the ships are heading for the enemy ship.",
+      "subtitle_text": "Fire all main cannons at \nthe enemy battleships.",
+      "final_text": "Fire all main cannons at \nthe enemy battleships.",
+      "similarity": 0.5,
+      "flag": "mismatch"
+    },
+    {
+      "start": 221.48,
+      "end": 223.0,
+      "asr_text": "Enemy ship, attack!",
+      "subtitle_text": "Enemy ships destroyed.",
+      "final_text": "Enemy ships destroyed.",
+      "similarity": 0.585,
+      "flag": "ok"
+    },
+    {
+      "start": 227.0,
+      "end": 228.2,
+      "asr_text": "How was it?",
+      "subtitle_text": "How do you like the Seventh \nWeapons Factory's battleship?",
+      "final_text": "How do you like the Seventh \nWeapons Factory's battleship?",
+      "similarity": 0.29,
+      "flag": "mismatch"
+    },
+    {
+      "start": 228.2,
+      "end": 233.48,
+      "asr_text": "The ship of my seventh weapon factory has no power at all!",
+      "subtitle_text": "It's got best-in-class \nfeatures and performance.",
+      "final_text": "It's got best-in-class \nfeatures and performance.",
+      "similarity": 0.243,
+      "flag": "mismatch"
+    },
+    {
+      "start": 233.48,
+      "end": 236.12,
+      "asr_text": "I'll send you two ships after the battle.",
+      "subtitle_text": "We're in the middle of a battle. \nSave it for later, Nias.",
+      "final_text": "We're in the middle of a battle. \nSave it for later, Nias.",
+      "similarity": 0.283,
+      "flag": "mismatch"
+    },
+    {
+      "start": 236.12,
+      "end": 239.64,
+      "asr_text": "Because I want to hear your thoughts quickly!",
+      "subtitle_text": "But I wanted to hear what you thought already.",
+      "final_text": "But I wanted to hear what you thought already.",
+      "similarity": 0.703,
+      "flag": "ok"
+    },
+    {
+      "start": 239.64,
+      "end": 245.72,
+      "asr_text": "If you like it, I'll give you 100 ships and 200 ships!",
+      "subtitle_text": "If you like it, you could order \nanother hundred... no, 200 ships?",
+      "final_text": "If you like it, you could order \nanother hundred... no, 200 ships?",
+      "similarity": 0.583,
+      "flag": "ok"
+    },
+    {
+      "start": 245.72,
+      "end": 248.36,
+      "asr_text": "I'll buy it for you!",
+      "subtitle_text": "We would really appreciate your patronage.",
+      "final_text": "We would really appreciate your patronage.",
+      "similarity": 0.323,
+      "flag": "mismatch"
+    },
+    {
+      "start": 248.36,
+      "end": 250.20000000000002,
+      "asr_text": "What a troublesome guy!",
+      "subtitle_text": "Ugh, what a pain.",
+      "final_text": "Ugh, what a pain.",
+      "similarity": 0.35,
+      "flag": "mismatch"
+    },
+    {
+      "start": 250.20000000000002,
+      "end": 252.52,
+      "asr_text": "Amagi, buy it and get it!",
+      "subtitle_text": "Amagi, place the orders\n and get her out of my face.",
+      "final_text": "Amagi, place the orders\n and get her out of my face.",
+      "similarity": 0.494,
+      "flag": "mismatch"
+    },
+    {
+      "start": 252.52,
+      "end": 254.04000000000002,
+      "asr_text": "Understood.",
+      "subtitle_text": "As you wish.",
+      "final_text": "As you wish.",
+      "similarity": 0.261,
+      "flag": "mismatch"
+    },
+    {
+      "start": 254.04000000000002,
+      "end": 256.52000000000004,
+      "asr_text": "Thank you every time!",
+      "subtitle_text": "Thank you for your purchase!",
+      "final_text": "Thank you for your purchase!",
+      "similarity": 0.612,
+      "flag": "ok"
+    },
+    {
+      "start": 256.52000000000004,
+      "end": 260.28000000000003,
+      "asr_text": "All right, I'm looking forward to it from now on.",
+      "subtitle_text": "Anyway, the fun's just getting started.",
+      "final_text": "Anyway, the fun's just getting started.",
+      "similarity": 0.295,
+      "flag": "mismatch"
+    },
+    {
+      "start": 265.8,
+      "end": 268.12,
+      "asr_text": "What's wrong? Come at me more!",
+      "subtitle_text": "What, is this all you've got?",
+      "final_text": "What, is this all you've got?",
+      "similarity": 0.339,
+      "flag": "mismatch"
+    },
+    {
+      "start": 268.12,
+      "end": 270.44,
+      "asr_text": "Do you have a stronger one?",
+      "subtitle_text": "Don't you have anyone stronger?",
+      "final_text": "Don't you have anyone stronger?",
+      "similarity": 0.793,
+      "flag": "ok"
+    },
+    {
+      "start": 270.44,
+      "end": 272.52000000000004,
+      "asr_text": "It's fun! It's fun!",
+      "subtitle_text": "This is fun! So much fun!",
+      "final_text": "This is fun! So much fun!",
+      "similarity": 0.636,
+      "flag": "ok"
+    },
+    {
+      "start": 272.52000000000004,
+      "end": 276.28000000000003,
+      "asr_text": "The moment you crush a weak guy is the best!",
+      "subtitle_text": "Nothing beats the moment of \ncrushing the weak without mercy!",
+      "final_text": "Nothing beats the moment of \ncrushing the weak without mercy!",
+      "similarity": 0.571,
+      "flag": "ok"
+    },
+    {
+      "start": 276.28000000000003,
+      "end": 278.2,
+      "asr_text": "I'm the boss!",
+      "subtitle_text": "It shows me that I am strong—",
+      "final_text": "It shows me that I am strong—",
+      "similarity": 0.333,
+      "flag": "mismatch"
+    },
+    {
+      "start": 278.2,
+      "end": 282.36,
+      "asr_text": "I'll let you know that I'm the boss of evil!",
+      "subtitle_text": "that I stand alone at the summit of evil!",
+      "final_text": "that I stand alone at the summit of evil!",
+      "similarity": 0.494,
+      "flag": "mismatch"
+    },
+    {
+      "start": 282.36,
+      "end": 283.64,
+      "asr_text": "All of you!",
+      "subtitle_text": "You can all kneel before me,\n the Evil Lord Liam!",
+      "final_text": "You can all kneel before me,\n the Evil Lord Liam!",
+      "similarity": 0.267,
+      "flag": "mismatch"
+    },
+    {
+      "start": 283.64,
+      "end": 287.32,
+      "asr_text": "Give this evil Cristiana and Mr. Miyamu a lesson!",
+      "subtitle_text": "You can all kneel before me,\n the Evil Lord Liam!",
+      "final_text": "You can all kneel before me,\n the Evil Lord Liam!",
+      "similarity": 0.306,
+      "flag": "mismatch"
+    },
+    {
+      "start": 288.84,
+      "end": 290.36,
+      "asr_text": "This is revenge!",
+      "subtitle_text": "Revenge... This is my revenge.",
+      "final_text": "Revenge... This is my revenge.",
+      "similarity": 0.652,
+      "flag": "ok"
+    },
+    {
+      "start": 290.36,
+      "end": 292.68,
+      "asr_text": "This is my revenge!",
+      "subtitle_text": "Revenge... This is my revenge.",
+      "final_text": "Revenge... This is my revenge.",
+      "similarity": 0.735,
+      "flag": "ok"
+    },
+    {
+      "start": 292.68,
+      "end": 295.15999999999997,
+      "asr_text": "I'll defeat all of you!",
+      "subtitle_text": "All of it, just to exact \nrevenge upon my past life!",
+      "final_text": "All of it, just to exact \nrevenge upon my past life!",
+      "similarity": 0.24,
+      "flag": "mismatch"
+    },
+    {
+      "start": 295.15999999999997,
+      "end": 296.52,
+      "asr_text": "Revenge!",
+      "subtitle_text": "All of it, just to exact \nrevenge upon my past life!",
+      "final_text": "All of it, just to exact \nrevenge upon my past life!",
+      "similarity": 0.267,
+      "flag": "mismatch"
+    },
+    {
+      "start": 296.52,
+      "end": 302.52,
+      "asr_text": "I see. My previous life was a life that was hard to see.",
+      "subtitle_text": null,
+      "final_text": "I see. My previous life was a life that was hard to see.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 326.52,
+      "end": 328.52,
+      "asr_text": "I'm home.",
+      "subtitle_text": "I'm home.",
+      "final_text": "I'm home.",
+      "similarity": 1.0,
+      "flag": "ok"
+    },
+    {
+      "start": 328.52,
+      "end": 330.52,
+      "asr_text": "Welcome home, you.",
+      "subtitle_text": "Welcome home, honey.",
+      "final_text": "Welcome home, honey.",
+      "similarity": 0.842,
+      "flag": "ok"
+    },
+    {
+      "start": 330.52,
+      "end": 332.52,
+      "asr_text": "I'm home, Mika.",
+      "subtitle_text": "Thanks, Mika.",
+      "final_text": "Thanks, Mika.",
+      "similarity": 0.571,
+      "flag": "ok"
+    },
+    {
+      "start": 332.52,
+      "end": 334.52,
+      "asr_text": "Where's Kanami?",
+      "subtitle_text": "Where's Kanami?",
+      "final_text": "Where's Kanami?",
+      "similarity": 1.0,
+      "flag": "ok"
+    },
+    {
+      "start": 334.52,
+      "end": 336.52,
+      "asr_text": "She's already asleep.",
+      "subtitle_text": "She's asleep.",
+      "final_text": "She's asleep.",
+      "similarity": 0.765,
+      "flag": "ok"
+    },
+    {
+      "start": 336.52,
+      "end": 338.52,
+      "asr_text": "She's so noisy that she wants a dog.",
+      "subtitle_text": "She kept begging for a dog.",
+      "final_text": "She kept begging for a dog.",
+      "similarity": 0.381,
+      "flag": "mismatch"
+    },
+    {
+      "start": 338.52,
+      "end": 339.52,
+      "asr_text": "A dog?",
+      "subtitle_text": "Why a dog?",
+      "final_text": "Why a dog?",
+      "similarity": 0.75,
+      "flag": "ok"
+    },
+    {
+      "start": 339.52,
+      "end": 341.52,
+      "asr_text": "She wants to play games with her friends.",
+      "subtitle_text": "She saw a Shiba at her friend's place.",
+      "final_text": "She saw a Shiba at her friend's place.",
+      "similarity": 0.506,
+      "flag": "mismatch"
+    },
+    {
+      "start": 341.52,
+      "end": 343.52,
+      "asr_text": "She doesn't want to play games with her friends.",
+      "subtitle_text": "Now she insists we should get one.",
+      "final_text": "Now she insists we should get one.",
+      "similarity": 0.317,
+      "flag": "mismatch"
+    },
+    {
+      "start": 343.52,
+      "end": 344.52,
+      "asr_text": "I see.",
+      "subtitle_text": "Oh... I don't know if\n we could afford one right now.",
+      "final_text": "Oh... I don't know if\n we could afford one right now.",
+      "similarity": 0.169,
+      "flag": "mismatch"
+    },
+    {
+      "start": 344.52,
+      "end": 346.52,
+      "asr_text": "I don't have time now.",
+      "subtitle_text": "Oh... I don't know if\n we could afford one right now.",
+      "final_text": "Oh... I don't know if\n we could afford one right now.",
+      "similarity": 0.427,
+      "flag": "mismatch"
+    },
+    {
+      "start": 351.52,
+      "end": 352.52,
+      "asr_text": "A dog?",
+      "subtitle_text": "A dog, huh?",
+      "final_text": "A dog, huh?",
+      "similarity": 0.706,
+      "flag": "ok"
+    },
+    {
+      "start": 353.52,
+      "end": 355.52,
+      "asr_text": "I'm home.",
+      "subtitle_text": null,
+      "final_text": "I'm home.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 358.52,
+      "end": 361.52,
+      "asr_text": "It's rare to see a dog get a break.",
+      "subtitle_text": "This is nice. You don't get too many days off.",
+      "final_text": "This is nice. You don't get too many days off.",
+      "similarity": 0.444,
+      "flag": "mismatch"
+    },
+    {
+      "start": 361.52,
+      "end": 363.52,
+      "asr_text": "I wanted to see a dog too.",
+      "subtitle_text": "I wanted to come see the dogs myself.",
+      "final_text": "I wanted to come see the dogs myself.",
+      "similarity": 0.698,
+      "flag": "ok"
+    },
+    {
+      "start": 363.52,
+      "end": 366.52,
+      "asr_text": "You wanted to buy one too?",
+      "subtitle_text": "Wow. Do you want to get one too?",
+      "final_text": "Wow. Do you want to get one too?",
+      "similarity": 0.724,
+      "flag": "ok"
+    },
+    {
+      "start": 366.52,
+      "end": 367.52,
+      "asr_text": "No.",
+      "subtitle_text": "Nah, I had one before that \nwas like family to me.",
+      "final_text": "Nah, I had one before that \nwas like family to me.",
+      "similarity": 0.113,
+      "flag": "mismatch"
+    },
+    {
+      "start": 367.52,
+      "end": 370.52,
+      "asr_text": "I used to buy one of them.",
+      "subtitle_text": "Nah, I had one before that \nwas like family to me.",
+      "final_text": "Nah, I had one before that \nwas like family to me.",
+      "similarity": 0.395,
+      "flag": "mismatch"
+    },
+    {
+      "start": 370.52,
+      "end": 373.52,
+      "asr_text": "I can't forget about it now.",
+      "subtitle_text": "I still can't bring myself to forget it.",
+      "final_text": "I still can't bring myself to forget it.",
+      "similarity": 0.529,
+      "flag": "mismatch"
+    },
+    {
+      "start": 374.52,
+      "end": 376.52,
+      "asr_text": "It's a one-off.",
+      "subtitle_text": "You love with all your heart, huh?",
+      "final_text": "You love with all your heart, huh?",
+      "similarity": 0.286,
+      "flag": "mismatch"
+    },
+    {
+      "start": 376.52,
+      "end": 379.52,
+      "asr_text": "And now, it's enough for Mika and Kanami.",
+      "subtitle_text": "Besides, having you and \nKanami in my life is plenty.",
+      "final_text": "Besides, having you and \nKanami in my life is plenty.",
+      "similarity": 0.404,
+      "flag": "mismatch"
+    },
+    {
+      "start": 379.52,
+      "end": 382.52,
+      "asr_text": "Does it mean that you have more people to talk to?",
+      "subtitle_text": "And a dog would cause even \nmore work for you than we do?",
+      "final_text": "And a dog would cause even \nmore work for you than we do?",
+      "similarity": 0.336,
+      "flag": "mismatch"
+    },
+    {
+      "start": 383.52,
+      "end": 385.52,
+      "asr_text": "It's a one-off.",
+      "subtitle_text": "I mean it'd be another family member to love.",
+      "final_text": "I mean it'd be another family member to love.",
+      "similarity": 0.3,
+      "flag": "mismatch"
+    },
+    {
+      "start": 387.52,
+      "end": 390.52,
+      "asr_text": "A girl who loves her husband and wife.",
+      "subtitle_text": "I have a wife and daughter I love.",
+      "final_text": "I have a wife and daughter I love.",
+      "similarity": 0.278,
+      "flag": "mismatch"
+    },
+    {
+      "start": 390.52,
+      "end": 392.52,
+      "asr_text": "If you two are together, you'll be happy.",
+      "subtitle_text": "With them, I can live happy and fight \nthrough any and all difficulties...",
+      "final_text": "With them, I can live happy and fight \nthrough any and all difficulties...",
+      "similarity": 0.278,
+      "flag": "mismatch"
+    },
+    {
+      "start": 392.52,
+      "end": 394.52,
+      "asr_text": "You'll be able to overcome any difficulties.",
+      "subtitle_text": "With them, I can live happy and fight \nthrough any and all difficulties...",
+      "final_text": "With them, I can live happy and fight \nthrough any and all difficulties...",
+      "similarity": 0.356,
+      "flag": "mismatch"
+    },
+    {
+      "start": 394.52,
+      "end": 397.52,
+      "asr_text": "That's what I've been thinking.",
+      "subtitle_text": "That's what I thought back then.",
+      "final_text": "That's what I thought back then.",
+      "similarity": 0.571,
+      "flag": "ok"
+    },
+    {
+      "start": 397.52,
+      "end": 400.52,
+      "asr_text": "That's why you sent a report, didn't you?",
+      "subtitle_text": "I told you to keep me in the damn loop!",
+      "final_text": "I told you to keep me in the damn loop!",
+      "similarity": 0.375,
+      "flag": "mismatch"
+    },
+    {
+      "start": 400.52,
+      "end": 401.52,
+      "asr_text": "Let's go first.",
+      "subtitle_text": "I told you to keep me in the damn loop!",
+      "final_text": "I told you to keep me in the damn loop!",
+      "similarity": 0.222,
+      "flag": "mismatch"
+    },
+    {
+      "start": 401.52,
+      "end": 403.52,
+      "asr_text": "Yes, I got a call right away.",
+      "subtitle_text": "You did, and I did send you\n a message at once.",
+      "final_text": "You did, and I did send you\n a message at once.",
+      "similarity": 0.368,
+      "flag": "mismatch"
+    },
+    {
+      "start": 403.52,
+      "end": 406.52,
+      "asr_text": "You didn't reach me, did you?",
+      "subtitle_text": "Well, I didn't get it, you oaf!",
+      "final_text": "Well, I didn't get it, you oaf!",
+      "similarity": 0.5,
+      "flag": "mismatch"
+    },
+    {
+      "start": 406.52,
+      "end": 408.52,
+      "asr_text": "What are you going to do?",
+      "subtitle_text": "How are you gonna fix this?!",
+      "final_text": "How are you gonna fix this?!",
+      "similarity": 0.604,
+      "flag": "ok"
+    },
+    {
+      "start": 409.52,
+      "end": 410.52,
+      "asr_text": "Huh?",
+      "subtitle_text": "You should know better, Team Lead.",
+      "final_text": "You should know better, Team Lead.",
+      "similarity": 0.105,
+      "flag": "mismatch"
+    },
+    {
+      "start": 410.52,
+      "end": 412.52,
+      "asr_text": "What are you doing?",
+      "subtitle_text": "You should know better, Team Lead.",
+      "final_text": "You should know better, Team Lead.",
+      "similarity": 0.226,
+      "flag": "mismatch"
+    },
+    {
+      "start": 412.52,
+      "end": 414.52,
+      "asr_text": "You're going to the club, aren't you?",
+      "subtitle_text": "The chief always hits the club on Thursdays.",
+      "final_text": "The chief always hits the club on Thursdays.",
+      "similarity": 0.42,
+      "flag": "mismatch"
+    },
+    {
+      "start": 414.52,
+      "end": 416.52,
+      "asr_text": "You can go on your own.",
+      "subtitle_text": "No point waiting on his approval.",
+      "final_text": "No point waiting on his approval.",
+      "similarity": 0.393,
+      "flag": "mismatch"
+    },
+    {
+      "start": 416.52,
+      "end": 418.52,
+      "asr_text": "No, but...",
+      "subtitle_text": "But still...",
+      "final_text": "But still...",
+      "similarity": 0.545,
+      "flag": "mismatch"
+    },
+    {
+      "start": 418.52,
+      "end": 420.52,
+      "asr_text": "It's too late.",
+      "subtitle_text": "This guy never learns.",
+      "final_text": "This guy never learns.",
+      "similarity": 0.389,
+      "flag": "mismatch"
+    },
+    {
+      "start": 425.52,
+      "end": 427.52,
+      "asr_text": "The company is a black company.",
+      "subtitle_text": "The company I worked at\n was toxic and exploitative.",
+      "final_text": "The company I worked at\n was toxic and exploitative.",
+      "similarity": 0.458,
+      "flag": "mismatch"
+    },
+    {
+      "start": 427.52,
+      "end": 429.52,
+      "asr_text": "It's used to be a bad boss.",
+      "subtitle_text": "My awful boss worked me like a dog,",
+      "final_text": "My awful boss worked me like a dog,",
+      "similarity": 0.226,
+      "flag": "mismatch"
+    },
+    {
+      "start": 429.52,
+      "end": 431.52,
+      "asr_text": "It's used to be a bad boss.",
+      "subtitle_text": "and my subordinates openly mocked me.",
+      "final_text": "and my subordinates openly mocked me.",
+      "similarity": 0.281,
+      "flag": "mismatch"
+    },
+    {
+      "start": 431.52,
+      "end": 433.52,
+      "asr_text": "It's used to be a bad boss.",
+      "subtitle_text": "They'd take credit for things I did...",
+      "final_text": "They'd take credit for things I did...",
+      "similarity": 0.308,
+      "flag": "mismatch"
+    },
+    {
+      "start": 433.52,
+      "end": 435.52,
+      "asr_text": "It's used to be a bad boss.",
+      "subtitle_text": "They'd take credit for things I did...",
+      "final_text": "They'd take credit for things I did...",
+      "similarity": 0.308,
+      "flag": "mismatch"
+    },
+    {
+      "start": 436.52,
+      "end": 438.52,
+      "asr_text": "It's used to be a bad boss.",
+      "subtitle_text": "and blame me for mistakes I didn't make.",
+      "final_text": "and blame me for mistakes I didn't make.",
+      "similarity": 0.239,
+      "flag": "mismatch"
+    },
+    {
+      "start": 439.52,
+      "end": 440.52,
+      "asr_text": "It's used to be a bad boss.",
+      "subtitle_text": null,
+      "final_text": "It's used to be a bad boss.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 440.52,
+      "end": 441.52,
+      "asr_text": "That's right.",
+      "subtitle_text": null,
+      "final_text": "That's right.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 441.52,
+      "end": 442.52,
+      "asr_text": "It's used to be a bad boss.",
+      "subtitle_text": null,
+      "final_text": "It's used to be a bad boss.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 442.52,
+      "end": 443.52,
+      "asr_text": "It's used to be a bad boss.",
+      "subtitle_text": null,
+      "final_text": "It's used to be a bad boss.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 443.52,
+      "end": 444.52,
+      "asr_text": "That's right.",
+      "subtitle_text": null,
+      "final_text": "That's right.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 444.52,
+      "end": 446.52,
+      "asr_text": "The company is a black company.",
+      "subtitle_text": "Even through all that, my family \ngave me the strength to keep going.",
+      "final_text": "Even through all that, my family \ngave me the strength to keep going.",
+      "similarity": 0.16,
+      "flag": "mismatch"
+    },
+    {
+      "start": 446.52,
+      "end": 448.52,
+      "asr_text": "It's used to be a bad boss.",
+      "subtitle_text": "Even through all that, my family \ngave me the strength to keep going.",
+      "final_text": "Even through all that, my family \ngave me the strength to keep going.",
+      "similarity": 0.25,
+      "flag": "mismatch"
+    },
+    {
+      "start": 448.52,
+      "end": 449.52,
+      "asr_text": "It's used to be a bad boss.",
+      "subtitle_text": "Even through all that, my family \ngave me the strength to keep going.",
+      "final_text": "Even through all that, my family \ngave me the strength to keep going.",
+      "similarity": 0.25,
+      "flag": "mismatch"
+    },
+    {
+      "start": 449.52,
+      "end": 451.52,
+      "asr_text": "I got a call right away.",
+      "subtitle_text": "I ran myself into the ground working,\n and it was all to keep my family happy.",
+      "final_text": "I ran myself into the ground working,\n and it was all to keep my family happy.",
+      "similarity": 0.333,
+      "flag": "mismatch"
+    },
+    {
+      "start": 451.52,
+      "end": 453.52,
+      "asr_text": "They're all fighting.",
+      "subtitle_text": "I ran myself into the ground working,\n and it was all to keep my family happy.",
+      "final_text": "I ran myself into the ground working,\n and it was all to keep my family happy.",
+      "similarity": 0.263,
+      "flag": "mismatch"
+    },
+    {
+      "start": 453.52,
+      "end": 454.52,
+      "asr_text": "Even so,",
+      "subtitle_text": "I ran myself into the ground working,\n and it was all to keep my family happy.",
+      "final_text": "I ran myself into the ground working,\n and it was all to keep my family happy.",
+      "similarity": 0.116,
+      "flag": "mismatch"
+    },
+    {
+      "start": 454.52,
+      "end": 456.52,
+      "asr_text": "my family healed me.",
+      "subtitle_text": "I ran myself into the ground working,\n and it was all to keep my family happy.",
+      "final_text": "I ran myself into the ground working,\n and it was all to keep my family happy.",
+      "similarity": 0.265,
+      "flag": "mismatch"
+    },
+    {
+      "start": 458.52,
+      "end": 461.52,
+      "asr_text": "I did my best to make you happy.",
+      "subtitle_text": null,
+      "final_text": "I did my best to make you happy.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 463.52,
+      "end": 464.52,
+      "asr_text": "No?",
+      "subtitle_text": "Nitta",
+      "final_text": "Nitta",
+      "similarity": 0.25,
+      "flag": "mismatch"
+    },
+    {
+      "start": 464.52,
+      "end": 471.28,
+      "asr_text": "Nitta-kun? Senpai, you're the next Deluxe Ultra Gold Magic Gundam.",
+      "subtitle_text": "\"Senpai, you know the upcoming \nDeluxe Ultra Alloy Majin Gunder?",
+      "final_text": "\"Senpai, you know the upcoming \nDeluxe Ultra Alloy Majin Gunder?",
+      "similarity": 0.631,
+      "flag": "ok"
+    },
+    {
+      "start": 471.28,
+      "end": 475.88,
+      "asr_text": "It's the first time I've seen a 3D version of the underwater dedicated option.",
+      "subtitle_text": "It's got 3D naval battle add-ons for \nthe first time! It's finally complete!",
+      "final_text": "It's got 3D naval battle add-ons for \nthe first time! It's finally complete!",
+      "similarity": 0.325,
+      "flag": "mismatch"
+    },
+    {
+      "start": 475.88,
+      "end": 477.88,
+      "asr_text": "I'm sure you'll buy it.",
+      "subtitle_text": "You gotta buy it,\" huh?",
+      "final_text": "You gotta buy it,\" huh?",
+      "similarity": 0.435,
+      "flag": "mismatch"
+    },
+    {
+      "start": 477.88,
+      "end": 478.88,
+      "asr_text": "Like this?",
+      "subtitle_text": "You gotta buy it,\" huh?",
+      "final_text": "You gotta buy it,\" huh?",
+      "similarity": 0.242,
+      "flag": "mismatch"
+    },
+    {
+      "start": 478.88,
+      "end": 483.15999999999997,
+      "asr_text": "Ah, Nitta-kun is the same as always.",
+      "subtitle_text": "Nitta-kun never changes. That's great.",
+      "final_text": "Nitta-kun never changes. That's great.",
+      "similarity": 0.514,
+      "flag": "mismatch"
+    },
+    {
+      "start": 483.15999999999997,
+      "end": 486.56,
+      "asr_text": "I really like things like this, right? Nitta-kun.",
+      "subtitle_text": "He really does love this stuff.",
+      "final_text": "He really does love this stuff.",
+      "similarity": 0.55,
+      "flag": "ok"
+    },
+    {
+      "start": 491.76,
+      "end": 493.76,
+      "asr_text": "Is this the right place?",
+      "subtitle_text": "Is this the right place?",
+      "final_text": "Is this the right place?",
+      "similarity": 1.0,
+      "flag": "ok"
+    },
+    {
+      "start": 495.52000000000004,
+      "end": 498.52000000000004,
+      "asr_text": "I don't know much about this area.",
+      "subtitle_text": "I'm not familiar with this area.",
+      "final_text": "I'm not familiar with this area.",
+      "similarity": 0.545,
+      "flag": "mismatch"
+    },
+    {
+      "start": 501.52000000000004,
+      "end": 502.52000000000004,
+      "asr_text": "Huh?",
+      "subtitle_text": null,
+      "final_text": "Huh?",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 504.52000000000004,
+      "end": 505.52000000000004,
+      "asr_text": "Mika?",
+      "subtitle_text": "Mika?",
+      "final_text": "Mika?",
+      "similarity": 1.0,
+      "flag": "ok"
+    },
+    {
+      "start": 507.52000000000004,
+      "end": 510.52000000000004,
+      "asr_text": "Today, I'm taking Kanami to the Sports Club.",
+      "subtitle_text": "Isn't she supposed to take Kanami \nto her sports club today?",
+      "final_text": "Isn't she supposed to take Kanami \nto her sports club today?",
+      "similarity": 0.596,
+      "flag": "ok"
+    },
+    {
+      "start": 514.52,
+      "end": 517.52,
+      "asr_text": "Who's that guy?",
+      "subtitle_text": "Wait, who's that guy?",
+      "final_text": "Wait, who's that guy?",
+      "similarity": 0.833,
+      "flag": "ok"
+    },
+    {
+      "start": 518.52,
+      "end": 519.52,
+      "asr_text": "I'm home.",
+      "subtitle_text": "I'm home.",
+      "final_text": "I'm home.",
+      "similarity": 1.0,
+      "flag": "ok"
+    },
+    {
+      "start": 520.52,
+      "end": 523.52,
+      "asr_text": "Come in. You came early today.",
+      "subtitle_text": "You're home early.",
+      "final_text": "You're home early.",
+      "similarity": 0.542,
+      "flag": "mismatch"
+    },
+    {
+      "start": 523.52,
+      "end": 524.52,
+      "asr_text": "Yeah.",
+      "subtitle_text": "Yeah.",
+      "final_text": "Yeah.",
+      "similarity": 1.0,
+      "flag": "ok"
+    },
+    {
+      "start": 524.52,
+      "end": 526.52,
+      "asr_text": "I'll warm up the food.",
+      "subtitle_text": "Let me warm up your dinner for you.",
+      "final_text": "Let me warm up your dinner for you.",
+      "similarity": 0.561,
+      "flag": "ok"
+    },
+    {
+      "start": 527.52,
+      "end": 529.52,
+      "asr_text": "How was it today?",
+      "subtitle_text": "How was today?",
+      "final_text": "How was today?",
+      "similarity": 0.903,
+      "flag": "ok"
+    },
+    {
+      "start": 530.52,
+      "end": 532.52,
+      "asr_text": "Huh? What did you get?",
+      "subtitle_text": "What do you mean?",
+      "final_text": "What do you mean?",
+      "similarity": 0.667,
+      "flag": "ok"
+    },
+    {
+      "start": 532.52,
+      "end": 534.52,
+      "asr_text": "Kanami's Sports Club.",
+      "subtitle_text": "Kanami's sports club.",
+      "final_text": "Kanami's sports club.",
+      "similarity": 1.0,
+      "flag": "ok"
+    },
+    {
+      "start": 535.52,
+      "end": 539.52,
+      "asr_text": "Today, I won at Kanami Sports Chambara's match.",
+      "subtitle_text": "Kanami won a sword fighting match today.",
+      "final_text": "Kanami won a sword fighting match today.",
+      "similarity": 0.46,
+      "flag": "mismatch"
+    },
+    {
+      "start": 539.52,
+      "end": 540.52,
+      "asr_text": "Right, Kanami?",
+      "subtitle_text": "Right, Kanami?",
+      "final_text": "Right, Kanami?",
+      "similarity": 1.0,
+      "flag": "ok"
+    },
+    {
+      "start": 540.52,
+      "end": 541.52,
+      "asr_text": "Yeah.",
+      "subtitle_text": "Yep!",
+      "final_text": "Yep!",
+      "similarity": 0.444,
+      "flag": "mismatch"
+    },
+    {
+      "start": 543.52,
+      "end": 546.52,
+      "asr_text": "Oh, I see. You won.",
+      "subtitle_text": "You won, huh? I'm proud of ya, Kanami.",
+      "final_text": "You won, huh? I'm proud of ya, Kanami.",
+      "similarity": 0.281,
+      "flag": "mismatch"
+    },
+    {
+      "start": 546.52,
+      "end": 548.52,
+      "asr_text": "That's amazing, Kanami.",
+      "subtitle_text": "You won, huh? I'm proud of ya, Kanami.",
+      "final_text": "You won, huh? I'm proud of ya, Kanami.",
+      "similarity": 0.361,
+      "flag": "mismatch"
+    },
+    {
+      "start": 549.52,
+      "end": 551.52,
+      "asr_text": "Hehehe.",
+      "subtitle_text": null,
+      "final_text": "Hehehe.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 552.52,
+      "end": 554.52,
+      "asr_text": "Hey, Mika.",
+      "subtitle_text": "Hey, Mika. Today...",
+      "final_text": "Hey, Mika. Today...",
+      "similarity": 0.69,
+      "flag": "ok"
+    },
+    {
+      "start": 554.52,
+      "end": 555.52,
+      "asr_text": "Today...",
+      "subtitle_text": "Hey, Mika. Today...",
+      "final_text": "Hey, Mika. Today...",
+      "similarity": 0.593,
+      "flag": "ok"
+    },
+    {
+      "start": 555.52,
+      "end": 557.52,
+      "asr_text": "What?",
+      "subtitle_text": "What?",
+      "final_text": "What?",
+      "similarity": 1.0,
+      "flag": "ok"
+    },
+    {
+      "start": 558.52,
+      "end": 560.52,
+      "asr_text": "Nothing.",
+      "subtitle_text": "Never mind. It's nothing.",
+      "final_text": "Never mind. It's nothing.",
+      "similarity": 0.485,
+      "flag": "mismatch"
+    },
+    {
+      "start": 560.52,
+      "end": 562.52,
+      "asr_text": "That's weird.",
+      "subtitle_text": "Come on. Don't be weird.",
+      "final_text": "Come on. Don't be weird.",
+      "similarity": 0.432,
+      "flag": "mismatch"
+    },
+    {
+      "start": 564.52,
+      "end": 566.52,
+      "asr_text": "Yeah, nothing.",
+      "subtitle_text": "Yeah, it's nothing.",
+      "final_text": "Yeah, it's nothing.",
+      "similarity": 0.848,
+      "flag": "ok"
+    },
+    {
+      "start": 566.52,
+      "end": 568.52,
+      "asr_text": "It's my mistake.",
+      "subtitle_text": "I just misunderstood.",
+      "final_text": "I just misunderstood.",
+      "similarity": 0.432,
+      "flag": "mismatch"
+    },
+    {
+      "start": 568.52,
+      "end": 571.52,
+      "asr_text": "I can't tell you anything weird about Mika.",
+      "subtitle_text": "Mika would never be unfaithful.",
+      "final_text": "Mika would never be unfaithful.",
+      "similarity": 0.135,
+      "flag": "mismatch"
+    },
+    {
+      "start": 571.52,
+      "end": 574.52,
+      "asr_text": "Yeah, I can't tell you anything weird about Mika.",
+      "subtitle_text": "Not Mika, of all people...",
+      "final_text": "Not Mika, of all people...",
+      "similarity": 0.24,
+      "flag": "mismatch"
+    },
+    {
+      "start": 574.52,
+      "end": 575.52,
+      "asr_text": "Huh?",
+      "subtitle_text": null,
+      "final_text": "Huh?",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 575.52,
+      "end": 577.52,
+      "asr_text": "Again?",
+      "subtitle_text": "Not again.",
+      "final_text": "Not again.",
+      "similarity": 0.625,
+      "flag": "ok"
+    },
+    {
+      "start": 577.52,
+      "end": 579.52,
+      "asr_text": "I can't sleep.",
+      "subtitle_text": "I can't put the PC to sleep. \nI gotta step out, too.",
+      "final_text": "I can't put the PC to sleep. \nI gotta step out, too.",
+      "similarity": 0.424,
+      "flag": "mismatch"
+    },
+    {
+      "start": 579.52,
+      "end": 581.52,
+      "asr_text": "I'm taking off my seat belt.",
+      "subtitle_text": "I can't put the PC to sleep. \nI gotta step out, too.",
+      "final_text": "I can't put the PC to sleep. \nI gotta step out, too.",
+      "similarity": 0.25,
+      "flag": "mismatch"
+    },
+    {
+      "start": 581.52,
+      "end": 583.52,
+      "asr_text": "I have to keep it and take a shot.",
+      "subtitle_text": "Guess you'll have to save \nyour work and shut it down.",
+      "final_text": "Guess you'll have to save \nyour work and shut it down.",
+      "similarity": 0.432,
+      "flag": "mismatch"
+    },
+    {
+      "start": 583.52,
+      "end": 584.52,
+      "asr_text": "Yeah.",
+      "subtitle_text": "Guess you'll have to save \nyour work and shut it down.",
+      "final_text": "Guess you'll have to save \nyour work and shut it down.",
+      "similarity": 0.169,
+      "flag": "mismatch"
+    },
+    {
+      "start": 600.52,
+      "end": 601.52,
+      "asr_text": "Oh, right.",
+      "subtitle_text": "Yeah, that's right.",
+      "final_text": "Yeah, that's right.",
+      "similarity": 0.621,
+      "flag": "ok"
+    },
+    {
+      "start": 601.52,
+      "end": 603.52,
+      "asr_text": "I just got here.",
+      "subtitle_text": "Just got here.",
+      "final_text": "Just got here.",
+      "similarity": 0.933,
+      "flag": "ok"
+    },
+    {
+      "start": 603.52,
+      "end": 604.52,
+      "asr_text": "Yeah.",
+      "subtitle_text": "Just got here.",
+      "final_text": "Just got here.",
+      "similarity": 0.211,
+      "flag": "mismatch"
+    },
+    {
+      "start": 604.52,
+      "end": 606.52,
+      "asr_text": "Yeah, with Kanami.",
+      "subtitle_text": "Yeah, I'm with Kanami. Where are you?",
+      "final_text": "Yeah, I'm with Kanami. Where are you?",
+      "similarity": 0.655,
+      "flag": "ok"
+    },
+    {
+      "start": 606.52,
+      "end": 608.52,
+      "asr_text": "Where are you now?",
+      "subtitle_text": "Yeah, I'm with Kanami. Where are you?",
+      "final_text": "Yeah, I'm with Kanami. Where are you?",
+      "similarity": 0.509,
+      "flag": "mismatch"
+    },
+    {
+      "start": 608.52,
+      "end": 610.52,
+      "asr_text": "Oh, there he is!",
+      "subtitle_text": "I see him over there!",
+      "final_text": "I see him over there!",
+      "similarity": 0.432,
+      "flag": "mismatch"
+    },
+    {
+      "start": 610.52,
+      "end": 612.52,
+      "asr_text": "I see him.",
+      "subtitle_text": "I see you now. Let's go, Kanami.",
+      "final_text": "I see you now. Let's go, Kanami.",
+      "similarity": 0.381,
+      "flag": "mismatch"
+    },
+    {
+      "start": 612.52,
+      "end": 613.52,
+      "asr_text": "Let's go, Kanami.",
+      "subtitle_text": "I see you now. Let's go, Kanami.",
+      "final_text": "I see you now. Let's go, Kanami.",
+      "similarity": 0.694,
+      "flag": "ok"
+    },
+    {
+      "start": 613.52,
+      "end": 614.52,
+      "asr_text": "Yeah.",
+      "subtitle_text": "Yeah... Papa!",
+      "final_text": "Yeah... Papa!",
+      "similarity": 0.556,
+      "flag": "ok"
+    },
+    {
+      "start": 614.52,
+      "end": 616.52,
+      "asr_text": "Papa!",
+      "subtitle_text": "Yeah... Papa!",
+      "final_text": "Yeah... Papa!",
+      "similarity": 0.556,
+      "flag": "ok"
+    },
+    {
+      "start": 627.52,
+      "end": 629.52,
+      "asr_text": "What's papa?",
+      "subtitle_text": "Why did she call another man \"Papa\"?",
+      "final_text": "Why did she call another man \"Papa\"?",
+      "similarity": 0.417,
+      "flag": "mismatch"
+    },
+    {
+      "start": 629.52,
+      "end": 631.52,
+      "asr_text": "No, it's not.",
+      "subtitle_text": "No... It can't be.\n That must've been a friend.",
+      "final_text": "No... It can't be.\n That must've been a friend.",
+      "similarity": 0.333,
+      "flag": "mismatch"
+    },
+    {
+      "start": 631.52,
+      "end": 633.52,
+      "asr_text": "It's just a friend of mine.",
+      "subtitle_text": "No... It can't be.\n That must've been a friend.",
+      "final_text": "No... It can't be.\n That must've been a friend.",
+      "similarity": 0.459,
+      "flag": "mismatch"
+    },
+    {
+      "start": 633.52,
+      "end": 635.52,
+      "asr_text": "I'm busy, so I can't fight him.",
+      "subtitle_text": "A friend who's playing her father \nbecause I'm always too busy with work.",
+      "final_text": "A friend who's playing her father \nbecause I'm always too busy with work.",
+      "similarity": 0.212,
+      "flag": "mismatch"
+    },
+    {
+      "start": 635.52,
+      "end": 638.52,
+      "asr_text": "He's playing with my father.",
+      "subtitle_text": "A friend who's playing her father \nbecause I'm always too busy with work.",
+      "final_text": "A friend who's playing her father \nbecause I'm always too busy with work.",
+      "similarity": 0.416,
+      "flag": "mismatch"
+    },
+    {
+      "start": 638.52,
+      "end": 640.52,
+      "asr_text": "Yeah, that's right.",
+      "subtitle_text": "Yeah, that's gotta be it.",
+      "final_text": "Yeah, that's gotta be it.",
+      "similarity": 0.727,
+      "flag": "ok"
+    },
+    {
+      "start": 640.52,
+      "end": 643.52,
+      "asr_text": "Hey, what are you doing?",
+      "subtitle_text": "What are you slacking off for?",
+      "final_text": "What are you slacking off for?",
+      "similarity": 0.63,
+      "flag": "ok"
+    },
+    {
+      "start": 643.52,
+      "end": 645.52,
+      "asr_text": "Oh, I'm sorry.",
+      "subtitle_text": "I'm sorry. My PC's just acting up.",
+      "final_text": "I'm sorry. My PC's just acting up.",
+      "similarity": 0.417,
+      "flag": "mismatch"
+    },
+    {
+      "start": 645.52,
+      "end": 647.52,
+      "asr_text": "My computer is bad.",
+      "subtitle_text": "I'm sorry. My PC's just acting up.",
+      "final_text": "I'm sorry. My PC's just acting up.",
+      "similarity": 0.302,
+      "flag": "mismatch"
+    },
+    {
+      "start": 647.52,
+      "end": 649.52,
+      "asr_text": "If I sleep, I can't stand up.",
+      "subtitle_text": "It takes a while to wake up from sleep.",
+      "final_text": "It takes a while to wake up from sleep.",
+      "similarity": 0.265,
+      "flag": "mismatch"
+    },
+    {
+      "start": 649.52,
+      "end": 651.52,
+      "asr_text": "Then, don't sleep.",
+      "subtitle_text": "It takes a while to wake up from sleep.",
+      "final_text": "It takes a while to wake up from sleep.",
+      "similarity": 0.421,
+      "flag": "mismatch"
+    },
+    {
+      "start": 651.52,
+      "end": 654.52,
+      "asr_text": "I have to sleep for a while.",
+      "subtitle_text": "But I have to when I go on break\n for security reasons.",
+      "final_text": "But I have to when I go on break\n for security reasons.",
+      "similarity": 0.458,
+      "flag": "mismatch"
+    },
+    {
+      "start": 654.52,
+      "end": 656.52,
+      "asr_text": "Then, don't sleep.",
+      "subtitle_text": "But I have to when I go on break\n for security reasons.",
+      "final_text": "But I have to when I go on break\n for security reasons.",
+      "similarity": 0.329,
+      "flag": "mismatch"
+    },
+    {
+      "start": 656.52,
+      "end": 658.52,
+      "asr_text": "Hurry up.",
+      "subtitle_text": "Then don't go on break.",
+      "final_text": "Then don't go on break.",
+      "similarity": 0.188,
+      "flag": "mismatch"
+    },
+    {
+      "start": 658.52,
+      "end": 660.52,
+      "asr_text": "Okay.",
+      "subtitle_text": "Just hurry up and get to it.",
+      "final_text": "Just hurry up and get to it.",
+      "similarity": 0.121,
+      "flag": "mismatch"
+    },
+    {
+      "start": 660.52,
+      "end": 662.52,
+      "asr_text": "Hurry up.",
+      "subtitle_text": "Right.",
+      "final_text": "Right.",
+      "similarity": 0.267,
+      "flag": "mismatch"
+    },
+    {
+      "start": 665.52,
+      "end": 667.52,
+      "asr_text": "I'm sorry, Mika.",
+      "subtitle_text": "Sorry, Mika, I'm still working.",
+      "final_text": "Sorry, Mika, I'm still working.",
+      "similarity": 0.511,
+      "flag": "mismatch"
+    },
+    {
+      "start": 667.52,
+      "end": 668.52,
+      "asr_text": "I'm at work.",
+      "subtitle_text": "Sorry, Mika, I'm still working.",
+      "final_text": "Sorry, Mika, I'm still working.",
+      "similarity": 0.512,
+      "flag": "mismatch"
+    },
+    {
+      "start": 668.52,
+      "end": 670.52,
+      "asr_text": "Kanami is in trouble.",
+      "subtitle_text": "Bad news! Kanami's been in an accident!",
+      "final_text": "Bad news! Kanami's been in an accident!",
+      "similarity": 0.4,
+      "flag": "mismatch"
+    },
+    {
+      "start": 670.52,
+      "end": 672.52,
+      "asr_text": "Kanami is...",
+      "subtitle_text": "Kanami?!",
+      "final_text": "Kanami?!",
+      "similarity": 0.6,
+      "flag": "ok"
+    },
+    {
+      "start": 675.52,
+      "end": 677.52,
+      "asr_text": "Where is Kanami?",
+      "subtitle_text": "How is she?",
+      "final_text": "How is she?",
+      "similarity": 0.444,
+      "flag": "mismatch"
+    },
+    {
+      "start": 677.52,
+      "end": 679.52,
+      "asr_text": "She's in the surgery room.",
+      "subtitle_text": "Operating",
+      "final_text": "Operating",
+      "similarity": 0.229,
+      "flag": "mismatch"
+    },
+    {
+      "start": 680.52,
+      "end": 683.52,
+      "asr_text": "Is this Kanami's parents?",
+      "subtitle_text": "Are you Kanami-chan's parents?",
+      "final_text": "Are you Kanami-chan's parents?",
+      "similarity": 0.691,
+      "flag": "ok"
+    },
+    {
+      "start": 683.52,
+      "end": 684.52,
+      "asr_text": "Yes.",
+      "subtitle_text": "Yes.",
+      "final_text": "Yes.",
+      "similarity": 1.0,
+      "flag": "ok"
+    },
+    {
+      "start": 684.52,
+      "end": 685.52,
+      "asr_text": "I need your help.",
+      "subtitle_text": "She needs a transfusion.",
+      "final_text": "She needs a transfusion.",
+      "similarity": 0.39,
+      "flag": "mismatch"
+    },
+    {
+      "start": 685.52,
+      "end": 686.52,
+      "asr_text": "Can I help you?",
+      "subtitle_text": "Can you donate your blood?",
+      "final_text": "Can you donate your blood?",
+      "similarity": 0.537,
+      "flag": "mismatch"
+    },
+    {
+      "start": 686.52,
+      "end": 687.52,
+      "asr_text": "Yes.",
+      "subtitle_text": "Can you donate your blood?",
+      "final_text": "Can you donate your blood?",
+      "similarity": 0.133,
+      "flag": "mismatch"
+    },
+    {
+      "start": 687.52,
+      "end": 689.52,
+      "asr_text": "How are you two?",
+      "subtitle_text": "What are your blood types?",
+      "final_text": "What are your blood types?",
+      "similarity": 0.571,
+      "flag": "ok"
+    },
+    {
+      "start": 689.52,
+      "end": 692.52,
+      "asr_text": "I'm AB type RH+.",
+      "subtitle_text": "I'm AB-positive.",
+      "final_text": "I'm AB-positive.",
+      "similarity": 0.562,
+      "flag": "ok"
+    },
+    {
+      "start": 692.52,
+      "end": 695.52,
+      "asr_text": "I'm large type RH+.",
+      "subtitle_text": "I'm O-positive.",
+      "final_text": "I'm O-positive.",
+      "similarity": 0.353,
+      "flag": "mismatch"
+    },
+    {
+      "start": 695.52,
+      "end": 698.52,
+      "asr_text": "Then, mother, please.",
+      "subtitle_text": "Ma'am, if you would.",
+      "final_text": "Ma'am, if you would.",
+      "similarity": 0.293,
+      "flag": "mismatch"
+    },
+    {
+      "start": 698.52,
+      "end": 700.52,
+      "asr_text": "What about me?",
+      "subtitle_text": "What about me?",
+      "final_text": "What about me?",
+      "similarity": 1.0,
+      "flag": "ok"
+    },
+    {
+      "start": 700.52,
+      "end": 704.52,
+      "asr_text": "Kanami is large type, so please go to mother.",
+      "subtitle_text": "Kanami-chan's an O, so it has to be her.",
+      "final_text": "Kanami-chan's an O, so it has to be her.",
+      "similarity": 0.588,
+      "flag": "ok"
+    },
+    {
+      "start": 712.52,
+      "end": 715.52,
+      "asr_text": "Why is Kanami large type?",
+      "subtitle_text": "Mother's Blood Type",
+      "final_text": "Mother's Blood Type",
+      "similarity": 0.409,
+      "flag": "mismatch"
+    },
+    {
+      "start": 716.52,
+      "end": 718.52,
+      "asr_text": "Father...",
+      "subtitle_text": "Is the father...",
+      "final_text": "Is the father...",
+      "similarity": 0.72,
+      "flag": "ok"
+    },
+    {
+      "start": 720.52,
+      "end": 722.52,
+      "asr_text": "What do you mean?",
+      "subtitle_text": "What is the meaning of this?!",
+      "final_text": "What is the meaning of this?!",
+      "similarity": 0.522,
+      "flag": "mismatch"
+    },
+    {
+      "start": 722.52,
+      "end": 724.52,
+      "asr_text": "Who are you, father?",
+      "subtitle_text": "Who's the father?",
+      "final_text": "Who's the father?",
+      "similarity": 0.703,
+      "flag": "ok"
+    },
+    {
+      "start": 724.52,
+      "end": 726.52,
+      "asr_text": "Isn't Kanami my child?",
+      "subtitle_text": "Is Kanami not my child?!",
+      "final_text": "Is Kanami not my child?!",
+      "similarity": 0.826,
+      "flag": "ok"
+    },
+    {
+      "start": 726.52,
+      "end": 728.52,
+      "asr_text": "Say something.",
+      "subtitle_text": "Say something, damn it!",
+      "final_text": "Say something, damn it!",
+      "similarity": 0.703,
+      "flag": "ok"
+    },
+    {
+      "start": 730.52,
+      "end": 733.52,
+      "asr_text": "What are you talking about now?",
+      "subtitle_text": "What are you talking about? \nIt's too late for all this.",
+      "final_text": "What are you talking about? \nIt's too late for all this.",
+      "similarity": 0.644,
+      "flag": "ok"
+    },
+    {
+      "start": 733.52,
+      "end": 735.52,
+      "asr_text": "What do you mean now?",
+      "subtitle_text": "Too late, my foot!",
+      "final_text": "Too late, my foot!",
+      "similarity": 0.308,
+      "flag": "mismatch"
+    },
+    {
+      "start": 735.52,
+      "end": 737.52,
+      "asr_text": "I was patient until now.",
+      "subtitle_text": "I tried so hard not to ask!",
+      "final_text": "I tried so hard not to ask!",
+      "similarity": 0.353,
+      "flag": "mismatch"
+    },
+    {
+      "start": 737.52,
+      "end": 739.52,
+      "asr_text": "What do you mean?",
+      "subtitle_text": "You seem to be misunderstanding something.",
+      "final_text": "You seem to be misunderstanding something.",
+      "similarity": 0.237,
+      "flag": "mismatch"
+    },
+    {
+      "start": 739.52,
+      "end": 740.52,
+      "asr_text": "Huh?",
+      "subtitle_text": "What?",
+      "final_text": "What?",
+      "similarity": 0.444,
+      "flag": "mismatch"
+    },
+    {
+      "start": 740.52,
+      "end": 742.52,
+      "asr_text": "I was patient.",
+      "subtitle_text": "I was the one trying hard not to lash out.",
+      "final_text": "I was the one trying hard not to lash out.",
+      "similarity": 0.357,
+      "flag": "mismatch"
+    },
+    {
+      "start": 742.52,
+      "end": 744.52,
+      "asr_text": "Are you thinking about your family?",
+      "subtitle_text": "You don't care one bit about our family.",
+      "final_text": "You don't care one bit about our family.",
+      "similarity": 0.64,
+      "flag": "ok"
+    },
+    {
+      "start": 744.52,
+      "end": 746.52,
+      "asr_text": "I didn't think about anything.",
+      "subtitle_text": "You don't care one bit about our family.",
+      "final_text": "You don't care one bit about our family.",
+      "similarity": 0.486,
+      "flag": "mismatch"
+    },
+    {
+      "start": 747.52,
+      "end": 749.52,
+      "asr_text": "I've been out of work all day.",
+      "subtitle_text": "You work overtime every day \nand even go on weekends.",
+      "final_text": "You work overtime every day \nand even go on weekends.",
+      "similarity": 0.313,
+      "flag": "mismatch"
+    },
+    {
+      "start": 749.52,
+      "end": 752.52,
+      "asr_text": "I don't have time to talk at home.",
+      "subtitle_text": "You only come here to sleep.\n No time to even have a conversation.",
+      "final_text": "You only come here to sleep.\n No time to even have a conversation.",
+      "similarity": 0.42,
+      "flag": "mismatch"
+    },
+    {
+      "start": 752.52,
+      "end": 755.52,
+      "asr_text": "You're not in this house either.",
+      "subtitle_text": "You may as well not exist in this home.",
+      "final_text": "You may as well not exist in this home.",
+      "similarity": 0.592,
+      "flag": "ok"
+    },
+    {
+      "start": 755.52,
+      "end": 758.52,
+      "asr_text": "I can't help it. It's my job.",
+      "subtitle_text": "What do you expect? It's my job.",
+      "final_text": "What do you expect? It's my job.",
+      "similarity": 0.623,
+      "flag": "ok"
+    },
+    {
+      "start": 758.52,
+      "end": 759.52,
+      "asr_text": "What kind of job?",
+      "subtitle_text": "And what good is this job?",
+      "final_text": "And what good is this job?",
+      "similarity": 0.558,
+      "flag": "ok"
+    },
+    {
+      "start": 759.52,
+      "end": 761.52,
+      "asr_text": "What do you mean?",
+      "subtitle_text": "What are you...",
+      "final_text": "What are you...",
+      "similarity": 0.562,
+      "flag": "ok"
+    },
+    {
+      "start": 761.52,
+      "end": 763.52,
+      "asr_text": "I don't have a job at work.",
+      "subtitle_text": "You can't climb the ladder,",
+      "final_text": "You can't climb the ladder,",
+      "similarity": 0.37,
+      "flag": "mismatch"
+    },
+    {
+      "start": 763.52,
+      "end": 765.52,
+      "asr_text": "I don't have a salary if I don't get a job.",
+      "subtitle_text": "you don't get any raises,",
+      "final_text": "you don't get any raises,",
+      "similarity": 0.412,
+      "flag": "mismatch"
+    },
+    {
+      "start": 765.52,
+      "end": 768.52,
+      "asr_text": "I don't have a salary if I don't have a salary if I don't have a salary if I don't have a salary if I don't have a salary.",
+      "subtitle_text": "you get pennies for bonuses, \nand we hardly have savings.",
+      "final_text": "you get pennies for bonuses, \nand we hardly have savings.",
+      "similarity": 0.179,
+      "flag": "mismatch"
+    },
+    {
+      "start": 768.52,
+      "end": 770.52,
+      "asr_text": "I have a degree in Kanami,",
+      "subtitle_text": "Kanami needs a good quality education,",
+      "final_text": "Kanami needs a good quality education,",
+      "similarity": 0.219,
+      "flag": "mismatch"
+    },
+    {
+      "start": 770.52,
+      "end": 773.52,
+      "asr_text": "but I can't get a job in a place where I can't get a job.",
+      "subtitle_text": "and we can't give her one with our finances.",
+      "final_text": "and we can't give her one with our finances.",
+      "similarity": 0.495,
+      "flag": "mismatch"
+    },
+    {
+      "start": 773.52,
+      "end": 775.52,
+      "asr_text": "I can't get a job in a place where I can't get a job.",
+      "subtitle_text": "So don't you act like \nyour job means anything!",
+      "final_text": "So don't you act like \nyour job means anything!",
+      "similarity": 0.3,
+      "flag": "mismatch"
+    },
+    {
+      "start": 775.52,
+      "end": 776.52,
+      "asr_text": "What?",
+      "subtitle_text": "Wha...",
+      "final_text": "Wha...",
+      "similarity": 0.545,
+      "flag": "mismatch"
+    },
+    {
+      "start": 776.52,
+      "end": 778.52,
+      "asr_text": "You said that, right?",
+      "subtitle_text": "You promised me happiness \nif I married you, remember?",
+      "final_text": "You promised me happiness \nif I married you, remember?",
+      "similarity": 0.347,
+      "flag": "mismatch"
+    },
+    {
+      "start": 778.52,
+      "end": 780.52,
+      "asr_text": "I'll be happy when I'm with you.",
+      "subtitle_text": "You promised me happiness \nif I married you, remember?",
+      "final_text": "You promised me happiness \nif I married you, remember?",
+      "similarity": 0.395,
+      "flag": "mismatch"
+    },
+    {
+      "start": 780.52,
+      "end": 783.52,
+      "asr_text": "I've been married for more than 10 years,",
+      "subtitle_text": "Well, it's been more than ten years.",
+      "final_text": "Well, it's been more than ten years.",
+      "similarity": 0.623,
+      "flag": "ok"
+    },
+    {
+      "start": 783.52,
+      "end": 786.52,
+      "asr_text": "but I don't have time to talk to you.",
+      "subtitle_text": "How much time in those ten-plus years \nhave you graced me with your presence?",
+      "final_text": "How much time in those ten-plus years \nhave you graced me with your presence?",
+      "similarity": 0.281,
+      "flag": "mismatch"
+    },
+    {
+      "start": 786.52,
+      "end": 787.52,
+      "asr_text": "That's...",
+      "subtitle_text": "Well...",
+      "final_text": "Well...",
+      "similarity": 0.375,
+      "flag": "mismatch"
+    },
+    {
+      "start": 787.52,
+      "end": 791.52,
+      "asr_text": "I've been working alone at this house without you.",
+      "subtitle_text": "While you were never here,",
+      "final_text": "While you were never here,",
+      "similarity": 0.211,
+      "flag": "mismatch"
+    },
+    {
+      "start": 791.52,
+      "end": 794.52,
+      "asr_text": "I've been working alone at this house without you.",
+      "subtitle_text": "I did the housework, raised a child,",
+      "final_text": "I did the housework, raised a child,",
+      "similarity": 0.349,
+      "flag": "mismatch"
+    },
+    {
+      "start": 794.52,
+      "end": 796.52,
+      "asr_text": "I've been living alone.",
+      "subtitle_text": "and lived basically all by myself!",
+      "final_text": "and lived basically all by myself!",
+      "similarity": 0.351,
+      "flag": "mismatch"
+    },
+    {
+      "start": 796.52,
+      "end": 797.52,
+      "asr_text": "That's your problem.",
+      "subtitle_text": "Hngh",
+      "final_text": "Hngh",
+      "similarity": 0.083,
+      "flag": "mismatch"
+    },
+    {
+      "start": 797.52,
+      "end": 799.52,
+      "asr_text": "That's right. It's my job.",
+      "subtitle_text": "Yeah, that's my job!",
+      "final_text": "Yeah, that's my job!",
+      "similarity": 0.565,
+      "flag": "ok"
+    },
+    {
+      "start": 799.52,
+      "end": 802.52,
+      "asr_text": "It's the only life between me and Kanami.",
+      "subtitle_text": "And all those times have been \nKanami's and mine alone!",
+      "final_text": "And all those times have been \nKanami's and mine alone!",
+      "similarity": 0.396,
+      "flag": "mismatch"
+    },
+    {
+      "start": 802.52,
+      "end": 806.52,
+      "asr_text": "It's the only life between me and Kanami.",
+      "subtitle_text": "And this is Kanami's and my life,",
+      "final_text": "And this is Kanami's and my life,",
+      "similarity": 0.324,
+      "flag": "mismatch"
+    },
+    {
+      "start": 808.52,
+      "end": 810.52,
+      "asr_text": "You're not in this house.",
+      "subtitle_text": "You're not a part of this home.",
+      "final_text": "You're not a part of this home.",
+      "similarity": 0.75,
+      "flag": "ok"
+    },
+    {
+      "start": 811.52,
+      "end": 813.52,
+      "asr_text": "I'll take Kanami out.",
+      "subtitle_text": "I'm going to take Kanami and leave.",
+      "final_text": "I'm going to take Kanami and leave.",
+      "similarity": 0.571,
+      "flag": "ok"
+    },
+    {
+      "start": 813.52,
+      "end": 815.52,
+      "asr_text": "Where are you going?",
+      "subtitle_text": "And go where?",
+      "final_text": "And go where?",
+      "similarity": 0.364,
+      "flag": "mismatch"
+    },
+    {
+      "start": 815.52,
+      "end": 817.52,
+      "asr_text": "It's decided, right?",
+      "subtitle_text": "Kanami",
+      "final_text": "Kanami",
+      "similarity": 0.077,
+      "flag": "mismatch"
+    },
+    {
+      "start": 817.52,
+      "end": 818.52,
+      "asr_text": "Kanami,",
+      "subtitle_text": "Kanami",
+      "final_text": "Kanami",
+      "similarity": 0.923,
+      "flag": "ok"
+    },
+    {
+      "start": 818.52,
+      "end": 820.52,
+      "asr_text": "I'm going to your dad's place.",
+      "subtitle_text": "Let's go to Papa.",
+      "final_text": "Let's go to Papa.",
+      "similarity": 0.511,
+      "flag": "mismatch"
+    },
+    {
+      "start": 820.52,
+      "end": 821.52,
+      "asr_text": "Wait!",
+      "subtitle_text": "Wait!",
+      "final_text": "Wait!",
+      "similarity": 1.0,
+      "flag": "ok"
+    },
+    {
+      "start": 821.52,
+      "end": 822.52,
+      "asr_text": "Get out.",
+      "subtitle_text": "Wait!",
+      "final_text": "Wait!",
+      "similarity": 0.154,
+      "flag": "mismatch"
+    },
+    {
+      "start": 822.52,
+      "end": 823.52,
+      "asr_text": "Wait!",
+      "subtitle_text": "Move.",
+      "final_text": "Move.",
+      "similarity": 0.0,
+      "flag": "mismatch"
+    },
+    {
+      "start": 823.52,
+      "end": 825.52,
+      "asr_text": "If you say, get out.",
+      "subtitle_text": "And I said move.",
+      "final_text": "And I said move.",
+      "similarity": 0.389,
+      "flag": "mismatch"
+    },
+    {
+      "start": 825.52,
+      "end": 826.52,
+      "asr_text": "Wait!",
+      "subtitle_text": "Wait just a damn minute!",
+      "final_text": "Wait just a damn minute!",
+      "similarity": 0.345,
+      "flag": "mismatch"
+    },
+    {
+      "start": 826.52,
+      "end": 827.52,
+      "asr_text": "Get out!",
+      "subtitle_text": "Move!",
+      "final_text": "Move!",
+      "similarity": 0.308,
+      "flag": "mismatch"
+    },
+    {
+      "start": 828.52,
+      "end": 830.52,
+      "asr_text": "If you say, get out, you're not talking to me, right?",
+      "subtitle_text": "You think you can just \nleave and that'll be that?",
+      "final_text": "You think you can just \nleave and that'll be that?",
+      "similarity": 0.408,
+      "flag": "mismatch"
+    },
+    {
+      "start": 830.52,
+      "end": 832.52,
+      "asr_text": "I'm not talking to you.",
+      "subtitle_text": "Oh, that will be that.",
+      "final_text": "Oh, that will be that.",
+      "similarity": 0.311,
+      "flag": "mismatch"
+    },
+    {
+      "start": 832.52,
+      "end": 835.52,
+      "asr_text": "How are you going to deal with Kanami?",
+      "subtitle_text": "What do you care about Kanami?",
+      "final_text": "What do you care about Kanami?",
+      "similarity": 0.5,
+      "flag": "mismatch"
+    },
+    {
+      "start": 835.52,
+      "end": 837.52,
+      "asr_text": "I've been raising you for a long time.",
+      "subtitle_text": "I've raised her all this time!",
+      "final_text": "I've raised her all this time!",
+      "similarity": 0.559,
+      "flag": "ok"
+    },
+    {
+      "start": 837.52,
+      "end": 838.52,
+      "asr_text": "There's no reason to do anything.",
+      "subtitle_text": "How could I not care?!",
+      "final_text": "How could I not care?!",
+      "similarity": 0.255,
+      "flag": "mismatch"
+    },
+    {
+      "start": 838.52,
+      "end": 840.52,
+      "asr_text": "I raised you.",
+      "subtitle_text": "I'm the one who raised her.",
+      "final_text": "I'm the one who raised her.",
+      "similarity": 0.5,
+      "flag": "mismatch"
+    },
+    {
+      "start": 840.52,
+      "end": 842.52,
+      "asr_text": "You were always there.",
+      "subtitle_text": "You were never around.",
+      "final_text": "You were never around.",
+      "similarity": 0.545,
+      "flag": "mismatch"
+    },
+    {
+      "start": 842.52,
+      "end": 843.52,
+      "asr_text": "I was there!",
+      "subtitle_text": "I was! I was right here!",
+      "final_text": "I was! I was right here!",
+      "similarity": 0.667,
+      "flag": "ok"
+    },
+    {
+      "start": 843.52,
+      "end": 844.52,
+      "asr_text": "I was there, too!",
+      "subtitle_text": "I was! I was right here!",
+      "final_text": "I was! I was right here!",
+      "similarity": 0.585,
+      "flag": "ok"
+    },
+    {
+      "start": 844.52,
+      "end": 846.52,
+      "asr_text": "Hey, Kanami!",
+      "subtitle_text": "Right, Kanami?",
+      "final_text": "Right, Kanami?",
+      "similarity": 0.692,
+      "flag": "ok"
+    },
+    {
+      "start": 846.52,
+      "end": 848.52,
+      "asr_text": "You were with your dad, right?",
+      "subtitle_text": "Dad was here with you, right?!",
+      "final_text": "Dad was here with you, right?!",
+      "similarity": 0.733,
+      "flag": "ok"
+    },
+    {
+      "start": 848.52,
+      "end": 851.52,
+      "asr_text": "You want to be with your dad, too, right?",
+      "subtitle_text": "You wanna stay here with Dad, right?!",
+      "final_text": "You wanna stay here with Dad, right?!",
+      "similarity": 0.692,
+      "flag": "ok"
+    },
+    {
+      "start": 851.52,
+      "end": 854.52,
+      "asr_text": "I...",
+      "subtitle_text": "I...",
+      "final_text": "I...",
+      "similarity": 1.0,
+      "flag": "ok"
+    },
+    {
+      "start": 854.52,
+      "end": 856.52,
+      "asr_text": "I want to be with my dad.",
+      "subtitle_text": "I like the other Papa better.",
+      "final_text": "I like the other Papa better.",
+      "similarity": 0.37,
+      "flag": "mismatch"
+    },
+    {
+      "start": 859.52,
+      "end": 860.52,
+      "asr_text": "Why...",
+      "subtitle_text": "Why?",
+      "final_text": "Why?",
+      "similarity": 0.6,
+      "flag": "ok"
+    },
+    {
+      "start": 860.52,
+      "end": 861.52,
+      "asr_text": "Why...",
+      "subtitle_text": "Why is this happening to me?",
+      "final_text": "Why is this happening to me?",
+      "similarity": 0.176,
+      "flag": "mismatch"
+    },
+    {
+      "start": 861.52,
+      "end": 863.52,
+      "asr_text": "Why did you do this?",
+      "subtitle_text": "Why is this happening to me?",
+      "final_text": "Why is this happening to me?",
+      "similarity": 0.458,
+      "flag": "mismatch"
+    },
+    {
+      "start": 863.52,
+      "end": 864.52,
+      "asr_text": "Hey!",
+      "subtitle_text": "Hey!",
+      "final_text": "Hey!",
+      "similarity": 1.0,
+      "flag": "ok"
+    },
+    {
+      "start": 864.52,
+      "end": 865.52,
+      "asr_text": "Yes?",
+      "subtitle_text": "Yes?",
+      "final_text": "Yes?",
+      "similarity": 1.0,
+      "flag": "ok"
+    },
+    {
+      "start": 866.52,
+      "end": 868.52,
+      "asr_text": "What are you doing here?",
+      "subtitle_text": "Explain this bank transfer.",
+      "final_text": "Explain this bank transfer.",
+      "similarity": 0.275,
+      "flag": "mismatch"
+    },
+    {
+      "start": 870.52,
+      "end": 872.52,
+      "asr_text": "What is this?",
+      "subtitle_text": "What is this?",
+      "final_text": "What is this?",
+      "similarity": 1.0,
+      "flag": "ok"
+    },
+    {
+      "start": 872.52,
+      "end": 873.52,
+      "asr_text": "What do you mean?",
+      "subtitle_text": "That's what I'm asking you!",
+      "final_text": "That's what I'm asking you!",
+      "similarity": 0.409,
+      "flag": "mismatch"
+    },
+    {
+      "start": 873.52,
+      "end": 876.52,
+      "asr_text": "Why did you send me 5 million yen?",
+      "subtitle_text": "Why'd you send some random \naccount 50 million yen?!",
+      "final_text": "Why'd you send some random \naccount 50 million yen?!",
+      "similarity": 0.721,
+      "flag": "ok"
+    },
+    {
+      "start": 876.52,
+      "end": 878.52,
+      "asr_text": "No, I don't remember.",
+      "subtitle_text": "I don't recall doing that.",
+      "final_text": "I don't recall doing that.",
+      "similarity": 0.468,
+      "flag": "mismatch"
+    },
+    {
+      "start": 878.52,
+      "end": 879.52,
+      "asr_text": "Look!",
+      "subtitle_text": "Look, the logs say it was from your PC!",
+      "final_text": "Look, the logs say it was from your PC!",
+      "similarity": 0.227,
+      "flag": "mismatch"
+    },
+    {
+      "start": 879.52,
+      "end": 882.52,
+      "asr_text": "There's a record of your death.",
+      "subtitle_text": "Look, the logs say it was from your PC!",
+      "final_text": "Look, the logs say it was from your PC!",
+      "similarity": 0.429,
+      "flag": "mismatch"
+    },
+    {
+      "start": 882.52,
+      "end": 884.52,
+      "asr_text": "I don't think so.",
+      "subtitle_text": "That can't be right.",
+      "final_text": "That can't be right.",
+      "similarity": 0.378,
+      "flag": "mismatch"
+    },
+    {
+      "start": 894.52,
+      "end": 896.52,
+      "asr_text": "Are you serious?",
+      "subtitle_text": "Seriously?",
+      "final_text": "Seriously?",
+      "similarity": 0.615,
+      "flag": "ok"
+    },
+    {
+      "start": 896.52,
+      "end": 897.52,
+      "asr_text": "Yes.",
+      "subtitle_text": null,
+      "final_text": "Yes.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 905.52,
+      "end": 908.52,
+      "asr_text": "I became the head of the company's company",
+      "subtitle_text": "I was deemed to have embezzled \ncompany money and fired on the spot.",
+      "final_text": "I was deemed to have embezzled \ncompany money and fired on the spot.",
+      "similarity": 0.327,
+      "flag": "mismatch"
+    },
+    {
+      "start": 908.52,
+      "end": 910.52,
+      "asr_text": "and became the manager of the company.",
+      "subtitle_text": "I was deemed to have embezzled \ncompany money and fired on the spot.",
+      "final_text": "I was deemed to have embezzled \ncompany money and fired on the spot.",
+      "similarity": 0.283,
+      "flag": "mismatch"
+    },
+    {
+      "start": 911.52,
+      "end": 915.52,
+      "asr_text": "After that incident, I got a divorce from Mika",
+      "subtitle_text": "Mika used that as an excuse \nto file for divorce,",
+      "final_text": "Mika used that as an excuse \nto file for divorce,",
+      "similarity": 0.379,
+      "flag": "mismatch"
+    },
+    {
+      "start": 915.52,
+      "end": 917.52,
+      "asr_text": "and I was raised by Kanami.",
+      "subtitle_text": "get full custody of Kanami,",
+      "final_text": "get full custody of Kanami,",
+      "similarity": 0.333,
+      "flag": "mismatch"
+    },
+    {
+      "start": 917.52,
+      "end": 920.52,
+      "asr_text": "I was saved until the day I was released.",
+      "subtitle_text": "and demand child support from me.",
+      "final_text": "and demand child support from me.",
+      "similarity": 0.135,
+      "flag": "mismatch"
+    },
+    {
+      "start": 920.52,
+      "end": 922.52,
+      "asr_text": "What are you doing, Shiri?",
+      "subtitle_text": "What are you doing, newbie?!",
+      "final_text": "What are you doing, newbie?!",
+      "similarity": 0.815,
+      "flag": "ok"
+    },
+    {
+      "start": 922.52,
+      "end": 924.52,
+      "asr_text": "I'm sorry.",
+      "subtitle_text": "I-I'm sorry!",
+      "final_text": "I-I'm sorry!",
+      "similarity": 0.818,
+      "flag": "ok"
+    },
+    {
+      "start": 924.52,
+      "end": 927.52,
+      "asr_text": "I lost my money.",
+      "subtitle_text": "The company and I settled on \nme paying back the money lost.",
+      "final_text": "The company and I settled on \nme paying back the money lost.",
+      "similarity": 0.316,
+      "flag": "mismatch"
+    },
+    {
+      "start": 927.52,
+      "end": 929.52,
+      "asr_text": "I was punished by the company",
+      "subtitle_text": "The company and I settled on \nme paying back the money lost.",
+      "final_text": "The company and I settled on \nme paying back the money lost.",
+      "similarity": 0.247,
+      "flag": "mismatch"
+    },
+    {
+      "start": 929.52,
+      "end": 932.52,
+      "asr_text": "because I was in a state of disaster.",
+      "subtitle_text": "I avoided getting sued, but...",
+      "final_text": "I avoided getting sued, but...",
+      "similarity": 0.299,
+      "flag": "mismatch"
+    },
+    {
+      "start": 940.52,
+      "end": 942.52,
+      "asr_text": "I can't believe it.",
+      "subtitle_text": null,
+      "final_text": "I can't believe it.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 946.52,
+      "end": 949.52,
+      "asr_text": "I can't believe it.",
+      "subtitle_text": "When am I ever gonna pay all that back?",
+      "final_text": "When am I ever gonna pay all that back?",
+      "similarity": 0.207,
+      "flag": "mismatch"
+    },
+    {
+      "start": 950.52,
+      "end": 952.52,
+      "asr_text": "Nitta?",
+      "subtitle_text": "Message",
+      "final_text": "Message",
+      "similarity": 0.154,
+      "flag": "mismatch"
+    },
+    {
+      "start": 952.52,
+      "end": 953.52,
+      "asr_text": "Senpai,",
+      "subtitle_text": "\"Senpai!",
+      "final_text": "\"Senpai!",
+      "similarity": 0.8,
+      "flag": "ok"
+    },
+    {
+      "start": 953.52,
+      "end": 956.52,
+      "asr_text": "there's a 8K Remaster Box from Robokaiser",
+      "subtitle_text": "The upcoming 8K remaster box set of RoboKaiser",
+      "final_text": "The upcoming 8K remaster box set of RoboKaiser",
+      "similarity": 0.759,
+      "flag": "ok"
+    },
+    {
+      "start": 956.52,
+      "end": 959.52,
+      "asr_text": "and the 12th one from Maboroshi.",
+      "subtitle_text": "includes the legendary unaired 12th \nepisode. I preordered it immediately.\"",
+      "final_text": "includes the legendary unaired 12th \nepisode. I preordered it immediately.\"",
+      "similarity": 0.374,
+      "flag": "mismatch"
+    },
+    {
+      "start": 959.52,
+      "end": 961.52,
+      "asr_text": "I made a reservation.",
+      "subtitle_text": "includes the legendary unaired 12th \nepisode. I preordered it immediately.\"",
+      "final_text": "includes the legendary unaired 12th \nepisode. I preordered it immediately.\"",
+      "similarity": 0.208,
+      "flag": "mismatch"
+    },
+    {
+      "start": 961.52,
+      "end": 963.52,
+      "asr_text": "I want to see the 12th one.",
+      "subtitle_text": "Oh, they're releasing episode 12, huh?",
+      "final_text": "Oh, they're releasing episode 12, huh?",
+      "similarity": 0.277,
+      "flag": "mismatch"
+    },
+    {
+      "start": 963.52,
+      "end": 966.52,
+      "asr_text": "Wow, I wanted to see the 12th one.",
+      "subtitle_text": "I've always wanted to watch it.",
+      "final_text": "I've always wanted to watch it.",
+      "similarity": 0.492,
+      "flag": "mismatch"
+    },
+    {
+      "start": 966.52,
+      "end": 968.52,
+      "asr_text": "Let's watch it together.",
+      "subtitle_text": "Let's watch it together once you get it.",
+      "final_text": "Let's watch it together once you get it.",
+      "similarity": 0.75,
+      "flag": "ok"
+    },
+    {
+      "start": 971.52,
+      "end": 973.52,
+      "asr_text": "I'm sorry.",
+      "subtitle_text": "Let's watch it together once you get it.",
+      "final_text": "Let's watch it together once you get it.",
+      "similarity": 0.24,
+      "flag": "mismatch"
+    },
+    {
+      "start": 980.52,
+      "end": 982.52,
+      "asr_text": "I'll do my best",
+      "subtitle_text": "If I work hard,",
+      "final_text": "If I work hard,",
+      "similarity": 0.2,
+      "flag": "mismatch"
+    },
+    {
+      "start": 982.52,
+      "end": 984.52,
+      "asr_text": "someday.",
+      "subtitle_text": "I'm sure things will get better.",
+      "final_text": "I'm sure things will get better.",
+      "similarity": 0.15,
+      "flag": "mismatch"
+    },
+    {
+      "start": 984.52,
+      "end": 988.52,
+      "asr_text": "And the day I see Kanami again.",
+      "subtitle_text": "And I'll get to see Kanami again, too.",
+      "final_text": "And I'll get to see Kanami again, too.",
+      "similarity": 0.696,
+      "flag": "ok"
+    },
+    {
+      "start": 990.52,
+      "end": 993.52,
+      "asr_text": "I'm not my child.",
+      "subtitle_text": "I know she's not even my child...",
+      "final_text": "I know she's not even my child...",
+      "similarity": 0.64,
+      "flag": "ok"
+    },
+    {
+      "start": 994.52,
+      "end": 997.52,
+      "asr_text": "Even so,",
+      "subtitle_text": "But still, I believe that my \nsacrifices will be rewarded.",
+      "final_text": "But still, I believe that my \nsacrifices will be rewarded.",
+      "similarity": 0.152,
+      "flag": "mismatch"
+    },
+    {
+      "start": 997.52,
+      "end": 999.52,
+      "asr_text": "even so,",
+      "subtitle_text": "But still, I believe that my \nsacrifices will be rewarded.",
+      "final_text": "But still, I believe that my \nsacrifices will be rewarded.",
+      "similarity": 0.152,
+      "flag": "mismatch"
+    },
+    {
+      "start": 999.52,
+      "end": 1002.52,
+      "asr_text": "the day will come when I'll be rewarded.",
+      "subtitle_text": "But still, I believe that my \nsacrifices will be rewarded.",
+      "final_text": "But still, I believe that my \nsacrifices will be rewarded.",
+      "similarity": 0.429,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1014.52,
+      "end": 1016.52,
+      "asr_text": "I don't have money to spend on doctors.",
+      "subtitle_text": "I can't afford treatment.",
+      "final_text": "I can't afford treatment.",
+      "similarity": 0.438,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1016.52,
+      "end": 1018.52,
+      "asr_text": "I don't have insurance.",
+      "subtitle_text": "I don't have insurance.",
+      "final_text": "I don't have insurance.",
+      "similarity": 1.0,
+      "flag": "ok"
+    },
+    {
+      "start": 1018.52,
+      "end": 1020.52,
+      "asr_text": "I don't have a reason to borrow money.",
+      "subtitle_text": "I have no way to borrow money,",
+      "final_text": "I have no way to borrow money,",
+      "similarity": 0.706,
+      "flag": "ok"
+    },
+    {
+      "start": 1020.52,
+      "end": 1022.52,
+      "asr_text": "I don't have a reason to borrow money.",
+      "subtitle_text": "and even if I found a way, \nI couldn't pay it back.",
+      "final_text": "and even if I found a way, \nI couldn't pay it back.",
+      "similarity": 0.315,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1024.52,
+      "end": 1026.52,
+      "asr_text": "There was a story about",
+      "subtitle_text": "Don't people say that your old pets come \npick you up when you're about to die?",
+      "final_text": "Don't people say that your old pets come \npick you up when you're about to die?",
+      "similarity": 0.216,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1026.52,
+      "end": 1030.52,
+      "asr_text": "a pet who bought it at Shino Magiwa.",
+      "subtitle_text": "Don't people say that your old pets come \npick you up when you're about to die?",
+      "final_text": "Don't people say that your old pets come \npick you up when you're about to die?",
+      "similarity": 0.33,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1030.52,
+      "end": 1033.52,
+      "asr_text": "Will he come to me?",
+      "subtitle_text": "I wonder if it'll come for me.",
+      "final_text": "I wonder if it'll come for me.",
+      "similarity": 0.571,
+      "flag": "ok"
+    },
+    {
+      "start": 1038.52,
+      "end": 1040.52,
+      "asr_text": "What?",
+      "subtitle_text": "What the...?",
+      "final_text": "What the...?",
+      "similarity": 0.588,
+      "flag": "ok"
+    },
+    {
+      "start": 1040.52,
+      "end": 1042.52,
+      "asr_text": "A dream?",
+      "subtitle_text": "A dream?",
+      "final_text": "A dream?",
+      "similarity": 1.0,
+      "flag": "ok"
+    },
+    {
+      "start": 1043.52,
+      "end": 1046.52,
+      "asr_text": "What's going on at my terminal?",
+      "subtitle_text": "What are you doing with my PC?",
+      "final_text": "What are you doing with my PC?",
+      "similarity": 0.525,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1046.52,
+      "end": 1049.52,
+      "asr_text": "5,000,000 yen.",
+      "subtitle_text": "Return",
+      "final_text": "Return",
+      "similarity": 0.2,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1049.52,
+      "end": 1051.52,
+      "asr_text": "No way.",
+      "subtitle_text": "No way...",
+      "final_text": "No way...",
+      "similarity": 0.875,
+      "flag": "ok"
+    },
+    {
+      "start": 1051.52,
+      "end": 1054.52,
+      "asr_text": "The suspect is the boss.",
+      "subtitle_text": "The chief did it?",
+      "final_text": "The chief did it?",
+      "similarity": 0.39,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1058.52,
+      "end": 1060.52,
+      "asr_text": "What is he?",
+      "subtitle_text": "What's with her, dining at an \nexpensive restaurant and all?",
+      "final_text": "What's with her, dining at an \nexpensive restaurant and all?",
+      "similarity": 0.282,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1060.52,
+      "end": 1062.52,
+      "asr_text": "He's in a high place.",
+      "subtitle_text": "What's with her, dining at an \nexpensive restaurant and all?",
+      "final_text": "What's with her, dining at an \nexpensive restaurant and all?",
+      "similarity": 0.296,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1064.52,
+      "end": 1066.52,
+      "asr_text": "The enemy of Mika.",
+      "subtitle_text": "The man she had an affair with,",
+      "final_text": "The man she had an affair with,",
+      "similarity": 0.408,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1066.52,
+      "end": 1068.52,
+      "asr_text": "The father of Kanami.",
+      "subtitle_text": "Kanami's father...",
+      "final_text": "Kanami's father...",
+      "similarity": 0.41,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1068.52,
+      "end": 1071.52,
+      "asr_text": "Was he the boss?",
+      "subtitle_text": "was the chief?!",
+      "final_text": "was the chief?!",
+      "similarity": 0.581,
+      "flag": "ok"
+    },
+    {
+      "start": 1071.52,
+      "end": 1073.52,
+      "asr_text": "You're a bad woman.",
+      "subtitle_text": "You're an awful woman.",
+      "final_text": "You're an awful woman.",
+      "similarity": 0.829,
+      "flag": "ok"
+    },
+    {
+      "start": 1073.52,
+      "end": 1074.52,
+      "asr_text": "You're a bad woman.",
+      "subtitle_text": "You foist all that debt \nonto your ex-husband,",
+      "final_text": "You foist all that debt \nonto your ex-husband,",
+      "similarity": 0.277,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1074.52,
+      "end": 1075.52,
+      "asr_text": "You're a bad woman.",
+      "subtitle_text": "You foist all that debt \nonto your ex-husband,",
+      "final_text": "You foist all that debt \nonto your ex-husband,",
+      "similarity": 0.277,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1075.52,
+      "end": 1077.52,
+      "asr_text": "You're a bad woman.",
+      "subtitle_text": "and you make him pay child support too.",
+      "final_text": "and you make him pay child support too.",
+      "similarity": 0.379,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1077.52,
+      "end": 1079.52,
+      "asr_text": "I'm not a bad woman.",
+      "subtitle_text": "He got to marry and live with me.",
+      "final_text": "He got to marry and live with me.",
+      "similarity": 0.453,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1079.52,
+      "end": 1081.52,
+      "asr_text": "I'm not a bad woman.",
+      "subtitle_text": "It's the least he could do.",
+      "final_text": "It's the least he could do.",
+      "similarity": 0.426,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1081.52,
+      "end": 1085.52,
+      "asr_text": "I don't have money to spend on doctors.",
+      "subtitle_text": "Let him make that money back. \nIt's all he's good for.",
+      "final_text": "Let him make that money back. \nIt's all he's good for.",
+      "similarity": 0.409,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1085.52,
+      "end": 1087.52,
+      "asr_text": "He's a bad woman.",
+      "subtitle_text": "What a piece of work.",
+      "final_text": "What a piece of work.",
+      "similarity": 0.421,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1087.52,
+      "end": 1089.52,
+      "asr_text": "Kanami isn't his child.",
+      "subtitle_text": "Kanami's not even his child.",
+      "final_text": "Kanami's not even his child.",
+      "similarity": 0.784,
+      "flag": "ok"
+    },
+    {
+      "start": 1089.52,
+      "end": 1092.52,
+      "asr_text": "I want to leave a great doctor.",
+      "subtitle_text": "I only wanted superior genes.",
+      "final_text": "I only wanted superior genes.",
+      "similarity": 0.4,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1092.52,
+      "end": 1095.52,
+      "asr_text": "I don't need a boy like that.",
+      "subtitle_text": "I didn't need a kid with a man like him.",
+      "final_text": "I didn't need a kid with a man like him.",
+      "similarity": 0.638,
+      "flag": "ok"
+    },
+    {
+      "start": 1095.52,
+      "end": 1097.52,
+      "asr_text": "You're a bad woman.",
+      "subtitle_text": "Whoo, you're a scary one.",
+      "final_text": "Whoo, you're a scary one.",
+      "similarity": 0.636,
+      "flag": "ok"
+    },
+    {
+      "start": 1097.52,
+      "end": 1099.52,
+      "asr_text": "What's going on?",
+      "subtitle_text": "What the hell? What the hell is all this?",
+      "final_text": "What the hell? What the hell is all this?",
+      "similarity": 0.281,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1099.52,
+      "end": 1101.52,
+      "asr_text": "What is this?",
+      "subtitle_text": "What the hell? What the hell is all this?",
+      "final_text": "What the hell? What the hell is all this?",
+      "similarity": 0.481,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1101.52,
+      "end": 1103.52,
+      "asr_text": "A dream?",
+      "subtitle_text": "Am I dreaming? Please tell me \nthis is all just a bad dream...",
+      "final_text": "Am I dreaming? Please tell me \nthis is all just a bad dream...",
+      "similarity": 0.229,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1103.52,
+      "end": 1105.52,
+      "asr_text": "Do I have a dream?",
+      "subtitle_text": "Am I dreaming? Please tell me \nthis is all just a bad dream...",
+      "final_text": "Am I dreaming? Please tell me \nthis is all just a bad dream...",
+      "similarity": 0.225,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1105.52,
+      "end": 1107.52,
+      "asr_text": "No.",
+      "subtitle_text": "Nay, this is reality.",
+      "final_text": "Nay, this is reality.",
+      "similarity": 0.167,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1107.52,
+      "end": 1109.52,
+      "asr_text": "It's all the truth.",
+      "subtitle_text": "Nay, this is reality.",
+      "final_text": "Nay, this is reality.",
+      "similarity": 0.35,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1109.52,
+      "end": 1112.52,
+      "asr_text": "It's all the truth.",
+      "subtitle_text": "It's the truth, and nothing but the truth.",
+      "final_text": "It's the truth, and nothing but the truth.",
+      "similarity": 0.557,
+      "flag": "ok"
+    },
+    {
+      "start": 1112.52,
+      "end": 1117.52,
+      "asr_text": "You've worked hard and lived a tough life.",
+      "subtitle_text": "working yourself to the bone...",
+      "final_text": "working yourself to the bone...",
+      "similarity": 0.356,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1117.52,
+      "end": 1120.52,
+      "asr_text": "It's all their lies.",
+      "subtitle_text": "Yet all this time, it was nothing but lies!",
+      "final_text": "Yet all this time, it was nothing but lies!",
+      "similarity": 0.476,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1120.52,
+      "end": 1124.52,
+      "asr_text": "Is it okay to be forgiven like this?",
+      "subtitle_text": "Can they really get away with such evil?",
+      "final_text": "Can they really get away with such evil?",
+      "similarity": 0.289,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1124.52,
+      "end": 1126.52,
+      "asr_text": "I won't forgive you.",
+      "subtitle_text": "No... I can't let them get away with it!",
+      "final_text": "No... I can't let them get away with it!",
+      "similarity": 0.3,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1126.52,
+      "end": 1129.52,
+      "asr_text": "I won't forgive you.",
+      "subtitle_text": "No... I can't let them get away with it!",
+      "final_text": "No... I can't let them get away with it!",
+      "similarity": 0.3,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1129.52,
+      "end": 1133.52,
+      "asr_text": "I'll give you back to them.",
+      "subtitle_text": "I'll get my revenge on them.",
+      "final_text": "I'll get my revenge on them.",
+      "similarity": 0.582,
+      "flag": "ok"
+    },
+    {
+      "start": 1133.52,
+      "end": 1137.52,
+      "asr_text": "I'll give you back to them.",
+      "subtitle_text": "I'll get them, I swear!",
+      "final_text": "I'll get them, I swear!",
+      "similarity": 0.52,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1137.52,
+      "end": 1145.52,
+      "asr_text": "What a terrible anger, hatred, and sadness.",
+      "subtitle_text": "Ah, such purity of emotion.",
+      "final_text": "Ah, such purity of emotion.",
+      "similarity": 0.229,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1145.52,
+      "end": 1147.52,
+      "asr_text": "What are you?",
+      "subtitle_text": "Who the hell are you?",
+      "final_text": "Who the hell are you?",
+      "similarity": 0.706,
+      "flag": "ok"
+    },
+    {
+      "start": 1147.52,
+      "end": 1151.52,
+      "asr_text": "I'm interested in you.",
+      "subtitle_text": "I have taken an interest in you\n because you're a good man.",
+      "final_text": "I have taken an interest in you\n because you're a good man.",
+      "similarity": 0.444,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1151.52,
+      "end": 1152.52,
+      "asr_text": "Don't be ridiculous.",
+      "subtitle_text": "Screw that.",
+      "final_text": "Screw that.",
+      "similarity": 0.129,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1152.52,
+      "end": 1155.52,
+      "asr_text": "If you live on your own, this is the result.",
+      "subtitle_text": "Look what living like a good man has gotten me.",
+      "final_text": "Look what living like a good man has gotten me.",
+      "similarity": 0.352,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1155.52,
+      "end": 1159.52,
+      "asr_text": "I wish I could seek my own happiness without worrying about others.",
+      "subtitle_text": "I should've said screw everyone else and \nsought my own happiness above all else.",
+      "final_text": "I should've said screw everyone else and \nsought my own happiness above all else.",
+      "similarity": 0.5,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1159.52,
+      "end": 1163.52,
+      "asr_text": "It's beautiful that all of us are rewarded.",
+      "subtitle_text": "Good karma isn't worth shit.",
+      "final_text": "Good karma isn't worth shit.",
+      "similarity": 0.085,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1163.52,
+      "end": 1166.52,
+      "asr_text": "That's great.",
+      "subtitle_text": "Wonderful! Truly wonderful!",
+      "final_text": "Wonderful! Truly wonderful!",
+      "similarity": 0.15,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1166.52,
+      "end": 1170.52,
+      "asr_text": "If you have a future, I want to live on my own.",
+      "subtitle_text": "I wanna do whatever the hell I want.",
+      "final_text": "I wanna do whatever the hell I want.",
+      "similarity": 0.337,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1170.52,
+      "end": 1172.52,
+      "asr_text": "I want to live on my own.",
+      "subtitle_text": "Hell, I'll live for myself as a villain \nwho walks all over everyone else.",
+      "final_text": "Hell, I'll live for myself as a villain \nwho walks all over everyone else.",
+      "similarity": 0.303,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1172.52,
+      "end": 1175.52,
+      "asr_text": "I want to be the evil that makes others suffer.",
+      "subtitle_text": "Hell, I'll live for myself as a villain \nwho walks all over everyone else.",
+      "final_text": "Hell, I'll live for myself as a villain \nwho walks all over everyone else.",
+      "similarity": 0.182,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1175.52,
+      "end": 1178.52,
+      "asr_text": "You're so generous.",
+      "subtitle_text": "Boy, do I have some good news for you.",
+      "final_text": "Boy, do I have some good news for you.",
+      "similarity": 0.491,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1178.52,
+      "end": 1182.52,
+      "asr_text": "I can send you to a different world.",
+      "subtitle_text": "I'm here to send you to another life.",
+      "final_text": "I'm here to send you to another life.",
+      "similarity": 0.575,
+      "flag": "ok"
+    },
+    {
+      "start": 1182.52,
+      "end": 1184.52,
+      "asr_text": "That's right.",
+      "subtitle_text": "You may call me your guide, if you like.",
+      "final_text": "You may call me your guide, if you like.",
+      "similarity": 0.189,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1184.52,
+      "end": 1187.52,
+      "asr_text": "Call me a guide.",
+      "subtitle_text": "You may call me your guide, if you like.",
+      "final_text": "You may call me your guide, if you like.",
+      "similarity": 0.536,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1187.52,
+      "end": 1190.52,
+      "asr_text": "I've prepared a gift for you.",
+      "subtitle_text": "I've brought you gifts.",
+      "final_text": "I've brought you gifts.",
+      "similarity": 0.5,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1190.52,
+      "end": 1195.52,
+      "asr_text": "Won't you give it to the world?",
+      "subtitle_text": "How would you like to be reincarnated \nin a different world?!",
+      "final_text": "How would you like to be reincarnated \nin a different world?!",
+      "similarity": 0.478,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1195.52,
+      "end": 1198.52,
+      "asr_text": "A fantasy of swords and magic.",
+      "subtitle_text": "A fantasy world with swords and magic.",
+      "final_text": "A fantasy world with swords and magic.",
+      "similarity": 0.853,
+      "flag": "ok"
+    },
+    {
+      "start": 1198.52,
+      "end": 1201.52,
+      "asr_text": "It's similar to the Earth, but it has the ability to do so.",
+      "subtitle_text": "A world like this one, but with superpowers.",
+      "final_text": "A world like this one, but with superpowers.",
+      "similarity": 0.35,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1201.52,
+      "end": 1203.52,
+      "asr_text": "A time machine.",
+      "subtitle_text": "A period drama!",
+      "final_text": "A period drama!",
+      "similarity": 0.4,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1203.52,
+      "end": 1205.52,
+      "asr_text": "A life machine.",
+      "subtitle_text": "The wild west!",
+      "final_text": "The wild west!",
+      "similarity": 0.276,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1205.52,
+      "end": 1206.52,
+      "asr_text": "A dinosaur era.",
+      "subtitle_text": "The Jurassic era.",
+      "final_text": "The Jurassic era.",
+      "similarity": 0.5,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1206.52,
+      "end": 1209.52,
+      "asr_text": "I've prepared a lot of things for you.",
+      "subtitle_text": "I've prepared all kinds of options for you!",
+      "final_text": "I've prepared all kinds of options for you!",
+      "similarity": 0.79,
+      "flag": "ok"
+    },
+    {
+      "start": 1209.52,
+      "end": 1212.52,
+      "asr_text": "A world genius.",
+      "subtitle_text": "Reincarnated in another world?",
+      "final_text": "Reincarnated in another world?",
+      "similarity": 0.311,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1212.52,
+      "end": 1216.52,
+      "asr_text": "I thought it was a novel.",
+      "subtitle_text": "I thought this only happened in books.",
+      "final_text": "I thought this only happened in books.",
+      "similarity": 0.571,
+      "flag": "ok"
+    },
+    {
+      "start": 1216.52,
+      "end": 1218.52,
+      "asr_text": "I can't believe it.",
+      "subtitle_text": "But it's real?",
+      "final_text": "But it's real?",
+      "similarity": 0.242,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1218.52,
+      "end": 1223.52,
+      "asr_text": "Now, please choose your favorite world.",
+      "subtitle_text": "Now, go ahead and choose \nwhatever world you like!",
+      "final_text": "Now, go ahead and choose \nwhatever world you like!",
+      "similarity": 0.539,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1223.52,
+      "end": 1226.52,
+      "asr_text": "A space war in a robot?",
+      "subtitle_text": "Robots and space battleships?",
+      "final_text": "Robots and space battleships?",
+      "similarity": 0.423,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1226.52,
+      "end": 1229.52,
+      "asr_text": "The one I was talking to Nitta-kun.",
+      "subtitle_text": "Nitta-kun and I used to \ntalk about that...",
+      "final_text": "Nitta-kun and I used to \ntalk about that...",
+      "similarity": 0.256,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1229.52,
+      "end": 1231.52,
+      "asr_text": "It was fun.",
+      "subtitle_text": "And it was fun.",
+      "final_text": "And it was fun.",
+      "similarity": 0.846,
+      "flag": "ok"
+    },
+    {
+      "start": 1231.52,
+      "end": 1234.52,
+      "asr_text": "I was just talking nonsense like this.",
+      "subtitle_text": "We'd kick up a real storm talking about it.",
+      "final_text": "We'd kick up a real storm talking about it.",
+      "similarity": 0.494,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1234.52,
+      "end": 1239.52,
+      "asr_text": "The SF fantasy world where science and magic are developed.",
+      "subtitle_text": "A sci-fi fantasy world with both \nadvanced science and magic.",
+      "final_text": "A sci-fi fantasy world with both \nadvanced science and magic.",
+      "similarity": 0.667,
+      "flag": "ok"
+    },
+    {
+      "start": 1239.52,
+      "end": 1243.52,
+      "asr_text": "It's a world ruled by the royal family and the aristocrats.",
+      "subtitle_text": "Feudalism lives strong, and the world's \nruled by royals and their nobles.",
+      "final_text": "Feudalism lives strong, and the world's \nruled by royals and their nobles.",
+      "similarity": 0.556,
+      "flag": "ok"
+    },
+    {
+      "start": 1243.52,
+      "end": 1248.52,
+      "asr_text": "Now, you're the master of the planet.",
+      "subtitle_text": "I'll make it so you're born into the \nhouse of a count who rules a planet.",
+      "final_text": "I'll make it so you're born into the \nhouse of a count who rules a planet.",
+      "similarity": 0.541,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1248.52,
+      "end": 1250.52,
+      "asr_text": "Let's make it a white-and-white world.",
+      "subtitle_text": "I'll make it so you're born into the \nhouse of a count who rules a planet.",
+      "final_text": "I'll make it so you're born into the \nhouse of a count who rules a planet.",
+      "similarity": 0.339,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1250.52,
+      "end": 1252.52,
+      "asr_text": "White-and-white?",
+      "subtitle_text": "A count? That's pretty high up.",
+      "final_text": "A count? That's pretty high up.",
+      "similarity": 0.128,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1252.52,
+      "end": 1255.52,
+      "asr_text": "It looks like you're going to get it.",
+      "subtitle_text": "A count? That's pretty high up.",
+      "final_text": "A count? That's pretty high up.",
+      "similarity": 0.294,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1259.52,
+      "end": 1262.52,
+      "asr_text": "It seems you're ready.",
+      "subtitle_text": "So you've made your peace?",
+      "final_text": "So you've made your peace?",
+      "similarity": 0.458,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1262.52,
+      "end": 1264.52,
+      "asr_text": "Let's move on to the next one.",
+      "subtitle_text": "I hope you'll have a good life this time, then!",
+      "final_text": "I hope you'll have a good life this time, then!",
+      "similarity": 0.338,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1264.52,
+      "end": 1266.52,
+      "asr_text": "A good life.",
+      "subtitle_text": "I hope you'll have a good life this time, then!",
+      "final_text": "I hope you'll have a good life this time, then!",
+      "similarity": 0.373,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1267.52,
+      "end": 1270.52,
+      "asr_text": "It's stupid to live seriously.",
+      "subtitle_text": "I've had enough of living an honest life.",
+      "final_text": "I've had enough of living an honest life.",
+      "similarity": 0.394,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1270.52,
+      "end": 1275.52,
+      "asr_text": "If you're born into a family, live for your own happiness,",
+      "subtitle_text": "then screw everyone else,",
+      "final_text": "then screw everyone else,",
+      "similarity": 0.169,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1275.52,
+      "end": 1278.52,
+      "asr_text": "and bury others.",
+      "subtitle_text": "I'll put my happiness first \nand do what I want...",
+      "final_text": "I'll put my happiness first \nand do what I want...",
+      "similarity": 0.212,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1278.52,
+      "end": 1281.52,
+      "asr_text": "I'll kill you with the key of evil!",
+      "subtitle_text": "I'll rule with an iron fist \nand be as evil as I please!",
+      "final_text": "I'll rule with an iron fist \nand be as evil as I please!",
+      "similarity": 0.462,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1282.52,
+      "end": 1284.52,
+      "asr_text": "It's fun.",
+      "subtitle_text": "Oh, this is fun!",
+      "final_text": "Oh, this is fun!",
+      "similarity": 0.48,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1284.52,
+      "end": 1288.52,
+      "asr_text": "It's a great pleasure to hurt the weak.",
+      "subtitle_text": "Bullying the weak just feels so, so good!",
+      "final_text": "Bullying the weak just feels so, so good!",
+      "similarity": 0.275,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1293.52,
+      "end": 1295.52,
+      "asr_text": "Help me!",
+      "subtitle_text": "No... Spare me!",
+      "final_text": "No... Spare me!",
+      "similarity": 0.435,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1296.52,
+      "end": 1297.52,
+      "asr_text": "More.",
+      "subtitle_text": "Give me more... Entertain me more!",
+      "final_text": "Give me more... Entertain me more!",
+      "similarity": 0.256,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1297.52,
+      "end": 1299.52,
+      "asr_text": "Have fun with me!",
+      "subtitle_text": "Give me more... Entertain me more!",
+      "final_text": "Give me more... Entertain me more!",
+      "similarity": 0.353,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1301.52,
+      "end": 1303.52,
+      "asr_text": "I am the master of evil.",
+      "subtitle_text": "Entertain your evil lord,\n the great Liam Sera Banfield!",
+      "final_text": "Entertain your evil lord,\n the great Liam Sera Banfield!",
+      "similarity": 0.375,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1303.52,
+      "end": 1306.52,
+      "asr_text": "Yamutera Bunfield Power!",
+      "subtitle_text": "Entertain your evil lord,\n the great Liam Sera Banfield!",
+      "final_text": "Entertain your evil lord,\n the great Liam Sera Banfield!",
+      "similarity": 0.375,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1387.52,
+      "end": 1390.52,
+      "asr_text": "Let's make it a white-and-white world.",
+      "subtitle_text": null,
+      "final_text": "Let's make it a white-and-white world.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 1390.52,
+      "end": 1392.52,
+      "asr_text": "White-and-white?",
+      "subtitle_text": null,
+      "final_text": "White-and-white?",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 1392.52,
+      "end": 1395.52,
+      "asr_text": "It looks like you're going to get it.",
+      "subtitle_text": null,
+      "final_text": "It looks like you're going to get it.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 1395.52,
+      "end": 1398.52,
+      "asr_text": "It's a world ruled by the royal family and the aristocrats.",
+      "subtitle_text": null,
+      "final_text": "It's a world ruled by the royal family and the aristocrats.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 1398.52,
+      "end": 1401.52,
+      "asr_text": "Now, you're the master of the planet.",
+      "subtitle_text": "Rebirth",
+      "final_text": "Rebirth",
+      "similarity": 0.182,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1401.52,
+      "end": 1403.52,
+      "asr_text": "White-and-white?",
+      "subtitle_text": "Rebirth",
+      "final_text": "Rebirth",
+      "similarity": 0.087,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1403.52,
+      "end": 1405.52,
+      "asr_text": "It looks like you're going to get it.",
+      "subtitle_text": "Rebirth",
+      "final_text": "Rebirth",
+      "similarity": 0.182,
+      "flag": "mismatch"
+    },
+    {
+      "start": 1405.52,
+      "end": 1408.52,
+      "asr_text": "It's a great pleasure to hurt the weak.",
+      "subtitle_text": null,
+      "final_text": "It's a great pleasure to hurt the weak.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 1408.52,
+      "end": 1411.52,
+      "asr_text": "If you're born into a family, live for your own happiness,",
+      "subtitle_text": null,
+      "final_text": "If you're born into a family, live for your own happiness,",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 1411.52,
+      "end": 1413.52,
+      "asr_text": "and bury others.",
+      "subtitle_text": null,
+      "final_text": "and bury others.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    },
+    {
+      "start": 1413.52,
+      "end": 1416.52,
+      "asr_text": "It's a great pleasure to hurt the weak.",
+      "subtitle_text": null,
+      "final_text": "It's a great pleasure to hurt the weak.",
+      "similarity": 0.0,
+      "flag": "no_subtitle_match"
+    }
+  ]
+}

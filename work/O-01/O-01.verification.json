@@ -1,0 +1,3146 @@
+{
+  "dubbed_video": "C:\\Users\\Yashesh\\vs code projects\\YK-Dub\\work\\O-01\\O-01.dubbed.mp4",
+  "duration_match": true,
+  "source_duration": 1404.04,
+  "dubbed_duration": 1403.985,
+  "segments_checked": 448,
+  "segments_flagged": 341,
+  "details": [
+    {
+      "start": 0.0,
+      "end": 2.0,
+      "detected_onset": 0.165,
+      "drift_sec": 0.165,
+      "flagged": false
+    },
+    {
+      "start": 2.0,
+      "end": 4.0,
+      "detected_onset": 2.082,
+      "drift_sec": 0.082,
+      "flagged": false
+    },
+    {
+      "start": 4.0,
+      "end": 5.0,
+      "detected_onset": 3.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 5.0,
+      "end": 7.0,
+      "detected_onset": 4.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 7.0,
+      "end": 10.0,
+      "detected_onset": 6.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 10.0,
+      "end": 13.0,
+      "detected_onset": 9.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 13.0,
+      "end": 16.0,
+      "detected_onset": 12.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 16.0,
+      "end": 18.0,
+      "detected_onset": 15.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 18.0,
+      "end": 19.0,
+      "detected_onset": 17.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 20.0,
+      "end": 21.0,
+      "detected_onset": 20.023,
+      "drift_sec": 0.023,
+      "flagged": false
+    },
+    {
+      "start": 21.0,
+      "end": 22.0,
+      "detected_onset": 20.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 22.0,
+      "end": 23.0,
+      "detected_onset": 21.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 23.0,
+      "end": 25.0,
+      "detected_onset": 22.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 30.0,
+      "end": 31.0,
+      "detected_onset": 30.067,
+      "drift_sec": 0.067,
+      "flagged": false
+    },
+    {
+      "start": 31.0,
+      "end": 33.0,
+      "detected_onset": 30.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 33.0,
+      "end": 35.0,
+      "detected_onset": 32.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 35.0,
+      "end": 37.0,
+      "detected_onset": 34.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 37.0,
+      "end": 38.0,
+      "detected_onset": 36.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 38.0,
+      "end": 39.0,
+      "detected_onset": 37.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 39.0,
+      "end": 41.0,
+      "detected_onset": 38.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 42.0,
+      "end": 43.0,
+      "detected_onset": 42.039,
+      "drift_sec": 0.039,
+      "flagged": false
+    },
+    {
+      "start": 43.0,
+      "end": 45.0,
+      "detected_onset": 42.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 52.0,
+      "end": 54.0,
+      "detected_onset": 52.138,
+      "drift_sec": 0.138,
+      "flagged": false
+    },
+    {
+      "start": 82.0,
+      "end": 84.0,
+      "detected_onset": 82.046,
+      "drift_sec": 0.046,
+      "flagged": false
+    },
+    {
+      "start": 84.0,
+      "end": 86.0,
+      "detected_onset": 83.464,
+      "drift_sec": -0.536,
+      "flagged": true
+    },
+    {
+      "start": 86.0,
+      "end": 89.0,
+      "detected_onset": 85.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 89.0,
+      "end": 92.0,
+      "detected_onset": 88.421,
+      "drift_sec": -0.579,
+      "flagged": true
+    },
+    {
+      "start": 94.0,
+      "end": 96.0,
+      "detected_onset": 94.046,
+      "drift_sec": 0.046,
+      "flagged": false
+    },
+    {
+      "start": 96.0,
+      "end": 98.0,
+      "detected_onset": 95.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 98.0,
+      "end": 99.0,
+      "detected_onset": 97.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 99.0,
+      "end": 102.0,
+      "detected_onset": 98.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 102.0,
+      "end": 104.0,
+      "detected_onset": 101.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 104.0,
+      "end": 106.0,
+      "detected_onset": 103.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 106.0,
+      "end": 108.0,
+      "detected_onset": 105.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 108.0,
+      "end": 110.0,
+      "detected_onset": 107.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 110.0,
+      "end": 111.0,
+      "detected_onset": 109.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 111.0,
+      "end": 113.0,
+      "detected_onset": 110.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 113.0,
+      "end": 114.0,
+      "detected_onset": 112.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 114.0,
+      "end": 116.0,
+      "detected_onset": 113.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 116.0,
+      "end": 118.0,
+      "detected_onset": 115.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 118.0,
+      "end": 120.0,
+      "detected_onset": 117.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 120.0,
+      "end": 122.0,
+      "detected_onset": 119.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 122.0,
+      "end": 123.0,
+      "detected_onset": 121.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 123.0,
+      "end": 125.0,
+      "detected_onset": 122.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 125.0,
+      "end": 127.0,
+      "detected_onset": 124.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 127.0,
+      "end": 129.0,
+      "detected_onset": 126.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 129.0,
+      "end": 131.0,
+      "detected_onset": 128.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 131.0,
+      "end": 133.0,
+      "detected_onset": 130.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 133.0,
+      "end": 138.0,
+      "detected_onset": 132.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 138.0,
+      "end": 141.0,
+      "detected_onset": 137.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 141.0,
+      "end": 145.0,
+      "detected_onset": 140.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 145.0,
+      "end": 149.0,
+      "detected_onset": 144.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 149.0,
+      "end": 154.0,
+      "detected_onset": 148.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 154.0,
+      "end": 157.0,
+      "detected_onset": 153.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 157.0,
+      "end": 159.0,
+      "detected_onset": 156.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 159.0,
+      "end": 162.0,
+      "detected_onset": 158.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 164.0,
+      "end": 168.0,
+      "detected_onset": 164.105,
+      "drift_sec": 0.105,
+      "flagged": false
+    },
+    {
+      "start": 168.0,
+      "end": 171.0,
+      "detected_onset": 167.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 185.0,
+      "end": 187.0,
+      "detected_onset": 185.095,
+      "drift_sec": 0.095,
+      "flagged": false
+    },
+    {
+      "start": 187.0,
+      "end": 189.0,
+      "detected_onset": 186.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 189.0,
+      "end": 191.0,
+      "detected_onset": 189.117,
+      "drift_sec": 0.117,
+      "flagged": false
+    },
+    {
+      "start": 191.0,
+      "end": 193.48,
+      "detected_onset": 190.25,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 193.48,
+      "end": 197.16,
+      "detected_onset": 192.73,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 197.16,
+      "end": 198.76,
+      "detected_onset": 196.41,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 198.76,
+      "end": 202.84,
+      "detected_onset": 198.01,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 202.84,
+      "end": 206.04,
+      "detected_onset": 202.09,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 207.08,
+      "end": 210.6,
+      "detected_onset": 207.17800000000003,
+      "drift_sec": 0.098,
+      "flagged": false
+    },
+    {
+      "start": 210.6,
+      "end": 213.72,
+      "detected_onset": 209.85,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 221.48,
+      "end": 223.0,
+      "detected_onset": 221.57,
+      "drift_sec": 0.09,
+      "flagged": false
+    },
+    {
+      "start": 227.0,
+      "end": 228.2,
+      "detected_onset": 227.061,
+      "drift_sec": 0.061,
+      "flagged": false
+    },
+    {
+      "start": 228.2,
+      "end": 233.48,
+      "detected_onset": 227.45,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 233.48,
+      "end": 236.12,
+      "detected_onset": 232.73,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 236.12,
+      "end": 239.64,
+      "detected_onset": 235.37,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 239.64,
+      "end": 245.72,
+      "detected_onset": 238.89,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 245.72,
+      "end": 248.36,
+      "detected_onset": 244.97,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 248.36,
+      "end": 250.20000000000002,
+      "detected_onset": 247.61,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 250.20000000000002,
+      "end": 252.52,
+      "detected_onset": 249.558,
+      "drift_sec": -0.642,
+      "flagged": true
+    },
+    {
+      "start": 252.52,
+      "end": 254.04000000000002,
+      "detected_onset": 251.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 254.04000000000002,
+      "end": 256.52000000000004,
+      "detected_onset": 253.29,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 256.52000000000004,
+      "end": 260.28000000000003,
+      "detected_onset": 255.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 265.8,
+      "end": 268.12,
+      "detected_onset": 265.891,
+      "drift_sec": 0.091,
+      "flagged": false
+    },
+    {
+      "start": 268.12,
+      "end": 270.44,
+      "detected_onset": 267.37,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 270.44,
+      "end": 272.52000000000004,
+      "detected_onset": 269.69,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 272.52000000000004,
+      "end": 276.28000000000003,
+      "detected_onset": 271.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 276.28000000000003,
+      "end": 278.2,
+      "detected_onset": 275.53,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 278.2,
+      "end": 282.36,
+      "detected_onset": 277.45,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 282.36,
+      "end": 283.64,
+      "detected_onset": 281.61,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 283.64,
+      "end": 287.32,
+      "detected_onset": 282.89,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 288.84,
+      "end": 290.36,
+      "detected_onset": 288.887,
+      "drift_sec": 0.047,
+      "flagged": false
+    },
+    {
+      "start": 290.36,
+      "end": 292.68,
+      "detected_onset": 289.61,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 292.68,
+      "end": 295.15999999999997,
+      "detected_onset": 291.93,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 295.15999999999997,
+      "end": 296.52,
+      "detected_onset": 294.409,
+      "drift_sec": -0.751,
+      "flagged": true
+    },
+    {
+      "start": 296.52,
+      "end": 302.52,
+      "detected_onset": 295.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 326.52,
+      "end": 328.52,
+      "detected_onset": 326.615,
+      "drift_sec": 0.095,
+      "flagged": false
+    },
+    {
+      "start": 328.52,
+      "end": 330.52,
+      "detected_onset": 328.597,
+      "drift_sec": 0.077,
+      "flagged": false
+    },
+    {
+      "start": 330.52,
+      "end": 332.52,
+      "detected_onset": 329.907,
+      "drift_sec": -0.613,
+      "flagged": true
+    },
+    {
+      "start": 332.52,
+      "end": 334.52,
+      "detected_onset": 331.87,
+      "drift_sec": -0.65,
+      "flagged": true
+    },
+    {
+      "start": 334.52,
+      "end": 336.52,
+      "detected_onset": 333.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 336.52,
+      "end": 338.52,
+      "detected_onset": 335.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 338.52,
+      "end": 339.52,
+      "detected_onset": 337.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 339.52,
+      "end": 341.52,
+      "detected_onset": 338.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 341.52,
+      "end": 343.52,
+      "detected_onset": 340.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 343.52,
+      "end": 344.52,
+      "detected_onset": 342.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 344.52,
+      "end": 346.52,
+      "detected_onset": 343.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 351.52,
+      "end": 352.52,
+      "detected_onset": 351.56399999999996,
+      "drift_sec": 0.044,
+      "flagged": false
+    },
+    {
+      "start": 353.52,
+      "end": 355.52,
+      "detected_onset": 353.61899999999997,
+      "drift_sec": 0.099,
+      "flagged": false
+    },
+    {
+      "start": 358.52,
+      "end": 361.52,
+      "detected_onset": 358.596,
+      "drift_sec": 0.076,
+      "flagged": false
+    },
+    {
+      "start": 361.52,
+      "end": 363.52,
+      "detected_onset": 360.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 363.52,
+      "end": 366.52,
+      "detected_onset": 362.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 366.52,
+      "end": 367.52,
+      "detected_onset": 365.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 367.52,
+      "end": 370.52,
+      "detected_onset": 366.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 370.52,
+      "end": 373.52,
+      "detected_onset": 369.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 374.52,
+      "end": 376.52,
+      "detected_onset": 374.614,
+      "drift_sec": 0.094,
+      "flagged": false
+    },
+    {
+      "start": 376.52,
+      "end": 379.52,
+      "detected_onset": 376.089,
+      "drift_sec": -0.431,
+      "flagged": true
+    },
+    {
+      "start": 379.52,
+      "end": 382.52,
+      "detected_onset": 378.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 383.52,
+      "end": 385.52,
+      "detected_onset": 383.582,
+      "drift_sec": 0.062,
+      "flagged": false
+    },
+    {
+      "start": 387.52,
+      "end": 390.52,
+      "detected_onset": 387.613,
+      "drift_sec": 0.093,
+      "flagged": false
+    },
+    {
+      "start": 390.52,
+      "end": 392.52,
+      "detected_onset": 389.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 392.52,
+      "end": 394.52,
+      "detected_onset": 391.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 394.52,
+      "end": 397.52,
+      "detected_onset": 393.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 397.52,
+      "end": 400.52,
+      "detected_onset": 396.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 400.52,
+      "end": 401.52,
+      "detected_onset": 399.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 401.52,
+      "end": 403.52,
+      "detected_onset": 400.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 403.52,
+      "end": 406.52,
+      "detected_onset": 402.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 406.52,
+      "end": 408.52,
+      "detected_onset": 405.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 409.52,
+      "end": 410.52,
+      "detected_onset": 409.561,
+      "drift_sec": 0.041,
+      "flagged": false
+    },
+    {
+      "start": 410.52,
+      "end": 412.52,
+      "detected_onset": 409.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 412.52,
+      "end": 414.52,
+      "detected_onset": 411.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 414.52,
+      "end": 416.52,
+      "detected_onset": 413.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 416.52,
+      "end": 418.52,
+      "detected_onset": 415.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 418.52,
+      "end": 420.52,
+      "detected_onset": 418.606,
+      "drift_sec": 0.086,
+      "flagged": false
+    },
+    {
+      "start": 425.52,
+      "end": 427.52,
+      "detected_onset": 425.578,
+      "drift_sec": 0.058,
+      "flagged": false
+    },
+    {
+      "start": 427.52,
+      "end": 429.52,
+      "detected_onset": 426.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 429.52,
+      "end": 431.52,
+      "detected_onset": 428.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 431.52,
+      "end": 433.52,
+      "detected_onset": 430.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 433.52,
+      "end": 435.52,
+      "detected_onset": 432.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 436.52,
+      "end": 438.52,
+      "detected_onset": 436.568,
+      "drift_sec": 0.048,
+      "flagged": false
+    },
+    {
+      "start": 439.52,
+      "end": 440.52,
+      "detected_onset": 439.579,
+      "drift_sec": 0.059,
+      "flagged": false
+    },
+    {
+      "start": 440.52,
+      "end": 441.52,
+      "detected_onset": 439.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 441.52,
+      "end": 442.52,
+      "detected_onset": 440.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 442.52,
+      "end": 443.52,
+      "detected_onset": 441.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 443.52,
+      "end": 444.52,
+      "detected_onset": 442.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 444.52,
+      "end": 446.52,
+      "detected_onset": 443.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 446.52,
+      "end": 448.52,
+      "detected_onset": 445.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 448.52,
+      "end": 449.52,
+      "detected_onset": 447.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 449.52,
+      "end": 451.52,
+      "detected_onset": 448.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 451.52,
+      "end": 453.52,
+      "detected_onset": 450.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 453.52,
+      "end": 454.52,
+      "detected_onset": 452.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 454.52,
+      "end": 456.52,
+      "detected_onset": 453.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 458.52,
+      "end": 461.52,
+      "detected_onset": 458.613,
+      "drift_sec": 0.093,
+      "flagged": false
+    },
+    {
+      "start": 463.52,
+      "end": 464.52,
+      "detected_onset": 463.635,
+      "drift_sec": 0.115,
+      "flagged": false
+    },
+    {
+      "start": 464.52,
+      "end": 471.28,
+      "detected_onset": 463.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 471.28,
+      "end": 475.88,
+      "detected_onset": 470.53,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 475.88,
+      "end": 477.88,
+      "detected_onset": 475.13,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 477.88,
+      "end": 478.88,
+      "detected_onset": 477.298,
+      "drift_sec": -0.582,
+      "flagged": true
+    },
+    {
+      "start": 478.88,
+      "end": 483.15999999999997,
+      "detected_onset": 478.13,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 483.15999999999997,
+      "end": 486.56,
+      "detected_onset": 482.409,
+      "drift_sec": -0.751,
+      "flagged": true
+    },
+    {
+      "start": 491.76,
+      "end": 493.76,
+      "detected_onset": 491.873,
+      "drift_sec": 0.113,
+      "flagged": false
+    },
+    {
+      "start": 495.52000000000004,
+      "end": 498.52000000000004,
+      "detected_onset": 495.608,
+      "drift_sec": 0.088,
+      "flagged": false
+    },
+    {
+      "start": 501.52000000000004,
+      "end": 502.52000000000004,
+      "detected_onset": 501.65999999999997,
+      "drift_sec": 0.14,
+      "flagged": false
+    },
+    {
+      "start": 504.52000000000004,
+      "end": 505.52000000000004,
+      "detected_onset": 504.59299999999996,
+      "drift_sec": 0.073,
+      "flagged": false
+    },
+    {
+      "start": 507.52000000000004,
+      "end": 510.52000000000004,
+      "detected_onset": 507.566,
+      "drift_sec": 0.046,
+      "flagged": false
+    },
+    {
+      "start": 514.52,
+      "end": 517.52,
+      "detected_onset": 514.775,
+      "drift_sec": 0.255,
+      "flagged": false
+    },
+    {
+      "start": 518.52,
+      "end": 519.52,
+      "detected_onset": 518.625,
+      "drift_sec": 0.105,
+      "flagged": false
+    },
+    {
+      "start": 520.52,
+      "end": 523.52,
+      "detected_onset": 520.629,
+      "drift_sec": 0.109,
+      "flagged": false
+    },
+    {
+      "start": 523.52,
+      "end": 524.52,
+      "detected_onset": 523.619,
+      "drift_sec": 0.099,
+      "flagged": false
+    },
+    {
+      "start": 524.52,
+      "end": 526.52,
+      "detected_onset": 523.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 527.52,
+      "end": 529.52,
+      "detected_onset": 527.981,
+      "drift_sec": 0.461,
+      "flagged": true
+    },
+    {
+      "start": 530.52,
+      "end": 532.52,
+      "detected_onset": 530.953,
+      "drift_sec": 0.433,
+      "flagged": true
+    },
+    {
+      "start": 532.52,
+      "end": 534.52,
+      "detected_onset": 531.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 535.52,
+      "end": 539.52,
+      "detected_onset": 535.866,
+      "drift_sec": 0.346,
+      "flagged": true
+    },
+    {
+      "start": 539.52,
+      "end": 540.52,
+      "detected_onset": 538.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 540.52,
+      "end": 541.52,
+      "detected_onset": 539.982,
+      "drift_sec": -0.538,
+      "flagged": true
+    },
+    {
+      "start": 543.52,
+      "end": 546.52,
+      "detected_onset": 543.5889999999999,
+      "drift_sec": 0.069,
+      "flagged": false
+    },
+    {
+      "start": 546.52,
+      "end": 548.52,
+      "detected_onset": 545.9689999999999,
+      "drift_sec": -0.551,
+      "flagged": true
+    },
+    {
+      "start": 549.52,
+      "end": 551.52,
+      "detected_onset": 549.7289999999999,
+      "drift_sec": 0.209,
+      "flagged": false
+    },
+    {
+      "start": 552.52,
+      "end": 554.52,
+      "detected_onset": 552.774,
+      "drift_sec": 0.254,
+      "flagged": false
+    },
+    {
+      "start": 554.52,
+      "end": 555.52,
+      "detected_onset": 553.962,
+      "drift_sec": -0.558,
+      "flagged": true
+    },
+    {
+      "start": 555.52,
+      "end": 557.52,
+      "detected_onset": 554.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 558.52,
+      "end": 560.52,
+      "detected_onset": 558.591,
+      "drift_sec": 0.071,
+      "flagged": false
+    },
+    {
+      "start": 560.52,
+      "end": 562.52,
+      "detected_onset": 559.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 564.52,
+      "end": 566.52,
+      "detected_onset": 564.63,
+      "drift_sec": 0.11,
+      "flagged": false
+    },
+    {
+      "start": 566.52,
+      "end": 568.52,
+      "detected_onset": 565.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 568.52,
+      "end": 571.52,
+      "detected_onset": 567.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 571.52,
+      "end": 574.52,
+      "detected_onset": 570.9789999999999,
+      "drift_sec": -0.541,
+      "flagged": true
+    },
+    {
+      "start": 574.52,
+      "end": 575.52,
+      "detected_onset": 573.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 575.52,
+      "end": 577.52,
+      "detected_onset": 574.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 577.52,
+      "end": 579.52,
+      "detected_onset": 576.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 579.52,
+      "end": 581.52,
+      "detected_onset": 578.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 581.52,
+      "end": 583.52,
+      "detected_onset": 580.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 583.52,
+      "end": 584.52,
+      "detected_onset": 582.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 600.52,
+      "end": 601.52,
+      "detected_onset": 600.677,
+      "drift_sec": 0.157,
+      "flagged": false
+    },
+    {
+      "start": 601.52,
+      "end": 603.52,
+      "detected_onset": 600.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 603.52,
+      "end": 604.52,
+      "detected_onset": 602.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 604.52,
+      "end": 606.52,
+      "detected_onset": 603.8729999999999,
+      "drift_sec": -0.647,
+      "flagged": true
+    },
+    {
+      "start": 606.52,
+      "end": 608.52,
+      "detected_onset": 605.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 608.52,
+      "end": 610.52,
+      "detected_onset": 607.91,
+      "drift_sec": -0.61,
+      "flagged": true
+    },
+    {
+      "start": 610.52,
+      "end": 612.52,
+      "detected_onset": 609.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 612.52,
+      "end": 613.52,
+      "detected_onset": 611.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 613.52,
+      "end": 614.52,
+      "detected_onset": 612.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 614.52,
+      "end": 616.52,
+      "detected_onset": 613.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 627.52,
+      "end": 629.52,
+      "detected_onset": 627.646,
+      "drift_sec": 0.126,
+      "flagged": false
+    },
+    {
+      "start": 629.52,
+      "end": 631.52,
+      "detected_onset": 628.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 631.52,
+      "end": 633.52,
+      "detected_onset": 630.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 633.52,
+      "end": 635.52,
+      "detected_onset": 632.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 635.52,
+      "end": 638.52,
+      "detected_onset": 634.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 638.52,
+      "end": 640.52,
+      "detected_onset": 637.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 640.52,
+      "end": 643.52,
+      "detected_onset": 639.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 643.52,
+      "end": 645.52,
+      "detected_onset": 642.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 645.52,
+      "end": 647.52,
+      "detected_onset": 644.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 647.52,
+      "end": 649.52,
+      "detected_onset": 646.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 649.52,
+      "end": 651.52,
+      "detected_onset": 648.9,
+      "drift_sec": -0.62,
+      "flagged": true
+    },
+    {
+      "start": 651.52,
+      "end": 654.52,
+      "detected_onset": 650.905,
+      "drift_sec": -0.615,
+      "flagged": true
+    },
+    {
+      "start": 654.52,
+      "end": 656.52,
+      "detected_onset": 653.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 656.52,
+      "end": 658.52,
+      "detected_onset": 655.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 658.52,
+      "end": 660.52,
+      "detected_onset": 657.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 660.52,
+      "end": 662.52,
+      "detected_onset": 659.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 665.52,
+      "end": 667.52,
+      "detected_onset": 665.535,
+      "drift_sec": 0.015,
+      "flagged": false
+    },
+    {
+      "start": 667.52,
+      "end": 668.52,
+      "detected_onset": 666.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 668.52,
+      "end": 670.52,
+      "detected_onset": 667.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 670.52,
+      "end": 672.52,
+      "detected_onset": 669.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 675.52,
+      "end": 677.52,
+      "detected_onset": 675.615,
+      "drift_sec": 0.095,
+      "flagged": false
+    },
+    {
+      "start": 677.52,
+      "end": 679.52,
+      "detected_onset": 677.62,
+      "drift_sec": 0.1,
+      "flagged": false
+    },
+    {
+      "start": 680.52,
+      "end": 683.52,
+      "detected_onset": 680.5989999999999,
+      "drift_sec": 0.079,
+      "flagged": false
+    },
+    {
+      "start": 683.52,
+      "end": 684.52,
+      "detected_onset": 682.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 684.52,
+      "end": 685.52,
+      "detected_onset": 683.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 685.52,
+      "end": 686.52,
+      "detected_onset": 684.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 686.52,
+      "end": 687.52,
+      "detected_onset": 685.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 687.52,
+      "end": 689.52,
+      "detected_onset": 686.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 689.52,
+      "end": 692.52,
+      "detected_onset": 688.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 692.52,
+      "end": 695.52,
+      "detected_onset": 692.615,
+      "drift_sec": 0.095,
+      "flagged": false
+    },
+    {
+      "start": 695.52,
+      "end": 698.52,
+      "detected_onset": 695.616,
+      "drift_sec": 0.096,
+      "flagged": false
+    },
+    {
+      "start": 698.52,
+      "end": 700.52,
+      "detected_onset": 698.655,
+      "drift_sec": 0.135,
+      "flagged": false
+    },
+    {
+      "start": 700.52,
+      "end": 704.52,
+      "detected_onset": 699.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 712.52,
+      "end": 715.52,
+      "detected_onset": 712.637,
+      "drift_sec": 0.117,
+      "flagged": false
+    },
+    {
+      "start": 716.52,
+      "end": 718.52,
+      "detected_onset": 716.635,
+      "drift_sec": 0.115,
+      "flagged": false
+    },
+    {
+      "start": 720.52,
+      "end": 722.52,
+      "detected_onset": 720.723,
+      "drift_sec": 0.203,
+      "flagged": false
+    },
+    {
+      "start": 722.52,
+      "end": 724.52,
+      "detected_onset": 721.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 724.52,
+      "end": 726.52,
+      "detected_onset": 723.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 726.52,
+      "end": 728.52,
+      "detected_onset": 725.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 730.52,
+      "end": 733.52,
+      "detected_onset": 730.784,
+      "drift_sec": 0.264,
+      "flagged": false
+    },
+    {
+      "start": 733.52,
+      "end": 735.52,
+      "detected_onset": 732.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 735.52,
+      "end": 737.52,
+      "detected_onset": 734.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 737.52,
+      "end": 739.52,
+      "detected_onset": 736.891,
+      "drift_sec": -0.629,
+      "flagged": true
+    },
+    {
+      "start": 739.52,
+      "end": 740.52,
+      "detected_onset": 738.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 740.52,
+      "end": 742.52,
+      "detected_onset": 739.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 742.52,
+      "end": 744.52,
+      "detected_onset": 741.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 744.52,
+      "end": 746.52,
+      "detected_onset": 743.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 747.52,
+      "end": 749.52,
+      "detected_onset": 747.5559999999999,
+      "drift_sec": 0.036,
+      "flagged": false
+    },
+    {
+      "start": 749.52,
+      "end": 752.52,
+      "detected_onset": 748.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 752.52,
+      "end": 755.52,
+      "detected_onset": 751.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 755.52,
+      "end": 758.52,
+      "detected_onset": 754.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 758.52,
+      "end": 759.52,
+      "detected_onset": 757.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 759.52,
+      "end": 761.52,
+      "detected_onset": 758.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 761.52,
+      "end": 763.52,
+      "detected_onset": 761.5989999999999,
+      "drift_sec": 0.079,
+      "flagged": false
+    },
+    {
+      "start": 763.52,
+      "end": 765.52,
+      "detected_onset": 762.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 765.52,
+      "end": 768.52,
+      "detected_onset": 764.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 768.52,
+      "end": 770.52,
+      "detected_onset": 767.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 770.52,
+      "end": 773.52,
+      "detected_onset": 769.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 773.52,
+      "end": 775.52,
+      "detected_onset": 772.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 775.52,
+      "end": 776.52,
+      "detected_onset": 774.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 776.52,
+      "end": 778.52,
+      "detected_onset": 775.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 778.52,
+      "end": 780.52,
+      "detected_onset": 777.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 780.52,
+      "end": 783.52,
+      "detected_onset": 779.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 783.52,
+      "end": 786.52,
+      "detected_onset": 782.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 786.52,
+      "end": 787.52,
+      "detected_onset": 785.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 787.52,
+      "end": 791.52,
+      "detected_onset": 786.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 791.52,
+      "end": 794.52,
+      "detected_onset": 791.6129999999999,
+      "drift_sec": 0.093,
+      "flagged": false
+    },
+    {
+      "start": 794.52,
+      "end": 796.52,
+      "detected_onset": 793.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 796.52,
+      "end": 797.52,
+      "detected_onset": 795.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 797.52,
+      "end": 799.52,
+      "detected_onset": 796.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 799.52,
+      "end": 802.52,
+      "detected_onset": 798.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 802.52,
+      "end": 806.52,
+      "detected_onset": 801.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 808.52,
+      "end": 810.52,
+      "detected_onset": 808.593,
+      "drift_sec": 0.073,
+      "flagged": false
+    },
+    {
+      "start": 811.52,
+      "end": 813.52,
+      "detected_onset": 811.569,
+      "drift_sec": 0.049,
+      "flagged": false
+    },
+    {
+      "start": 813.52,
+      "end": 815.52,
+      "detected_onset": 812.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 815.52,
+      "end": 817.52,
+      "detected_onset": 814.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 817.52,
+      "end": 818.52,
+      "detected_onset": 817.611,
+      "drift_sec": 0.091,
+      "flagged": false
+    },
+    {
+      "start": 818.52,
+      "end": 820.52,
+      "detected_onset": 817.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 820.52,
+      "end": 821.52,
+      "detected_onset": 819.87,
+      "drift_sec": -0.65,
+      "flagged": true
+    },
+    {
+      "start": 821.52,
+      "end": 822.52,
+      "detected_onset": 820.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 822.52,
+      "end": 823.52,
+      "detected_onset": 821.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 823.52,
+      "end": 825.52,
+      "detected_onset": 822.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 825.52,
+      "end": 826.52,
+      "detected_onset": 824.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 826.52,
+      "end": 827.52,
+      "detected_onset": 825.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 828.52,
+      "end": 830.52,
+      "detected_onset": 828.6809999999999,
+      "drift_sec": 0.161,
+      "flagged": false
+    },
+    {
+      "start": 830.52,
+      "end": 832.52,
+      "detected_onset": 829.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 832.52,
+      "end": 835.52,
+      "detected_onset": 831.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 835.52,
+      "end": 837.52,
+      "detected_onset": 834.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 837.52,
+      "end": 838.52,
+      "detected_onset": 836.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 838.52,
+      "end": 840.52,
+      "detected_onset": 837.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 840.52,
+      "end": 842.52,
+      "detected_onset": 839.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 842.52,
+      "end": 843.52,
+      "detected_onset": 841.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 843.52,
+      "end": 844.52,
+      "detected_onset": 842.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 844.52,
+      "end": 846.52,
+      "detected_onset": 843.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 846.52,
+      "end": 848.52,
+      "detected_onset": 845.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 848.52,
+      "end": 851.52,
+      "detected_onset": 847.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 851.52,
+      "end": 854.52,
+      "detected_onset": 850.938,
+      "drift_sec": -0.582,
+      "flagged": true
+    },
+    {
+      "start": 854.52,
+      "end": 856.52,
+      "detected_onset": 854.586,
+      "drift_sec": 0.066,
+      "flagged": false
+    },
+    {
+      "start": 859.52,
+      "end": 860.52,
+      "detected_onset": 859.7719999999999,
+      "drift_sec": 0.252,
+      "flagged": false
+    },
+    {
+      "start": 860.52,
+      "end": 861.52,
+      "detected_onset": 859.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 861.52,
+      "end": 863.52,
+      "detected_onset": 860.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 863.52,
+      "end": 864.52,
+      "detected_onset": 862.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 864.52,
+      "end": 865.52,
+      "detected_onset": 863.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 866.52,
+      "end": 868.52,
+      "detected_onset": 866.682,
+      "drift_sec": 0.162,
+      "flagged": false
+    },
+    {
+      "start": 870.52,
+      "end": 872.52,
+      "detected_onset": 870.749,
+      "drift_sec": 0.229,
+      "flagged": false
+    },
+    {
+      "start": 872.52,
+      "end": 873.52,
+      "detected_onset": 871.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 873.52,
+      "end": 876.52,
+      "detected_onset": 872.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 876.52,
+      "end": 878.52,
+      "detected_onset": 875.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 878.52,
+      "end": 879.52,
+      "detected_onset": 877.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 879.52,
+      "end": 882.52,
+      "detected_onset": 878.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 882.52,
+      "end": 884.52,
+      "detected_onset": 881.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 894.52,
+      "end": 896.52,
+      "detected_onset": 894.542,
+      "drift_sec": 0.022,
+      "flagged": false
+    },
+    {
+      "start": 896.52,
+      "end": 897.52,
+      "detected_onset": 896.607,
+      "drift_sec": 0.087,
+      "flagged": false
+    },
+    {
+      "start": 905.52,
+      "end": 908.52,
+      "detected_onset": 905.568,
+      "drift_sec": 0.048,
+      "flagged": false
+    },
+    {
+      "start": 908.52,
+      "end": 910.52,
+      "detected_onset": 907.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 911.52,
+      "end": 915.52,
+      "detected_onset": 911.5889999999999,
+      "drift_sec": 0.069,
+      "flagged": false
+    },
+    {
+      "start": 915.52,
+      "end": 917.52,
+      "detected_onset": 914.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 917.52,
+      "end": 920.52,
+      "detected_onset": 916.872,
+      "drift_sec": -0.648,
+      "flagged": true
+    },
+    {
+      "start": 920.52,
+      "end": 922.52,
+      "detected_onset": 919.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 922.52,
+      "end": 924.52,
+      "detected_onset": 921.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 924.52,
+      "end": 927.52,
+      "detected_onset": 923.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 927.52,
+      "end": 929.52,
+      "detected_onset": 926.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 929.52,
+      "end": 932.52,
+      "detected_onset": 928.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 940.52,
+      "end": 942.52,
+      "detected_onset": 940.624,
+      "drift_sec": 0.104,
+      "flagged": false
+    },
+    {
+      "start": 946.52,
+      "end": 949.52,
+      "detected_onset": 946.755,
+      "drift_sec": 0.235,
+      "flagged": false
+    },
+    {
+      "start": 950.52,
+      "end": 952.52,
+      "detected_onset": 950.64,
+      "drift_sec": 0.12,
+      "flagged": false
+    },
+    {
+      "start": 952.52,
+      "end": 953.52,
+      "detected_onset": 952.5319999999999,
+      "drift_sec": 0.012,
+      "flagged": false
+    },
+    {
+      "start": 953.52,
+      "end": 956.52,
+      "detected_onset": 952.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 956.52,
+      "end": 959.52,
+      "detected_onset": 955.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 959.52,
+      "end": 961.52,
+      "detected_onset": 958.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 961.52,
+      "end": 963.52,
+      "detected_onset": 960.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 963.52,
+      "end": 966.52,
+      "detected_onset": 962.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 966.52,
+      "end": 968.52,
+      "detected_onset": 965.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 971.52,
+      "end": 973.52,
+      "detected_onset": 971.596,
+      "drift_sec": 0.076,
+      "flagged": false
+    },
+    {
+      "start": 980.52,
+      "end": 982.52,
+      "detected_onset": 980.629,
+      "drift_sec": 0.109,
+      "flagged": false
+    },
+    {
+      "start": 982.52,
+      "end": 984.52,
+      "detected_onset": 981.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 984.52,
+      "end": 988.52,
+      "detected_onset": 983.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 990.52,
+      "end": 993.52,
+      "detected_onset": 990.6129999999999,
+      "drift_sec": 0.093,
+      "flagged": false
+    },
+    {
+      "start": 994.52,
+      "end": 997.52,
+      "detected_onset": 994.579,
+      "drift_sec": 0.059,
+      "flagged": false
+    },
+    {
+      "start": 997.52,
+      "end": 999.52,
+      "detected_onset": 996.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 999.52,
+      "end": 1002.52,
+      "detected_onset": 998.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1014.52,
+      "end": 1016.52,
+      "detected_onset": 1014.5939999999999,
+      "drift_sec": 0.074,
+      "flagged": false
+    },
+    {
+      "start": 1016.52,
+      "end": 1018.52,
+      "detected_onset": 1015.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1018.52,
+      "end": 1020.52,
+      "detected_onset": 1017.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1020.52,
+      "end": 1022.52,
+      "detected_onset": 1019.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1024.52,
+      "end": 1026.52,
+      "detected_onset": 1024.554,
+      "drift_sec": 0.034,
+      "flagged": false
+    },
+    {
+      "start": 1026.52,
+      "end": 1030.52,
+      "detected_onset": 1025.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1030.52,
+      "end": 1033.52,
+      "detected_onset": 1029.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1038.52,
+      "end": 1040.52,
+      "detected_onset": 1038.748,
+      "drift_sec": 0.228,
+      "flagged": false
+    },
+    {
+      "start": 1040.52,
+      "end": 1042.52,
+      "detected_onset": 1040.609,
+      "drift_sec": 0.089,
+      "flagged": false
+    },
+    {
+      "start": 1043.52,
+      "end": 1046.52,
+      "detected_onset": 1043.766,
+      "drift_sec": 0.246,
+      "flagged": false
+    },
+    {
+      "start": 1046.52,
+      "end": 1049.52,
+      "detected_onset": 1045.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1049.52,
+      "end": 1051.52,
+      "detected_onset": 1049.9379999999999,
+      "drift_sec": 0.418,
+      "flagged": true
+    },
+    {
+      "start": 1051.52,
+      "end": 1054.52,
+      "detected_onset": 1050.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1058.52,
+      "end": 1060.52,
+      "detected_onset": 1058.5629999999999,
+      "drift_sec": 0.043,
+      "flagged": false
+    },
+    {
+      "start": 1060.52,
+      "end": 1062.52,
+      "detected_onset": 1059.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1064.52,
+      "end": 1066.52,
+      "detected_onset": 1064.597,
+      "drift_sec": 0.077,
+      "flagged": false
+    },
+    {
+      "start": 1066.52,
+      "end": 1068.52,
+      "detected_onset": 1065.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1068.52,
+      "end": 1071.52,
+      "detected_onset": 1067.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1071.52,
+      "end": 1073.52,
+      "detected_onset": 1071.617,
+      "drift_sec": 0.097,
+      "flagged": false
+    },
+    {
+      "start": 1073.52,
+      "end": 1074.52,
+      "detected_onset": 1072.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1074.52,
+      "end": 1075.52,
+      "detected_onset": 1073.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1075.52,
+      "end": 1077.52,
+      "detected_onset": 1074.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1077.52,
+      "end": 1079.52,
+      "detected_onset": 1076.888,
+      "drift_sec": -0.632,
+      "flagged": true
+    },
+    {
+      "start": 1079.52,
+      "end": 1081.52,
+      "detected_onset": 1078.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1081.52,
+      "end": 1085.52,
+      "detected_onset": 1080.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1085.52,
+      "end": 1087.52,
+      "detected_onset": 1084.911,
+      "drift_sec": -0.609,
+      "flagged": true
+    },
+    {
+      "start": 1087.52,
+      "end": 1089.52,
+      "detected_onset": 1086.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1089.52,
+      "end": 1092.52,
+      "detected_onset": 1088.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1092.52,
+      "end": 1095.52,
+      "detected_onset": 1091.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1095.52,
+      "end": 1097.52,
+      "detected_onset": 1094.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1097.52,
+      "end": 1099.52,
+      "detected_onset": 1096.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1099.52,
+      "end": 1101.52,
+      "detected_onset": 1098.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1101.52,
+      "end": 1103.52,
+      "detected_onset": 1100.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1103.52,
+      "end": 1105.52,
+      "detected_onset": 1102.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1105.52,
+      "end": 1107.52,
+      "detected_onset": 1104.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1107.52,
+      "end": 1109.52,
+      "detected_onset": 1106.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1109.52,
+      "end": 1112.52,
+      "detected_onset": 1108.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1112.52,
+      "end": 1117.52,
+      "detected_onset": 1111.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1117.52,
+      "end": 1120.52,
+      "detected_onset": 1117.594,
+      "drift_sec": 0.074,
+      "flagged": false
+    },
+    {
+      "start": 1120.52,
+      "end": 1124.52,
+      "detected_onset": 1119.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1124.52,
+      "end": 1126.52,
+      "detected_onset": 1123.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1126.52,
+      "end": 1129.52,
+      "detected_onset": 1125.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1129.52,
+      "end": 1133.52,
+      "detected_onset": 1128.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1133.52,
+      "end": 1137.52,
+      "detected_onset": 1133.618,
+      "drift_sec": 0.098,
+      "flagged": false
+    },
+    {
+      "start": 1137.52,
+      "end": 1145.52,
+      "detected_onset": 1137.636,
+      "drift_sec": 0.116,
+      "flagged": false
+    },
+    {
+      "start": 1145.52,
+      "end": 1147.52,
+      "detected_onset": 1145.613,
+      "drift_sec": 0.093,
+      "flagged": false
+    },
+    {
+      "start": 1147.52,
+      "end": 1151.52,
+      "detected_onset": 1146.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1151.52,
+      "end": 1152.52,
+      "detected_onset": 1150.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1152.52,
+      "end": 1155.52,
+      "detected_onset": 1151.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1155.52,
+      "end": 1159.52,
+      "detected_onset": 1154.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1159.52,
+      "end": 1163.52,
+      "detected_onset": 1158.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1163.52,
+      "end": 1166.52,
+      "detected_onset": 1163.639,
+      "drift_sec": 0.119,
+      "flagged": false
+    },
+    {
+      "start": 1166.52,
+      "end": 1170.52,
+      "detected_onset": 1165.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1170.52,
+      "end": 1172.52,
+      "detected_onset": 1169.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1172.52,
+      "end": 1175.52,
+      "detected_onset": 1171.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1175.52,
+      "end": 1178.52,
+      "detected_onset": 1174.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1178.52,
+      "end": 1182.52,
+      "detected_onset": 1177.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1182.52,
+      "end": 1184.52,
+      "detected_onset": 1181.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1184.52,
+      "end": 1187.52,
+      "detected_onset": 1183.9089999999999,
+      "drift_sec": -0.611,
+      "flagged": true
+    },
+    {
+      "start": 1187.52,
+      "end": 1190.52,
+      "detected_onset": 1186.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1190.52,
+      "end": 1195.52,
+      "detected_onset": 1190.6399999999999,
+      "drift_sec": 0.12,
+      "flagged": false
+    },
+    {
+      "start": 1195.52,
+      "end": 1198.52,
+      "detected_onset": 1194.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1198.52,
+      "end": 1201.52,
+      "detected_onset": 1197.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1201.52,
+      "end": 1203.52,
+      "detected_onset": 1200.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1203.52,
+      "end": 1205.52,
+      "detected_onset": 1202.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1205.52,
+      "end": 1206.52,
+      "detected_onset": 1204.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1206.52,
+      "end": 1209.52,
+      "detected_onset": 1205.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1209.52,
+      "end": 1212.52,
+      "detected_onset": 1208.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1212.52,
+      "end": 1216.52,
+      "detected_onset": 1211.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1216.52,
+      "end": 1218.52,
+      "detected_onset": 1215.974,
+      "drift_sec": -0.546,
+      "flagged": true
+    },
+    {
+      "start": 1218.52,
+      "end": 1223.52,
+      "detected_onset": 1217.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1223.52,
+      "end": 1226.52,
+      "detected_onset": 1222.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1226.52,
+      "end": 1229.52,
+      "detected_onset": 1225.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1229.52,
+      "end": 1231.52,
+      "detected_onset": 1228.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1231.52,
+      "end": 1234.52,
+      "detected_onset": 1230.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1234.52,
+      "end": 1239.52,
+      "detected_onset": 1233.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1239.52,
+      "end": 1243.52,
+      "detected_onset": 1238.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1243.52,
+      "end": 1248.52,
+      "detected_onset": 1242.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1248.52,
+      "end": 1250.52,
+      "detected_onset": 1247.893,
+      "drift_sec": -0.627,
+      "flagged": true
+    },
+    {
+      "start": 1250.52,
+      "end": 1252.52,
+      "detected_onset": 1249.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1252.52,
+      "end": 1255.52,
+      "detected_onset": 1251.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1259.52,
+      "end": 1262.52,
+      "detected_onset": 1259.804,
+      "drift_sec": 0.284,
+      "flagged": false
+    },
+    {
+      "start": 1262.52,
+      "end": 1264.52,
+      "detected_onset": 1261.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1264.52,
+      "end": 1266.52,
+      "detected_onset": 1263.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1267.52,
+      "end": 1270.52,
+      "detected_onset": 1267.593,
+      "drift_sec": 0.073,
+      "flagged": false
+    },
+    {
+      "start": 1270.52,
+      "end": 1275.52,
+      "detected_onset": 1269.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1275.52,
+      "end": 1278.52,
+      "detected_onset": 1275.59,
+      "drift_sec": 0.07,
+      "flagged": false
+    },
+    {
+      "start": 1278.52,
+      "end": 1281.52,
+      "detected_onset": 1277.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1282.52,
+      "end": 1284.52,
+      "detected_onset": 1282.615,
+      "drift_sec": 0.095,
+      "flagged": false
+    },
+    {
+      "start": 1284.52,
+      "end": 1288.52,
+      "detected_onset": 1283.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1293.52,
+      "end": 1295.52,
+      "detected_onset": 1293.614,
+      "drift_sec": 0.094,
+      "flagged": false
+    },
+    {
+      "start": 1296.52,
+      "end": 1297.52,
+      "detected_onset": 1296.556,
+      "drift_sec": 0.036,
+      "flagged": false
+    },
+    {
+      "start": 1297.52,
+      "end": 1299.52,
+      "detected_onset": 1296.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1301.52,
+      "end": 1303.52,
+      "detected_onset": 1301.558,
+      "drift_sec": 0.038,
+      "flagged": false
+    },
+    {
+      "start": 1303.52,
+      "end": 1306.52,
+      "detected_onset": 1302.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1387.52,
+      "end": 1390.52,
+      "detected_onset": 1387.6,
+      "drift_sec": 0.08,
+      "flagged": false
+    },
+    {
+      "start": 1390.52,
+      "end": 1392.52,
+      "detected_onset": 1389.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1392.52,
+      "end": 1395.52,
+      "detected_onset": 1391.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1395.52,
+      "end": 1398.52,
+      "detected_onset": 1394.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1398.52,
+      "end": 1401.52,
+      "detected_onset": 1397.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1401.52,
+      "end": 1403.52,
+      "detected_onset": 1401.895,
+      "drift_sec": 0.375,
+      "flagged": true
+    },
+    {
+      "start": 1403.52,
+      "end": 1405.52,
+      "detected_onset": 1402.77,
+      "drift_sec": -0.75,
+      "flagged": true
+    },
+    {
+      "start": 1405.52,
+      "end": 1408.52,
+      "detected_onset": null,
+      "drift_sec": null,
+      "flagged": false
+    },
+    {
+      "start": 1408.52,
+      "end": 1411.52,
+      "detected_onset": null,
+      "drift_sec": null,
+      "flagged": false
+    },
+    {
+      "start": 1411.52,
+      "end": 1413.52,
+      "detected_onset": null,
+      "drift_sec": null,
+      "flagged": false
+    },
+    {
+      "start": 1413.52,
+      "end": 1416.52,
+      "detected_onset": null,
+      "drift_sec": null,
+      "flagged": false
+    }
+  ]
+}

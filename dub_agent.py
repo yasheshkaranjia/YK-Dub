@@ -12,6 +12,7 @@ import sys
 from pathlib import Path
 
 from pydub import AudioSegment
+from tqdm import tqdm
 
 # Point these at whatever Piper voice you downloaded (see README).
 PIPER_MODEL = "en_US-lessac-medium.onnx"
@@ -40,7 +41,7 @@ def stretch_to_duration(in_wav: str, out_wav: str, target_sec: float) -> None:
 
 def build_track(segments: list, work_dir: Path, total_duration: float) -> Path:
     track = AudioSegment.silent(duration=int(total_duration * 1000))
-    for i, seg in enumerate(segments):
+    for i, seg in enumerate(tqdm(segments, desc="[dub] synthesizing lines", unit="line")):
         raw = work_dir / f"seg_{i:04d}_raw.wav"
         fitted = work_dir / f"seg_{i:04d}_fit.wav"
         synth_segment(seg["final_text"], str(raw))
@@ -62,7 +63,7 @@ def mux(video_path: str, audio_path: Path, out_path: str) -> None:
 
 
 def run(translated_manifest_path: str, out_video: str) -> dict:
-    data = json.loads(Path(translated_manifest_path).read_text())
+    data = json.loads(Path(translated_manifest_path).read_text(encoding="utf-8"))
     work_dir = Path(translated_manifest_path).parent / "tts_work"
     work_dir.mkdir(exist_ok=True)
 
@@ -71,7 +72,7 @@ def run(translated_manifest_path: str, out_video: str) -> dict:
 
     result = {**data, "dubbed_video": str(Path(out_video).resolve())}
     result_path = Path(str(translated_manifest_path).replace(".translated.json", ".dubbed.json"))
-    result_path.write_text(json.dumps(result, indent=2, ensure_ascii=False))
+    result_path.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"[dub] wrote {out_video} -> manifest at {result_path}")
     return result
 

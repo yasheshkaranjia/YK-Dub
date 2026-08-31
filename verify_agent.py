@@ -46,7 +46,7 @@ def actual_onset(audio: AudioSegment, expected_start: float):
 
 
 def run(dubbed_manifest_path: str) -> dict:
-    data = json.loads(Path(dubbed_manifest_path).read_text())
+    data = json.loads(Path(dubbed_manifest_path).read_text(encoding="utf-8"))
     work_dir = Path(dubbed_manifest_path).parent / "verify_work"
     work_dir.mkdir(exist_ok=True)
     check_wav = work_dir / "check.wav"
@@ -79,7 +79,7 @@ def run(dubbed_manifest_path: str) -> dict:
         "details": report,
     }
     out_path = Path(str(dubbed_manifest_path).replace(".dubbed.json", ".verification.json"))
-    out_path.write_text(json.dumps(result, indent=2))
+    out_path.write_text(json.dumps(result, indent=2), encoding="utf-8")
     print(f"[verify] duration match: {duration_ok} | {flagged_count}/{len(report)} "
           f"segments flagged (drift > {DRIFT_THRESHOLD_SEC}s) -> {out_path}")
     return result
