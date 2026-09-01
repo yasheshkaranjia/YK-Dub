@@ -31,7 +31,7 @@ def extract_audio(video_path: str, audio_out: str) -> None:
 def separate_vocals(audio_path: str, work_dir: Path):
     """Runs Demucs to split into vocals.wav + no_vocals.wav (instrumental)."""
     subprocess.run(
-        ["python", "-m", "demucs", "--two-stems=vocals", "-n", DEMUCS_MODEL,
+        [sys.executable, "-m", "demucs", "--two-stems=vocals", "-n", DEMUCS_MODEL,
          "-o", str(work_dir / "demucs_out"), audio_path],
         check=True,
     )
