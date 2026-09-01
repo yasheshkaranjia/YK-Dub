@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 
 import extract_agent
-import translate_agent
+import script_agent
 import dub_agent
 import verify_agent
 
@@ -21,7 +21,7 @@ def process_episode(video_path: str, work_root: str) -> None:
     extract_agent.run(video_path, str(work_dir))
     manifest_path = work_dir / f"{stem}.manifest.json"
 
-    translate_agent.run(str(manifest_path))
+    script_agent.run(str(manifest_path))
     translated_path = Path(str(manifest_path).replace(".manifest.json", ".translated.json"))
 
     out_video = work_dir / f"{stem}.dubbed.mp4"

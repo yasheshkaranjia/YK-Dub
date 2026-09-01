@@ -82,13 +82,32 @@ def mix_with_instrumental(vocals_path: Path, instrumental_path: str, work_dir: P
     return out_path
 
 
-def mux(video_path: str, audio_path: Path, out_path: str) -> None:
-    subprocess.run(
-        ["ffmpeg", "-y", "-i", video_path, "-i", str(audio_path),
-         "-map", "0:v:0", "-map", "1:a:0",
-         "-c:v", "copy", "-c:a", "aac", "-shortest", out_path],
-        check=True, capture_output=True,
-    )
+def escape_for_ffmpeg_filter(path: str) -> str:
+    """ffmpeg filter syntax treats ':' and '\\' specially - this makes a
+    Windows path safe to drop into a subtitles= filter argument."""
+    return path.replace("\\", "/").replace(":", "\\:")
+
+
+def mux(video_path: str, audio_path: Path, out_path: str, signs_path: str = None) -> None:
+    if signs_path:
+        # Burning text onto frames means the video must be re-encoded -
+        # a plain stream copy can't add pixels to existing frames.
+        filt = f"subtitles='{escape_for_ffmpeg_filter(signs_path)}'"
+        subprocess.run(
+            ["ffmpeg", "-y", "-i", video_path, "-i", str(audio_path),
+             "-filter_complex", f"[0:v]{filt}[v]",
+             "-map", "[v]", "-map", "1:a:0",
+             "-c:v", "libx264", "-preset", "fast", "-crf", "20",
+             "-c:a", "aac", "-shortest", out_path],
+            check=True, capture_output=True,
+        )
+    else:
+        subprocess.run(
+            ["ffmpeg", "-y", "-i", video_path, "-i", str(audio_path),
+             "-map", "0:v:0", "-map", "1:a:0",
+             "-c:v", "copy", "-c:a", "aac", "-shortest", out_path],
+            check=True, capture_output=True,
+        )
 
 
 def run(translated_manifest_path: str, out_video: str) -> dict:
@@ -98,7 +117,7 @@ def run(translated_manifest_path: str, out_video: str) -> dict:
 
     track = build_vocal_track(data["segments"], work_dir, data["duration_sec"])
     final_mix = mix_with_instrumental(track, data["instrumental_path"], work_dir)
-    mux(data["video_path"], final_mix, out_video)
+    mux(data["video_path"], final_mix, out_video, data.get("signs_path"))
 
     result = {**data, "dubbed_video": str(Path(out_video).resolve())}
     result_path = Path(str(translated_manifest_path).replace(".translated.json", ".dubbed.json"))
