@@ -23,7 +23,7 @@ def synth_segment(text: str, out_wav: str) -> None:
     subprocess.run(
         ["piper", "--model", PIPER_MODEL, "--config", PIPER_CONFIG,
          "--output_file", out_wav],
-        input=text, text=True, check=True, capture_output=True,
+        input=text, text=True, encoding="utf-8", check=True, capture_output=True,
     )
 
 
@@ -41,13 +41,31 @@ def stretch_to_duration(in_wav: str, out_wav: str, target_sec: float) -> None:
 
 def build_vocal_track(segments: list, work_dir: Path, total_duration: float) -> Path:
     track = AudioSegment.silent(duration=int(total_duration * 1000))
+    skipped = 0
     for i, seg in enumerate(tqdm(segments, desc="[dub] synthesizing lines", unit="line")):
+        # A line where translation fell back to the raw source text (e.g. an
+        # Ollama timeout) is still Japanese - Piper's English voice can't
+        # speak it, so leave that window silent instead of crashing.
+        if seg.get("japanese_text") and seg["final_text"] == seg["japanese_text"]:
+            tqdm.write(f"[dub] segment {i} was never translated - leaving it silent")
+            skipped += 1
+            continue
+
         raw = work_dir / f"seg_{i:04d}_raw.wav"
         fitted = work_dir / f"seg_{i:04d}_fit.wav"
-        synth_segment(seg["final_text"], str(raw))
-        stretch_to_duration(str(raw), str(fitted), max(seg["end"] - seg["start"], 0.3))
+        try:
+            synth_segment(seg["final_text"], str(raw))
+            stretch_to_duration(str(raw), str(fitted), max(seg["end"] - seg["start"], 0.3))
+        except subprocess.CalledProcessError as e:
+            tqdm.write(f"[dub] segment {i} failed to synthesize ({e}) - leaving it silent")
+            skipped += 1
+            continue
+
         clip = AudioSegment.from_wav(fitted)
         track = track.overlay(clip, position=int(seg["start"] * 1000))
+
+    if skipped:
+        print(f"[dub] {skipped}/{len(segments)} lines left silent (untranslated or synth failure)")
     out_path = work_dir / "dubbed_vocals.wav"
     track.export(out_path, format="wav")
     return out_path

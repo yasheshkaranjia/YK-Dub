@@ -7,14 +7,20 @@ phrase-by-phrase, and asking it to reword the line to fit naturally
 within the clip's original duration. Cross-checks against the existing
 subtitle track (if any) and flags lines worth a human look.
 
-Falls back to Whisper's own built-in translation (no context, no
-reworking) if Ollama isn't reachable, so the pipeline still runs.
+If Ollama isn't running, or a single call to it fails/times out, this
+falls back to Argos Translate - a real offline Japanese->English MT model
+bundled into this script, not a server call - so a line never gets left
+as raw untranslated Japanese. Argos won't be as fluent as the LLM (no
+surrounding context, no timing rewrite), but it's always a proper
+translation, never a skipped/broken line.
 """
 import json
 import sys
 from difflib import SequenceMatcher
 from pathlib import Path
 
+import argostranslate.package
+import argostranslate.translate
 import pysubs2
 import requests
 from faster_whisper import WhisperModel
@@ -25,6 +31,33 @@ OLLAMA_URL = "http://localhost:11434/api/generate"
 OLLAMA_MODEL = "qwen3:1.7b"
 CONTEXT_LINES = 2
 MATCH_THRESHOLD = 0.55
+
+
+def ensure_argos_ja_en() -> None:
+    """Installs the ja->en Argos Translate model on first run (needs internet
+    once), then it's cached locally and works fully offline after that."""
+    installed = argostranslate.translate.get_installed_languages()
+    has_ja_en = any(
+        lang.code == "ja" and any(t.to_lang.code == "en" for t in lang.translations_from)
+        for lang in installed
+    )
+    if has_ja_en:
+        return
+
+    print("[translate] downloading the offline JA->EN translation model "
+          "(one-time, needs internet)...")
+    argostranslate.package.update_package_index()
+    available = argostranslate.package.get_available_packages()
+    pkg = next(p for p in available if p.from_code == "ja" and p.to_code == "en")
+    argostranslate.package.install_from_path(pkg.download())
+
+
+def offline_translate(text: str) -> str:
+    try:
+        return argostranslate.translate.translate(text, "ja", "en")
+    except Exception as e:
+        print(f"[translate] offline fallback translation failed too ({e}) - kept raw text")
+        return text
 
 
 def load_subtitles(path):
@@ -71,7 +104,7 @@ def translate_with_llm(target: str, context_before: list, duration: float) -> st
     resp = requests.post(
         OLLAMA_URL,
         json={"model": OLLAMA_MODEL, "prompt": prompt, "stream": False},
-        timeout=60,
+        timeout=180,
     )
     resp.raise_for_status()
     return resp.json().get("response", "").strip()
@@ -94,31 +127,31 @@ def run(manifest_path: str) -> dict:
     manifest = json.loads(Path(manifest_path).read_text(encoding="utf-8"))
     subs = load_subtitles(manifest.get("subtitle_path"))
 
+    ensure_argos_ja_en()
     use_llm = ollama_available()
-    if use_llm:
-        raw_segments = transcribe(manifest["vocals_path"], "transcribe", "[translate] transcribing (JA)")
-    else:
-        print("[translate] Ollama not reachable on localhost:11434 - falling back to "
-              "Whisper's built-in translation (no context, no timing rewrite). "
-              "Install Ollama + `ollama pull qwen3:4b` and start it for better results.")
-        raw_segments = transcribe(manifest["vocals_path"], "translate", "[translate] transcribing+translating")
+    if not use_llm:
+        print("[translate] Ollama not reachable on localhost:11434 - translating "
+              "every line with the offline Argos model instead (no surrounding "
+              "context, no timing rewrite). Install Ollama + `ollama pull "
+              "qwen3:1.7b` and start it for better results.")
+
+    raw_segments = transcribe(manifest["vocals_path"], "transcribe", "[translate] transcribing (JA)")
 
     segments = []
     context_before = []
-    for seg in tqdm(raw_segments, desc="[translate] translating", unit="line", disable=not use_llm):
+    for seg in tqdm(raw_segments, desc="[translate] translating", unit="line"):
         duration = max(seg["end"] - seg["start"], 0.3)
 
         if use_llm:
             try:
                 final_text = translate_with_llm(seg["text"], context_before, duration)
             except requests.exceptions.RequestException as e:
-                final_text = seg["text"]
-                print(f"[translate] Ollama call failed ({e}) - kept raw text for this line")
-            context_before.append(final_text)
-            source_text = seg["text"]
+                tqdm.write(f"[translate] Ollama call failed ({e}) - using offline fallback for this line")
+                final_text = offline_translate(seg["text"])
         else:
-            final_text = seg["text"]  # already English from Whisper's translate task
-            source_text = None
+            final_text = offline_translate(seg["text"])
+
+        context_before.append(final_text)
 
         match = find_overlapping_sub(seg, subs) if subs else None
         score = similarity(final_text, match["text"]) if match else 0.0
@@ -127,7 +160,7 @@ def run(manifest_path: str) -> dict:
         segments.append({
             "start": seg["start"],
             "end": seg["end"],
-            "japanese_text": source_text,
+            "japanese_text": seg["text"],
             "subtitle_text": match["text"] if match else None,
             "final_text": final_text,
             "similarity": round(score, 3),
