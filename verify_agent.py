@@ -13,7 +13,7 @@ from pathlib import Path
 from pydub import AudioSegment
 from pydub.silence import detect_nonsilent
 
-DRIFT_THRESHOLD_SEC = 0.3
+DRIFT_THRESHOLD_SEC = 0.3  # beyond this, a viewer would likely notice the mismatch
 WINDOW_SEC = 1.5  # search window around each expected start time
 
 
@@ -27,6 +27,9 @@ def get_duration(path: str) -> float:
 
 
 def extract_audio(video_path: str, out_wav: str) -> None:
+    # Mono 16kHz is plenty for silence detection (we're not judging audio
+    # quality here, just finding where sound starts) and keeps this step
+    # fast regardless of the source's actual audio format.
     subprocess.run(
         ["ffmpeg", "-y", "-i", video_path, "-vn", "-ac", "1", "-ar", "16000", out_wav],
         check=True, capture_output=True,
@@ -34,11 +37,18 @@ def extract_audio(video_path: str, out_wav: str) -> None:
 
 
 def actual_onset(audio: AudioSegment, expected_start: float):
+    """Looks for where speech actually starts within a small window
+    around where the subtitle said it should, rather than scanning the
+    whole file - much faster, and avoids matching a spike from a
+    completely unrelated later line."""
     window_start_ms = max(0, int((expected_start - WINDOW_SEC / 2) * 1000))
     window_end_ms = min(len(audio), int((expected_start + WINDOW_SEC / 2) * 1000))
     clip = audio[window_start_ms:window_end_ms]
     if len(clip) == 0:
         return None
+    # Threshold is relative to this clip's own loudness (clip.dBFS - 16),
+    # not a fixed dB value - a hardcoded threshold would misfire on both
+    # very quiet and very loud scenes.
     spans = detect_nonsilent(clip, min_silence_len=100, silence_thresh=clip.dBFS - 16)
     if not spans:
         return None
@@ -51,6 +61,9 @@ def run(dubbed_manifest_path: str) -> dict:
     work_dir.mkdir(exist_ok=True)
     check_wav = work_dir / "check.wav"
 
+    # Re-extracts audio from the FINAL muxed video, not the intermediate
+    # dubbed_vocals.wav from dub_agent.py - this catches any drift the mux
+    # step itself might introduce, not just errors in synthesis/timing.
     extract_audio(data["dubbed_video"], str(check_wav))
     audio = AudioSegment.from_wav(check_wav)
 
@@ -65,6 +78,10 @@ def run(dubbed_manifest_path: str) -> dict:
         report.append({
             "start": seg["start"], "end": seg["end"],
             "detected_onset": onset, "drift_sec": drift,
+            # onset is None (no speech detected in the window at all,
+            # not "drift is huge") when a line was left silent upstream -
+            # that's a different failure mode from timing drift, so it's
+            # deliberately not flagged here as a drift problem.
             "flagged": drift is not None and abs(drift) > DRIFT_THRESHOLD_SEC,
         })
 

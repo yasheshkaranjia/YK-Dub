@@ -27,6 +27,9 @@ def load_voice_lookup():
     """Returns (resolve_fn) where resolve_fn(speaker_name) -> (model, config).
     Reads voices.json (the voice registry) + voice_map.json (speaker ->
     voice alias, written by configure_voices.py) if present."""
+    # Both files are optional - a fresh clone of this repo with no voice
+    # setup done yet should still dub something (single default voice)
+    # rather than crash, so configure_voices.py stays opt-in, not required.
     if not VOICES_FILE.exists() or not MAP_FILE.exists():
         return lambda speaker: (PIPER_MODEL, PIPER_CONFIG)
 
@@ -35,6 +38,9 @@ def load_voice_lookup():
     default_alias = voice_map.get("_default", next(iter(voices)))
 
     def resolve(speaker: str):
+        # Characters not yet assigned a voice (new to this episode, or
+        # configure_voices.py was skipped) fall back to whatever "_default"
+        # currently points to, rather than erroring out mid-run.
         alias = voice_map.get(speaker, default_alias)
         v = voices.get(alias, voices[default_alias])
         return v["model"], v["config"]
@@ -42,10 +48,16 @@ def load_voice_lookup():
     return resolve
 
 
+# Computed once at import time, not per-segment - re-reading and
+# re-parsing two JSON files for every single line would be wasteful
+# when there can be hundreds of lines per episode.
 resolve_voice = load_voice_lookup()
 
 
 def synth_segment(text: str, out_wav: str, model: str = PIPER_MODEL, config: str = PIPER_CONFIG) -> None:
+    # Piper reads the line to speak from stdin, not as a CLI argument -
+    # this avoids Windows command-line length/escaping issues entirely
+    # for long or special-character-heavy lines.
     subprocess.run(
         ["piper", "--model", model, "--config", config,
          "--output_file", out_wav],
@@ -58,6 +70,10 @@ def stretch_to_duration(in_wav: str, out_wav: str, target_sec: float) -> None:
     if current <= 0:
         Path(in_wav).rename(out_wav)
         return
+    # ffmpeg's atempo filter only accepts 0.5x-2x per instance (chaining
+    # multiple atempo filters can go further, but that's not implemented
+    # here) - clamping means a wildly-off-timing line gets stretched as
+    # far as safely possible rather than crashing the whole run.
     tempo = max(0.5, min(2.0, current / target_sec))  # ffmpeg atempo's safe range
     subprocess.run(
         ["ffmpeg", "-y", "-i", in_wav, "-filter:a", f"atempo={tempo}", out_wav],
@@ -66,6 +82,9 @@ def stretch_to_duration(in_wav: str, out_wav: str, target_sec: float) -> None:
 
 
 def build_vocal_track(segments: list, work_dir: Path, total_duration: float) -> Path:
+    # A silent track the full length of the episode, with each line
+    # overlaid at its own timestamp - this is what makes lines land at
+    # the right moment without needing to track cumulative offsets by hand.
     track = AudioSegment.silent(duration=int(total_duration * 1000))
     skipped = 0
     for i, seg in enumerate(tqdm(segments, desc="[dub] synthesizing lines", unit="line")):
@@ -84,6 +103,9 @@ def build_vocal_track(segments: list, work_dir: Path, total_duration: float) -> 
             synth_segment(seg["final_text"], str(raw), model, config)
             stretch_to_duration(str(raw), str(fitted), max(seg["end"] - seg["start"], 0.3))
         except subprocess.CalledProcessError as e:
+            # One bad line (empty synth output, a Piper crash on unusual
+            # punctuation, etc.) shouldn't take down the whole episode -
+            # log it, leave that window silent, keep going.
             tqdm.write(f"[dub] segment {i} failed to synthesize ({e}) - leaving it silent")
             skipped += 1
             continue
@@ -124,7 +146,9 @@ def mux(video_path: str, audio_path: Path, out_path: str, signs_path: str = None
 
     if signs_path:
         # Burning sign text onto frames means the video must be re-encoded -
-        # a plain stream copy can't add pixels to existing frames.
+        # a plain stream copy can't add pixels to existing frames. This is
+        # the slow path, and only taken for episodes that actually have
+        # sign/overlay text to draw.
         filt = f"subtitles='{escape_for_ffmpeg_filter(signs_path)}'"
         subprocess.run(
             ["ffmpeg", "-y", "-i", video_path, "-i", str(audio_path), *sub_inputs,
@@ -135,6 +159,8 @@ def mux(video_path: str, audio_path: Path, out_path: str, signs_path: str = None
             check=True, capture_output=True,
         )
     else:
+        # No signs to burn - stream-copy the video untouched (fast, and
+        # lossless since no re-encode happens at all).
         subprocess.run(
             ["ffmpeg", "-y", "-i", video_path, "-i", str(audio_path), *sub_inputs,
              "-map", "0:v:0", "-map", "1:a:0", *sub_map,

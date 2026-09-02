@@ -6,7 +6,7 @@ around fansub `.ass`/`.srt` files that already contain a proper human
 translation (including on-screen sign/title text), so there's no LLM
 translation step to run or wait on.
 
-## Pipeline (4 agents)
+## Pipeline (4 agents + 2 helpers)
 
 1. **extract_agent.py** — pulls audio out of the video, splits it into a
    **vocals-only** track and an **instrumental** (music/SFX) track with
@@ -15,7 +15,9 @@ translation step to run or wait on.
 
 2. **script_agent.py** — reads the subtitle file directly (no ASR, no
    LLM needed when subs exist):
-   - **Dialogue lines** → become the segments that get dubbed.
+   - **Dialogue lines** → become the segments that get dubbed, tagged
+     with the speaking character's name where the subtitle file has one
+     (the ASS "actor" field), for per-character voice assignment.
    - **Sign/title lines** (detected by style name — `Sign`, `OP`, `ED`,
      `Title`, etc. — or a `\pos()`/`\an` position override, the standard
      fansub convention for on-screen text) → pulled into their own
@@ -25,17 +27,30 @@ translation step to run or wait on.
      Whisper's own Japanese→English translation for that episode
      (lower quality, but keeps the pipeline running end to end).
 
-3. **dub_agent.py** — synthesizes each dialogue line with Piper TTS,
-   time-stretches it to fit its subtitle window, builds the full vocal
-   track, mixes it with the original instrumental track (music/SFX
-   survive), and muxes the result onto the video. If there are sign
-   lines, it burns them onto the frames in the same step (this forces a
-   full video re-encode for that episode — no way around it, since
-   burning text means changing pixels, not just copying the stream).
+3. **dub_agent.py** — synthesizes each dialogue line with Piper TTS
+   (using a per-character voice if one's been assigned — see
+   `configure_voices.py` below), time-stretches it to fit its subtitle
+   window, builds the full vocal track, mixes it with the original
+   instrumental track (music/SFX survive), and muxes the result onto
+   the video. If there are sign lines, it burns them onto the frames in
+   the same step (this forces a full video re-encode for that episode —
+   no way around it, since burning text means changing pixels, not just
+   copying the stream).
 
 4. **verify_agent.py** — re-extracts the dubbed audio and checks each
    segment's actual speech onset against where it should start, flagging
    anything drifting more than 0.3s, plus an overall duration check.
+
+Two helper scripts sit alongside the pipeline:
+
+- **configure_voices.py** — scans an episode's subtitles for every named
+  speaking character and lets you assign each one a Piper voice from
+  `voices.json`, saving choices to `voice_map.json`. Remembers earlier
+  choices across episodes, so you typically only run this once per
+  series (new characters in later episodes still get asked about).
+- **check_translation.py** — prints every dialogue line's timing,
+  speaker, and text before you commit to a full dub, so you can catch a
+  mis-tagged speaker or a sign line that slipped in as dialogue.
 
 Each agent reads/writes a JSON manifest, so any single stage can be
 rerun on its own without redoing the others — handy since some steps
@@ -66,23 +81,44 @@ ever needs its no-subtitle fallback. Cached locally after that.
 runs fully offline. It's a neural net doing the vocal/music split, so
 budget a few minutes per episode on CPU.
 
-**Piper TTS voice** — download a voice (e.g. `en_US-lessac-medium`) from
-the [Piper voices page](https://github.com/rhasspy/piper/blob/master/VOICES.md)
+**Piper TTS voice(s)** — download one or more voices (e.g.
+`en_US-lessac-medium`, `en_GB-alan-medium`) from the
+[Piper voices page](https://github.com/rhasspy/piper/blob/master/VOICES.md)
 — both the `.onnx` and `.onnx.json` files — and place them in the repo
-root, or point `PIPER_MODEL` / `PIPER_CONFIG` in `dub_agent.py` at
-wherever you saved them. **Don't commit these to git** — they're large
-binaries; `.gitignore` already excludes `*.onnx` / `*.onnx.json`.
+root (or under `piper-voices/`, matching the paths already used in
+`voices.json`). **Don't commit these to git** — they're large binaries;
+`.gitignore` already excludes `*.onnx` / `*.onnx.json` / `piper-voices/`.
+
+- For a **single voice** for every character, `dub_agent.py`'s
+  `PIPER_MODEL` / `PIPER_CONFIG` defaults are enough — no extra setup.
+- For **different voices per character**, list each downloaded voice in
+  `voices.json` (alias → model/config paths + a label), then run
+  `python configure_voices.py "path/to/an/episode.ass"` to assign
+  characters to voices interactively. `run.py` also offers to do this
+  inline before dubbing each episode.
 
 ## 2. Run
 
-Single episode:
+**Easiest way — interactive:**
+```bash
+python run.py
+```
+It asks where your video (or folder of episodes) is, where to put the
+output, and whether you want to review/assign character voices before
+dubbing each episode (recommended the first time you dub a new series —
+skip it on later episodes of the same series and it'll just reuse
+`voice_map.json`). Everything else runs on its own.
+
+**Scripted way — same pipeline, no prompts (good for automation):**
 ```bash
 python orchestrator.py "/path/to/Episode01.mkv" ./work
+python orchestrator.py "/path/to/season_folder" ./work   # whole folder, one by one
 ```
 
-Whole folder (processed one by one, in filename order):
+**Setting up character voices manually** (run.py offers this inline,
+but you can also run it directly, e.g. to re-pick voices later):
 ```bash
-python orchestrator.py "/path/to/season_folder" ./work
+python configure_voices.py "work/<name>/<name>.ass"
 ```
 
 Output per episode lands in `./work/<episode name>/`:

@@ -25,14 +25,23 @@ import pysubs2
 from faster_whisper import WhisperModel
 from tqdm import tqdm
 
-MODEL_SIZE = "small"
+MODEL_SIZE = "small"  # good accuracy/speed balance on CPU; step up to "medium" if a low-sub-quality fallback run sounds off, or down to "base" if it's painfully slow
 SIGN_STYLE_HINTS = ("sign", "op", "ed", "title", "song", "insert", "note")
+# \pos() places text at an exact screen coordinate; \an1-\an9 overrides the
+# default bottom-center alignment. Both are the standard fansub convention
+# for "this is an on-screen overlay, not a spoken line" - dialogue almost
+# never needs to say where on screen it appears, signs always do.
 POSITION_TAG = re.compile(r"\\pos\(|\\an[1-9]")
 
 
 def is_sign_event(event) -> bool:
+    # Two independent signals, either one is enough: an explicit style
+    # name that says what it is, or a position override that implies it
+    # (some fansub groups reuse the "Default" style for signs too, so
+    # style name alone isn't reliable on its own).
     style = (event.style or "").lower()
-    if any(hint in style for hint in SIGN_STYLE_HINTS):
+    name = (event.name or "").lower()
+    if any(hint in style or hint in name for hint in SIGN_STYLE_HINTS):
         return True
     return bool(POSITION_TAG.search(event.text))
 
@@ -40,6 +49,9 @@ def is_sign_event(event) -> bool:
 def split_subtitles(sub_path: str):
     subs = pysubs2.load(sub_path)
     dialogue, signs = pysubs2.SSAFile(), pysubs2.SSAFile()
+    # Both new files need the original style definitions copied over, or
+    # the sign file loses its font/color/position info when re-saved -
+    # pysubs2.SSAFile() starts empty, styles included.
     dialogue.styles = subs.styles
     signs.styles = subs.styles
 
@@ -52,9 +64,15 @@ def split_subtitles(sub_path: str):
         else:
             dialogue.append(e)
             dialogue_segments.append({
-                "start": e.start / 1000.0,
+                "start": e.start / 1000.0,  # pysubs2 uses milliseconds; everything downstream expects seconds
                 "end": e.end / 1000.0,
                 "final_text": e.plaintext.strip(),
+                # e.name is the ASS "actor" field - fansubbers often (not
+                # always) fill this in per character, which is what lets
+                # configure_voices.py offer per-character voice picking.
+                # Empty string when absent, never falls back to "_default"
+                # here - dub_agent.py's resolve_voice() handles that.
+                "speaker": (e.name or "").strip(),
             })
     return dialogue_segments, signs if len(signs) else None
 
@@ -62,7 +80,13 @@ def split_subtitles(sub_path: str):
 def fallback_whisper_translate(audio_path: str):
     print("[script] no subtitle file found - falling back to Whisper's own "
           "translation (lower quality, no sign text to preserve)")
+    # int8 quantization roughly halves memory/CPU cost vs float32, at a
+    # small accuracy cost - worth it for a CPU-only fallback path that
+    # ideally shouldn't even run often (subtitles are the preferred path).
     model = WhisperModel(MODEL_SIZE, device="cpu", compute_type="int8")
+    # task="translate" (not "transcribe") makes Whisper itself do JA->EN
+    # directly in one pass, since there's no subtitle translation to lean
+    # on here.
     result, info = model.transcribe(audio_path, task="translate", language="ja")
 
     segments, last_pos = [], 0.0
