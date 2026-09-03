@@ -5,6 +5,7 @@ track and an instrumental (music/SFX) track with Demucs, and grabs the
 embedded subtitle stream if there is one. Writes a manifest for agent 2.
 """
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -13,9 +14,6 @@ DEMUCS_MODEL = "htdemucs"  # good quality, CPU-only capable (just slower)
 
 
 def get_duration(video_path: str) -> float:
-    # ffprobe, not ffmpeg - it's built for reading metadata and doesn't
-    # need to decode any actual frames, so this returns almost instantly
-    # even on a huge file.
     out = subprocess.run(
         ["ffprobe", "-v", "error", "-show_entries", "format=duration",
          "-of", "default=noprint_wrappers=1:nokey=1", video_path],
@@ -25,10 +23,6 @@ def get_duration(video_path: str) -> float:
 
 
 def extract_audio(video_path: str, audio_out: str) -> None:
-    # -vn drops the video stream entirely (we only want audio here).
-    # 44.1kHz stereo matches what Demucs' pretrained model expects as
-    # input - feeding it something else technically works but risks
-    # subtly worse separation.
     subprocess.run(
         ["ffmpeg", "-y", "-i", video_path, "-vn", "-ar", "44100", "-ac", "2", audio_out],
         check=True, capture_output=True,
@@ -36,19 +30,20 @@ def extract_audio(video_path: str, audio_out: str) -> None:
 
 
 def separate_vocals(audio_path: str, work_dir: Path):
-    """Runs Demucs to split into vocals.wav + no_vocals.wav (instrumental)."""
-    # sys.executable (not just "python") makes sure Demucs runs inside
-    # THIS venv's Python, not whatever "python" happens to resolve to on
-    # the system PATH - avoids a whole category of "it's not installed"
-    # confusion when multiple Python versions are on the machine.
+    """Runs Demucs to split into vocals.wav + no_vocals.wav (instrumental).
+    PYTHONUTF8=1 is set for this subprocess specifically because Demucs
+    internally shells out to ffmpeg and reads its output in text mode -
+    on Windows that defaults to cp1252, which crashes on non-ASCII
+    output. Setting UTF-8 mode in the child's own environment (this has
+    to happen at ITS startup, not ours - a flag can't be applied
+    retroactively to an already-running interpreter) fixes it silently,
+    with no need to pass `-X utf8` by hand every run."""
+    env = {**os.environ, "PYTHONUTF8": "1"}
     subprocess.run(
         [sys.executable, "-m", "demucs", "--two-stems=vocals", "-n", DEMUCS_MODEL,
          "-o", str(work_dir / "demucs_out"), audio_path],
-        check=True,
+        check=True, env=env,
     )
-    # Demucs names its own output folder after the input file's stem and
-    # the model used - this has to match that convention exactly or the
-    # files "exist" but at a path we're not looking at.
     stem = Path(audio_path).stem
     sep_dir = work_dir / "demucs_out" / DEMUCS_MODEL / stem
     return sep_dir / "vocals.wav", sep_dir / "no_vocals.wav"
@@ -58,10 +53,6 @@ def extract_subtitles(video_path: str, ass_out: str, srt_out: str) -> str:
     """Tries to copy the subtitle stream exactly as .ass (keeps styles,
     position tags, and the actor/name field intact). Falls back to a
     plain .srt conversion only if the source track isn't ASS/SSA."""
-    # -c:s copy (not a re-encode) preserves the file byte-for-byte - this
-    # matters a lot here specifically, because script_agent.py depends on
-    # the style names and \pos() tags surviving intact to tell dialogue
-    # from signs. A lossy conversion could silently break that detection.
     result = subprocess.run(
         ["ffmpeg", "-y", "-i", video_path, "-map", "0:s:0", "-c:s", "copy", ass_out],
         capture_output=True, text=True,
@@ -69,9 +60,6 @@ def extract_subtitles(video_path: str, ass_out: str, srt_out: str) -> str:
     if result.returncode == 0 and Path(ass_out).exists():
         return ass_out
 
-    # Source track wasn't ASS/SSA (e.g. it was already SRT, or a bitmap
-    # format ffmpeg can transcode) - .srt has no style/position info at
-    # all, so sign detection degrades to text-pattern matching only.
     result = subprocess.run(
         ["ffmpeg", "-y", "-i", video_path, "-map", "0:s:0", srt_out],
         capture_output=True, text=True,
@@ -92,19 +80,12 @@ def run(video_path: str, work_dir: str, external_srt: str = None) -> dict:
           "(slow the first time - it downloads a model, then a few minutes per episode)...")
     vocals_path, instrumental_path = separate_vocals(str(audio_path), work)
 
-    # external_srt lets you hand-supply a subtitle file (e.g. you found a
-    # better translation than what's muxed into the video) instead of
-    # whatever ffmpeg pulls out automatically.
     if external_srt:
         sub_path = Path(external_srt)
     else:
         found = extract_subtitles(video_path, str(work / f"{stem}.ass"), str(work / f"{stem}.srt"))
         sub_path = Path(found) if found else None
 
-    # Every path in here gets .resolve()'d to absolute - later agents run
-    # from whatever directory the user happens to be in, and a relative
-    # path that was valid from the original working directory can quietly
-    # point nowhere from a different one.
     manifest = {
         "video_path": str(Path(video_path).resolve()),
         "audio_path": str(audio_path.resolve()),
