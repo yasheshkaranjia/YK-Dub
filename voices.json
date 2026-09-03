@@ -25,13 +25,28 @@
     "label": "GB northern accent, sounds male"
   },
   "southern_english_female": {
-    "model": "piper-voices/en/en_GB/southern_english_female/medium/en_GB-southern_english_female-medium.onnx",
-    "config": "piper-voices/en/en_GB/southern_english_female/medium/en_GB-southern_english_female-medium.onnx.json",
-    "label": "GB southern accent, sounds female"
+    "model": "piper-voices/en/en_GB/southern_english_female/low/en_GB-southern_english_female-low.onnx",
+    "config": "piper-voices/en/en_GB/southern_english_female/low/en_GB-southern_english_female-low.onnx.json",
+    "label": "GB southern accent, sounds female (low quality - no medium version exists for this voice)"
   },
   "jenny_dioco": {
     "model": "piper-voices/en/en_GB/jenny_dioco/medium/en_GB-jenny_dioco-medium.onnx",
     "config": "piper-voices/en/en_GB/jenny_dioco/medium/en_GB-jenny_dioco-medium.onnx.json",
     "label": "GB, sounds female"
+  },
+  "aru": {
+    "model": "piper-voices/en/en_GB/aru/medium/en_GB-aru-medium.onnx",
+    "config": "piper-voices/en/en_GB/aru/medium/en_GB-aru-medium.onnx.json",
+    "label": "GB, multi-speaker model"
+  },
+  "cori": {
+    "model": "piper-voices/en/en_GB/cori/medium/en_GB-cori-medium.onnx",
+    "config": "piper-voices/en/en_GB/cori/medium/en_GB-cori-medium.onnx.json",
+    "label": "GB, sounds female"
+  },
+  "semaine": {
+    "model": "piper-voices/en/en_GB/semaine/medium/en_GB-semaine-medium.onnx",
+    "config": "piper-voices/en/en_GB/semaine/medium/en_GB-semaine-medium.onnx.json",
+    "label": "GB, multi-speaker model"
   }
 }
