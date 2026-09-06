@@ -34,7 +34,11 @@ per episode, one at a time.
 2. **script_agent.py** — reads the subtitle directly, no ASR/LLM
    needed when subs exist:
    - **Dialogue lines** become the segments that get dubbed, tagged
-     with the speaking character's name for voice assignment.
+     with the speaking character's name for voice assignment, and
+     flagged as internal monologue if the source line is italicized
+     (`\i1`) — the usual fansub convention for a character's unspoken
+     thoughts — so `dub_agent.py` can read it softer/quieter instead of
+     identically to spoken lines.
    - **Sign/title lines** are detected by style name (`Sign`, `OP`,
      `ED`, `Title`) OR by the Actor field (some releases tag signs
      there instead — e.g. `SIGN`, `EPTITLE`, `NEXTEPTITLE`) OR by a
@@ -51,9 +55,27 @@ per episode, one at a time.
      voice per character if configured (see Voice Setup below).
    - **Text cleanup before synthesis**: stutters written as `A-All` or
      `O-Oh` get turned into `A... All` (a real hesitation pause instead
-     of Piper trying to pronounce a broken word), and honorifics like
+     of Piper trying to pronounce a broken word), honorifics like
      `Liam-sama` become `Liam sama` (same idea — the hyphen was being
-     read literally).
+     read literally), and ALL-CAPS shouted words (`STOP!`) get
+     Title-cased before synthesis so Piper's phonemizer doesn't mistake
+     them for acronyms and spell them out letter by letter.
+   - **Tone-aware delivery**: every line is read for cheap textual cues —
+     ALL CAPS or `!!!` (shouting), a trailing `!` (excitement), `...` or
+     a trailing `-` (hesitation/trailing off), a trailing `?` (a
+     question), and whether the line is italicized in the source `.ass`
+     (fansub convention for internal monologue). Each cue nudges that
+     line's Piper `--noise-scale`/`--noise-w` (vocal variation),
+     `--length-scale` (pace), `--sentence-silence` (pause length), and a
+     post-synthesis volume trim — all applied *relative to that specific
+     voice's own tuned defaults* (read from its `.onnx.json`), not one
+     flat setting for every voice and every line. This is a rule-based
+     approximation, not real emotional TTS — Piper has no concept of
+     emotion — but it's enough to stop every line, regardless of context,
+     from being read in an identical flat tone. Tune the multipliers in
+     `classify_tone()` in `dub_agent.py` to taste; the run prints a
+     summary of how many lines got each tag (e.g.
+     `tone-adjusted delivery applied - exclaim: 42, hesitant: 11, shout: 3`).
    - **Natural pacing over brute-force stretching**: every line first
      synthesizes at normal pace, then checks how far off it is from its
      subtitle window. If a line would need extreme time-stretching
@@ -191,6 +213,17 @@ character list before assigning. We initially mixed up genders (e.g.
 assigned a male antagonist a female voice) purely from unfamiliar name
 spellings.
 
+**Quality matters more than the tone tweaks above.** A `-low` quality
+voice (e.g. `southern_english_female`, the only quality that voice ships
+in) will sound noticeably more robotic than a `-medium` or `-high` voice
+no matter what `--noise-scale`/`--length-scale` settings it's given —
+prefer `-high` for principal/frequently-speaking characters where a
+`-high` version of that voice exists, and reserve `-low` voices for
+minor one-line background characters. Multi-speaker models (`vctk`,
+`aru`, `semaine`) are locked to speaker 0 in this repo (see Install
+above) so they won't give you per-file speaker variety, just the one
+voice in the file.
+
 ---
 
 ## 3. Run
@@ -304,6 +337,17 @@ CPU-optimized.
 
 ## Notes
 
+- **Ceiling on how expressive this can get**: Piper is a fast, offline,
+  CPU-friendly TTS engine, but it has no real emotion model — the
+  tone-aware delivery in `dub_agent.py` (see above) is a rule-based
+  approximation layered on top of a naturally flat-sounding engine, not
+  genuine voice acting. If a future pass wants a bigger jump in
+  naturalness/expressiveness than that can give, the next place to look
+  is swapping the TTS engine itself (e.g. Kokoro-82M, which is still
+  small/fast enough for CPU use and generally sounds noticeably more
+  natural than Piper) — a bigger change than this repo's current
+  Piper-only synthesis path, and worth prototyping on a couple of lines
+  before committing to it across a whole season.
 - `dub_agent.py`'s remaining `atempo` correction is capped to ffmpeg's
   single-filter range (0.5x-2x); combined with the length-scale
   pre-correction above, this should rarely be hit hard in practice now.

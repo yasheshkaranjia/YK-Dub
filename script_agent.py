@@ -32,6 +32,11 @@ SIGN_STYLE_HINTS = ("sign", "op", "ed", "title", "song", "insert", "note")
 # for "this is an on-screen overlay, not a spoken line" - dialogue almost
 # never needs to say where on screen it appears, signs always do.
 POSITION_TAG = re.compile(r"\\pos\(|\\an[1-9]")
+# Fansub convention for internal monologue/narration (a character thinking,
+# not speaking aloud) is usually italics - an \i1 override tag - rather than
+# a distinct style name. Has to be checked on the RAW event text, before
+# pysubs2's .plaintext strips override tags out.
+ITALIC_TAG = re.compile(r"\\i1\b")
 
 
 def is_sign_event(event) -> bool:
@@ -44,6 +49,13 @@ def is_sign_event(event) -> bool:
     if any(hint in style or hint in name for hint in SIGN_STYLE_HINTS):
         return True
     return bool(POSITION_TAG.search(event.text))
+
+
+def is_inner_thought(event) -> bool:
+    """Flags a dialogue line as internal monologue rather than spoken
+    aloud, so dub_agent.py can read it softer/quieter instead of every
+    line getting delivered identically regardless of context."""
+    return bool(ITALIC_TAG.search(event.text))
 
 
 def split_subtitles(sub_path: str):
@@ -73,6 +85,7 @@ def split_subtitles(sub_path: str):
                 # Empty string when absent, never falls back to "_default"
                 # here - dub_agent.py's resolve_voice() handles that.
                 "speaker": (e.name or "").strip(),
+                "inner_thought": is_inner_thought(e),
             })
     return dialogue_segments, signs if len(signs) else None
 
