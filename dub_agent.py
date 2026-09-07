@@ -391,6 +391,28 @@ def stretch_to_duration(in_wav: str, out_wav: str, target_sec: float, volume_db:
     )
 
 
+def find_overlapping_indices(segments: list) -> set:
+    """Returns the indices of any segment whose time window overlaps
+    another segment's - e.g. a narration line running over ongoing
+    dialogue. Both get synthesized independently and summed directly into
+    the mix in build_vocal_track(); with no ducking, two full-volume TTS
+    voices summed together is just noise, not a proper dub mix (which
+    would put one under the other). There's no way to tell narration from
+    dialogue from subtitle text alone, so this can only mitigate it - see
+    the volume_db reduction applied where this is used - not really fix
+    it. The printed summary of overlap timestamps is there so you can
+    find and manually judge these scenes by ear."""
+    overlapping = set()
+    order = sorted(range(len(segments)), key=lambda i: segments[i]["start"])
+    for pos, i in enumerate(order):
+        for j in order[pos + 1:]:
+            if segments[j]["start"] >= segments[i]["end"]:
+                break  # sorted by start - nothing further can overlap segment i
+            overlapping.add(i)
+            overlapping.add(j)
+    return overlapping
+
+
 def build_vocal_track(segments: list, work_dir: Path, total_duration: float) -> Path:
     """Builds the full-length vocal track by adding each synthesized
     line's raw samples into one big numpy buffer at the right offset,
@@ -400,6 +422,7 @@ def build_vocal_track(segments: list, work_dir: Path, total_duration: float) -> 
     that step alone (much longer than the actual TTS synthesis it
     followed). This does the same mixing in one pass instead."""
     sample_rate, total_samples, buffer = None, None, None
+    overlapping_indices = find_overlapping_indices(segments)
 
     skipped = 0
     tone_tag_counts = Counter()
@@ -421,7 +444,14 @@ def build_vocal_track(segments: list, work_dir: Path, total_duration: float) -> 
             tone_tag_counts.update(tone["tags"])
 
             synth_line(seg["final_text"], raw, voice_cfg, tone, target_sec)
-            stretch_to_duration(str(raw), str(fitted), target_sec, volume_db=tone["volume_db"])
+            volume_db = tone["volume_db"]
+            if i in overlapping_indices:
+                # Ducking a bit keeps two simultaneous voices from clipping
+                # and softens the harshness some, though it stays two
+                # voices talking at once either way - see
+                # find_overlapping_indices' docstring.
+                volume_db -= 3.0
+            stretch_to_duration(str(raw), str(fitted), target_sec, volume_db=volume_db)
         except (subprocess.CalledProcessError, RuntimeError) as e:
             tqdm.write(f"[dub] segment {i} failed to synthesize ({e}) - leaving it silent")
             skipped += 1
@@ -452,6 +482,13 @@ def build_vocal_track(segments: list, work_dir: Path, total_duration: float) -> 
     if tone_tag_counts:
         summary = ", ".join(f"{tag}: {n}" for tag, n in tone_tag_counts.most_common())
         print(f"[dub] tone-adjusted delivery applied - {summary}")
+    if overlapping_indices:
+        timestamps = ", ".join(f"{segments[i]['start']:.1f}s" for i in sorted(overlapping_indices)[:20])
+        more = "" if len(overlapping_indices) <= 20 else f" (+{len(overlapping_indices) - 20} more)"
+        print(f"[dub] {len(overlapping_indices)} line(s) overlap another line's timing window - "
+              f"both get synthesized and mixed together (ducked ~3dB each, since the source "
+              f"subtitles don't say which one should be the background voice). Worth listening "
+              f"around: {timestamps}{more}")
 
     if buffer is None:
         # Every single line failed - still produce a valid silent track
@@ -573,6 +610,17 @@ def mux(video_path: str, audio_path: Path, out_path: str, signs_path: str = None
         "-metadata:s:a:1", "language=jpn", "-disposition:a:1", "0",
     ]
 
+    # No '-shortest' here on purpose - it USED to be here, and it was
+    # silently truncating the whole episode. If the source .ass's last
+    # dialogue line ends a couple minutes before the video does (e.g.
+    # nothing spoken over the ending credits), the mov_text subtitle
+    # stream's own reported duration ends there too - and '-shortest'
+    # was cutting video AND audio down to match that early subtitle
+    # ending, dropping the last chunk of every episode with that pattern.
+    # The source video is the ground truth for how long output should be;
+    # the vocal track was already built to that same length in
+    # build_vocal_track(), so nothing needs '-shortest' to line up.
+
     if signs_path:
         # Burning sign text onto frames means the video must be re-encoded -
         # a plain stream copy can't add pixels to existing frames. This is
@@ -601,14 +649,14 @@ def mux(video_path: str, audio_path: Path, out_path: str, signs_path: str = None
              "-filter_complex", f"[0:v]{filt}[v]",
              "-map", "[v]", *audio_maps, *sub_map,
              *encode_args,
-             "-shortest", out_path],
+             out_path],
             check=True,
         )
     else:
         subprocess.run(
             ["ffmpeg", "-y", "-i", video_path, "-i", str(audio_path), *sub_inputs,
              "-map", "0:v:0", *audio_maps, *sub_map,
-             "-c:v", "copy", "-shortest", out_path],
+             "-c:v", "copy", out_path],
             check=True, capture_output=True,
         )
 

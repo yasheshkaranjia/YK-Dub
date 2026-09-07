@@ -37,13 +37,24 @@ def extract_audio(video_path: str, out_wav: str) -> None:
     )
 
 
-def actual_onset(audio: AudioSegment, expected_start: float):
+def actual_onset(audio: AudioSegment, expected_start: float, window_floor_sec: float = None):
     """Looks in a small window around where a line's audio SHOULD start,
     and returns the first moment of actual (non-silent) sound in that
     window - i.e. where the dubbed line actually starts, so it can be
     compared against the timestamp it was supposed to land on. Returns
-    None if nothing but silence is found in the window at all."""
+    None if nothing but silence is found in the window at all.
+
+    window_floor_sec (usually the previous segment's own end time) clips
+    how far back the search window can reach - without it, back-to-back
+    dialogue with zero gap between lines has the PREVIOUS line's speech
+    still audible right as this window opens, so the detector reports
+    "sound found immediately" (clamped to the window edge) instead of
+    this line's actual onset. That produces a suspiciously exact,
+    identical drift value on every adjacent line - not a real timing
+    problem, just the window reaching into someone else's speech."""
     window_start_ms = max(0, int((expected_start - WINDOW_SEC / 2) * 1000))
+    if window_floor_sec is not None:
+        window_start_ms = max(window_start_ms, int(window_floor_sec * 1000))
     window_end_ms = min(len(audio), int((expected_start + WINDOW_SEC / 2) * 1000))
     clip = audio[window_start_ms:window_end_ms]
     if len(clip) == 0:
@@ -84,14 +95,16 @@ def run(dubbed_manifest_path: str) -> dict:
     duration_ok = abs(src_dur - dub_dur) < 0.5
 
     report = []
-    for seg in data["segments"]:
-        onset = actual_onset(audio, seg["start"])
+    prev_end = None
+    for seg in sorted(data["segments"], key=lambda s: s["start"]):
+        onset = actual_onset(audio, seg["start"], window_floor_sec=prev_end)
         drift = None if onset is None else round(onset - seg["start"], 3)
         report.append({
             "start": seg["start"], "end": seg["end"],
             "detected_onset": onset, "drift_sec": drift,
             "flagged": drift is not None and abs(drift) > DRIFT_THRESHOLD_SEC,
         })
+        prev_end = seg["end"]
 
     flagged_count = sum(1 for r in report if r["flagged"])
     result = {
