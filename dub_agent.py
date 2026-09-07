@@ -10,16 +10,21 @@ modest hardware.
 """
 import functools
 import json
+import os
 import re
 import subprocess
 import sys
+import threading
 import wave
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import numpy as np
 from pydub import AudioSegment
 from tqdm import tqdm
+
+import heartbeat
 
 VOICES_FILE = Path(__file__).parent / "voices.json"
 MAP_FILE = Path(__file__).parent / "voice_map.json"
@@ -256,6 +261,9 @@ def classify_tone(raw_text: str, inner_thought: bool = False) -> dict:
     }
 
 
+PIPER_TIMEOUT_SEC = 90  # generous for a single line - a hang here shouldn't be able to stall the whole batch
+
+
 def synth_segment(text: str, out_wav: str, model: str = PIPER_MODEL, config: str = PIPER_CONFIG,
                    length_scale: float = 1.0, noise_scale: float = None,
                    noise_w: float = None, sentence_silence: float = None) -> None:
@@ -270,10 +278,12 @@ def synth_segment(text: str, out_wav: str, model: str = PIPER_MODEL, config: str
         cmd += ["--sentence-silence", str(sentence_silence)]
     subprocess.run(
         cmd, input=text, text=True, encoding="utf-8", check=True, capture_output=True,
+        timeout=PIPER_TIMEOUT_SEC,
     )
 
 
 _kokoro_engine = None  # loaded once per run, not once per line - see get_kokoro_engine()
+_kokoro_engine_lock = threading.Lock()
 
 
 def get_kokoro_engine():
@@ -281,25 +291,30 @@ def get_kokoro_engine():
     whole run. Unlike Piper (a fresh subprocess per line, so there's
     nothing to cache), Kokoro's model load has real up-front cost - every
     line after the first reuses this same loaded engine instead of
-    reloading a ~100-300MB model per line."""
+    reloading a ~100-300MB model per line. Guarded by a lock because
+    build_vocal_track() now synthesizes lines from a thread pool - without
+    it, two threads could both see _kokoro_engine as None at once and
+    both start loading the model concurrently."""
     global _kokoro_engine
     if _kokoro_engine is None:
-        try:
-            from kokoro_onnx import Kokoro
-        except ImportError as e:
-            raise RuntimeError(
-                "a character is set to the 'kokoro' engine but the kokoro-onnx "
-                "package isn't installed - run: pip install -r requirements-kokoro.txt"
-            ) from e
-        kcfg = kokoro_engine_config()
-        model_path, voices_path = kcfg.get("model"), kcfg.get("voices")
-        if not model_path or not voices_path:
-            raise RuntimeError(
-                "no '_kokoro' entry in voices.json (needs 'model' and 'voices' paths "
-                "pointing at the downloaded kokoro-v1.0*.onnx / voices-v1.0.bin files "
-                "- see the README's Kokoro setup section)"
-            )
-        _kokoro_engine = Kokoro(model_path, voices_path)
+        with _kokoro_engine_lock:
+            if _kokoro_engine is None:  # re-check: another thread may have just finished loading
+                try:
+                    from kokoro_onnx import Kokoro
+                except ImportError as e:
+                    raise RuntimeError(
+                        "a character is set to the 'kokoro' engine but the kokoro-onnx "
+                        "package isn't installed - run: pip install -r requirements-kokoro.txt"
+                    ) from e
+                kcfg = kokoro_engine_config()
+                model_path, voices_path = kcfg.get("model"), kcfg.get("voices")
+                if not model_path or not voices_path:
+                    raise RuntimeError(
+                        "no '_kokoro' entry in voices.json (needs 'model' and 'voices' paths "
+                        "pointing at the downloaded kokoro-v1.0*.onnx / voices-v1.0.bin files "
+                        "- see the README's Kokoro setup section)"
+                    )
+                _kokoro_engine = Kokoro(model_path, voices_path)
     return _kokoro_engine
 
 
@@ -413,36 +428,36 @@ def find_overlapping_indices(segments: list) -> set:
     return overlapping
 
 
-def build_vocal_track(segments: list, work_dir: Path, total_duration: float) -> Path:
-    """Builds the full-length vocal track by adding each synthesized
-    line's raw samples into one big numpy buffer at the right offset,
-    instead of calling AudioSegment.overlay() per line - overlay() was
-    copying the ENTIRE track's audio data on every single call, so a
-    long episode with hundreds of lines could take a very long time on
-    that step alone (much longer than the actual TTS synthesis it
-    followed). This does the same mixing in one pass instead."""
+def build_vocal_track(segments: list, work_dir: Path, total_duration: float,
+                       max_workers: int = None, heartbeat_root=None, episode_label: str = None) -> Path:
+    """Builds the full-length vocal track by synthesizing every line in
+    parallel across a thread pool, then adding each finished clip's
+    samples into one big numpy buffer at the right offset. Threading (not
+    multiprocessing) works here because the expensive part of each line
+    is subprocess.run() waiting on Piper's own process - Python releases
+    the GIL while blocked on a subprocess, so many lines' waiting time
+    genuinely overlaps instead of queuing behind each other one at a
+    time. The actual buffer-mixing (reading a finished wav + a numpy add)
+    stays single-threaded afterward - it's fast, and keeps the one piece
+    of shared mutable state (the buffer) free of any concurrency bugs.
+
+    max_workers defaults to a conservative min(4, cpu_count) - piper is
+    itself lightly multi-threaded internally, so running many MORE than
+    that in parallel tends to fight over the same cores rather than
+    speed things up further on a modest laptop CPU."""
+    max_workers = max_workers or min(4, os.cpu_count() or 2)
     sample_rate, total_samples, buffer = None, None, None
     overlapping_indices = find_overlapping_indices(segments)
 
-    skipped = 0
-    tone_tag_counts = Counter()
-    for i, seg in enumerate(tqdm(segments, desc="[dub] synthesizing lines", unit="line")):
-        # A line where translation fell back to the raw source text (e.g. an
-        # Ollama timeout) is still Japanese - Piper's English voice can't
-        # speak it, so leave that window silent instead of crashing.
+    def synth_one(i: int, seg: dict):
         if seg.get("japanese_text") and seg["final_text"] == seg["japanese_text"]:
-            tqdm.write(f"[dub] segment {i} was never translated - leaving it silent")
-            skipped += 1
-            continue
-
+            return i, "untranslated", None
         raw = work_dir / f"seg_{i:04d}_raw.wav"
         fitted = work_dir / f"seg_{i:04d}_fit.wav"
         target_sec = max(seg["end"] - seg["start"], 0.3)
         try:
             voice_cfg = resolve_voice(seg.get("speaker", "").strip())
             tone = classify_tone(seg["final_text"], seg.get("inner_thought", False))
-            tone_tag_counts.update(tone["tags"])
-
             synth_line(seg["final_text"], raw, voice_cfg, tone, target_sec)
             volume_db = tone["volume_db"]
             if i in overlapping_indices:
@@ -452,10 +467,37 @@ def build_vocal_track(segments: list, work_dir: Path, total_duration: float) -> 
                 # find_overlapping_indices' docstring.
                 volume_db -= 3.0
             stretch_to_duration(str(raw), str(fitted), target_sec, volume_db=volume_db)
-        except (subprocess.CalledProcessError, RuntimeError) as e:
-            tqdm.write(f"[dub] segment {i} failed to synthesize ({e}) - leaving it silent")
+            return i, "ok", (fitted, tone["tags"])
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired, RuntimeError) as e:
+            return i, str(e), None
+
+    skipped = 0
+    tone_tag_counts = Counter()
+    results = [None] * len(segments)
+    completed = 0
+    with ThreadPoolExecutor(max_workers=max_workers) as pool:
+        futures = {pool.submit(synth_one, i, seg): i for i, seg in enumerate(segments)}
+        for future in tqdm(as_completed(futures), total=len(futures),
+                            desc="[dub] synthesizing lines", unit="line"):
+            i, status, payload = future.result()
+            results[i] = (status, payload)
+            completed += 1
+            if heartbeat_root and completed % 10 == 0:
+                heartbeat.touch(heartbeat_root, episode_label, "dub",
+                                 lines_done=completed, lines_total=len(segments))
+
+    for i, seg in enumerate(segments):
+        status, payload = results[i]
+        if status == "untranslated":
+            tqdm.write(f"[dub] segment {i} was never translated - leaving it silent")
             skipped += 1
             continue
+        if status != "ok":
+            tqdm.write(f"[dub] segment {i} failed to synthesize ({status}) - leaving it silent")
+            skipped += 1
+            continue
+        fitted, tags = payload
+        tone_tag_counts.update(tags)
 
         clip = AudioSegment.from_wav(fitted)
         if sample_rate is None:
@@ -621,6 +663,9 @@ def mux(video_path: str, audio_path: Path, out_path: str, signs_path: str = None
     # the vocal track was already built to that same length in
     # build_vocal_track(), so nothing needs '-shortest' to line up.
 
+    with wave.open(str(audio_path), "rb") as w:
+        duration_sec = w.getnframes() / w.getframerate()
+
     if signs_path:
         # Burning sign text onto frames means the video must be re-encoded -
         # a plain stream copy can't add pixels to existing frames. This is
@@ -629,7 +674,11 @@ def mux(video_path: str, audio_path: Path, out_path: str, signs_path: str = None
         # capture_output is deliberately OFF here (unlike the other ffmpeg
         # calls) so ffmpeg's own progress prints to the terminal instead of
         # going silent for that whole time - that silence was previously
-        # indistinguishable from a hang.
+        # indistinguishable from a hang. A generous timeout (6x the
+        # episode's own length, floored at 30 min) is still in place below
+        # it though - "no progress visible for a long time" and "actually
+        # hung forever" need to stay distinguishable from each other, and
+        # unbounded is how episode 6 sat "stuck" for 8+ hours unattended.
         #
         # NOTE: ffmpeg's 'subtitles' filter does NOT support the generic
         # 'enable' timeline option ("Timeline ('enable' option) not
@@ -650,24 +699,25 @@ def mux(video_path: str, audio_path: Path, out_path: str, signs_path: str = None
              "-map", "[v]", *audio_maps, *sub_map,
              *encode_args,
              out_path],
-            check=True,
+            check=True, timeout=max(1800, duration_sec * 6),
         )
     else:
         subprocess.run(
             ["ffmpeg", "-y", "-i", video_path, "-i", str(audio_path), *sub_inputs,
              "-map", "0:v:0", *audio_maps, *sub_map,
              "-c:v", "copy", out_path],
-            check=True, capture_output=True,
+            check=True, capture_output=True, timeout=max(600, duration_sec * 2),
         )
 
 
-def run(translated_manifest_path: str, out_video: str) -> dict:
+def run(translated_manifest_path: str, out_video: str, heartbeat_root=None, episode_label: str = None) -> dict:
     data = json.loads(Path(translated_manifest_path).read_text(encoding="utf-8"))
     work_dir = Path(translated_manifest_path).parent / "tts_work"
     work_dir.mkdir(exist_ok=True)
 
     validate_voices(data["segments"])
-    track = build_vocal_track(data["segments"], work_dir, data["duration_sec"])
+    track = build_vocal_track(data["segments"], work_dir, data["duration_sec"],
+                               heartbeat_root=heartbeat_root, episode_label=episode_label)
     final_mix = mix_with_instrumental(track, data["instrumental_path"], work_dir)
     mux(data["video_path"], final_mix, out_video, data.get("signs_path"), data.get("subtitle_path"))
 

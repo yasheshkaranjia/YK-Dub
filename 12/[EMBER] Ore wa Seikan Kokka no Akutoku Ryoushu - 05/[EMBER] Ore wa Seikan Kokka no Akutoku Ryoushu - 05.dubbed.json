@@ -1,0 +1,3072 @@
+{
+  "video_path": "D:\\project\\YK J2E\\I'm the Evil Lord of an Intergalactic Empire!\\Ore wa Seikan Kokka no Akutoku Ryoushu! S01 1080p WEBRip DD+ x265-EMBER\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 05.mkv",
+  "audio_path": "C:\\Users\\Yashesh\\vs code projects\\YK-Dub\\12\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 05\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 05.wav",
+  "vocals_path": "C:\\Users\\Yashesh\\vs code projects\\YK-Dub\\12\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 05\\demucs_out\\htdemucs\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 05\\vocals.wav",
+  "instrumental_path": "C:\\Users\\Yashesh\\vs code projects\\YK-Dub\\12\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 05\\demucs_out\\htdemucs\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 05\\no_vocals.wav",
+  "subtitle_path": "C:\\Users\\Yashesh\\vs code projects\\YK-Dub\\12\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 05\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 05.ass",
+  "duration_sec": 1420.064,
+  "segments": [
+    {
+      "start": 3.99,
+      "end": 5.23,
+      "final_text": "What?!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 5.56,
+      "end": 8.07,
+      "final_text": "They shamelessly returned in defeat?!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 8.07,
+      "end": 10.99,
+      "final_text": "I heard they underestimated \nthe enemy's forces.",
+      "speaker": "Doctor",
+      "inner_thought": false
+    },
+    {
+      "start": 10.99,
+      "end": 14.64,
+      "final_text": "It seems like they withdrew \nbefore losses grew worse.",
+      "speaker": "Doctor",
+      "inner_thought": false
+    },
+    {
+      "start": 14.64,
+      "end": 15.99,
+      "final_text": "Scum!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 15.99,
+      "end": 18.64,
+      "final_text": "They should die taking an enemy out\n with them instead of fleeing!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 18.64,
+      "end": 20.16,
+      "final_text": "What will you do?",
+      "speaker": "Doctor",
+      "inner_thought": false
+    },
+    {
+      "start": 20.16,
+      "end": 23.74,
+      "final_text": "All ships, move out! We're exterminating\n the fleet that fled back to us!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 23.74,
+      "end": 26.0,
+      "final_text": "You're attacking your own men?",
+      "speaker": "Doctor",
+      "inner_thought": false
+    },
+    {
+      "start": 26.0,
+      "end": 28.5,
+      "final_text": "Pirates are finished once \npeople look down on them!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 28.5,
+      "end": 30.39,
+      "final_text": "We'll crush them to set an example!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 30.39,
+      "end": 31.51,
+      "final_text": "Yes.",
+      "speaker": "Doctor",
+      "inner_thought": false
+    },
+    {
+      "start": 31.51,
+      "end": 33.23,
+      "final_text": "I'm off to have a little fun.",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 33.23,
+      "end": 35.51,
+      "final_text": "Sit tight and wait for me there.",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 140.24,
+      "end": 142.24,
+      "final_text": "We've finished mooring.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 142.24,
+      "end": 143.45,
+      "final_text": "Good work.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 143.45,
+      "end": 145.52,
+      "final_text": "Those were satisfying results.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 145.52,
+      "end": 150.52,
+      "final_text": "I must truly congratulate you for\n your magnificent first battle, Master.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 150.52,
+      "end": 151.25,
+      "final_text": "Yeah.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 151.25,
+      "end": 154.25,
+      "final_text": "We were able to protect our \nresource planet, Mycae,",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 154.25,
+      "end": 156.8,
+      "final_text": "and we picked up this souvenir too.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 156.8,
+      "end": 158.56,
+      "final_text": "According to imperial law,",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 158.56,
+      "end": 160.52,
+      "final_text": "when someone captures a pirate ship,",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 160.52,
+      "end": 164.26,
+      "final_text": "that person may claim ownership \nof the ship and all its cargo.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 164.26,
+      "end": 167.03,
+      "final_text": "And a pirate ship's cargo means...?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 167.03,
+      "end": 168.43,
+      "final_text": "Yes, most likely.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 169.02,
+      "end": 171.02,
+      "final_text": "This is treasure?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 171.02,
+      "end": 174.83,
+      "final_text": "Man, I thought it was going \nto be gold and silver.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 174.83,
+      "end": 176.89,
+      "final_text": "What are you talking about, Master Liam?",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 176.89,
+      "end": 178.78,
+      "final_text": "This is treasure.",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 179.05,
+      "end": 183.55,
+      "final_text": "It would seem this pirate ship had \nattacked a cargo freighter.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 183.55,
+      "end": 190.16,
+      "final_text": "It's packed full of rare metals like \norichalcum, adamantite, scarletite, etc.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 190.16,
+      "end": 192.55,
+      "final_text": "Those are all materials \nused for weapons, right?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 192.55,
+      "end": 197.25,
+      "final_text": "I wanted treasure that was more like a \ngolden crown encrusted with diamonds!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 197.25,
+      "end": 200.08,
+      "final_text": "Diamonds are just carbon crystals,",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 200.08,
+      "end": 203.05,
+      "final_text": "and gold is only notable for \nits lower tendency to ionize,",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 203.05,
+      "end": 205.28,
+      "final_text": "so neither are particularly valuable.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 205.28,
+      "end": 206.81,
+      "final_text": "Is that how it is in this world?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 206.81,
+      "end": 211.69,
+      "final_text": "Orichalcum and scarletite are far \nmore precious and valuable metals.",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 211.69,
+      "end": 212.73,
+      "final_text": "I don't care!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 212.73,
+      "end": 214.63,
+      "final_text": "I like gold!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 214.63,
+      "end": 216.66,
+      "final_text": "There was some gold in it.",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 216.66,
+      "end": 218.0,
+      "final_text": "Really, Brian?!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 218.0,
+      "end": 222.26,
+      "final_text": "Yes. It's a manufacturing resource \nthat can be used to make electronics.",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 222.26,
+      "end": 222.86,
+      "final_text": "Good!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 222.86,
+      "end": 224.61,
+      "final_text": "Turn it all into gold coins!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 224.61,
+      "end": 226.08,
+      "final_text": "Gold coins?",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 226.08,
+      "end": 228.45,
+      "final_text": "Gold to me means gold coins!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 228.45,
+      "end": 231.29,
+      "final_text": "I want you to bury my room in gold coins!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 231.29,
+      "end": 234.04,
+      "final_text": "Yes. What shall we do with the other metals?",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 234.04,
+      "end": 236.45,
+      "final_text": "Will you have us make scarletite coins too?",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 236.45,
+      "end": 238.15,
+      "final_text": "Turn those into weapons.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 238.15,
+      "end": 241.22,
+      "final_text": "Like Excalibur, or an orichalcum \nsword, or whatever.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 241.22,
+      "end": 245.04,
+      "final_text": "There's no skilled weapon smith\n in the Banfield domain.",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 245.04,
+      "end": 248.05,
+      "final_text": "Good grief, we don't have anything.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 248.05,
+      "end": 249.89,
+      "final_text": "May I say something, Master?",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 249.89,
+      "end": 250.98,
+      "final_text": "What is it, Amagi?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 251.41,
+      "end": 254.88,
+      "final_text": "We uncovered an issue when \ndeploying our forces.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 254.88,
+      "end": 255.9,
+      "final_text": "An issue?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 257.86,
+      "end": 262.86,
+      "final_text": "The Banfield House currently possesses \nroughly ten thousand battleships.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 262.86,
+      "end": 265.76,
+      "final_text": "However, under thirty percent of \nthem remain operational,",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 265.76,
+      "end": 269.24,
+      "final_text": "and only two thousand ships were able to \nrespond to our emergency mobilization.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 269.24,
+      "end": 271.87,
+      "final_text": "That's all we were able to use of it?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 271.87,
+      "end": 274.87,
+      "final_text": "I'm surprised we won against the \npirates with a fleet like that.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 274.87,
+      "end": 278.63,
+      "final_text": "The pirates viewed us as impoverished \nnobles and underestimated us.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 279.08,
+      "end": 279.88,
+      "final_text": "However,",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 279.88,
+      "end": 286.39,
+      "final_text": "Master, you and your modernized Avid's \nexceptional performance turned the tide",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 286.39,
+      "end": 288.14,
+      "final_text": "and led to our victory.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 288.14,
+      "end": 290.93,
+      "final_text": "That was thanks to your strategy, Amagi.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 290.93,
+      "end": 293.0,
+      "final_text": "You honor me with your praise.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 293.0,
+      "end": 294.6,
+      "final_text": "Still, that's a real problem.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 294.6,
+      "end": 297.15,
+      "final_text": "Roughly seventy percent of our fleet is junk?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 297.15,
+      "end": 300.67,
+      "final_text": "How about we simply dispose of \nthe old, unusable battleships?",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 300.67,
+      "end": 301.66,
+      "final_text": "We can't do that!",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 301.66,
+      "end": 304.01,
+      "final_text": "Master Liam! \nA fleet's numbers are its lifeline!",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 304.01,
+      "end": 306.7,
+      "final_text": "If we reduce the number we own,\n then the pirates will see us as weak!",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 306.7,
+      "end": 307.4,
+      "final_text": "However,",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 307.4,
+      "end": 311.04,
+      "final_text": "even just owning battleships \ninvokes vast maintenance fees.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 311.04,
+      "end": 314.2,
+      "final_text": "I don't intend to spend any money\n on things we can't use.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 314.2,
+      "end": 318.29,
+      "final_text": "Turn those things into fish reefs and breed \nspace scorpion fish in them or something.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 318.29,
+      "end": 320.04,
+      "final_text": "But our domain's defense—!",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 320.04,
+      "end": 323.92,
+      "final_text": "Master, how about purchasing new battleships?",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 323.92,
+      "end": 326.63,
+      "final_text": "If we sell the rare metals \nwe claimed from the pirates,",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 326.63,
+      "end": 329.33,
+      "final_text": "then we should be able to \npurchase a fair amount.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 329.33,
+      "end": 330.18,
+      "final_text": "Is that true?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 330.18,
+      "end": 332.16,
+      "final_text": "The latest models would be out of reach,",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 332.16,
+      "end": 334.66,
+      "final_text": "but with careful selection of used models, \nwe'll have sufficient numbers.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 334.66,
+      "end": 337.04,
+      "final_text": "If you'll pardon me, I don't think \nbuying used ships is a good idea!",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 337.04,
+      "end": 338.88,
+      "final_text": "Our fleet is a symbol of \nthe family's standing!",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 338.88,
+      "end": 341.67,
+      "final_text": "If rumors got out that we were \nusing someone's hand-me-downs—!",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 341.67,
+      "end": 342.79,
+      "final_text": "Like I care.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 342.79,
+      "end": 346.42,
+      "final_text": "That kind of pretension is how \nmy parents racked up debt.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 346.42,
+      "end": 348.47,
+      "final_text": "Amagi, make arrangements at once!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 348.47,
+      "end": 350.12,
+      "final_text": "Find us used battleships!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 350.12,
+      "end": 351.6,
+      "final_text": "As you wish.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 352.87,
+      "end": 354.33,
+      "final_text": "Now everyone,",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 354.33,
+      "end": 357.46,
+      "final_text": "please lay your eyes on the \nnewest, strongest battleships!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 357.46,
+      "end": 360.09,
+      "final_text": "This the new battleship model developed by",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 360.09,
+      "end": 363.34,
+      "final_text": "the Seventh Weapons Factory for \nthe Algrand Empire's Fleet!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 367.09,
+      "end": 370.86,
+      "final_text": "Their output is seven percent higher than \nconventional battleships,",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 370.86,
+      "end": 373.13,
+      "final_text": "and the inclusion of large-scale capacitors",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 373.13,
+      "end": 374.75,
+      "final_text": "has improved steering responsiveness,",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 374.75,
+      "end": 376.17,
+      "final_text": "the firepower of the main cannons,",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 376.17,
+      "end": 378.99,
+      "final_text": "as well as the durability of its shields.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 378.99,
+      "end": 381.95,
+      "final_text": "Furthermore, by optimizing \nstandardization of the modules,",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 381.95,
+      "end": 384.19,
+      "final_text": "we've improved its maintainability",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 384.19,
+      "end": 386.69,
+      "final_text": "and made them compatible with older models,",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 386.69,
+      "end": 389.52,
+      "final_text": "allowing the design to be \nused in broad applications.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 389.99,
+      "end": 392.46,
+      "final_text": "If you employ our ships,",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 392.46,
+      "end": 394.31,
+      "final_text": "the fighting strength of the Imperial Fleet",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 394.31,
+      "end": 397.0,
+      "final_text": "will become even more unassailable \nthan it currently is.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 397.0,
+      "end": 399.12,
+      "final_text": "Please give us your consideration.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 401.12,
+      "end": 405.12,
+      "final_text": "I'm First Lieutenant Eulisia Moriselle \nfrom the Third Weapons Factory.",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 405.12,
+      "end": 411.05,
+      "final_text": "This is the new model boasted by \nour Third Weapons Factory!",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 411.76,
+      "end": 413.18,
+      "final_text": "The design of the ship's body",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 413.18,
+      "end": 417.61,
+      "final_text": "was handled by the famous \nindustrial designer, Cid Colony,",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 417.61,
+      "end": 421.9,
+      "final_text": "the man who won seven of the awards \nin this year's Imperial Design Awards.",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 421.9,
+      "end": 425.29,
+      "final_text": "The interior uses high-class materials \npainstakingly finished by Greenwich,",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 425.29,
+      "end": 428.16,
+      "final_text": "the luxury brand favored \nby the imperial family,",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 428.16,
+      "end": 431.53,
+      "final_text": "ensuring its crew never forgets \ntheir bravery, pride, or elegance,",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 431.53,
+      "end": 434.78,
+      "final_text": "with a design suited to the \nwarriors of the Empire.",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 436.44,
+      "end": 441.67,
+      "final_text": "It includes incredibly comfortable seats \nfinished by the leather craftsman of Centauri Blue,",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 442.13,
+      "end": 446.3,
+      "final_text": "and console panels crafted from \nthree thousand-year-old ogrenut wood,",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 446.3,
+      "end": 449.05,
+      "final_text": "creating a dignified and luxurious look",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 449.05,
+      "end": 452.55,
+      "final_text": "so you can command your \noperations with majesty.",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 452.93,
+      "end": 455.15,
+      "final_text": "No matter how intense the battle becomes,",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 455.15,
+      "end": 458.12,
+      "final_text": "you'll retain your dignity and refinement",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 458.12,
+      "end": 461.81,
+      "final_text": "as you shoot down your foes with \nconfidence in your victory!",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 462.12,
+      "end": 464.72,
+      "final_text": "Please give us your consideration.",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 468.75,
+      "end": 470.32,
+      "final_text": "We've reached our decision.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 470.32,
+      "end": 474.32,
+      "final_text": "The main force of our next generation shall \nbe the Third Weapons Factory's battleship.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 474.32,
+      "end": 475.59,
+      "final_text": "We're honored.",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 475.59,
+      "end": 478.45,
+      "final_text": "We truly thank you for adopting our design.",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 478.45,
+      "end": 479.95,
+      "final_text": "Hold on a moment!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 479.95,
+      "end": 481.48,
+      "final_text": "Why is this?!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 481.48,
+      "end": 485.01,
+      "final_text": "Our battleship's capabilities \nare in no way inferior!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 485.01,
+      "end": 488.58,
+      "final_text": "Oh my, but it's a given that a ship\n would have good capabilities.",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 488.58,
+      "end": 489.21,
+      "final_text": "Huh?",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 489.21,
+      "end": 491.4,
+      "final_text": "They're weapons created by specialists,",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 491.4,
+      "end": 493.12,
+      "final_text": "so it's a given they would be strong.",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 493.12,
+      "end": 496.26,
+      "final_text": "So being strong isn't a selling point at all.",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 496.9,
+      "end": 498.68,
+      "final_text": "On top of being strong,",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 498.68,
+      "end": 504.1,
+      "final_text": "we've perfected the beauty of our \nproducts at Third Weapons Factory.",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 504.48,
+      "end": 509.4,
+      "final_text": "Our battleships are stronger since we \nput everything into their capabilities",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 509.4,
+      "end": 512.36,
+      "final_text": "instead of wasting effort \nwhere it isn't needed!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 512.9,
+      "end": 515.28,
+      "final_text": "The difference is mere margin of error.",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 515.28,
+      "end": 518.69,
+      "final_text": "Besides, a weapon's strength \nisn't just its capabilities.",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 518.69,
+      "end": 519.47,
+      "final_text": "Huh?!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 519.47,
+      "end": 523.12,
+      "final_text": "Their strength changes based \non the person wielding them.",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 523.12,
+      "end": 526.18,
+      "final_text": "If the crew is comfortable \nand avoids fatigue,",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 526.18,
+      "end": 529.75,
+      "final_text": "then they can focus and \ncarry out their missions,",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 529.75,
+      "end": 532.44,
+      "final_text": "which means our ships can \nproduce greater results!",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 534.36,
+      "end": 537.51,
+      "final_text": "This was yet another victory \nfor the Third Weapons Factory.",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 537.98,
+      "end": 541.27,
+      "final_text": "You may have won the battle, \nbut we'll win the war!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 541.27,
+      "end": 543.52,
+      "final_text": "Our ship's capabilities are superior!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 543.52,
+      "end": 546.41,
+      "final_text": "We'll never get to see them in \nbattle if they're not bought,",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 546.41,
+      "end": 549.27,
+      "final_text": "so we'll win the war by default as well.",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 550.88,
+      "end": 554.53,
+      "final_text": "If our products ever do \nfight each other somewhere,",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 554.53,
+      "end": 557.41,
+      "final_text": "then we can find out which \none was actually stronger.",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 557.41,
+      "end": 559.93,
+      "final_text": "Assuming you get someone to buy them.",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 559.93,
+      "end": 561.69,
+      "final_text": "Which is impossible!",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 561.69,
+      "end": 562.55,
+      "final_text": "Right?",
+      "speaker": "Eulisia",
+      "inner_thought": false
+    },
+    {
+      "start": 562.55,
+      "end": 564.54,
+      "final_text": "Shut up!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 569.44,
+      "end": 572.0,
+      "final_text": "Ah, what do I do?",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 572.0,
+      "end": 575.02,
+      "final_text": "The director is going to be mad again!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 575.02,
+      "end": 579.32,
+      "final_text": "Is there anyone eccentric enough \nto buy these ships out there?!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 581.31,
+      "end": 582.34,
+      "final_text": "There is!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 582.34,
+      "end": 587.44,
+      "final_text": "A noble who had all the automatic controls\n removed to pilot a mobile knight manually!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 587.44,
+      "end": 588.94,
+      "final_text": "You could say he's eccentric!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 588.94,
+      "end": 590.56,
+      "final_text": "Maybe he'll—",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 593.12,
+      "end": 595.16,
+      "final_text": "I am the Guide.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 595.16,
+      "end": 598.71,
+      "final_text": "A wandering being who \ncollects negative emotions.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 598.71,
+      "end": 604.12,
+      "final_text": "Today, I continue to wander in search of the \nnegative emotions lurking within daily life.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 606.58,
+      "end": 607.68,
+      "final_text": "Yes, yes, yes!",
+      "speaker": "Streamer",
+      "inner_thought": false
+    },
+    {
+      "start": 607.68,
+      "end": 608.56,
+      "final_text": "I'm finally here!",
+      "speaker": "Streamer",
+      "inner_thought": false
+    },
+    {
+      "start": 608.56,
+      "end": 612.05,
+      "final_text": "I've come this far through the long, long \nbonus stage without a single save point!",
+      "speaker": "Streamer",
+      "inner_thought": false
+    },
+    {
+      "start": 612.05,
+      "end": 615.59,
+      "final_text": "One mistake and I'd lose, but I've finally \nmade it this far with no slip-ups!",
+      "speaker": "Streamer",
+      "inner_thought": false
+    },
+    {
+      "start": 615.59,
+      "end": 616.95,
+      "final_text": "Just a little further to clear it!",
+      "speaker": "Streamer",
+      "inner_thought": false
+    },
+    {
+      "start": 617.01,
+      "end": 618.21,
+      "final_text": "Just a little further to clear it!",
+      "speaker": "Streamer",
+      "inner_thought": false
+    },
+    {
+      "start": 618.21,
+      "end": 619.0,
+      "final_text": "Just a little further!",
+      "speaker": "Streamer",
+      "inner_thought": false
+    },
+    {
+      "start": 619.05,
+      "end": 619.97,
+      "final_text": "Just a little further!",
+      "speaker": "Streamer",
+      "inner_thought": false
+    },
+    {
+      "start": 622.22,
+      "end": 623.47,
+      "final_text": "Yes!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 623.47,
+      "end": 625.57,
+      "final_text": "Nice negative emotion!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 625.57,
+      "end": 627.71,
+      "final_text": "Tasty!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 628.62,
+      "end": 631.48,
+      "final_text": "Humans are so amusing.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 631.48,
+      "end": 637.53,
+      "final_text": "Sometimes, the negative emotions arise \non their own without my intervention.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 638.64,
+      "end": 642.45,
+      "final_text": "Such small morsels of negative \nemotion have deep flavor,",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 642.45,
+      "end": 646.24,
+      "final_text": "but I need to feast on big \nnegative emotions too.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 646.69,
+      "end": 653.01,
+      "final_text": "His negative emotions should \nhave grown by now.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 653.48,
+      "end": 659.1,
+      "final_text": "At this point, he should be in debt hell and \nsuffering under the vast sum he was saddled with!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 660.59,
+      "end": 661.34,
+      "final_text": "Huh?!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 662.08,
+      "end": 663.95,
+      "final_text": "What is this?!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 664.74,
+      "end": 667.26,
+      "final_text": "The town that was so wasted away...",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 667.26,
+      "end": 668.85,
+      "final_text": "is flourishing more than before?!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 669.15,
+      "end": 671.34,
+      "final_text": "It should be even more dilapidated,",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 671.34,
+      "end": 674.36,
+      "final_text": "leaving it a blatantly miserable ruin!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 674.85,
+      "end": 676.47,
+      "final_text": "What on earth happened?",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 678.69,
+      "end": 680.18,
+      "final_text": "And that swordsman?!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 680.18,
+      "end": 681.99,
+      "final_text": "When he sought a master to teach him,",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 681.99,
+      "end": 685.74,
+      "final_text": "I made sure a completely useless \nscumbag came to teach him!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 691.08,
+      "end": 692.25,
+      "final_text": "Welcome.",
+      "speaker": "Owner",
+      "inner_thought": false
+    },
+    {
+      "start": 692.25,
+      "end": 693.36,
+      "final_text": "The usual.",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 693.36,
+      "end": 694.36,
+      "final_text": "Coming up.",
+      "speaker": "Owner",
+      "inner_thought": false
+    },
+    {
+      "start": 694.36,
+      "end": 695.38,
+      "final_text": "Did you hear?",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 695.75,
+      "end": 698.49,
+      "final_text": "Our lord caught some pirates.",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 698.49,
+      "end": 702.01,
+      "final_text": "Yeah, I heard the pirate ship \nwas loaded with treasure.",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 703.0,
+      "end": 705.01,
+      "final_text": "That's good for the economy.",
+      "speaker": "Owner",
+      "inner_thought": false
+    },
+    {
+      "start": 705.01,
+      "end": 706.6,
+      "final_text": "I hope that luck \ntrickles down to me too.",
+      "speaker": "Owner",
+      "inner_thought": false
+    },
+    {
+      "start": 706.6,
+      "end": 708.32,
+      "final_text": "What is with him?!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 708.89,
+      "end": 710.72,
+      "final_text": "I don't get it at all!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 710.72,
+      "end": 713.4,
+      "final_text": "You talking about that \npupil of yours again, sir?",
+      "speaker": "Owner",
+      "inner_thought": false
+    },
+    {
+      "start": 715.03,
+      "end": 718.15,
+      "final_text": "I'm just a second—no, \nthird-rate instructor.",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 718.74,
+      "end": 723.08,
+      "final_text": "He keeps diligently pursuing the \ntraining I come up with on a whim,",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 723.08,
+      "end": 725.34,
+      "final_text": "and he's surpassed me in no time at all!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 725.34,
+      "end": 728.16,
+      "final_text": "Before I even knew it, he'd become \na real first-rate warrior!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 728.46,
+      "end": 729.61,
+      "final_text": "What's wrong with that?",
+      "speaker": "Owner",
+      "inner_thought": false
+    },
+    {
+      "start": 729.61,
+      "end": 731.31,
+      "final_text": "It means your pupil has \ngrown, right?",
+      "speaker": "Owner",
+      "inner_thought": false
+    },
+    {
+      "start": 731.31,
+      "end": 732.91,
+      "final_text": "This isn't some joke!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 733.36,
+      "end": 735.32,
+      "final_text": "There's something wrong with that brat!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 735.32,
+      "end": 738.67,
+      "final_text": "Who's crazy enough to actually \nreproduce a parlor trick for real?!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 738.92,
+      "end": 739.95,
+      "final_text": "Huh?",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 739.95,
+      "end": 741.61,
+      "final_text": "What's he talking about?",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 751.39,
+      "end": 753.56,
+      "final_text": "Huh?!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 753.56,
+      "end": 755.94,
+      "final_text": "Splendidly done, Master.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 755.94,
+      "end": 757.64,
+      "final_text": "What do you think, Amagi?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 757.64,
+      "end": 760.57,
+      "final_text": "Have I gotten any closer \nto Master Yasushi's level?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 760.89,
+      "end": 765.6,
+      "final_text": "I was unable to measure anything from the \ndrawing to the sheathing of your sword.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 765.6,
+      "end": 767.57,
+      "final_text": "I believe it is no different than his.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 767.57,
+      "end": 772.58,
+      "final_text": "No, I'm sure Master lowered the level of \nhis technique so I could understand it too.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 773.33,
+      "end": 775.58,
+      "final_text": "It has to be even more incredible.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 776.0,
+      "end": 778.8,
+      "final_text": "Like cutting them from \na hundred meters away,",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 778.8,
+      "end": 781.33,
+      "final_text": "or cutting through one hundred of them at once.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 781.33,
+      "end": 783.34,
+      "final_text": "I can't deny that possibility.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 783.67,
+      "end": 785.84,
+      "final_text": "I can't be satisfied at this level!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 786.31,
+      "end": 788.26,
+      "final_text": "I have to strive even higher!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 788.26,
+      "end": 789.84,
+      "final_text": "What is going on here?!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 789.84,
+      "end": 794.23,
+      "final_text": "I sent him the worst of the \nworst for a master, so why?!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 794.23,
+      "end": 795.23,
+      "final_text": "Hmph!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 795.97,
+      "end": 798.86,
+      "final_text": "In this world, I was abandoned by my parents",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 798.86,
+      "end": 801.44,
+      "final_text": "and shouldered with great debts.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 801.95,
+      "end": 804.95,
+      "final_text": "I thought that would be start \nof the worst life ever,",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 805.83,
+      "end": 808.1,
+      "final_text": "but things keep improving for the better.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 808.1,
+      "end": 809.29,
+      "final_text": "My debts are going down,",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 809.29,
+      "end": 810.93,
+      "final_text": "my domain's economy is improving,",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 810.93,
+      "end": 813.52,
+      "final_text": "and now I've become a skilled swordsman too.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 813.52,
+      "end": 815.25,
+      "final_text": "What a great life.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 815.64,
+      "end": 820.63,
+      "final_text": "This is all thanks to that Guide \nwho reincarnated me in this world.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 820.63,
+      "end": 822.0,
+      "final_text": "Thank you, Guide!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 823.34,
+      "end": 824.48,
+      "final_text": "It hurts!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 824.48,
+      "end": 827.29,
+      "final_text": "Positive emotions are my weakness!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 827.29,
+      "end": 831.25,
+      "final_text": "Especially gratitude.\n That's so painful, I could die!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 831.25,
+      "end": 832.31,
+      "final_text": "This is bad!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 832.31,
+      "end": 833.84,
+      "final_text": "I need negative emotions...",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 833.84,
+      "end": 836.39,
+      "final_text": "I need to replenish my \nnegative emotions fast!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 838.56,
+      "end": 840.24,
+      "final_text": "What the hell?!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 840.24,
+      "end": 844.15,
+      "final_text": "There's something wrong with that guy!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 845.25,
+      "end": 848.42,
+      "final_text": "There was a lot of odd flavor mixed into \nthose awful tasting negative emotions,",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 848.42,
+      "end": 850.41,
+      "final_text": "but that at least saved me.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 850.41,
+      "end": 853.7,
+      "final_text": "Still, how has he found happiness?",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 853.7,
+      "end": 856.54,
+      "final_text": "Did I reincarnate him in the wrong place?",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 856.54,
+      "end": 859.92,
+      "final_text": "No, that's not possible!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 860.34,
+      "end": 863.25,
+      "final_text": "This is just the prep work \nto lift him up before a fall!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 863.25,
+      "end": 865.29,
+      "final_text": "The greater the heights he falls from,",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 865.29,
+      "end": 867.65,
+      "final_text": "the deeper his despair will be,",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 867.65,
+      "end": 870.18,
+      "final_text": "and the tastier it will become!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 870.6,
+      "end": 873.56,
+      "final_text": "Master, it's about replenishing \nour battleships.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 873.56,
+      "end": 875.83,
+      "final_text": "Oh? Have you found a lead?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 875.83,
+      "end": 878.69,
+      "final_text": "Apparently, the Imperial Fleet will \nbe upgrading to new armaments.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 879.1,
+      "end": 881.1,
+      "final_text": "They'll be purchasing many new models",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 881.1,
+      "end": 884.01,
+      "final_text": "and letting go of their used battleships.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 884.01,
+      "end": 886.95,
+      "final_text": "If they're the Imperial Fleet's used ships,\n then they'll be current models.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 886.95,
+      "end": 888.64,
+      "final_text": "They should be plenty powerful.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 888.64,
+      "end": 890.45,
+      "final_text": "They just have one condition.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 890.45,
+      "end": 891.2,
+      "final_text": "What's that?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 891.2,
+      "end": 892.83,
+      "final_text": "They want us to accept",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 892.83,
+      "end": 897.52,
+      "final_text": "soldiers kept in reserve or close to \nretirement along with the battleships.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 897.52,
+      "end": 901.02,
+      "final_text": "So they plan to foist personnel \nthey don't want onto us too?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 901.02,
+      "end": 903.54,
+      "final_text": "However, they're still part of \nthe empire's standing military.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 903.54,
+      "end": 905.91,
+      "final_text": "Many of them have graduated \nfrom officer school,",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 905.91,
+      "end": 907.71,
+      "final_text": "and they have ample\ncombat experience too.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 908.06,
+      "end": 910.88,
+      "final_text": "I believe they would be an asset \nfor strengthening our fleet.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 910.88,
+      "end": 912.28,
+      "final_text": "Good. Very well, then!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 912.28,
+      "end": 913.6,
+      "final_text": "It's a barter deal!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 913.6,
+      "end": 916.1,
+      "final_text": "This is great timing.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 916.1,
+      "end": 919.19,
+      "final_text": "I'll have them send very earnest men.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 919.93,
+      "end": 922.72,
+      "final_text": "It sounds quite fun to watch",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 922.72,
+      "end": 925.26,
+      "final_text": "soldiers who won't tolerate \nthe actions of an evil lord",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 925.26,
+      "end": 927.86,
+      "final_text": "become the seeds of rebellion later.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 929.68,
+      "end": 931.11,
+      "final_text": "I drank too much.",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 931.11,
+      "end": 932.24,
+      "final_text": "I feel sick.",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 932.24,
+      "end": 933.74,
+      "final_text": "I'm never drinking again.",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 934.45,
+      "end": 936.33,
+      "final_text": "Yasushi, are you here?",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 936.72,
+      "end": 938.75,
+      "final_text": "Huh?! That sounds like...",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 938.75,
+      "end": 940.78,
+      "final_text": "It's me, First Lieutenant Nias Carlin.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 941.91,
+      "end": 943.84,
+      "final_text": "This is unusual.",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 943.84,
+      "end": 945.17,
+      "final_text": "Come on in.",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 947.07,
+      "end": 951.38,
+      "final_text": "You've spent a long time instructing \nLord Liam in swordsmanship, right?",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 953.44,
+      "end": 956.39,
+      "final_text": "This hardly counts as a long time.",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 956.39,
+      "end": 961.77,
+      "final_text": "Then you're even more amazing for turning him\n into a real warrior in such short time!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 961.77,
+      "end": 963.63,
+      "final_text": "The lieutenant's praising me?!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 963.63,
+      "end": 964.9,
+      "final_text": "Do I have a chance with her?!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 964.9,
+      "end": 966.9,
+      "final_text": "It sounds like he knows Lord Liam well.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 966.9,
+      "end": 969.78,
+      "final_text": "I bet you know a lot, then!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 969.78,
+      "end": 973.15,
+      "final_text": "Of course. I won't fall short to anyone.",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 973.15,
+      "end": 974.17,
+      "final_text": "I'm sure of it!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 974.17,
+      "end": 976.53,
+      "final_text": "She's seducing me!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 976.88,
+      "end": 980.54,
+      "final_text": "He might know a good way to \nget Lord Liam to listen to me!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 980.88,
+      "end": 983.54,
+      "final_text": "Actually, I wanted to ask you\nabout some things.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 983.54,
+      "end": 986.54,
+      "final_text": "What?! The lieutenant wants \nto know more about me?!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 986.84,
+      "end": 989.04,
+      "final_text": "What do you think I should do?",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 989.04,
+      "end": 991.55,
+      "final_text": "You don't have to hold back.",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 991.55,
+      "end": 994.3,
+      "final_text": "Ask me anything you want to know.",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 994.3,
+      "end": 996.8,
+      "final_text": "I'm worried that might \ncome across as impolite.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 996.8,
+      "end": 999.31,
+      "final_text": "Lord Liam is a count, after all.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 999.31,
+      "end": 1000.51,
+      "final_text": "I don't mind.",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1000.51,
+      "end": 1003.06,
+      "final_text": "I'm not the type of man to \nconcern myself with such things.",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1003.06,
+      "end": 1005.58,
+      "final_text": "In fact, that's all the more welcome!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1005.58,
+      "end": 1007.35,
+      "final_text": "In that case, I'll ask...",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1007.35,
+      "end": 1009.07,
+      "final_text": "What kind of tastes are we dealing with?",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1009.07,
+      "end": 1010.07,
+      "final_text": "Tastes?!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1010.46,
+      "end": 1013.7,
+      "final_text": "If I'm going to add something as a bonus,\n I have to match his interests.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1013.7,
+      "end": 1016.67,
+      "final_text": "Things like tickets to a sports game\n or travel coupons",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1016.67,
+      "end": 1019.33,
+      "final_text": "are useless if he's not interested in them.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1019.33,
+      "end": 1022.58,
+      "final_text": "I should do my best to match the likes.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1022.58,
+      "end": 1026.58,
+      "final_text": "What?! The lieutenant wants \nto match my preferences?!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1026.58,
+      "end": 1028.25,
+      "final_text": "I don't have anything to go off of,",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1028.25,
+      "end": 1031.46,
+      "final_text": "so I don't know what would \nbe best to curry favor.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1031.46,
+      "end": 1033.0,
+      "final_text": "She wants to curry favor with me?!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1033.0,
+      "end": 1035.34,
+      "final_text": "Man, but she's already exactly my type!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1035.34,
+      "end": 1037.92,
+      "final_text": "I thought if I knew that...",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1037.92,
+      "end": 1041.74,
+      "final_text": "Still, I'm not sure I should go\n revealing those tastes to others.",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1041.74,
+      "end": 1043.73,
+      "final_text": "I understand it's hard to discuss,",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1043.73,
+      "end": 1045.78,
+      "final_text": "but I really want to know!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1045.78,
+      "end": 1048.1,
+      "final_text": "Please, will you tell me?",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1054.94,
+      "end": 1056.15,
+      "final_text": "You should go for...",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1056.15,
+      "end": 1057.33,
+      "final_text": "I should go for?",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1058.96,
+      "end": 1060.24,
+      "final_text": "A tight skirt.",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1060.51,
+      "end": 1061.99,
+      "final_text": "A tight skirt?!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1061.99,
+      "end": 1063.96,
+      "final_text": "Make it black and short.",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1063.96,
+      "end": 1065.0,
+      "final_text": "Black and short?",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1065.31,
+      "end": 1070.09,
+      "final_text": "Add a plain white dress shirt \nwith a straight collar, and then...",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1070.09,
+      "end": 1071.13,
+      "final_text": "And then?!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1071.13,
+      "end": 1073.29,
+      "final_text": "Act stoic at first glance, \nbut secretly needy,",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1073.29,
+      "end": 1074.87,
+      "final_text": "while the underwear is flashy too!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1074.87,
+      "end": 1076.51,
+      "final_text": "I think that should do it!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1079.52,
+      "end": 1080.72,
+      "final_text": "Huh?",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1080.72,
+      "end": 1081.91,
+      "final_text": "Shoot!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1081.91,
+      "end": 1085.43,
+      "final_text": "I got carried away and told her \nall about my sexual fetishes!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1085.43,
+      "end": 1087.41,
+      "final_text": "The lieutenant is repulsed!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1088.38,
+      "end": 1089.99,
+      "final_text": "Yasushi.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1089.99,
+      "end": 1090.78,
+      "final_text": "Yes?",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1092.72,
+      "end": 1094.03,
+      "final_text": "What about the stockings?",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1094.62,
+      "end": 1097.53,
+      "final_text": "Fishnet stockings and a garter belt, I think.",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1097.53,
+      "end": 1100.03,
+      "final_text": "Thank you very much for your guidance!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1100.03,
+      "end": 1104.49,
+      "final_text": "Master, First Lieutenant Nias from the\n Seventh Weapons Factory is here to see you.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 1104.49,
+      "end": 1106.07,
+      "final_text": "First Lieutenant Nias?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1106.07,
+      "end": 1106.91,
+      "final_text": "Let her in.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1114.24,
+      "end": 1118.78,
+      "final_text": "Umm, the truth is,\n I want you buy something for me.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1118.78,
+      "end": 1121.97,
+      "final_text": "What's wrong with you, Lieutenant?\n Did you eat something bad?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1121.97,
+      "end": 1123.12,
+      "final_text": "That's not it!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1123.12,
+      "end": 1124.81,
+      "final_text": "I know what you're really after.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1125.15,
+      "end": 1127.01,
+      "final_text": "So what is it you want me to buy?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1127.01,
+      "end": 1128.62,
+      "final_text": "Well, you see, I'd like you to buy",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1128.62,
+      "end": 1131.56,
+      "final_text": "the latest model battleships that we built.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1131.56,
+      "end": 1132.81,
+      "final_text": "That fast?!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1132.81,
+      "end": 1135.58,
+      "final_text": "Please don't make your decision \nbefore you've even seen them!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1135.58,
+      "end": 1138.25,
+      "final_text": "I just bought several used battleships.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1138.25,
+      "end": 1139.68,
+      "final_text": "Along with the soldiers to man them.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1139.68,
+      "end": 1140.79,
+      "final_text": "Used?!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1140.79,
+      "end": 1144.1,
+      "final_text": "You mean the battleships the \nImperial Fleet's getting rid of?",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1144.1,
+      "end": 1145.33,
+      "final_text": "Yeah, what about it?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1145.58,
+      "end": 1149.31,
+      "final_text": "I can't believe the Third Weapons Factory\n is getting in my way here too!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1149.31,
+      "end": 1151.83,
+      "final_text": "Anyway, that's how it is, \nso give up and leave.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1151.83,
+      "end": 1153.08,
+      "final_text": "I can't leave like this!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1153.08,
+      "end": 1155.59,
+      "final_text": "Please, at least look at them\n before you decide!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1155.59,
+      "end": 1158.84,
+      "final_text": "What do you think?! Of their brave figure \nbrimming with the beauty of function!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1158.84,
+      "end": 1161.28,
+      "final_text": "I guarantee their capabilities!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1161.28,
+      "end": 1162.84,
+      "final_text": "Then sell them to Imperial Fleet.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1163.78,
+      "end": 1166.98,
+      "final_text": "We lost in the presentation, \nand they weren't bought.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1166.98,
+      "end": 1169.75,
+      "final_text": "So you came to me to dispose of your stock?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1169.75,
+      "end": 1171.47,
+      "final_text": "Would you do it, Count?!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1171.47,
+      "end": 1174.34,
+      "final_text": "Two hundred, no, \neven one hundred would be fine!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1174.34,
+      "end": 1175.75,
+      "final_text": "We can offer loans,",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1175.75,
+      "end": 1179.11,
+      "final_text": "and we're okay with revolving credit too!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1179.44,
+      "end": 1180.48,
+      "final_text": "Stop.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1180.48,
+      "end": 1182.61,
+      "final_text": "Don't talk about debt with me.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1182.61,
+      "end": 1184.12,
+      "final_text": "I-In that case!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1193.33,
+      "end": 1194.5,
+      "final_text": "Glimpse.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1195.83,
+      "end": 1198.0,
+      "final_text": "Yeah, that's not stirring anything up.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1198.0,
+      "end": 1200.01,
+      "final_text": "That reminds me, in my past life...",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1202.61,
+      "end": 1206.36,
+      "final_text": "My wife was always wearing flashy \nunderwear I wasn't used to seeing.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1206.36,
+      "end": 1208.52,
+      "final_text": "She always turned down any nighttime action,",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1208.52,
+      "end": 1210.77,
+      "final_text": "yet she bought a lot of flashy underwear.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1211.97,
+      "end": 1215.4,
+      "final_text": "She was probably having her affair \nwith my boss at that point.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1215.4,
+      "end": 1217.69,
+      "final_text": "Why do you look so dismayed?!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1217.69,
+      "end": 1219.53,
+      "final_text": "You just reminded me of a little trauma.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1219.53,
+      "end": 1223.83,
+      "final_text": "But you were staring at my boobs so \nmuch in the cockpit of the Avid?!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1223.83,
+      "end": 1225.53,
+      "final_text": "I'm not in the mood right now.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1226.04,
+      "end": 1227.44,
+      "final_text": "Count!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1227.44,
+      "end": 1231.09,
+      "final_text": "Please, I want you to buy my battleships.",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1231.54,
+      "end": 1235.48,
+      "final_text": "Yeah, that's not resonating \nwith my manhood at all.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1235.48,
+      "end": 1237.04,
+      "final_text": "Count!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1237.35,
+      "end": 1239.41,
+      "final_text": "Fine. Enough.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1239.41,
+      "end": 1241.95,
+      "final_text": "You look pitiful like this, so I'll buy some.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1241.95,
+      "end": 1243.05,
+      "final_text": "Two hundred, was it?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1243.05,
+      "end": 1244.93,
+      "final_text": "Three hundred, if you can!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1245.36,
+      "end": 1248.18,
+      "final_text": "Amagi, can we afford to buy three hundred?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1248.18,
+      "end": 1251.02,
+      "final_text": "We'll have to tighten quite a few \nother things, but it's possible.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 1251.02,
+      "end": 1253.66,
+      "final_text": "It won't be a waste from a \nlong-term perspective either,",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 1253.66,
+      "end": 1255.31,
+      "final_text": "so I don't see it as a major issue.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 1255.31,
+      "end": 1257.19,
+      "final_text": "Thank you so much!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1257.19,
+      "end": 1258.69,
+      "final_text": "I'll deliver them right away!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1259.23,
+      "end": 1260.69,
+      "final_text": "Ow!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1262.53,
+      "end": 1264.57,
+      "final_text": "She's a rather beautiful woman,",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1264.57,
+      "end": 1267.26,
+      "final_text": "and she has real ability when \nit comes to her designs, but...",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1267.26,
+      "end": 1269.58,
+      "final_text": "Many other facets are \ndisappointing, aren't they?",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 1269.58,
+      "end": 1272.45,
+      "final_text": "She's a real disappointing beauty.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1275.42,
+      "end": 1277.68,
+      "final_text": "How's that? I sold three hundred ships!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1277.68,
+      "end": 1279.46,
+      "final_text": "You found an eccentric noble, huh?",
+      "speaker": "Subordinate",
+      "inner_thought": false
+    },
+    {
+      "start": 1279.46,
+      "end": 1282.12,
+      "final_text": "The business deal went \nthrough because of my charm!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1282.12,
+      "end": 1283.52,
+      "final_text": "Show some more respect!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1283.52,
+      "end": 1287.28,
+      "final_text": "I just can't imagine someone as \nstraight-laced as you using seduction.",
+      "speaker": "Subordinate",
+      "inner_thought": false
+    },
+    {
+      "start": 1287.28,
+      "end": 1288.85,
+      "final_text": "Seduction?!",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 1288.85,
+      "end": 1291.33,
+      "final_text": "The count was totally into me!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1291.33,
+      "end": 1294.4,
+      "final_text": "He was staring at me lustfully again today!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1294.4,
+      "end": 1296.48,
+      "final_text": "Is that really true?",
+      "speaker": "Subordinate",
+      "inner_thought": false
+    },
+    {
+      "start": 1296.48,
+      "end": 1300.65,
+      "final_text": "What? Master Liam fell for a honey trap?!",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 1300.65,
+      "end": 1302.11,
+      "final_text": "What?!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1302.74,
+      "end": 1305.46,
+      "final_text": "The lieutenant did all \nkinds of things with Liam",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1305.46,
+      "end": 1308.62,
+      "final_text": "while dressed to match my tastes?!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1308.62,
+      "end": 1310.0,
+      "final_text": "That brat!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1310.0,
+      "end": 1312.28,
+      "final_text": "I'll never forgive him!",
+      "speaker": "Yasushi",
+      "inner_thought": false
+    },
+    {
+      "start": 1314.1,
+      "end": 1316.5,
+      "final_text": "Man, it's peaceful, isn't it?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1316.8,
+      "end": 1318.09,
+      "final_text": "Is it?",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 1318.09,
+      "end": 1319.13,
+      "final_text": "Yeah.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1321.55,
+      "end": 1322.62,
+      "final_text": "It is.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 1415.89,
+      "end": 1419.35,
+      "final_text": "Allow me to show you to... \"Treasure Island.\"",
+      "speaker": "Guide",
+      "inner_thought": false
+    }
+  ],
+  "signs_path": "12\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 05\\signs.ass",
+  "dubbed_video": "C:\\Users\\Yashesh\\vs code projects\\YK-Dub\\12\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 05\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 05.dubbed.mp4",
+  "dubbed_vocals_path": "C:\\Users\\Yashesh\\vs code projects\\YK-Dub\\12\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 05\\tts_work\\dubbed_vocals.wav"
+}

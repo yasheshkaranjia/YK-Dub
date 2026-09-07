@@ -21,6 +21,7 @@ import script_agent
 import dub_agent
 import verify_agent
 import configure_voices
+import heartbeat
 
 VIDEO_EXTENSIONS = (".mkv", ".mp4", ".avi", ".webm")
 
@@ -60,11 +61,27 @@ def find_episodes(target: Path) -> list:
 def process_episode(video_path: Path, work_root: Path, offer_voice_setup: bool) -> None:
     stem = video_path.stem
     work_dir = work_root / stem
+    out_video = work_dir / f"{stem}.dubbed.mp4"
+    failed_marker = work_dir / f"{stem}.FAILED"
+
+    # Resume-safe: an overnight batch that gets killed partway through
+    # (by watchdog.py, a crash, you closing the laptop) shouldn't have to
+    # redo every episode that already finished when you restart it.
+    if out_video.exists():
+        print(f"\n{stem}: already dubbed ({out_video.name} exists) - skipping")
+        return
+    if failed_marker.exists():
+        print(f"\n{stem}: marked FAILED on a previous run ({failed_marker.name} exists) - "
+              f"skipping. Delete that file if you want to retry it.")
+        return
+
     print(f"\n{'=' * 60}\n{stem}\n{'=' * 60}")
+    heartbeat.touch(work_root, stem, "extract")
 
     manifest = extract_agent.run(str(video_path), str(work_dir))
     manifest_path = work_dir / f"{stem}.manifest.json"
 
+    heartbeat.touch(work_root, stem, "script")
     translated = script_agent.run(str(manifest_path))
     translated_path = Path(str(manifest_path).replace(".manifest.json", ".translated.json"))
 
@@ -75,10 +92,11 @@ def process_episode(video_path: Path, work_root: Path, offer_voice_setup: bool) 
         if ask_yes_no(f"\nAssign/review character voices for '{stem}' before dubbing?"):
             configure_voices.run(manifest["subtitle_path"])
 
-    out_video = work_dir / f"{stem}.dubbed.mp4"
-    dub_agent.run(str(translated_path), str(out_video))
+    heartbeat.touch(work_root, stem, "dub")
+    dub_agent.run(str(translated_path), str(out_video), heartbeat_root=work_root, episode_label=stem)
     dubbed_path = Path(str(translated_path).replace(".translated.json", ".dubbed.json"))
 
+    heartbeat.touch(work_root, stem, "verify")
     verify_agent.run(str(dubbed_path))
     print(f"\n{stem}: done -> {out_video}")
 
@@ -111,7 +129,16 @@ def main():
         return
 
     for ep in episodes:
-        process_episode(ep, work_root, offer_voice_setup)
+        try:
+            process_episode(ep, work_root, offer_voice_setup)
+        except Exception as e:
+            # One episode's failure (a Piper/Demucs/ffmpeg call finally
+            # giving up after its timeout, a corrupt source file, whatever)
+            # used to take the ENTIRE overnight batch down with it - every
+            # episode after the failed one never even got attempted. This
+            # logs it and moves on to the next episode instead.
+            print(f"\n[run] {ep.stem} FAILED: {e}")
+            print(f"[run] continuing with the remaining episodes...")
 
     print(f"\nAll done. {len(episodes)} episode(s) processed -> {work_root.resolve()}")
 
