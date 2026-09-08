@@ -18,6 +18,7 @@ import script_agent
 import dub_agent
 import verify_agent
 import heartbeat
+import collect_dubbed
 
 
 def process_episode(video_path: str, work_root: str) -> None:
@@ -78,6 +79,14 @@ def main():
             # logs it and moves on to the next episode instead.
             print(f"\n[orchestrator] {v.stem} FAILED: {e}")
             print(f"[orchestrator] continuing with the remaining episodes...")
+
+    # Non-interactive (this is what watchdog.py relaunches into, and what
+    # a Colab/unattended run uses) - so this collects automatically rather
+    # than prompting, unlike run.py's interactive version of the same step.
+    try:
+        collect_dubbed.run(work_root)
+    except SystemExit:
+        pass  # collect_dubbed exits cleanly if nothing's finished yet - not a real error here
 
 
 if __name__ == "__main__":

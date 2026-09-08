@@ -1,0 +1,2524 @@
+{
+  "video_path": "D:\\project\\YK J2E\\I'm the Evil Lord of an Intergalactic Empire!\\Ore wa Seikan Kokka no Akutoku Ryoushu! S01 1080p WEBRip DD+ x265-EMBER\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 10.mkv",
+  "audio_path": "C:\\Users\\Yashesh\\vs code projects\\YK-Dub\\12\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 10\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 10.wav",
+  "vocals_path": "C:\\Users\\Yashesh\\vs code projects\\YK-Dub\\12\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 10\\demucs_out\\htdemucs\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 10\\vocals.wav",
+  "instrumental_path": "C:\\Users\\Yashesh\\vs code projects\\YK-Dub\\12\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 10\\demucs_out\\htdemucs\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 10\\no_vocals.wav",
+  "subtitle_path": "C:\\Users\\Yashesh\\vs code projects\\YK-Dub\\12\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 10\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 10.ass",
+  "duration_sec": 1420.004,
+  "segments": [
+    {
+      "start": 1.46,
+      "end": 3.42,
+      "final_text": "I am the Guide.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 3.88,
+      "end": 7.04,
+      "final_text": "A wandering being who \ncollects negative emotions.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 7.52,
+      "end": 13.34,
+      "final_text": "Today, I continue to wander in search of the \nnegative emotions lurking within daily life!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 16.57,
+      "end": 20.77,
+      "final_text": "Today's the day I finally get one of\n the limited papaya mango croissants",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 20.77,
+      "end": 23.76,
+      "final_text": "and enjoy an elegant afternoon tea time!",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 23.76,
+      "end": 25.92,
+      "final_text": "One papaya mango croissant, please.",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 25.92,
+      "end": 27.59,
+      "final_text": "Yes, thank you very much.",
+      "speaker": "Clerk",
+      "inner_thought": false
+    },
+    {
+      "start": 29.87,
+      "end": 31.38,
+      "final_text": "Will I be okay?",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 31.38,
+      "end": 33.71,
+      "final_text": "Will there still be any left \nby the time it's my turn?",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 33.71,
+      "end": 36.08,
+      "final_text": "A papaya mango croissant, please!",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 36.72,
+      "end": 38.98,
+      "final_text": "Ahh, everyone's buying them up!",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 38.98,
+      "end": 40.85,
+      "final_text": "Three papaya mango croissants!",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 41.81,
+      "end": 44.28,
+      "final_text": "Bitch! Don't go buying \nthree for yourself!",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 44.28,
+      "end": 46.6,
+      "final_text": "Could I please have five \npapaya mango croissants?",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 46.6,
+      "end": 48.67,
+      "final_text": "Stop! All of you, stop it!",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 48.67,
+      "end": 50.61,
+      "final_text": "Leave some for me too!",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 51.37,
+      "end": 52.61,
+      "final_text": "There's only one person ahead of me.",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 58.57,
+      "end": 60.94,
+      "final_text": "The papaya mango croissant please...",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 62.59,
+      "end": 63.37,
+      "final_text": "two of them!",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 64.8,
+      "end": 65.87,
+      "final_text": "It's over.",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 66.86,
+      "end": 69.5,
+      "final_text": "My elegant afternoon is gone.",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 71.43,
+      "end": 72.51,
+      "final_text": "Yes!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 72.51,
+      "end": 74.51,
+      "final_text": "Nice negative emotion!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 74.51,
+      "end": 76.01,
+      "final_text": "Tasty!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 76.01,
+      "end": 77.76,
+      "final_text": "The next batch is baked!",
+      "speaker": "Clerk",
+      "inner_thought": false
+    },
+    {
+      "start": 77.76,
+      "end": 78.83,
+      "final_text": "Thank you!",
+      "speaker": "Clerk",
+      "inner_thought": false
+    },
+    {
+      "start": 79.59,
+      "end": 81.9,
+      "final_text": "We had a big delivery of fruit come in today,",
+      "speaker": "Clerk",
+      "inner_thought": false
+    },
+    {
+      "start": 81.9,
+      "end": 83.39,
+      "final_text": "so we baked an extra batch!",
+      "speaker": "Clerk",
+      "inner_thought": false
+    },
+    {
+      "start": 84.24,
+      "end": 85.8,
+      "final_text": "Thank goodness!",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 85.8,
+      "end": 86.65,
+      "final_text": "I'm so happy!",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 86.65,
+      "end": 88.3,
+      "final_text": "Thank you, God!",
+      "speaker": "Customer",
+      "inner_thought": false
+    },
+    {
+      "start": 88.95,
+      "end": 90.68,
+      "final_text": "I let my guard down!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 90.68,
+      "end": 94.11,
+      "final_text": "I didn't expect it to suddenly \nturn into positive emotions!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 95.66,
+      "end": 97.35,
+      "final_text": "Well, whatever.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 97.35,
+      "end": 101.03,
+      "final_text": "I still have the main dish \nthat I've been saving.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 197.38,
+      "end": 200.05,
+      "final_text": "Ahh, what misfortune.",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 200.54,
+      "end": 204.46,
+      "final_text": "Our domain was finally \ncoming back to life,",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 204.46,
+      "end": 207.43,
+      "final_text": "and now we're being raided by space pirates!",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 207.98,
+      "end": 210.1,
+      "final_text": "We haven't lost yet.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 210.1,
+      "end": 213.98,
+      "final_text": "Besides, Master's judgment wasn't incorrect.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 213.98,
+      "end": 218.44,
+      "final_text": "You're the one who said we only have \na 3.8 percent chance of victory.",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 218.44,
+      "end": 221.99,
+      "final_text": "Based on past records \nregarding the Goaz Pirates,",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 221.99,
+      "end": 223.03,
+      "final_text": "if we surrendered,",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 223.03,
+      "end": 226.19,
+      "final_text": "then we would be wiped out without \na fight, along with our planet.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 226.19,
+      "end": 230.96,
+      "final_text": "Betting on a 3.8 percent chance instead \nof a zero percent chance isn't wrong.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 231.5,
+      "end": 236.51,
+      "final_text": "Ahh, if only Master Liam had \nbeen born a century earlier,",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 236.51,
+      "end": 240.34,
+      "final_text": "then we could've turned \nthe tables on these pirates.",
+      "speaker": "Brian",
+      "inner_thought": false
+    },
+    {
+      "start": 240.84,
+      "end": 244.64,
+      "final_text": "Thanks for bringing me glory \nand bounties, pirates!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 244.64,
+      "end": 246.35,
+      "final_text": "Now prepare yourselves for death!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 247.53,
+      "end": 251.52,
+      "final_text": "I'm glad to see you're \nappreciating my aftercare.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 253.48,
+      "end": 256.68,
+      "final_text": "Getting caught by these pirates \nand turned into their toy",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 256.68,
+      "end": 258.36,
+      "final_text": "will be the greatest end for you!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 258.92,
+      "end": 262.61,
+      "final_text": "Goaz isn't a run-of-the-mill pirate.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 262.61,
+      "end": 264.74,
+      "final_text": "Thanks to his secret funding source,",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 264.74,
+      "end": 267.12,
+      "final_text": "his armaments are on par \nwith an official military!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 267.44,
+      "end": 270.62,
+      "final_text": "It's your fault for believing me.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 271.3,
+      "end": 274.67,
+      "final_text": "You haven't learned \nanything from your past life.",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 274.67,
+      "end": 276.86,
+      "final_text": "You really are just a fool!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 277.75,
+      "end": 279.99,
+      "final_text": "Your gratitude will soon turn to resentment,",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 279.99,
+      "end": 282.94,
+      "final_text": "and your smile will become \ntwisted with hatred!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 282.94,
+      "end": 287.39,
+      "final_text": "Those negative emotions \nwill be so satisfying!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 287.75,
+      "end": 291.81,
+      "final_text": "Now! Give me your tasty negative emotions!",
+      "speaker": "Guide",
+      "inner_thought": false
+    },
+    {
+      "start": 295.27,
+      "end": 297.77,
+      "final_text": "The Banfield Fleet has deployed.",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 297.77,
+      "end": 300.9,
+      "final_text": "Little brat's acting like a grown man \nand shipping out to battle, huh?",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 300.9,
+      "end": 302.6,
+      "final_text": "Tell all ships!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 302.6,
+      "end": 305.28,
+      "final_text": "If they capture them alive, \nI'll double their reward!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 306.39,
+      "end": 309.16,
+      "final_text": "This time, I'm going to make that brat my toy.",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 309.56,
+      "end": 311.21,
+      "final_text": "You're into that too, Captain?",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 311.21,
+      "end": 314.21,
+      "final_text": "It's fun going against \npretentious brats like him.",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 314.21,
+      "end": 317.68,
+      "final_text": "Once I'm through with him, then I'll \nhave fun tormenting his people, too.",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 318.51,
+      "end": 322.8,
+      "final_text": "I'll teach this ignorant brat \nwhat real war is like!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 325.34,
+      "end": 327.88,
+      "final_text": "Our lord has nerves of steel.",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 327.88,
+      "end": 330.85,
+      "final_text": "Yeah, it doesn't seem like \nit's just for show, either.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 330.85,
+      "end": 333.6,
+      "final_text": "He has a good reputation for his skill \nin governing and swordsmanship,",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 333.6,
+      "end": 335.31,
+      "final_text": "but what about in war?",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 335.31,
+      "end": 337.56,
+      "final_text": "I'll commend his spirit as a noble.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 338.25,
+      "end": 340.92,
+      "final_text": "Now, this is our bonus stage.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 340.92,
+      "end": 345.42,
+      "final_text": "I'm going to seize their treasure and \nthe glory of claiming their bounty!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 349.33,
+      "end": 351.84,
+      "final_text": "When is the battle going to start?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 351.84,
+      "end": 354.14,
+      "final_text": "It's been like this for three days now.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 354.14,
+      "end": 356.21,
+      "final_text": "It's already started, my lord.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 356.21,
+      "end": 357.44,
+      "final_text": "It has?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 357.44,
+      "end": 359.15,
+      "final_text": "In combat on this scale,",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 359.15,
+      "end": 361.09,
+      "final_text": "we can't just recklessly \nclash with each other.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 361.09,
+      "end": 364.59,
+      "final_text": "We're struggling since the \nenemy's numbers are so great.",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 364.59,
+      "end": 367.18,
+      "final_text": "We aren't even fighting yet \nand we're struggling?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 367.18,
+      "end": 367.97,
+      "final_text": "How so?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 368.37,
+      "end": 370.39,
+      "final_text": "I don't even see our enemy \nin the first place.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 370.39,
+      "end": 372.64,
+      "final_text": "In space, being able to see your enemy",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 372.64,
+      "end": 374.97,
+      "final_text": "is the same as being close \nenough to punch them.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 375.32,
+      "end": 376.56,
+      "final_text": "You saw their size.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 376.56,
+      "end": 379.15,
+      "final_text": "It wouldn't be odd for them \nto have a talented strategist.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 379.15,
+      "end": 382.44,
+      "final_text": "I've also heard they have a lot of former \nsoldiers and knights lured in by money.",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 382.44,
+      "end": 384.36,
+      "final_text": "It's always trouble when the enemy's skilled.",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 385.12,
+      "end": 387.49,
+      "final_text": "How long do we have keep on waiting?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 387.49,
+      "end": 388.92,
+      "final_text": "Can't we charge in already?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 388.92,
+      "end": 390.61,
+      "final_text": "Communications interference detected!",
+      "speaker": "Radar",
+      "inner_thought": false
+    },
+    {
+      "start": 390.61,
+      "end": 392.12,
+      "final_text": "Their position is...",
+      "speaker": "Radar",
+      "inner_thought": false
+    },
+    {
+      "start": 392.4,
+      "end": 393.68,
+      "final_text": "right above our fleet!",
+      "speaker": "Radar",
+      "inner_thought": false
+    },
+    {
+      "start": 393.68,
+      "end": 394.61,
+      "final_text": "What?!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 394.61,
+      "end": 396.37,
+      "final_text": "The enemy's coming in from right above us!",
+      "speaker": "Radar",
+      "inner_thought": false
+    },
+    {
+      "start": 396.71,
+      "end": 398.36,
+      "final_text": "There's five hundred of them!",
+      "speaker": "Radar",
+      "inner_thought": false
+    },
+    {
+      "start": 399.12,
+      "end": 400.24,
+      "final_text": "Prepare to engage!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 400.24,
+      "end": 401.92,
+      "final_text": "Turn our bow upwards!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 401.92,
+      "end": 403.08,
+      "final_text": "Fire the cannons!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 403.08,
+      "end": 405.13,
+      "final_text": "Don't take your eyes off \nthe enemy's main fleet!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 405.13,
+      "end": 407.88,
+      "final_text": "I thought it wasn't a good idea \nto split up your forces like this?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 408.16,
+      "end": 410.63,
+      "final_text": "So why are they attacking us \nwith a mere five hundred ships?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 410.94,
+      "end": 414.12,
+      "final_text": "The action is likely meant to \ndisrupt our fleet's formation.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 414.12,
+      "end": 416.78,
+      "final_text": "The maneuver suggests they \nhope to create an opening.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 416.78,
+      "end": 419.25,
+      "final_text": "Then these five hundred ships are \njust sacrificial pawns?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 419.25,
+      "end": 422.02,
+      "final_text": "My lord, those aren't pirates.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 422.02,
+      "end": 425.02,
+      "final_text": "They're soldiers who surrendered \nafter pirates defeated them.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 425.02,
+      "end": 427.1,
+      "final_text": "Why aren't they on our side, then?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 427.1,
+      "end": 430.41,
+      "final_text": "Anyone captured by pirates is \nmurdered if they defy an order.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 430.41,
+      "end": 434.53,
+      "final_text": "So in order to survive, they have no choice \nbut to turn traitor and join the pirates.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 434.53,
+      "end": 438.16,
+      "final_text": "Yet those who turned traitor and \njoined them can never be trusted.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 438.16,
+      "end": 440.29,
+      "final_text": "So they're the lowest-ranking members.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 440.29,
+      "end": 441.66,
+      "final_text": "Those bastards...",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 441.66,
+      "end": 445.29,
+      "final_text": "They're just going to work them to \nthe bone and make them die in vain?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 456.29,
+      "end": 458.19,
+      "final_text": "They wiped out our advance squad.",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 458.19,
+      "end": 460.68,
+      "final_text": "Hmph. Guess the brat's not half bad.",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 461.03,
+      "end": 465.19,
+      "final_text": "Captain, that melee has caused a disruption \nin the enemy fleet's formation.",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 465.19,
+      "end": 467.49,
+      "final_text": "All right, men, charge!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 467.49,
+      "end": 470.34,
+      "final_text": "Let's show them how pirates do things!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 474.26,
+      "end": 476.07,
+      "final_text": "All ships, fall back as fast as possible!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 476.4,
+      "end": 478.95,
+      "final_text": "The Banfield Fleet is retreating!",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 478.95,
+      "end": 480.95,
+      "final_text": "Running away already, huh?",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 480.95,
+      "end": 482.46,
+      "final_text": "Charge in!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 487.81,
+      "end": 488.91,
+      "final_text": "There's space mines!",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 488.91,
+      "end": 490.36,
+      "final_text": "They were concealed by magic!",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 490.36,
+      "end": 492.24,
+      "final_text": "Clever ploy!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 492.24,
+      "end": 493.27,
+      "final_text": "But I don't care!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 493.27,
+      "end": 496.77,
+      "final_text": "Have our vanguard rush in and clear the way!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 497.6,
+      "end": 501.1,
+      "final_text": "The pirate fleet is pushing through \nthe minefield and charging at us!",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 501.55,
+      "end": 505.44,
+      "final_text": "Using their allies to clear away the mines?\n They're playing the numbers game.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 505.44,
+      "end": 508.86,
+      "final_text": "I guess they don't mind a few sacrifices \nwhen they have that many.",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 514.56,
+      "end": 515.74,
+      "final_text": "What's our enemy's formation?",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 515.74,
+      "end": 519.12,
+      "final_text": "The enemy has deployed their shield \nships behind their front lines.",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 519.36,
+      "end": 523.26,
+      "final_text": "Keep on pushing! We outnumber them!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 527.18,
+      "end": 528.72,
+      "final_text": "Put distance between us and the front!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 528.72,
+      "end": 531.51,
+      "final_text": "Deploy the shield ships in front of our ship.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 531.51,
+      "end": 532.6,
+      "final_text": "Hold on a second.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 532.6,
+      "end": 533.76,
+      "final_text": "What do you mean by that?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 533.76,
+      "end": 537.6,
+      "final_text": "We're matching the enemy's formation\n to protect this ship, my lord.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 537.6,
+      "end": 539.13,
+      "final_text": "And what about our front lines?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 539.13,
+      "end": 542.14,
+      "final_text": "They'll do everything in their power \nto protect you, my lord.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 542.14,
+      "end": 543.88,
+      "final_text": "That's not what I'm asking about!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 543.88,
+      "end": 546.8,
+      "final_text": "Are we sacrificing them \nlike the pirates sacrificed their own?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 546.8,
+      "end": 548.14,
+      "final_text": "This is war.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 548.14,
+      "end": 549.65,
+      "final_text": "There are always sacrifices.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 549.65,
+      "end": 551.75,
+      "final_text": "That's not how this should be!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 551.75,
+      "end": 554.15,
+      "final_text": "No, that's exactly how it is.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 554.78,
+      "end": 558.64,
+      "final_text": "One could even say that I'm just \na pawn to you, my lord.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 558.64,
+      "end": 559.85,
+      "final_text": "If it comes down to it,",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 559.85,
+      "end": 562.79,
+      "final_text": "I'm prepared to sacrifice myself for you, too.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 562.79,
+      "end": 564.16,
+      "final_text": "That's war.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 565.04,
+      "end": 568.06,
+      "final_text": "This is our best strategy \ngiven the current situation.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 568.06,
+      "end": 571.3,
+      "final_text": "We've already held back the enemy\n longer than anticipated.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 571.66,
+      "end": 575.39,
+      "final_text": "If the battle draws out, reinforcements from the empire might make it,",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 575.39,
+      "end": 577.47,
+      "final_text": "and they'll turn the battle around.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 577.47,
+      "end": 580.24,
+      "final_text": "Hey, wait! Who said anything about \nwaiting for reinforcements?!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 580.24,
+      "end": 583.56,
+      "final_text": "Are you going to sacrifice our \nfront lines just to buy time?!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 583.56,
+      "end": 584.46,
+      "final_text": "Yes.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 584.46,
+      "end": 587.45,
+      "final_text": "That's the only way for us \nto win with our numbers.",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 587.45,
+      "end": 589.06,
+      "final_text": "I won't allow it!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 589.06,
+      "end": 591.12,
+      "final_text": "I am an evil lord!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 591.12,
+      "end": 593.09,
+      "final_text": "Money, power, women—",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 593.09,
+      "end": 595.89,
+      "final_text": "I'm an evil lord who will claim it all!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 595.89,
+      "end": 599.2,
+      "final_text": "This land and everyone living \nin it all belong to me!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 599.6,
+      "end": 602.81,
+      "final_text": "The battleships fighting over \nthere right now are all mine!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 602.81,
+      "end": 606.08,
+      "final_text": "The soldiers fighting \nover there are all mine!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 606.08,
+      "end": 610.1,
+      "final_text": "Every single drop of their blood is all mine!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 610.1,
+      "end": 612.72,
+      "final_text": "So do not waste what belongs to me!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 612.72,
+      "end": 615.28,
+      "final_text": "I don't want to lose a single ship",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 615.28,
+      "end": 617.84,
+      "final_text": "or a single man!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 617.84,
+      "end": 621.47,
+      "final_text": "And I will not allow anyone \nto use them up like pawns!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 621.76,
+      "end": 626.22,
+      "final_text": "Not a single one of you is allowed\n to die without my authorization!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 626.22,
+      "end": 627.83,
+      "final_text": "We're not waiting for reinforcements!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 627.83,
+      "end": 630.08,
+      "final_text": "We're going to crush them right here!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 630.08,
+      "end": 634.48,
+      "final_text": "I will never allow them to set \na single foot on my planets!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 635.73,
+      "end": 637.04,
+      "final_text": "I'm going out in the Avid!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 637.04,
+      "end": 637.99,
+      "final_text": "Prepare it for launch!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 637.99,
+      "end": 639.22,
+      "final_text": "Please wait!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 639.22,
+      "end": 640.93,
+      "final_text": "My lord, that would place you in danger!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 640.93,
+      "end": 641.6,
+      "final_text": "Shut up!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 641.6,
+      "end": 642.94,
+      "final_text": "You're being replaced!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 642.94,
+      "end": 645.43,
+      "final_text": "I'm authorizing Amagi to command \nthe fleet from here on out!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 645.43,
+      "end": 646.83,
+      "final_text": "As you wish.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 646.83,
+      "end": 648.5,
+      "final_text": "You will follow Amagi's orders!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 654.57,
+      "end": 657.15,
+      "final_text": "Running battle simulations. \nCalculations complete.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 657.15,
+      "end": 658.45,
+      "final_text": "Altering strategy.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 658.45,
+      "end": 660.18,
+      "final_text": "Relaying commands.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 660.18,
+      "end": 661.56,
+      "final_text": "All forces, charge.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 661.56,
+      "end": 662.33,
+      "final_text": "What?!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 662.33,
+      "end": 663.6,
+      "final_text": "Hurry up and execute it!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 663.6,
+      "end": 664.89,
+      "final_text": "This is an order!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 665.29,
+      "end": 667.38,
+      "final_text": "Amagi, I'll leave the rest to you.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 667.38,
+      "end": 669.89,
+      "final_text": "Have a safe trip, Master.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 669.89,
+      "end": 670.55,
+      "final_text": "Hup!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 674.31,
+      "end": 675.9,
+      "final_text": "Avid, ignition!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 684.21,
+      "end": 686.59,
+      "final_text": "Advance at max speed.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 686.59,
+      "end": 688.91,
+      "final_text": "Our ship will stand at the head of our fleet.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 688.91,
+      "end": 691.46,
+      "final_text": "You're putting our flagship \nin the firing line?!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 691.46,
+      "end": 694.08,
+      "final_text": "This is why AI shouldn't \nbe in command of fleets.",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 694.08,
+      "end": 696.96,
+      "final_text": "With the Avid deploying and \nMaster gone from this ship,",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 696.96,
+      "end": 700.76,
+      "final_text": "there's no longer any reason to \navoid exposing this ship to danger.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 701.78,
+      "end": 706.56,
+      "final_text": "In which case, our most powerful battleship\nshould be on the front line, protecting him.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 706.9,
+      "end": 709.28,
+      "final_text": "I have but one duty:",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 709.28,
+      "end": 711.59,
+      "final_text": "to protect Master.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 712.47,
+      "end": 713.41,
+      "final_text": "The AI...",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 713.41,
+      "end": 715.65,
+      "final_text": "is more loyal than us...",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 715.65,
+      "end": 716.64,
+      "final_text": "Commodore...",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 717.98,
+      "end": 719.64,
+      "final_text": "Advance at max speed!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 719.64,
+      "end": 720.57,
+      "final_text": "Charge!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 720.9,
+      "end": 722.57,
+      "final_text": "Protect our lord!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 722.57,
+      "end": 725.07,
+      "final_text": "Launch all mobile knight squads as well!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 727.38,
+      "end": 729.06,
+      "final_text": "Deploying catapult.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 734.08,
+      "end": 736.4,
+      "final_text": "Avid, loaded into the catapult.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 736.4,
+      "end": 737.84,
+      "final_text": "Connecting shears.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 737.84,
+      "end": 740.22,
+      "final_text": "Commence charging the grid.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 740.22,
+      "end": 742.88,
+      "final_text": "Master, you're ready to launch at any time.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 742.88,
+      "end": 744.47,
+      "final_text": "Amagi, fire me!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 744.47,
+      "end": 746.97,
+      "final_text": "Trigger section, releasing shears.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 747.44,
+      "end": 748.18,
+      "final_text": "Fire.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 752.72,
+      "end": 754.05,
+      "final_text": "Hey, pirates!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 754.05,
+      "end": 757.45,
+      "final_text": "I'm going to make you regret \npicking a fight with me!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 760.12,
+      "end": 762.15,
+      "final_text": "Initiating warp drive sequence.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 763.04,
+      "end": 763.9,
+      "final_text": "Warp!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 770.16,
+      "end": 771.74,
+      "final_text": "Spatial distortion detected!",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 771.74,
+      "end": 773.29,
+      "final_text": "Incoming short-distance warp!",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 773.29,
+      "end": 774.24,
+      "final_text": "What?",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 774.24,
+      "end": 775.54,
+      "final_text": "Estimating arrival coordinates.",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 776.26,
+      "end": 778.04,
+      "final_text": "They're in the middle of our fleet!",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 778.37,
+      "end": 780.55,
+      "final_text": "Are they planning a suicide attack?",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 780.55,
+      "end": 782.32,
+      "final_text": "All ships, ready cannons!",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 782.32,
+      "end": 784.55,
+      "final_text": "Fire once the enemy ship appears!",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 785.52,
+      "end": 787.3,
+      "final_text": "It's not a battleship!",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 787.3,
+      "end": 788.62,
+      "final_text": "It's a mobile knight!",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 796.48,
+      "end": 797.92,
+      "final_text": "Cover our lord!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 797.92,
+      "end": 799.66,
+      "final_text": "Don't let up on our barrage!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 799.66,
+      "end": 801.48,
+      "final_text": "Send the mobile knight squads forward!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 801.48,
+      "end": 804.03,
+      "final_text": "Do whatever it takes to protect our lord!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 804.03,
+      "end": 805.28,
+      "final_text": "Roger!",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 809.28,
+      "end": 811.41,
+      "final_text": "Launch our mobile knights too!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 811.41,
+      "end": 812.16,
+      "final_text": "Roger!",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 818.4,
+      "end": 820.25,
+      "final_text": "Here I come, pirates!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 830.55,
+      "end": 831.78,
+      "final_text": "What's the matter?!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 831.78,
+      "end": 833.81,
+      "final_text": "Entertain me more!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 863.71,
+      "end": 865.89,
+      "final_text": "The enemy fleet's formation is broken.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 865.89,
+      "end": 867.09,
+      "final_text": "Attacking their weak point.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 867.09,
+      "end": 871.54,
+      "final_text": "Our ship will take the lead in a spindle \nformation and we'll cut through their center.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 871.54,
+      "end": 873.38,
+      "final_text": "Relay that to the fleet!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 873.38,
+      "end": 874.15,
+      "final_text": "Aye, aye, sir!",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 877.48,
+      "end": 879.16,
+      "final_text": "Don't rely on our lord to do everything!",
+      "speaker": "Mashita",
+      "inner_thought": false
+    },
+    {
+      "start": 879.16,
+      "end": 880.78,
+      "final_text": "We'll protect him too!",
+      "speaker": "Mashita",
+      "inner_thought": false
+    },
+    {
+      "start": 880.78,
+      "end": 881.93,
+      "final_text": "Roger!",
+      "speaker": "Soldiers",
+      "inner_thought": false
+    },
+    {
+      "start": 888.56,
+      "end": 889.91,
+      "final_text": "Out of ammo?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 889.91,
+      "end": 893.35,
+      "final_text": "I guess it was impossible to \nshoot down all thirty thousand ships.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 896.91,
+      "end": 898.16,
+      "final_text": "What?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 900.28,
+      "end": 902.66,
+      "final_text": "Is that one of the pirate knights?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 902.66,
+      "end": 905.17,
+      "final_text": "Looks like someone with \nsome skill has arrived!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 905.55,
+      "end": 907.67,
+      "final_text": "But you're naive!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 914.68,
+      "end": 917.92,
+      "final_text": "Is that unit being piloted \nby a famous knight?!",
+      "speaker": "Knight",
+      "inner_thought": false
+    },
+    {
+      "start": 917.92,
+      "end": 920.19,
+      "final_text": "What school do you practice?!",
+      "speaker": "Knight",
+      "inner_thought": false
+    },
+    {
+      "start": 920.48,
+      "end": 922.77,
+      "final_text": "My school is the Way of the Flash!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 922.77,
+      "end": 924.81,
+      "final_text": "The greatest sword school in all of space!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 924.81,
+      "end": 926.2,
+      "final_text": "Way of the Flash?",
+      "speaker": "Knight",
+      "inner_thought": false
+    },
+    {
+      "start": 926.2,
+      "end": 928.32,
+      "final_text": "I've never heard of that!",
+      "speaker": "Knight",
+      "inner_thought": false
+    },
+    {
+      "start": 928.32,
+      "end": 930.45,
+      "final_text": "If you don't know about the Way of the Flash,",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 930.45,
+      "end": 933.2,
+      "final_text": "then you must be an unqualified knight!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 933.47,
+      "end": 936.85,
+      "final_text": "I've clashed swords with \ncountless famous schools,",
+      "speaker": "Knight",
+      "inner_thought": false
+    },
+    {
+      "start": 936.85,
+      "end": 939.58,
+      "final_text": "so there's no way I wouldn't know \nof the best school in space!",
+      "speaker": "Knight",
+      "inner_thought": false
+    },
+    {
+      "start": 939.58,
+      "end": 942.46,
+      "final_text": "The Way of the Flash is fake!",
+      "speaker": "Knight",
+      "inner_thought": false
+    },
+    {
+      "start": 942.46,
+      "end": 944.58,
+      "final_text": "You've insulted the Way of the Flash!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 945.13,
+      "end": 947.54,
+      "final_text": "Now I'll show you my strength,",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 947.54,
+      "end": 950.59,
+      "final_text": "and let the name \"Way of the Flash\" \nresound throughout space!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 951.8,
+      "end": 952.55,
+      "final_text": "Flash!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 953.82,
+      "end": 954.34,
+      "final_text": "Huh?",
+      "speaker": "Knight",
+      "inner_thought": false
+    },
+    {
+      "start": 958.97,
+      "end": 960.03,
+      "final_text": "Did you see that?!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 960.03,
+      "end": 962.72,
+      "final_text": "This is the skill I honed \nwith the Way of the Flash!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 962.72,
+      "end": 963.98,
+      "final_text": "Wait...",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 963.98,
+      "end": 967.03,
+      "final_text": "I defeated him, so now \nthere's no witnesses left",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 967.03,
+      "end": 969.61,
+      "final_text": "to boast about my school, is there?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 969.93,
+      "end": 973.07,
+      "final_text": "I guess I'll find a few guys who \nunderstand skill with a sword,",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 973.07,
+      "end": 976.03,
+      "final_text": "and let them run away after \nleaving them half-dead.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 976.03,
+      "end": 977.62,
+      "final_text": "I can't believe it.",
+      "speaker": "Knight",
+      "inner_thought": false
+    },
+    {
+      "start": 977.94,
+      "end": 980.71,
+      "final_text": "I heard House Banfield \nwas a ruined noble family!",
+      "speaker": "Knight",
+      "inner_thought": false
+    },
+    {
+      "start": 980.71,
+      "end": 983.76,
+      "final_text": "What is someone this strong \ndoing with a ruined noble?!",
+      "speaker": "Knight",
+      "inner_thought": false
+    },
+    {
+      "start": 983.76,
+      "end": 987.46,
+      "final_text": "Ruined nobles shouldn't have the \nmoney to hire such strong knights!",
+      "speaker": "Knight",
+      "inner_thought": false
+    },
+    {
+      "start": 987.46,
+      "end": 990.38,
+      "final_text": "Stop that ruined noble!",
+      "speaker": "Knight",
+      "inner_thought": false
+    },
+    {
+      "start": 990.38,
+      "end": 992.92,
+      "final_text": "Shut up with all this \"ruined noble\" crap!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 992.92,
+      "end": 994.88,
+      "final_text": "I'm killing you all after all!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 995.4,
+      "end": 996.89,
+      "final_text": "Flash!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1000.52,
+      "end": 1004.02,
+      "final_text": "Your bounties will become my spending money!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1004.02,
+      "end": 1005.04,
+      "final_text": "Flash!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1006.31,
+      "end": 1007.37,
+      "final_text": "Flash!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1008.52,
+      "end": 1010.53,
+      "final_text": "Flash!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1011.46,
+      "end": 1012.14,
+      "final_text": "Hmm?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1013.1,
+      "end": 1015.53,
+      "final_text": "There's damage to my arm's actuator?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1015.89,
+      "end": 1019.04,
+      "final_text": "Is the mech not able to keep up \nwith the motion of Flash?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1020.04,
+      "end": 1021.02,
+      "final_text": "Dammit!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1021.02,
+      "end": 1023.04,
+      "final_text": "They're buzzing about again!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1032.15,
+      "end": 1033.66,
+      "final_text": "Wait, you bastard!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1033.66,
+      "end": 1035.93,
+      "final_text": "How dare you hurt my Avid!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1046.29,
+      "end": 1048.81,
+      "final_text": "Dammit, there's no end to them!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1058.21,
+      "end": 1060.37,
+      "final_text": "It's no use. There's too many enemies.",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 1060.7,
+      "end": 1065.12,
+      "final_text": "Our chances of victory have declined \nfrom 3.8 percent to 1.2 percent.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 1065.12,
+      "end": 1067.81,
+      "final_text": "Bastards! Bastards! Bastards!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1072.96,
+      "end": 1074.61,
+      "final_text": "You bastard!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1075.76,
+      "end": 1077.63,
+      "final_text": "Don't get...",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1078.64,
+      "end": 1080.8,
+      "final_text": "in my way!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1082.94,
+      "end": 1084.36,
+      "final_text": "I don't need...",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1085.12,
+      "end": 1088.55,
+      "final_text": "I don't need anyone more evil than I am!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1100.42,
+      "end": 1101.43,
+      "final_text": "What?",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1105.37,
+      "end": 1107.66,
+      "final_text": "Christiana Leta Rosebreia...",
+      "speaker": "Christiana",
+      "inner_thought": false
+    },
+    {
+      "start": 1109.01,
+      "end": 1110.46,
+      "final_text": "is joining this battle!",
+      "speaker": "Christiana",
+      "inner_thought": false
+    },
+    {
+      "start": 1111.76,
+      "end": 1114.25,
+      "final_text": "She's arrived sooner than anticipated.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 1114.25,
+      "end": 1116.19,
+      "final_text": "She's not fully recovered yet,",
+      "speaker": "Doctor",
+      "inner_thought": false
+    },
+    {
+      "start": 1116.19,
+      "end": 1118.91,
+      "final_text": "but I couldn't hold back \nher yearning to fight.",
+      "speaker": "Doctor",
+      "inner_thought": false
+    },
+    {
+      "start": 1118.91,
+      "end": 1120.64,
+      "final_text": "What you just saw in action",
+      "speaker": "Eulishia",
+      "inner_thought": false
+    },
+    {
+      "start": 1120.64,
+      "end": 1123.76,
+      "final_text": "is the Third Weapons Factory's \nmobile knight, the Nevan.",
+      "speaker": "Eulishia",
+      "inner_thought": false
+    },
+    {
+      "start": 1123.76,
+      "end": 1125.78,
+      "final_text": "If you like our sample,",
+      "speaker": "Eulishia",
+      "inner_thought": false
+    },
+    {
+      "start": 1125.78,
+      "end": 1127.77,
+      "final_text": "then please consider purchasing more.",
+      "speaker": "Eulishia",
+      "inner_thought": false
+    },
+    {
+      "start": 1127.77,
+      "end": 1128.43,
+      "final_text": "Huh?!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1128.43,
+      "end": 1130.64,
+      "final_text": "What are you doing here, Eulishia?!",
+      "speaker": "Nias",
+      "inner_thought": false
+    },
+    {
+      "start": 1130.64,
+      "end": 1134.27,
+      "final_text": "A talented saleswoman is sensitive \nto the smell of victory.",
+      "speaker": "Eulishia",
+      "inner_thought": false
+    },
+    {
+      "start": 1136.32,
+      "end": 1139.53,
+      "final_text": "Lady Tia, all of your \npersonal guard are here!",
+      "speaker": "Woman",
+      "inner_thought": false
+    },
+    {
+      "start": 1139.84,
+      "end": 1140.68,
+      "final_text": "Good!",
+      "speaker": "Christiana",
+      "inner_thought": false
+    },
+    {
+      "start": 1140.68,
+      "end": 1143.88,
+      "final_text": "Everyone, fire at will and get them!",
+      "speaker": "Christiana",
+      "inner_thought": false
+    },
+    {
+      "start": 1155.75,
+      "end": 1156.86,
+      "final_text": "Lord Liam!",
+      "speaker": "Christiana",
+      "inner_thought": false
+    },
+    {
+      "start": 1156.86,
+      "end": 1158.55,
+      "final_text": "I'm here to repay that favor!",
+      "speaker": "Christiana",
+      "inner_thought": false
+    },
+    {
+      "start": 1159.73,
+      "end": 1161.5,
+      "final_text": "This feels so good!",
+      "speaker": "Christiana",
+      "inner_thought": false
+    },
+    {
+      "start": 1161.5,
+      "end": 1167.68,
+      "final_text": "Crushing the pirates like bugs after they \ntreated me like one is the best thing ever!",
+      "speaker": "Christiana",
+      "inner_thought": false
+    },
+    {
+      "start": 1168.0,
+      "end": 1168.8,
+      "final_text": "Fire!",
+      "speaker": "Pirates",
+      "inner_thought": false
+    },
+    {
+      "start": 1168.8,
+      "end": 1170.69,
+      "final_text": "Take that down at once!",
+      "speaker": "Pirates",
+      "inner_thought": false
+    },
+    {
+      "start": 1178.86,
+      "end": 1181.1,
+      "final_text": "I'm so kind too!",
+      "speaker": "Christiana",
+      "inner_thought": false
+    },
+    {
+      "start": 1181.1,
+      "end": 1184.41,
+      "final_text": "I'm killing you in one stroke\ninstead of making you suffer.",
+      "speaker": "Christiana",
+      "inner_thought": false
+    },
+    {
+      "start": 1184.88,
+      "end": 1189.04,
+      "final_text": "None of you get to live any longer!",
+      "speaker": "Christiana",
+      "inner_thought": false
+    },
+    {
+      "start": 1190.55,
+      "end": 1192.04,
+      "final_text": "You're not bad,",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1192.04,
+      "end": 1193.46,
+      "final_text": "though I don't know who you are.",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1195.87,
+      "end": 1198.8,
+      "final_text": "However, I don't like that you're \nstanding out more than me!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1199.44,
+      "end": 1202.01,
+      "final_text": "Rocket Punch!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1231.7,
+      "end": 1232.87,
+      "final_text": "Good!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1256.87,
+      "end": 1258.73,
+      "final_text": "Flash!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1266.56,
+      "end": 1270.03,
+      "final_text": "Ah, how wonderful, Lord Liam!",
+      "speaker": "Christiana",
+      "inner_thought": false
+    },
+    {
+      "start": 1270.32,
+      "end": 1271.05,
+      "final_text": "What?",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 1271.05,
+      "end": 1272.31,
+      "final_text": "What's happening?!",
+      "speaker": "Goaz",
+      "inner_thought": false
+    },
+    {
+      "start": 1272.31,
+      "end": 1276.04,
+      "final_text": "Battleship class pirate ships were \ndefeated by a single mobile knight!",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 1276.42,
+      "end": 1279.64,
+      "final_text": "Our chances of victory \nhave risen to 83 percent.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 1279.64,
+      "end": 1281.55,
+      "final_text": "I can't believe it!",
+      "speaker": "Aide",
+      "inner_thought": false
+    },
+    {
+      "start": 1281.92,
+      "end": 1286.05,
+      "final_text": "Isolate the squads separated \nby Master and wipe them out.",
+      "speaker": "Amagi",
+      "inner_thought": false
+    },
+    {
+      "start": 1286.75,
+      "end": 1287.65,
+      "final_text": "All ships!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 1287.65,
+      "end": 1290.43,
+      "final_text": "Focus fire on the starboard enemy squads!",
+      "speaker": "Commander",
+      "inner_thought": false
+    },
+    {
+      "start": 1310.45,
+      "end": 1312.16,
+      "final_text": "Tremble more!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1312.16,
+      "end": 1313.95,
+      "final_text": "Fear me more!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1316.96,
+      "end": 1319.79,
+      "final_text": "Let the name of Liam Sera Banfield",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1320.37,
+      "end": 1324.08,
+      "final_text": "echo throughout the empire!",
+      "speaker": "Liam",
+      "inner_thought": false
+    },
+    {
+      "start": 1415.54,
+      "end": 1419.29,
+      "final_text": "Allow me to show you to... \"Evil Lord.\"",
+      "speaker": "Guide",
+      "inner_thought": false
+    }
+  ],
+  "signs_path": "12\\[EMBER] Ore wa Seikan Kokka no Akutoku Ryoushu - 10\\signs.ass"
+}

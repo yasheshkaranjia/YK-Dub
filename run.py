@@ -22,6 +22,7 @@ import dub_agent
 import verify_agent
 import configure_voices
 import heartbeat
+import collect_dubbed
 
 VIDEO_EXTENSIONS = (".mkv", ".mp4", ".avi", ".webm")
 
@@ -119,16 +120,42 @@ def main():
     work_root = Path(work_root_raw) if work_root_raw else Path("./work")
     work_root.mkdir(parents=True, exist_ok=True)
 
+    # Check status BEFORE asking to process anything - a restart after a
+    # watchdog kill, a closed laptop lid, or just "did last night's run
+    # actually finish?" all used to mean starting the whole flow blind and
+    # watching it silently skip already-done episodes one by one.
+    done, pending = [], []
+    for ep in episodes:
+        work_dir = work_root / ep.stem
+        if (work_dir / f"{ep.stem}.dubbed.mp4").exists():
+            done.append(ep)
+        else:
+            pending.append(ep)
+
+    if done:
+        print(f"\n{len(done)}/{len(episodes)} already dubbed:")
+        for e in done:
+            print(f"  [done] {e.name}")
+
+    if not pending:
+        print("\nEverything here is already dubbed - nothing to do.")
+        offer_collect(work_root)
+        return
+
+    print(f"\n{len(pending)} remaining:")
+    for e in pending:
+        print(f"  - {e.name}")
+
     offer_voice_setup = ask_yes_no(
         "\nReview character voices before dubbing each episode? "
         "(recommended the first time you dub a new series)"
     )
 
-    if not ask_yes_no(f"\nProcess {len(episodes)} episode(s) now?", default_yes=True):
+    if not ask_yes_no(f"\nProcess {len(pending)} episode(s) now?", default_yes=True):
         print("Cancelled.")
         return
 
-    for ep in episodes:
+    for ep in pending:
         try:
             process_episode(ep, work_root, offer_voice_setup)
         except Exception as e:
@@ -140,7 +167,23 @@ def main():
             print(f"\n[run] {ep.stem} FAILED: {e}")
             print(f"[run] continuing with the remaining episodes...")
 
-    print(f"\nAll done. {len(episodes)} episode(s) processed -> {work_root.resolve()}")
+    print(f"\nAll done. {len(pending)} episode(s) processed -> {work_root.resolve()}")
+    offer_collect(work_root)
+
+
+def offer_collect(work_root: Path) -> None:
+    """Every episode's finished .dubbed.mp4 sits in its own subfolder,
+    named alongside its intermediate/working files - fine for the
+    pipeline, awkward for actually sitting down and watching a season.
+    This copies just the finished files into one flat folder so you can
+    binge them (or copy the whole folder to a phone/USB drive) without
+    digging through work/<episode>/ one at a time."""
+    if not ask_yes_no("\nCopy all finished episodes into one folder for easier watching?",
+                       default_yes=True):
+        return
+    dest_raw = input(f"Destination folder [default: {work_root.parent / 'collected'}]: ").strip().strip('"').strip("'")
+    dest = Path(dest_raw) if dest_raw else None
+    collect_dubbed.run(str(work_root), str(dest) if dest else None)
 
 
 if __name__ == "__main__":
