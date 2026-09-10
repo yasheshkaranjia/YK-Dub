@@ -195,6 +195,48 @@ Multi-speaker models (`vctk`, and partly `aru`/`semaine`) aren't fully
 supported — `dub_agent.py` always uses speaker index 0, so they'll work
 but won't let you pick a specific speaker inside the file.
 
+### Optional: Kokoro TTS engine (more natural than Piper)
+
+`dub_agent.py` can synthesize a line with either Piper or Kokoro-82M,
+per character — set per speaker in `voice_map.json` the same way as any
+Piper voice, just pointed at a `voices.json` alias whose entry has
+`"engine": "kokoro"`. Kokoro sounds noticeably more natural than Piper
+on expressive lines, at a real CPU/RAM cost, so treat it as an
+opt-in upgrade for a few characters rather than a blanket replacement.
+
+1. Install the extra dependency (kept out of `requirements.txt` so a
+   base install stays Piper-only unless you want this):
+   ```
+   pip install -r requirements-kokoro.txt
+   ```
+2. Download the two model files by hand (pip can't fetch these) and
+   place them in the repo root:
+   - [`kokoro-v1.0.int8.onnx`](https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.int8.onnx)
+     (~88MB) — the int8-quantized version, the right default on an 8GB-RAM
+     laptop. If a character voiced with it sounds noticeably worse than
+     Piper, try [`kokoro-v1.0.fp16.onnx`](https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.fp16.onnx)
+     (~169MB) instead — update the `"model"` path in `voices.json`'s
+     `_kokoro` entry to match whichever you download.
+   - [`voices-v1.0.bin`](https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin)
+     — the shared style-vector file every Kokoro voice reads from.
+3. Kokoro's phonemizer needs `espeak-ng` available at the system level
+   (this is a real espeak-ng install, not a pip package):
+   - **Windows**: install `espeak-ng-X64.msi` from
+     [github.com/espeak-ng/espeak-ng/releases](https://github.com/espeak-ng/espeak-ng/releases).
+     If Kokoro still can't find it, set two environment variables (System
+     Properties → Environment Variables) pointing at the install folder:
+     `PHONEMIZER_ESPEAK_LIBRARY` = `C:\Program Files\eSpeak NG\libespeak-ng.dll`
+     and `PHONEMIZER_ESPEAK_PATH` = `C:\Program Files\eSpeak NG\espeak-ng.exe`.
+   - **Mac**: `brew install espeak-ng`.
+   - **Linux**: `sudo apt install espeak-ng`.
+4. `voices.json` already ships a `_kokoro` entry (the shared model/voices
+   paths above) and one unassigned `kokoro_test` alias (`af_bella`, a US
+   female voice) so there's something to point a character at immediately.
+   Run `configure_voices.py` on one episode's subtitle file and assign
+   **one minor character** to `kokoro_test` — don't switch the whole
+   `voice_map.json` over on the first try. Listen to that one character's
+   lines before deciding whether to convert more.
+
 ---
 
 ## 2. Assigning character voices
@@ -238,10 +280,18 @@ voices per episode. Output per episode lands in
 - `<name>.translated.json` — every dialogue segment used for dubbing
 - `<name>.verification.json` — sync check plus any flagged drift
 
-Non-interactive / scripted use is still supported:
+Non-interactive / scripted use is also supported — no prompts at all,
+runs every pending episode found and auto-collects at the end:
 ```
 python run.py "/path/to/Episode01.mkv" ./work
+python run.py "/path/to/season_folder" ./work
 ```
+
+Resume-safe at the stage level, not just per-episode: an episode whose
+`.manifest.json` or `.translated.json` already exists (extraction or
+script-reading finished on an earlier run) picks up from `dub_agent.py`
+instead of redoing a 20-30 minute Demucs pass. This applies whether
+you run `run.py` or `orchestrator.py`.
 
 Resuming a single stage — since each agent reads and writes its own
 JSON, you can rerun just one step instead of the whole thing:
@@ -337,17 +387,16 @@ CPU-optimized.
 
 ## Notes
 
-- **Ceiling on how expressive this can get**: Piper is a fast, offline,
-  CPU-friendly TTS engine, but it has no real emotion model — the
-  tone-aware delivery in `dub_agent.py` (see above) is a rule-based
+- **Ceiling on how expressive Piper alone can get**: Piper is a fast,
+  offline, CPU-friendly TTS engine, but it has no real emotion model —
+  the tone-aware delivery in `dub_agent.py` (see above) is a rule-based
   approximation layered on top of a naturally flat-sounding engine, not
-  genuine voice acting. If a future pass wants a bigger jump in
-  naturalness/expressiveness than that can give, the next place to look
-  is swapping the TTS engine itself (e.g. Kokoro-82M, which is still
-  small/fast enough for CPU use and generally sounds noticeably more
-  natural than Piper) — a bigger change than this repo's current
-  Piper-only synthesis path, and worth prototyping on a couple of lines
-  before committing to it across a whole season.
+  genuine voice acting. `dub_agent.py` also supports Kokoro-82M as a
+  second, more natural-sounding engine, assignable per character
+  alongside Piper — see "Optional: Kokoro TTS engine" above for setup.
+  It's still opt-in per character rather than a blanket replacement:
+  test it on one or two speaking roles before converting more of
+  `voice_map.json` over to it.
 - `dub_agent.py`'s remaining `atempo` correction is capped to ffmpeg's
   single-filter range (0.5x-2x); combined with the length-scale
   pre-correction above, this should rarely be hit hard in practice now.

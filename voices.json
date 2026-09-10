@@ -53,5 +53,76 @@
     "model": "piper-voices/en/en_GB/semaine/medium/en_GB-semaine-medium.onnx",
     "config": "piper-voices/en/en_GB/semaine/medium/en_GB-semaine-medium.onnx.json",
     "label": "GB, multi-speaker model"
+  },
+  "_kokoro": {
+    "model": "kokoro-v1.0.int8.onnx",
+    "voices": "voices-v1.0.bin",
+    "lang": "en-us"
+  },
+  "kokoro_test": {
+    "engine": "kokoro",
+    "voice": "af_bella",
+    "lang": "en-us",
+    "label": "US female - the one you already tested"
+  },
+  "kokoro_af_sarah": {
+    "engine": "kokoro",
+    "voice": "af_sarah",
+    "lang": "en-us",
+    "label": "US female - commonly cited as one of the more natural-sounding presets"
+  },
+  "kokoro_af_nicole": {
+    "engine": "kokoro",
+    "voice": "af_nicole",
+    "lang": "en-us",
+    "label": "US female - softer/breathier tone"
+  },
+  "kokoro_af_kore": {
+    "engine": "kokoro",
+    "voice": "af_kore",
+    "lang": "en-us",
+    "label": "US female - firmer/more assertive tone"
+  },
+  "kokoro_am_michael": {
+    "engine": "kokoro",
+    "voice": "am_michael",
+    "lang": "en-us",
+    "label": "US male"
+  },
+  "kokoro_am_fenrir": {
+    "engine": "kokoro",
+    "voice": "am_fenrir",
+    "lang": "en-us",
+    "label": "US male - deeper/gruffer tone"
+  },
+  "kokoro_am_adam": {
+    "engine": "kokoro",
+    "voice": "am_adam",
+    "lang": "en-us",
+    "label": "US male"
+  },
+  "kokoro_bf_emma": {
+    "engine": "kokoro",
+    "voice": "bf_emma",
+    "lang": "en-us",
+    "label": "GB female"
+  },
+  "kokoro_bf_isabella": {
+    "engine": "kokoro",
+    "voice": "bf_isabella",
+    "lang": "en-us",
+    "label": "GB female"
+  },
+  "kokoro_bm_george": {
+    "engine": "kokoro",
+    "voice": "bm_george",
+    "lang": "en-us",
+    "label": "GB male"
+  },
+  "kokoro_bm_fable": {
+    "engine": "kokoro",
+    "voice": "bm_fable",
+    "lang": "en-us",
+    "label": "GB male - narrator-ish tone"
   }
 }

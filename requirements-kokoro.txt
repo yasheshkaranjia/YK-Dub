@@ -1,0 +1,16 @@
+# Optional - only needed if you assign any character to the "kokoro" engine
+# in voice_map.json. Kept out of the main requirements.txt so a base install
+# stays Piper-only (smaller, fewer moving parts) unless you opt in.
+#
+#   pip install -r requirements-kokoro.txt --break-system-packages
+#
+# You still need to download two model files by hand - pip can't fetch
+# these - and place them in the repo root (paths must match voices.json's
+# "_kokoro" entry):
+#   kokoro-v1.0.int8.onnx  https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.int8.onnx
+#   voices-v1.0.bin        https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin
+#
+# See the README's "Kokoro setup" section for the espeak-ng phonemizer
+# dependency and the Windows-specific gotcha around it.
+kokoro-onnx>=0.6.0
+soundfile

@@ -160,6 +160,17 @@ DEFAULT_NOISE_SCALE = 0.667
 DEFAULT_NOISE_W = 0.8
 DEFAULT_SENTENCE_SILENCE = 0.2
 
+# Piper and Kokoro don't target the same output loudness - a character
+# voiced with Kokoro can come out noticeably quieter than one voiced with
+# Piper even with identical tone/volume settings, just because the two
+# models were trained/normalized differently. This is a FIXED per-engine
+# offset, not per-line loudness normalization - it corrects a systematic
+# gap between the two engines once, the same amount on every Kokoro line,
+# and leaves each line's own natural dynamic variation untouched. Tune by
+# ear: dub a short test clip (see trim_translated.py) with a Kokoro
+# character next to a Piper one and adjust until they sit level.
+ENGINE_GAIN_DB = {"kokoro": 5.0}
+
 
 def normalize_shout_caps(text: str) -> str:
     """Fansub lines shouted in-universe are often written in ALL CAPS
@@ -428,8 +439,112 @@ def find_overlapping_indices(segments: list) -> set:
     return overlapping
 
 
+NONVERBAL_MIN_SEC = 0.25  # shorter than this is probably a stray blip/breath, not a laugh/gasp
+NONVERBAL_MAX_SEC = 3.5   # longer than this with no subtitle nearby is more likely a MISSED dialogue line
+NONVERBAL_PAD_SEC = 0.2   # margin kept clear around each real subtitle line's edges
+NONVERBAL_FADE_MS = 30    # a few ms fade in/out on the spliced clip avoids an audible click at the edges
+
+
+def find_nonverbal_gaps(vocals_path: str, segments: list, total_duration: float) -> list:
+    """Finds stretches of the ORIGINAL (Japanese) vocals track that have
+    real vocal activity but no subtitle line covering them at all -
+    laughs, gasps, sighs, and other non-verbal reactions are frequently
+    left untranscribed in fansubs (nothing to translate), which is
+    exactly why Piper/Kokoro never generates them: there's no text for
+    either engine to read. Returns (start_sec, end_sec) spans, already
+    excluding anything within NONVERBAL_PAD_SEC of an existing subtitle
+    line's own edges (so a trailing consonant or breath right at a
+    line's boundary doesn't get mistaken for a separate moment)."""
+    from pydub.silence import detect_nonsilent
+
+    audio = AudioSegment.from_wav(vocals_path)
+    covered = sorted((max(0.0, s["start"] - NONVERBAL_PAD_SEC), s["end"] + NONVERBAL_PAD_SEC)
+                      for s in segments)
+    merged_covered = []
+    for start, end in covered:
+        if merged_covered and start <= merged_covered[-1][1]:
+            merged_covered[-1] = (merged_covered[-1][0], max(merged_covered[-1][1], end))
+        else:
+            merged_covered.append((start, end))
+
+    gaps, cursor = [], 0.0
+    for start, end in merged_covered:
+        if start > cursor:
+            gaps.append((cursor, start))
+        cursor = max(cursor, end)
+    if cursor < total_duration:
+        gaps.append((cursor, total_duration))
+
+    spans = []
+    for gap_start, gap_end in gaps:
+        if gap_end - gap_start < NONVERBAL_MIN_SEC:
+            continue
+        clip = audio[int(gap_start * 1000):int(gap_end * 1000)]
+        # A threshold relative to this GAP's own loudness, not a fixed dB
+        # level - background music leakage in the isolated vocals track
+        # varies a lot episode to episode; a fixed threshold would either
+        # miss quiet laughs or trigger constantly on loud music bleed.
+        hits = detect_nonsilent(clip, min_silence_len=120, silence_thresh=clip.dBFS - 16)
+        for h_start, h_end in hits:
+            dur = (h_end - h_start) / 1000.0
+            if dur < NONVERBAL_MIN_SEC or dur > NONVERBAL_MAX_SEC:
+                continue  # too short to matter, or long enough it's more likely a missed dialogue line
+            spans.append((gap_start + h_start / 1000.0, gap_start + h_end / 1000.0))
+    return spans
+
+
+def splice_nonverbal_gaps(buffer: np.ndarray, sample_rate: int, vocals_path: str,
+                           segments: list, total_duration: float) -> np.ndarray:
+    """Carries over short bursts of untranslated vocal activity (laughs,
+    gasps, sighs) from the original vocals track verbatim, instead of
+    leaving them silent just because no subtitle line existed there for
+    Piper/Kokoro to read. Trade-off worth knowing: the spliced audio is
+    in that character's ORIGINAL voice-actor's timbre, not their English
+    dub voice - a laugh sounding like a different voice for a second is
+    far less jarring than no laugh at all, but it isn't a perfectly
+    seamless match either."""
+    try:
+        spans = find_nonverbal_gaps(vocals_path, segments, total_duration)
+    except Exception as e:
+        print(f"[dub] nonverbal-gap detection skipped ({e})")
+        return buffer
+    if not spans:
+        return buffer
+
+    audio = AudioSegment.from_wav(vocals_path)
+    if audio.channels != 1:
+        audio = audio.set_channels(1)
+    if audio.frame_rate != sample_rate:
+        audio = audio.set_frame_rate(sample_rate)
+
+    total_samples = len(buffer)
+    spliced = 0
+    for start_sec, end_sec in spans:
+        clip = audio[int(start_sec * 1000):int(end_sec * 1000)]
+        if len(clip) < 10:
+            continue
+        fade = min(NONVERBAL_FADE_MS, len(clip) // 4)
+        clip = clip.fade_in(fade).fade_out(fade)
+        samples = np.array(clip.get_array_of_samples(), dtype=np.int32)
+        start_sample = int(start_sec * sample_rate)
+        end_sample = min(start_sample + len(samples), total_samples)
+        if start_sample >= total_samples:
+            continue
+        buffer[start_sample:end_sample] += samples[: end_sample - start_sample]
+        spliced += 1
+
+    if spliced:
+        timestamps = ", ".join(f"{s:.1f}s" for s, _ in spans[:15])
+        more = "" if len(spans) <= 15 else f" (+{len(spans) - 15} more)"
+        print(f"[dub] carried over {spliced} untranslated vocal burst(s) (laughs/gasps/sighs) "
+              f"from the original audio - no subtitle line existed for these, so there was "
+              f"nothing for Piper/Kokoro to read. Original-voice timestamps: {timestamps}{more}")
+    return buffer
+
+
 def build_vocal_track(segments: list, work_dir: Path, total_duration: float,
-                       max_workers: int = None, heartbeat_root=None, episode_label: str = None) -> Path:
+                       max_workers: int = None, heartbeat_root=None, episode_label: str = None,
+                       vocals_path: str = None) -> Path:
     """Builds the full-length vocal track by synthesizing every line in
     parallel across a thread pool, then adding each finished clip's
     samples into one big numpy buffer at the right offset. Threading (not
@@ -459,7 +574,7 @@ def build_vocal_track(segments: list, work_dir: Path, total_duration: float,
             voice_cfg = resolve_voice(seg.get("speaker", "").strip())
             tone = classify_tone(seg["final_text"], seg.get("inner_thought", False))
             synth_line(seg["final_text"], raw, voice_cfg, tone, target_sec)
-            volume_db = tone["volume_db"]
+            volume_db = tone["volume_db"] + ENGINE_GAIN_DB.get(voice_cfg.get("engine", "piper"), 0.0)
             if i in overlapping_indices:
                 # Ducking a bit keeps two simultaneous voices from clipping
                 # and softens the harshness some, though it stays two
@@ -538,6 +653,9 @@ def build_vocal_track(segments: list, work_dir: Path, total_duration: float,
         sample_rate = 22050
         buffer = np.zeros(int(total_duration * sample_rate), dtype=np.int32)
 
+    if vocals_path:
+        buffer = splice_nonverbal_gaps(buffer, sample_rate, vocals_path, segments, total_duration)
+
     # Clip back to valid 16-bit range in case any overlapping lines summed past it.
     buffer = np.clip(buffer, -32768, 32767).astype(np.int16)
     track = AudioSegment(
@@ -608,30 +726,6 @@ def hw_video_encode_args(encoder: str, quality: int = 20) -> list:
         return ["-c:v", "h264_amf", "-quality", "quality", "-rc", "cqp",
                 "-qp_i", str(quality), "-qp_p", str(quality), "-pix_fmt", "yuv420p"]
     return ["-c:v", "libx264", "-preset", "fast", "-crf", str(quality), "-pix_fmt", "yuv420p"]
-
-
-def sign_time_windows(signs_path: str, pad_sec: float = 0.15, merge_gap_sec: float = 0.5) -> list:
-    """Reads the sign-only .ass file's OWN event timestamps and returns
-    merged (start_sec, end_sec) windows covering everywhere sign text
-    actually appears on screen. Currently unused by mux() - kept for a
-    possible future segment-encode-and-concat approach (only re-encoding
-    the sign windows and stream-copying the rest, then concatenating).
-    That's a bigger restructure than a quick filter option: ffmpeg's
-    'subtitles' filter has no per-window enable support (see mux()'s
-    comment), so getting an actual speed win out of this requires
-    splitting the video into segments rather than one filtered pass."""
-    import pysubs2
-    subs = pysubs2.load(signs_path)
-    raw = sorted((max(0.0, e.start / 1000 - pad_sec), e.end / 1000 + pad_sec) for e in subs)
-    if not raw:
-        return []
-    merged = [list(raw[0])]
-    for start, end in raw[1:]:
-        if start <= merged[-1][1] + merge_gap_sec:
-            merged[-1][1] = max(merged[-1][1], end)
-        else:
-            merged.append([start, end])
-    return [(s, e) for s, e in merged]
 
 
 def mux(video_path: str, audio_path: Path, out_path: str, signs_path: str = None,
@@ -716,8 +810,22 @@ def run(translated_manifest_path: str, out_video: str, heartbeat_root=None, epis
     work_dir.mkdir(exist_ok=True)
 
     validate_voices(data["segments"])
+
+    # Visibility: dub_agent.py's own progress output never says which
+    # engine a line used, so a Kokoro test run and a Piper-only run look
+    # identical in the console. This one line settles that question
+    # up front instead of leaving you to guess from a finished video.
+    speakers_used = sorted({seg.get("speaker", "").strip() for seg in data["segments"]})
+    kokoro_speakers = [s for s in speakers_used if resolve_voice(s).get("engine") == "kokoro"]
+    if kokoro_speakers:
+        print(f"[dub] using Kokoro for: {', '.join(kokoro_speakers)} "
+              f"({len(speakers_used) - len(kokoro_speakers)} other speaker(s) on Piper)")
+    else:
+        print(f"[dub] all {len(speakers_used)} speaker(s) on Piper - no one is assigned to Kokoro")
+
     track = build_vocal_track(data["segments"], work_dir, data["duration_sec"],
-                               heartbeat_root=heartbeat_root, episode_label=episode_label)
+                               heartbeat_root=heartbeat_root, episode_label=episode_label,
+                               vocals_path=data.get("vocals_path"))
     final_mix = mix_with_instrumental(track, data["instrumental_path"], work_dir)
     mux(data["video_path"], final_mix, out_video, data.get("signs_path"), data.get("subtitle_path"))
 

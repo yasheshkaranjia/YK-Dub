@@ -4,8 +4,11 @@ every video in a folder - one episode at a time, which is kinder to a
 low-end laptop than trying to run several in parallel. Queue a whole
 season overnight and check results in the morning.
 
-Resume-safe: an episode whose .dubbed.mp4 already exists is skipped, and
-one episode failing (including timing out - see the per-step timeouts in
+Resume-safe at two levels: an episode whose .dubbed.mp4 already exists is
+skipped entirely, and one whose manifest.json/translated.json already
+exist (extraction/script-reading finished on an earlier run) picks up
+from dub_agent.py instead of redoing Demucs. One episode failing
+(including timing out - see the per-step timeouts in
 extract_agent.py/dub_agent.py) logs it and moves on to the next episode
 rather than taking the whole batch down. Pair with watchdog.py for
 unattended overnight runs - see that file's docstring.
@@ -26,6 +29,8 @@ def process_episode(video_path: str, work_root: str) -> None:
     work_dir = Path(work_root) / stem
     out_video = work_dir / f"{stem}.dubbed.mp4"
     failed_marker = work_dir / f"{stem}.FAILED"
+    manifest_path = work_dir / f"{stem}.manifest.json"
+    translated_path = Path(str(manifest_path).replace(".manifest.json", ".translated.json"))
 
     # Resume-safe: an overnight batch that gets killed partway through
     # (by watchdog.py, a crash, a closed laptop lid) shouldn't have to
@@ -39,14 +44,23 @@ def process_episode(video_path: str, work_root: str) -> None:
         return
 
     print(f"\n=== {stem} ===")
-    heartbeat.touch(work_root, stem, "extract")
 
-    extract_agent.run(video_path, str(work_dir))
-    manifest_path = work_dir / f"{stem}.manifest.json"
+    # Resume-safe at the STAGE level too, not just per-episode - an episode
+    # that already has its manifest/translated JSON on disk (extraction and
+    # script-reading finished on a previous run, just never got to dub/verify)
+    # shouldn't redo a 20-30 minute Demucs pass just to reach the step that
+    # actually still needs doing.
+    if manifest_path.exists():
+        print(f"[orchestrator] {stem}: found existing {manifest_path.name} - skipping extraction")
+    else:
+        heartbeat.touch(work_root, stem, "extract")
+        extract_agent.run(video_path, str(work_dir))
 
-    heartbeat.touch(work_root, stem, "script")
-    script_agent.run(str(manifest_path))
-    translated_path = Path(str(manifest_path).replace(".manifest.json", ".translated.json"))
+    if translated_path.exists():
+        print(f"[orchestrator] {stem}: found existing {translated_path.name} - skipping script step")
+    else:
+        heartbeat.touch(work_root, stem, "script")
+        script_agent.run(str(manifest_path))
 
     heartbeat.touch(work_root, stem, "dub")
     dub_agent.run(str(translated_path), str(out_video), heartbeat_root=work_root, episode_label=stem)
