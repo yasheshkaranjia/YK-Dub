@@ -75,23 +75,46 @@ def kokoro_engine_config() -> dict:
     return voices.get("_kokoro", {})
 
 
+def voxcpm_engine_config() -> dict:
+    """Shared VoxCPM2 CLI/model paths, read once from voices.json's
+    '_voxcpm' entry: {"cli": ".../voxcpm2-cli.exe", "base_lm": "...gguf",
+    "acoustic": "...gguf"}. Every VoxCPM2-voiced character shares these
+    same files; only the per-character 'reference_clip' (a short wav of
+    that character's original voice, cloned from) differs."""
+    if not VOICES_FILE.exists():
+        return {}
+    voices = json.loads(VOICES_FILE.read_text(encoding="utf-8"))
+    return voices.get("_voxcpm", {})
+
+
 def validate_voices(segments: list) -> None:
     """Checks every voice actually needed for this episode is actually
     usable BEFORE synthesis starts - a missing file used to only show up
     as one silent-skip warning per affected line, deep into a run that
-    could take 20+ minutes either way. Covers both engines: Piper's
-    per-voice .onnx/.onnx.json files, and Kokoro's shared model+voices
-    file (checked once, if any character uses it)."""
+    could take 20+ minutes either way. Covers all three engines: Piper's
+    per-voice .onnx/.onnx.json files, Kokoro's shared model+voices file,
+    and VoxCPM2's shared CLI/model files plus each character's own
+    reference clip (checked once each, if any character uses them)."""
     speakers_used = {seg.get("speaker", "").strip() for seg in segments}
-    checked_models, missing, needs_kokoro = set(), [], False
+    checked_models, missing, needs_kokoro, needs_voxcpm = set(), [], False, False
 
     for speaker in speakers_used:
         cfg = resolve_voice(speaker)
-        if cfg.get("engine") == "kokoro":
+        engine = cfg.get("engine")
+        if engine == "kokoro":
             needs_kokoro = True
             if not cfg.get("voice"):
                 missing.append(f"  speaker '{speaker}' is set to the kokoro engine but has no "
                                f"'voice' id in its voices.json entry")
+            continue
+        if engine == "voxcpm":
+            needs_voxcpm = True
+            ref = cfg.get("reference_clip")
+            if not ref:
+                missing.append(f"  speaker '{speaker}' is set to the voxcpm engine but has no "
+                               f"'reference_clip' path in its voices.json entry")
+            elif not Path(ref).exists():
+                missing.append(f"  speaker '{speaker}'s voxcpm reference_clip is missing: {ref}")
             continue
         model, config = cfg.get("model", PIPER_MODEL), cfg.get("config", PIPER_CONFIG)
         if model in checked_models:
@@ -113,6 +136,15 @@ def validate_voices(segments: list) -> None:
             if not path_str or not Path(path_str).exists():
                 missing.append(f"  {label} missing/not set: "
                                 f"{path_str or '(no _kokoro entry in voices.json)'}")
+
+    if needs_voxcpm:
+        vcfg = voxcpm_engine_config()
+        for key, label in [("cli", "VoxCPM2 CLI binary"), ("base_lm", "VoxCPM2 BaseLM .gguf"),
+                            ("acoustic", "VoxCPM2 Acoustic .gguf")]:
+            path_str = vcfg.get(key)
+            if not path_str or not Path(path_str).exists():
+                missing.append(f"  {label} missing/not set: "
+                                f"{path_str or '(no _voxcpm entry in voices.json)'}")
 
     if missing:
         print("[dub] WARNING - some voice setup referenced in voice_map.json/"
@@ -350,6 +382,28 @@ def synth_segment_kokoro(text: str, out_wav: str, voice_cfg: dict, speed: float 
     write_wav_from_float_samples(samples, sample_rate, out_wav)
 
 
+VOXCPM_TIMEOUT_SEC = 180  # generous - each call is a full model forward pass, not a lightweight CLI like Piper
+
+
+def synth_segment_voxcpm(text: str, out_wav: str, voice_cfg: dict) -> None:
+    """Runs one line through voxcpm2-cli, cloning the given character's
+    reference_clip voice. Deliberately has NO pace/speed argument - unlike
+    Piper (--length-scale) and Kokoro (speed=), voxcpm2-cli's flag set
+    doesn't expose a documented pace control, and guessing at an
+    unverified flag name is exactly the kind of thing that wasted hours
+    of your time earlier in this project's research phase. Instead, this
+    always synthesizes at VoxCPM2's own natural pace and leaves 100% of
+    the duration-fitting to stretch_to_duration()'s ffmpeg atempo step
+    (the same safety net every engine already falls back on for
+    badly-mismatched lines) - meaning VoxCPM2 lines may lean on that
+    correction more heavily than Piper/Kokoro's two-pass approach does."""
+    text = normalize_shout_caps(clean_honorifics(clean_stutter_text(text)))
+    vcfg = voxcpm_engine_config()
+    cmd = [vcfg["cli"], "-t", text, "-o", out_wav, "-r", voice_cfg["reference_clip"],
+           vcfg["base_lm"], vcfg["acoustic"]]
+    subprocess.run(cmd, capture_output=True, text=True, check=True, timeout=VOXCPM_TIMEOUT_SEC)
+
+
 def synth_line(text: str, raw_path: Path, voice_cfg: dict, tone: dict, target_sec: float) -> None:
     """Synthesizes one line with whichever engine this speaker is assigned
     (Piper or Kokoro), then - if the natural result lands far outside the
@@ -359,6 +413,13 @@ def synth_line(text: str, raw_path: Path, voice_cfg: dict, tone: dict, target_se
     differs (Piper: --length-scale, Kokoro: speed - and they run in
     opposite directions, see classify_tone's kokoro_speed comment)."""
     engine = voice_cfg.get("engine", "piper")
+
+    if engine == "voxcpm":
+        # No pace knob to adjust here (see synth_segment_voxcpm's docstring) -
+        # one synthesis pass, then the same atempo correction every engine
+        # falls back on for the remaining gap.
+        synth_segment_voxcpm(text, str(raw_path), voice_cfg)
+        return
 
     if engine == "kokoro":
         pace = tone["kokoro_speed"]
