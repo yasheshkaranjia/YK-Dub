@@ -132,6 +132,27 @@ from `voices.json`, interactively. Saves to `voice_map.json`, which
 own subfolder into one flat folder, once a whole season is done, so you
 can copy the whole thing to a phone or USB drive in one go.
 
+**check_translation.py** prints each dialogue line's timing, speaker,
+and final text from a `.translated.json` — a quick way to catch a
+speaker name that didn't get picked up, or a sign line that slipped
+through as dialogue, before committing to a full dub run:
+```
+python check_translation.py "work/<name>/<name>.translated.json" [--speaker NAME]
+```
+
+**trim_translated.py** cuts a `.translated.json` (and its referenced
+audio) down to just the first N seconds, so you can dub and listen to a
+short test clip of a new voice/tone setting instead of waiting for a
+full 20+ minute episode run.
+
+**orchestrator.py** + **watchdog.py** — `orchestrator.py` runs the full
+pipeline non-interactively over one video or a whole folder, one
+episode at a time, and is resume-safe at both the episode and stage
+level (see its own docstring). `watchdog.py` relaunches it after a
+crash for unattended overnight batches — `run.py` is the interactive
+entry point most people want; reach for these two only for scripted or
+overnight runs.
+
 ---
 
 ## 1. Install (one-time)
@@ -390,18 +411,6 @@ itself is bad — re-download rather than debugging the pipeline.
   folder — including large `.dubbed.mp4` files — will get swept into
   `git add .`. This repo's `.gitignore` excludes `work/`, `final/`,
   `*.mp4`, and `*.mkv` to cover this.
-
----
-
-## 7. Optional: run on Google Colab (free GPU)
-
-`YK_Dub_Colab.ipynb` runs the same pipeline with a free GPU, which
-mainly speeds up the Demucs step. Upload it to
-colab.research.google.com, set Runtime, Change runtime type, GPU, and
-follow the cells in order — videos and voice files need to live on
-Google Drive first, since Colab has no persistent local disk. Piper
-synthesis itself won't get much faster there — it's already
-CPU-optimized.
 
 ---
 
