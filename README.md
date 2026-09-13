@@ -237,6 +237,26 @@ opt-in upgrade for a few characters rather than a blanket replacement.
    `voice_map.json` over on the first try. Listen to that one character's
    lines before deciding whether to convert more.
 
+   `voices.json`'s British Kokoro voices (`kokoro_bf_emma`,
+   `kokoro_bf_isabella`, `kokoro_bm_george`, `kokoro_bm_fable`) are set to
+   `"lang": "en-gb"` — an earlier version of this file had them on
+   `"en-us"` by mistake, which mis-phonemized every line read by a GB
+   voice. If you add more GB voices by hand, set `lang` to match.
+
+   **On pacing**: Kokoro's own `speed` control is noticeably more
+   sensitive than Piper's `--length-scale` — pushing it hard to force a
+   line into a tight subtitle window makes that one line sound like a
+   different, sped-up/slowed-down version of the character, and a run
+   full of these swinging speed corrections reads as inconsistent rather
+   than natural. `dub_agent.py`'s Kokoro path now only resynthesizes at a
+   different pace for lines with a genuinely large timing mismatch, and
+   even then only nudges speed within a narrow range — the rest of any
+   gap is absorbed by ffmpeg's `atempo` (an even, pitch-preserving
+   stretch) in the final duration-fit step instead. If a character still
+   sounds off, it's worth checking that character isn't stuck with very
+   tight subtitle timing windows across many lines — that's a translation
+   pacing issue, not something a TTS setting alone will fix.
+
 ---
 
 ## 2. Assigning character voices

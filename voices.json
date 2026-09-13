@@ -1,15 +1,5 @@
 
 {
-    "_voxcpm": {
-    "cli": "llama.cpp-omni\\build\\bin\\Release\\voxcpm2-cli.exe",
-    "base_lm": "llama.cpp-omni\\models\\VoxCPM2-BaseLM-Q8_0.gguf",
-    "acoustic": "llama.cpp-omni\\models\\VoxCPM2-Acoustic-F16.gguf"
-  },
-  "voxcpm_test": {
-    "engine": "voxcpm",
-    "reference_clip": "reference_clip.wav",
-    "label": "VoxCPM2 cloned voice - test"
-  },
   "lessac": {
     "model": "en_US-lessac-medium.onnx",
     "config": "en_US-lessac-medium.onnx.json",
@@ -115,25 +105,25 @@
   "kokoro_bf_emma": {
     "engine": "kokoro",
     "voice": "bf_emma",
-    "lang": "en-us",
+    "lang": "en-gb",
     "label": "GB female"
   },
   "kokoro_bf_isabella": {
     "engine": "kokoro",
     "voice": "bf_isabella",
-    "lang": "en-us",
+    "lang": "en-gb",
     "label": "GB female"
   },
   "kokoro_bm_george": {
     "engine": "kokoro",
     "voice": "bm_george",
-    "lang": "en-us",
+    "lang": "en-gb",
     "label": "GB male"
   },
   "kokoro_bm_fable": {
     "engine": "kokoro",
     "voice": "bm_fable",
-    "lang": "en-us",
+    "lang": "en-gb",
     "label": "GB male - narrator-ish tone"
   }
 }
