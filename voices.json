@@ -1,4 +1,3 @@
-
 {
   "lessac": {
     "model": "en_US-lessac-medium.onnx",
@@ -125,5 +124,25 @@
     "voice": "bm_fable",
     "lang": "en-gb",
     "label": "GB male - narrator-ish tone"
+  },
+  "_openrouter": {
+    "api_key_env": "OPENROUTER_API_KEY",
+    "model": "fish-audio/s2.1-pro-free:free",
+    "endpoint": "https://openrouter.ai/api/v1/audio/speech"
+  },
+  "openrouter_test": {
+    "engine": "openrouter",
+    "reference_clip": "reference_clip.wav",
+    "label": "Fish Audio S2.1 cloned voice - test"
+  },
+  "openrouter_male_villain": {
+    "engine": "openrouter",
+    "voice": "afd997bbf2764e798c4e106ba8063a11",
+    "label": "Fish Audio library - deep villain male, generic (not cloned)"
+  },
+  "openrouter_female_commander": {
+    "engine": "openrouter",
+    "voice": "61e30f92a0cd456982c7bd2e4e4f0922",
+    "label": "Fish Audio library - commanding sci-fi female, generic (not cloned)"
   }
 }

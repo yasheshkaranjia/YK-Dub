@@ -8,19 +8,23 @@ a full-length audio track, and muxes it onto the source video. The video
 stream is copied (not re-encoded), so this step stays fast even on
 modest hardware.
 """
+import base64
 import functools
+import io
 import json
 import os
 import re
 import subprocess
 import sys
 import threading
+import time
 import wave
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import numpy as np
+import requests
 from pydub import AudioSegment
 from tqdm import tqdm
 
@@ -28,6 +32,26 @@ import heartbeat
 
 VOICES_FILE = Path(__file__).parent / "voices.json"
 MAP_FILE = Path(__file__).parent / "voice_map.json"
+ENV_FILE = Path(__file__).parent / ".env"
+
+
+def _load_dotenv_manual() -> None:
+    """Minimal .env loader (no extra dependency) - only sets a variable if
+    it isn't already present in the real environment, so an explicitly-set
+    system env var always wins over the .env file."""
+    if not ENV_FILE.exists():
+        return
+    for line in ENV_FILE.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        key, value = key.strip(), value.strip()
+        if key and key not in os.environ:
+            os.environ[key] = value
+
+
+_load_dotenv_manual()
 
 # Fallback if voices.json/voice_map.json don't exist yet - keeps the old
 # single-voice behavior working with no setup required.
@@ -73,6 +97,76 @@ def kokoro_engine_config() -> dict:
         return {}
     voices = json.loads(VOICES_FILE.read_text(encoding="utf-8"))
     return voices.get("_kokoro", {})
+
+
+class _OpenRouterRateLimiter:
+    """Thread-safe sliding-window limiter for OpenRouter's free-tier cap
+    (20 requests/minute, enforced account-wide). synth_line runs across
+    several worker threads at once (see run()'s ThreadPoolExecutor), so
+    this needs a shared lock, not a per-call sleep - a naive per-thread
+    delay would still let N threads all fire within the same second.
+    Kept at 18/min (not 20) for a small safety margin, since OpenRouter's
+    own count includes this process's calls plus any clock drift."""
+
+    def __init__(self, max_per_minute: int = 18):
+        self.max_per_minute = max_per_minute
+        self._lock = threading.Lock()
+        self._call_times = []
+
+    def wait_for_slot(self) -> None:
+        while True:
+            with self._lock:
+                now = time.monotonic()
+                self._call_times = [t for t in self._call_times if now - t < 60.0]
+                if len(self._call_times) < self.max_per_minute:
+                    self._call_times.append(now)
+                    return
+                sleep_for = 60.0 - (now - self._call_times[0]) + 0.1
+            time.sleep(max(sleep_for, 0.1))
+
+
+_openrouter_limiter = _OpenRouterRateLimiter()
+
+
+def check_openrouter_budget(segments: list) -> None:
+    """Warns (doesn't block) if this episode's line count for
+    openrouter-voiced characters could plausibly exceed the account's
+    daily request budget. Not a hard stop, since the exact remaining
+    quota for TODAY isn't knowable from this one lookup - is_free_tier
+    only tells us WHICH cap applies (50/day vs 1000/day), not how much
+    of it's already used elsewhere. Better to warn early than have the
+    run silently degrade into 429s (and burned quota - failed attempts
+    still count) partway through."""
+    speakers_used = {seg.get("speaker", "").strip() for seg in segments}
+    openrouter_line_count = sum(
+        1 for seg in segments
+        if resolve_voice(seg.get("speaker", "").strip()).get("engine") == "openrouter"
+    )
+    if openrouter_line_count == 0:
+        return
+
+    engine_cfg = openrouter_engine_config()
+    api_key = os.environ.get(engine_cfg.get("api_key_env", "OPENROUTER_API_KEY"))
+    daily_cap = None
+    if api_key:
+        try:
+            resp = requests.get(
+                "https://openrouter.ai/api/v1/auth/key",
+                headers={"Authorization": f"Bearer {api_key}"},
+                timeout=15,
+            )
+            if resp.status_code == 200:
+                is_free = resp.json().get("data", {}).get("is_free_tier", True)
+                daily_cap = 50 if is_free else 1000
+        except requests.RequestException:
+            pass  # advisory only - don't block the run over a failed lookup
+
+    print(f"[dub] {openrouter_line_count} line(s) will go through the openrouter engine "
+          f"(rate-limited to 18/min).")
+    if daily_cap is not None:
+        print(f"[dub] Your account's free-tier daily request cap is currently {daily_cap}/day. "
+              f"Failed/rate-limited attempts also count against this - if this episode's "
+              f"openrouter line count is close to or over that, some lines may end up silent.")
 
 
 def validate_voices(segments: list) -> None:
@@ -351,6 +445,91 @@ def synth_segment_kokoro(text: str, out_wav: str, voice_cfg: dict, speed: float 
     write_wav_from_float_samples(samples, sample_rate, out_wav)
 
 
+def openrouter_engine_config() -> dict:
+    """Shared OpenRouter TTS settings (API endpoint, model slug, which env
+    var holds the key), read once from voices.json's '_openrouter' entry -
+    same sharing pattern as kokoro_engine_config()."""
+    if not VOICES_FILE.exists():
+        return {}
+    voices = json.loads(VOICES_FILE.read_text(encoding="utf-8"))
+    return voices.get("_openrouter", {})
+
+
+def synth_segment_openrouter(text: str, out_wav: str, voice_cfg: dict) -> None:
+    """Stateless voice cloning via OpenRouter's /audio/speech endpoint
+    (Fish Audio S2.1 Pro by default) - sends the character's reference
+    clip + this line's text, gets cloned speech back, and writes it to
+    out_wav as a real 16-bit PCM wav (the rest of the pipeline reads raw
+    segment files with the stdlib `wave` module, so an mp3 or headerless
+    pcm response has to be decoded/re-exported here, not just saved as-is).
+    """
+    engine_cfg = openrouter_engine_config()
+    api_key = os.environ.get(engine_cfg.get("api_key_env", "OPENROUTER_API_KEY"))
+    if not api_key:
+        raise RuntimeError(
+            f"{engine_cfg.get('api_key_env', 'OPENROUTER_API_KEY')} is not set - "
+            f"add it to .env or your environment before using the openrouter engine."
+        )
+
+    reference_clip = voice_cfg.get("reference_clip")
+    preset_voice_id = voice_cfg.get("voice")
+
+    text = normalize_shout_caps(clean_honorifics(clean_stutter_text(text)))
+    payload = {
+        "model": engine_cfg.get("model", "fish-audio/s2.1-pro-free:free"),
+        "input": text,
+        "response_format": "mp3",
+    }
+
+    if preset_voice_id:
+        # Preset library voice - no cloning, no reference audio, avoids
+        # the Japanese-accent bleed that stateless cloning from the
+        # show's own (Japanese) vocals introduced.
+        payload["voice"] = preset_voice_id
+    elif reference_clip:
+        reference_clip = Path(reference_clip)
+        if not reference_clip.exists():
+            raise RuntimeError(f"reference_clip not found: {reference_clip}")
+        ref_b64 = base64.b64encode(reference_clip.read_bytes()).decode("ascii")
+        payload["input_references"] = [
+            {"type": "input_audio", "input_audio": {
+                "data": f"data:audio/wav;base64,{ref_b64}"
+            }},
+        ]
+    else:
+        raise RuntimeError(
+            "openrouter voice_cfg needs either a 'voice' (preset library id) "
+            "or a 'reference_clip' (for stateless cloning)"
+        )
+
+    resp = None
+    max_attempts = 3
+    for attempt in range(1, max_attempts + 1):
+        _openrouter_limiter.wait_for_slot()
+        resp = requests.post(
+            engine_cfg.get("endpoint", "https://openrouter.ai/api/v1/audio/speech"),
+            headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+            json=payload,
+            timeout=60,
+        )
+        if resp.status_code != 429:
+            break
+        # 429 counts against the daily quota too - don't hammer it.
+        # Honor Retry-After if OpenRouter sent one; otherwise back off
+        # a bit more each attempt.
+        retry_after = resp.headers.get("Retry-After")
+        wait_sec = float(retry_after) if retry_after else 5.0 * attempt
+        if attempt < max_attempts:
+            time.sleep(wait_sec)
+
+    if resp.status_code != 200:
+        raise RuntimeError(f"OpenRouter TTS request failed ({resp.status_code}): {resp.text[:500]}")
+
+    audio = AudioSegment.from_file(io.BytesIO(resp.content), format="mp3")
+    audio = audio.set_frame_rate(24000).set_channels(1).set_sample_width(2)
+    audio.export(out_wav, format="wav")
+
+
 def synth_line(text: str, raw_path: Path, voice_cfg: dict, tone: dict, target_sec: float) -> None:
     """Synthesizes one line with whichever engine this speaker is assigned
     (Piper or Kokoro), then - if the natural result lands far outside the
@@ -360,6 +539,14 @@ def synth_line(text: str, raw_path: Path, voice_cfg: dict, tone: dict, target_se
     differs (Piper: --length-scale, Kokoro: speed - and they run in
     opposite directions, see classify_tone's kokoro_speed comment)."""
     engine = voice_cfg.get("engine", "piper")
+
+    if engine == "openrouter":
+        # No local "speed"/pace knob to pre-correct with here (unlike
+        # Piper's length_scale or Kokoro's speed) - cloned speech timing
+        # is whatever the remote model produces. Leave the whole gap to
+        # stretch_to_duration()'s ffmpeg atempo step afterward.
+        synth_segment_openrouter(text, str(raw_path), voice_cfg)
+        return
 
     if engine == "kokoro":
         pace = tone["kokoro_speed"]
@@ -820,6 +1007,7 @@ def run(translated_manifest_path: str, out_video: str, heartbeat_root=None, epis
     work_dir.mkdir(exist_ok=True)
 
     validate_voices(data["segments"])
+    check_openrouter_budget(data["segments"])
 
     # Visibility: dub_agent.py's own progress output never says which
     # engine a line used, so a Kokoro test run and a Piper-only run look
