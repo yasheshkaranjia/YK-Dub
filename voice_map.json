@@ -1,7 +1,7 @@
 {
   "_default": "lessac",
   "PL": "kokoro_bm_fable",
-  "LIAM": "openrouter_male_villain",
+  "LIAM": "kokoro_bm_fable",
   "DARCIE": "amy",
   "CLIFF": "northern_english_male",
   "GUIDE": "kokoro_bm_fable",
@@ -14,7 +14,7 @@
   "PIRATE A": "alan",
   "PIRATE B": "alba",
   "PIRATE C": "northern_english_male",
-  "CHRISTIANA": "openrouter_female_commander",
+  "CHRISTIANA": "kokoro_bf_emma",
   "VICEPIRATE": "jenny_dioco",
   "LIEBEFLAGSHIPCAPTAIN": "northern_english_male",
   "BRIAN": "northern_english_male",
