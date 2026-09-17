@@ -55,7 +55,7 @@
     "label": "GB, multi-speaker model"
   },
   "_kokoro": {
-    "model": "kokoro-v1.0.int8.onnx",
+    "model": "piper-voices/kokoro/kokoro-v1.0.int8.onnx",
     "voices": "piper-voices/kokoro/voices-v1.0.bin",
     "lang": "en-us"
   },
