@@ -201,7 +201,7 @@ def validate_voices(segments: list) -> None:
             import kokoro_onnx  # noqa: F401
         except ImportError:
             missing.append("  the 'kokoro-onnx' package isn't installed - "
-                            "run: pip install -r requirements-kokoro.txt")
+                            "run: pip install -r requirements.txt")
         kcfg = kokoro_engine_config()
         for key, label in [("model", "Kokoro model file"), ("voices", "Kokoro voices file")]:
             path_str = kcfg.get(key)
@@ -410,7 +410,7 @@ def get_kokoro_engine():
                 except ImportError as e:
                     raise RuntimeError(
                         "a character is set to the 'kokoro' engine but the kokoro-onnx "
-                        "package isn't installed - run: pip install -r requirements-kokoro.txt"
+                        "package isn't installed - run: pip install -r requirements.txt"
                     ) from e
                 kcfg = kokoro_engine_config()
                 model_path, voices_path = kcfg.get("model"), kcfg.get("voices")

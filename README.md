@@ -226,10 +226,9 @@ Piper voice, just pointed at a `voices.json` alias whose entry has
 on expressive lines, at a real CPU/RAM cost, so treat it as an
 opt-in upgrade for a few characters rather than a blanket replacement.
 
-1. Install the extra dependency (kept out of `requirements.txt` so a
-   base install stays Piper-only unless you want this):
+1. Install the project dependencies, including Kokoro support:
    ```
-   pip install -r requirements-kokoro.txt
+   pip install -r requirements.txt
    ```
 2. Download the two model files by hand (pip can't fetch these) and
    place them in the paths configured in `voices.json`:

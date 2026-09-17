@@ -5,3 +5,7 @@ piper-tts==1.2.0
 tqdm==4.66.4
 demucs==4.0.1
 numpy<2
+
+# Kokoro TTS support
+kokoro-onnx>=0.6.0
+soundfile
