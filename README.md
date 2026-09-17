@@ -1,10 +1,12 @@
 # YK-Dub — local anime dubbing pipeline
 
-Turns a Japanese-audio anime episode into an English-dubbed one, on CPU
-only, using free/open tools — no cloud APIs, no subscriptions. Built
+Turns a Japanese-audio anime episode into an English-dubbed one, running
+locally on modest hardware, using free/open tools — no subscriptions. Built
 around the official English `.ass` subtitles that ship with the
 release (dialogue AND on-screen sign/title text), with a different
-Piper TTS voice assignable per character, the original Japanese audio
+TTS voice assignable per character (Supertonic 3 by default — see Voice
+Setup below — with Kokoro/Piper still available as legacy engines), the
+original Japanese audio
 and English subtitles kept as switchable tracks, and background
 music/SFX preserved underneath the dub.
 
@@ -91,6 +93,22 @@ per episode, one at a time.
      track's audio on every single call, which made a long episode with
      hundreds of lines take dramatically longer than it should (a real,
      confirmed bug — fixed).
+   - The mix itself runs at **48 kHz stereo with the music ducked under
+     speech** — an earlier version mixed at the TTS engine's own 22-24 kHz
+     mono rate, which dragged the music down with it (everything above
+     ~12 kHz discarded, stereo collapsed to mono) and played the BGM at
+     full volume under every line. Now: both tracks upsample to 48 kHz
+     stereo first, the instrumental is sidechain-ducked while a line is
+     spoken and swells back between lines, and the whole mix is
+     loudness-normalized to -16 LUFS / -1.5 dBTP (EBU R128) so every
+     episode comes out at the same consistent volume. The dub's AAC track
+     encodes at 192 kb/s as a result — higher quality than the original
+     Japanese track kept alongside it.
+   - Lines that already fit their subtitle window keep their **natural
+     pace** — a line finishing early is padded with silence instead of
+     being stretched to fill the window (a 2s read in a 4s window used to
+     come out at half speed). Speed-ups for overrunning lines are
+     unchanged.
    - Muxes the result onto the video with:
      - the English dub as the default audio track
      - the original Japanese audio kept as a second, switchable track
@@ -183,6 +201,18 @@ ever needs its no-subtitle fallback.
 then runs fully offline. Budget a few minutes per episode on CPU for
 the actual vocal/music split — this is one of the two slowest steps.
 
+### Piper TTS voices (legacy — model files not installed)
+
+**This setup now defaults to the Supertonic engine** — its model downloads
+automatically and needs no manual voice files (see "Supertonic engine"
+below). Piper still works as an engine, but the `piper-voices/` model
+folder was removed to keep the working directory light. To use a Piper
+voice again, re-download its `.onnx` + `.onnx.json` from
+github.com/rhasspy/piper/blob/master/VOICES.md into the matching path and
+assign it in `voice_map.json` as before.
+
+The instructions below are kept for that case.
+
 ### Piper TTS voices
 
 None of the voice model files are committed to this repo — large
@@ -216,6 +246,14 @@ anything new.
 Multi-speaker models (`vctk`, and partly `aru`/`semaine`) aren't fully
 supported — `dub_agent.py` always uses speaker index 0, so they'll work
 but won't let you pick a specific speaker inside the file.
+
+### Optional: Kokoro TTS engine (more natural than Piper)
+
+> **Legacy:** the Kokoro model files (`kokoro-v1.0.int8.onnx`,
+> `voices-v1.0.bin`) were removed from this setup along with the Piper
+> voices. Kokoro still works if you re-download both files into
+> `piper-voices/kokoro/` per the steps below. For a default setup,
+> Supertonic (previous section) is faster and needs no downloads.
 
 ### Optional: Kokoro TTS engine (more natural than Piper)
 
@@ -278,6 +316,41 @@ opt-in upgrade for a few characters rather than a blanket replacement.
    sounds off, it's worth checking that character isn't stuck with very
    tight subtitle timing windows across many lines — that's a translation
    pacing issue, not something a TTS setting alone will fix.
+
+---
+
+### Optional: Supertonic engine (44.1 kHz, fastest CPU engine)
+
+`dub_agent.py` also supports **Supertonic** (supertone-inc's ONNX TTS, MIT
+license) as a third engine, per character, same as the others. Measured on
+the kind of CPU-only laptop this project targets:
+
+- **44.1 kHz output** - the highest-fidelity of the three local engines
+  (Piper: 22.05 kHz, Kokoro: 24 kHz). The dub now holds its own against the
+  original audio track next to it.
+- **~4x faster than realtime on CPU** - roughly 0.6s per line in practice.
+  A full ~380-line episode synthesizes in about 5 minutes, where Piper takes
+  15-27 minutes and Kokoro is slower still.
+- The trade-off: only **ten built-in voices** (M1-M5 male, F1-F5 female),
+  no per-voice model downloads, no voice cloning.
+
+1. Install: `pip install -r requirements.txt` (adds the `supertonic`
+   package). Its ~400MB model downloads automatically from HuggingFace on
+   first use and is cached after that - no manual model files needed, and
+   no espeak-ng requirement (unlike Kokoro).
+2. `voices.json` ships aliases `supertonic_m1` ... `supertonic_f5` - assign
+   a character to one with `configure_voices.py`, or by hand:
+   ```json
+   "MYSTERY VOICE": { "engine": "supertonic", "voice": "M3", "lang": "en",
+                      "label": "Supertonic built-in male #3" }
+   ```
+3. Optional per-voice quality knob: `"steps": 8` (default; 5 = fastest,
+   12 = highest quality). Synthesis time scales with it.
+
+Because Supertonic outputs at 44.1 kHz natively and each line still goes
+through the same two-pass pacing and tone system as the other engines,
+mixing engines per character (e.g. a Supertonic lead, Kokoro secondaries,
+Piper for one-line background roles) works unchanged.
 
 ---
 
@@ -352,9 +425,11 @@ Copies every `*.dubbed.mp4` into one flat `./collected` folder.
 
 ## 4. Realistic time expectations (measured, not guessed)
 
-Per roughly 22-24 minute episode, on a CPU-only laptop:
-- Demucs extraction: about 20-29 minutes
-- Piper synthesis: about 15-27 minutes (a bit more for episodes with
+Per roughly 22-24 minute episode (measured on an i5-1135G7 + MX350;
+with the CUDA-enabled torch install, Demucs runs on the GPU - about 9x
+faster than CPU, e.g. a 5-minute clip separated in 59s vs 554s):
+- Demucs extraction: about 4-6 minutes on the GPU (20-29 minutes CPU-only)
+- Supertonic synthesis: about 5 minutes (Piper took 15-27; a bit more for episodes with
   several outlier-tempo lines needing the two-pass length-scale
   correction)
 - Final mux: about 1-2 minutes for plain episodes; about 15 minutes for

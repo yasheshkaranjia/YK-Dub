@@ -11,7 +11,11 @@ import sys
 from pathlib import Path
 
 DEMUCS_MODEL = "htdemucs"  # good quality, CPU-only capable (just slower)
-DEMUCS_GPU_SEGMENT_SEC = "8"  # keeps peak VRAM well under 2GB - see demucs_device_args()
+# htdemucs was trained on 7.8s segments - anything longer is a FATAL error
+# ("Cannot use a Transformer model with a longer segment than it was
+# trained for"), which used to silently kick every GPU run back to CPU.
+# --segment only accepts integers, so 7 is the closest safe value.
+DEMUCS_GPU_SEGMENT_SEC = "7"  # keeps peak VRAM well under 2GB
 
 
 def demucs_device_args() -> list:

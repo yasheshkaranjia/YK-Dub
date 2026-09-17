@@ -8,11 +8,6 @@ __pycache__/
 *.ass
 *.onnx
 *.onnx.json
-piper-voices/*
-!piper-voices/
-!piper-voices/kokoro/
-piper-voices/kokoro/*
-!piper-voices/kokoro/voices-v1.0.bin
 work/
 .env
 

@@ -173,11 +173,14 @@ def validate_voices(segments: list) -> None:
     """Checks every voice actually needed for this episode is actually
     usable BEFORE synthesis starts - a missing file used to only show up
     as one silent-skip warning per affected line, deep into a run that
-    could take 20+ minutes either way. Covers both engines: Piper's
-    per-voice .onnx/.onnx.json files and Kokoro's shared model+voices
-    file (checked once each, if any character uses them)."""
+    could take 20+ minutes either way. Covers all three local engines:
+    Piper's per-voice .onnx/.onnx.json files, Kokoro's shared model+voices
+    file, and Supertonic's package + built-in voice ids (checked once
+    each, if any character uses them)."""
     speakers_used = {seg.get("speaker", "").strip() for seg in segments}
-    checked_models, missing, needs_kokoro = set(), [], False
+    checked_models, missing = set(), []
+    needs_kokoro = needs_supertonic = False
+    supertonic_bad_voices = set()
 
     for speaker in speakers_used:
         cfg = resolve_voice(speaker)
@@ -187,6 +190,11 @@ def validate_voices(segments: list) -> None:
             if not cfg.get("voice"):
                 missing.append(f"  speaker '{speaker}' is set to the kokoro engine but has no "
                                f"'voice' id in its voices.json entry")
+            continue
+        if engine == "supertonic":
+            needs_supertonic = True
+            if cfg.get("voice") not in SUPERSONIC_VOICES:
+                supertonic_bad_voices.add(cfg.get("voice") or "(none set)")
             continue
         model, config = cfg.get("model", PIPER_MODEL), cfg.get("config", PIPER_CONFIG)
         if model in checked_models:
@@ -208,6 +216,16 @@ def validate_voices(segments: list) -> None:
             if not path_str or not Path(path_str).exists():
                 missing.append(f"  {label} missing/not set: "
                                 f"{path_str or '(no _kokoro entry in voices.json)'}")
+
+    if needs_supertonic:
+        try:
+            import supertonic  # noqa: F401
+        except ImportError:
+            missing.append("  the 'supertonic' package isn't installed - "
+                            "run: pip install -r requirements.txt")
+        for v in sorted(supertonic_bad_voices):
+            missing.append(f"  '{v}' isn't one of Supertonic's built-in voice ids "
+                           f"(expected one of: {', '.join(sorted(SUPERSONIC_VOICES))})")
 
     if missing:
         print("[dub] WARNING - some voice setup referenced in voice_map.json/"
@@ -264,7 +282,9 @@ DEFAULT_SENTENCE_SILENCE = 0.2
 # and leaves each line's own natural dynamic variation untouched. Tune by
 # ear: dub a short test clip (see trim_translated.py) with a Kokoro
 # character next to a Piper one and adjust until they sit level.
-ENGINE_GAIN_DB = {"kokoro": 5.0}
+# Supertonic's offset was measured the same way (integrated LUFS of a
+# synthesized line vs a Kokoro line from the same episode).
+ENGINE_GAIN_DB = {"kokoro": 5.0, "supertonic": 6.0}
 
 
 def normalize_shout_caps(text: str) -> str:
@@ -445,6 +465,59 @@ def synth_segment_kokoro(text: str, out_wav: str, voice_cfg: dict, speed: float 
     write_wav_from_float_samples(samples, sample_rate, out_wav)
 
 
+# Built-in Supertonic voice ids - the model ships exactly these ten.
+SUPERSONIC_VOICES = {"M1", "M2", "M3", "M4", "M5", "F1", "F2", "F3", "F4", "F5"}
+# Supertonic's fixed output rate - it has no sample-rate parameter; this was
+# verified by synthesizing a line, saving it with the package's own
+# save_audio(), and reading the wav header back.
+SUPERSONIC_SR = 44100
+
+_supertonic_engine = None  # loaded once per run, not once per line
+_supertonic_engine_lock = threading.Lock()
+
+
+def get_supertonic_engine():
+    """Lazily loads the Supertonic TTS model ONCE for the whole run - same
+    pattern as get_kokoro_engine(). The model itself (~400MB) is downloaded
+    automatically by huggingface-hub on the very first use ever and cached
+    after that; this call is cheap once the cache exists (~1s load)."""
+    global _supertonic_engine
+    if _supertonic_engine is None:
+        with _supertonic_engine_lock:
+            if _supertonic_engine is None:  # re-check: another thread may have just finished loading
+                try:
+                    from supertonic import TTS
+                except ImportError as e:
+                    raise RuntimeError(
+                        "a character is set to the 'supertonic' engine but the "
+                        "'supertonic' package isn't installed - run: pip install -r requirements.txt"
+                    ) from e
+                _supertonic_engine = TTS()
+    return _supertonic_engine
+
+
+def synth_segment_supertonic(text: str, out_wav: str, voice_cfg: dict, speed: float = 1.0) -> None:
+    """Synthesizes one line with Supertonic (supertone-inc's ONNX TTS) and
+    writes it as a 16-bit PCM mono wav, like every other engine here. Its
+    44.1 kHz output is the highest-fidelity of the three local engines
+    (Piper: 22.05 kHz, Kokoro: 24 kHz), and on a CPU-only laptop it is by
+    far the fastest - roughly 4x realtime on the hardware this pipeline
+    targets, where Kokoro is slower than realtime. The trade-off: unlike
+    Piper/Kokoro there are only ten built-in voices (M1-M5, F1-F5), no
+    per-voice model downloads to mix and match."""
+    text = normalize_shout_caps(clean_honorifics(clean_stutter_text(text)))
+    engine = get_supertonic_engine()
+    steps = int(voice_cfg.get("steps", 8))  # 5 (fastest) - 12 (highest quality)
+    audio, _duration = engine.synthesize(
+        text,
+        voice_style=engine.get_voice_style(voice_cfg["voice"]),
+        total_steps=steps,
+        speed=speed,
+        lang=voice_cfg.get("lang") or "en",
+    )
+    write_wav_from_float_samples(np.ravel(audio), SUPERSONIC_SR, out_wav)
+
+
 def openrouter_engine_config() -> dict:
     """Shared OpenRouter TTS settings (API endpoint, model slug, which env
     var holds the key), read once from voices.json's '_openrouter' entry -
@@ -548,6 +621,21 @@ def synth_line(text: str, raw_path: Path, voice_cfg: dict, tone: dict, target_se
         synth_segment_openrouter(text, str(raw_path), voice_cfg)
         return
 
+    if engine == "supertonic":
+        # Same narrow-nudge policy as Kokoro - Supertonic's speed control
+        # also audibly changes voice character at wide swings, so only
+        # genuinely far-off lines get a pace correction at synthesis time
+        # and the rest of any gap goes to stretch_to_duration()'s atempo.
+        pace = tone["kokoro_speed"]
+        synth_segment_supertonic(text, str(raw_path), voice_cfg, speed=pace)
+        with wave.open(str(raw_path), "rb") as w:
+            natural_sec = w.getnframes() / w.getframerate()
+        tempo_needed = natural_sec / target_sec
+        if tempo_needed < 0.6 or tempo_needed > 1.7:
+            pace = max(0.85, min(1.2, pace * tempo_needed))
+            synth_segment_supertonic(text, str(raw_path), voice_cfg, speed=pace)
+        return
+
     if engine == "kokoro":
         pace = tone["kokoro_speed"]
         synth_segment_kokoro(text, str(raw_path), voice_cfg, speed=pace)
@@ -602,12 +690,30 @@ def stretch_to_duration(in_wav: str, out_wav: str, target_sec: float, volume_db:
     if current <= 0:
         Path(in_wav).rename(out_wav)
         return
-    tempo = max(0.5, min(2.0, current / target_sec))  # ffmpeg atempo's safe range
-    filters = [f"atempo={tempo}"]
+    tempo = current / target_sec
+    # A line whose natural read is much SHORTER than its subtitle window
+    # used to be stretched out to fill the window exactly - a 2-second line
+    # in a 4-second gap came out dragged to half speed, which reads as
+    # drowsy/robotic. Speech that finishes early is normal (people pause);
+    # keep its natural pace and let the rest of the window be silence.
+    # Speeding UP is still always applied, since an overrun would collide
+    # with the next line's audio.
+    MIN_TEMPO = 0.85  # don't slow below ~0.85x - deeper slowdowns sound stretched
+    if tempo < MIN_TEMPO:
+        tempo = 1.0
+    tempo = max(0.5, min(2.0, tempo))  # ffmpeg atempo's safe range
+    filters = []
+    if abs(tempo - 1.0) > 0.01:
+        filters.append(f"atempo={tempo}")
     if abs(volume_db) > 0.01:
         # A shouted or inner-thought line's volume trim, applied in the same
         # ffmpeg call as the tempo fit rather than a second subprocess call.
         filters.append(f"volume={volume_db}dB")
+    if not filters:
+        # Nothing to change - a plain copy beats a pointless re-encode of
+        # the wav through ffmpeg (and the resampling it would apply).
+        Path(in_wav).replace(out_wav)
+        return
     subprocess.run(
         ["ffmpeg", "-y", "-i", in_wav, "-filter:a", ",".join(filters), out_wav],
         check=True, capture_output=True,
@@ -863,11 +969,51 @@ def build_vocal_track(segments: list, work_dir: Path, total_duration: float,
     return out_path
 
 
+MIX_SAMPLE_RATE = 48000  # full-quality mix rate - see mix_with_instrumental()
+
+
 def mix_with_instrumental(vocals_path: Path, instrumental_path: str, work_dir: Path) -> Path:
+    """Mixes the dub vocals under the music/SFX track, at full quality.
+
+    Three things here used to cost the dub a lot of audible quality, all
+    fixed together:
+
+    1. The old `amix` ran at the vocal track's own sample rate (22-24 kHz,
+       whatever the TTS engine natively outputs) - which DRAGGED THE MUSIC
+       down to that rate too, discarding everything above ~12 kHz from the
+       instrumental and collapsing it to mono. Everything now upmixes to
+       48 kHz stereo first, so the music keeps its full fidelity and the
+       final AAC track encodes at 48 kHz stereo like the original audio
+       track next to it in the same file.
+
+    2. Music played at full volume under every spoken line - TTS under
+       loud BGM reads as muddy/lost. The instrumental is now DUCKED while
+       the vocal track has speech in it (sidechain compression keyed off
+       the vocals), and releases back up between lines.
+
+    3. amix also halves both inputs (its default normalization), so the
+       mix came out quiet and inconsistent between episodes. normalize=0
+       plus a final EBU R128 loudness pass (loudnorm) gives every episode
+       the same consistent, healthy loudness instead."""
     out_path = work_dir / "final_mix.wav"
+    filter_complex = (
+        f"[0:a]aresample={MIX_SAMPLE_RATE},aformat=channel_layouts=stereo[voc];"
+        f"[1:a]aresample={MIX_SAMPLE_RATE},aformat=channel_layouts=stereo[inst];"
+        "[voc]asplit=2[voc_mix][voc_key];"
+        # Duck the music under speech: threshold ~-26 dBFS so normal TTS
+        # levels trigger it, fairly quick attack so the dip lands with the
+        # line, ~350 ms release so the music swells back between lines.
+        "[inst][voc_key]sidechaincompress=threshold=0.05:ratio=6:attack=25:"
+        "release=350:makeup=1[bg];"
+        "[voc_mix][bg]amix=inputs=2:duration=longest:dropout_transition=0:"
+        "normalize=0,loudnorm=I=-16:TP=-1.5:LRA=11,"
+        # loudnorm works internally at 192 kHz and outputs that rate unless
+        # it's resampled back down explicitly.
+        f"aresample={MIX_SAMPLE_RATE}[out]"
+    )
     subprocess.run(
         ["ffmpeg", "-y", "-i", str(vocals_path), "-i", instrumental_path,
-         "-filter_complex", "amix=inputs=2:duration=longest:dropout_transition=0",
+         "-filter_complex", filter_complex, "-map", "[out]",
          str(out_path)],
         check=True, capture_output=True,
     )
@@ -939,6 +1085,11 @@ def mux(video_path: str, audio_path: Path, out_path: str, signs_path: str = None
     audio_maps = [
         "-map", "1:a:0", "-map", "0:a:0",
         "-c:a:0", "aac", "-c:a:1", "copy",
+        # The dub mix lands here at 48 kHz stereo (see
+        # mix_with_instrumental) - without an explicit bitrate ffmpeg's
+        # default for aac is low enough to audibly dull it (a 24 kHz mono
+        # mix used to encode at ~71 kb/s).
+        "-b:a:0", "192k",
         "-metadata:s:a:0", "language=eng", "-disposition:a:0", "default",
         "-metadata:s:a:1", "language=jpn", "-disposition:a:1", "0",
     ]
@@ -1014,12 +1165,15 @@ def run(translated_manifest_path: str, out_video: str, heartbeat_root=None, epis
     # identical in the console. This one line settles that question
     # up front instead of leaving you to guess from a finished video.
     speakers_used = sorted({seg.get("speaker", "").strip() for seg in data["segments"]})
-    kokoro_speakers = [s for s in speakers_used if resolve_voice(s).get("engine") == "kokoro"]
-    if kokoro_speakers:
-        print(f"[dub] using Kokoro for: {', '.join(kokoro_speakers)} "
-              f"({len(speakers_used) - len(kokoro_speakers)} other speaker(s) on Piper)")
+    engine_of = {s: resolve_voice(s).get("engine", "piper") for s in speakers_used}
+    non_piper = [s for s in speakers_used if engine_of[s] != "piper"]
+    if non_piper:
+        for s in non_piper:
+            print(f"[dub] {engine_of[s]}: {s}")
+        print(f"[dub] ({len(speakers_used) - len(non_piper)} other speaker(s) on Piper)")
     else:
-        print(f"[dub] all {len(speakers_used)} speaker(s) on Piper - no one is assigned to Kokoro")
+        print(f"[dub] all {len(speakers_used)} speaker(s) on Piper - no one is assigned "
+              f"to Kokoro/Supertonic/OpenRouter")
 
     track = build_vocal_track(data["segments"], work_dir, data["duration_sec"],
                                heartbeat_root=heartbeat_root, episode_label=episode_label,

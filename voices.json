@@ -1,134 +1,74 @@
 {
-  "lessac": {
-    "model": "piper-voices/en/en_US/lessac/medium/en_US-lessac-medium.onnx",
-    "config": "piper-voices/en/en_US/lessac/medium/en_US-lessac-medium.onnx.json",
-    "label": "US, sounds male - current default"
-  },
-  "amy": {
-    "model": "piper-voices/en/en_US/amy/medium/en_US-amy-medium.onnx",
-    "config": "piper-voices/en/en_US/amy/medium/en_US-amy-medium.onnx.json",
-    "label": "US, sounds female"
-  },
-  "ryan": {
-    "model": "piper-voices/en/en_US/ryan/high/en_US-ryan-high.onnx",
-    "config": "piper-voices/en/en_US/ryan/high/en_US-ryan-high.onnx.json",
-    "label": "US, sounds male - deep/narrator, high quality"
-  },
-  "alan": {
-    "model": "piper-voices/en/en_GB/alan/medium/en_GB-alan-medium.onnx",
-    "config": "piper-voices/en/en_GB/alan/medium/en_GB-alan-medium.onnx.json",
-    "label": "GB, sounds male"
-  },
-  "alba": {
-    "model": "piper-voices/en/en_GB/alba/medium/en_GB-alba-medium.onnx",
-    "config": "piper-voices/en/en_GB/alba/medium/en_GB-alba-medium.onnx.json",
-    "label": "GB, sounds female"
-  },
-  "northern_english_male": {
-    "model": "piper-voices/en/en_GB/northern_english_male/medium/en_GB-northern_english_male-medium.onnx",
-    "config": "piper-voices/en/en_GB/northern_english_male/medium/en_GB-northern_english_male-medium.onnx.json",
-    "label": "GB northern accent, sounds male"
-  },
-  "southern_english_female": {
-    "model": "piper-voices/en/en_GB/southern_english_female/low/en_GB-southern_english_female-low.onnx",
-    "config": "piper-voices/en/en_GB/southern_english_female/low/en_GB-southern_english_female-low.onnx.json",
-    "label": "GB southern accent, sounds female (low quality - no medium version exists for this voice)"
-  },
-  "jenny_dioco": {
-    "model": "piper-voices/en/en_GB/jenny_dioco/medium/en_GB-jenny_dioco-medium.onnx",
-    "config": "piper-voices/en/en_GB/jenny_dioco/medium/en_GB-jenny_dioco-medium.onnx.json",
-    "label": "GB, sounds female"
-  },
-  "aru": {
-    "model": "piper-voices/en/en_GB/aru/medium/en_GB-aru-medium.onnx",
-    "config": "piper-voices/en/en_GB/aru/medium/en_GB-aru-medium.onnx.json",
-    "label": "GB, multi-speaker model"
-  },
-  "cori": {
-    "model": "piper-voices/en/en_GB/cori/medium/en_GB-cori-medium.onnx",
-    "config": "piper-voices/en/en_GB/cori/medium/en_GB-cori-medium.onnx.json",
-    "label": "GB, sounds female"
-  },
-  "semaine": {
-    "model": "piper-voices/en/en_GB/semaine/medium/en_GB-semaine-medium.onnx",
-    "config": "piper-voices/en/en_GB/semaine/medium/en_GB-semaine-medium.onnx.json",
-    "label": "GB, multi-speaker model"
-  },
   "_kokoro": {
     "model": "piper-voices/kokoro/kokoro-v1.0.int8.onnx",
     "voices": "piper-voices/kokoro/voices-v1.0.bin",
-    "lang": "en-us"
-  },
-  "kokoro_test": {
-    "engine": "kokoro",
-    "voice": "af_bella",
     "lang": "en-us",
-    "label": "US female - the one you already tested"
-  },
-  "kokoro_af_sarah": {
-    "engine": "kokoro",
-    "voice": "af_sarah",
-    "lang": "en-us",
-    "label": "US female - commonly cited as one of the more natural-sounding presets"
-  },
-  "kokoro_af_nicole": {
-    "engine": "kokoro",
-    "voice": "af_nicole",
-    "lang": "en-us",
-    "label": "US female - softer/breathier tone"
-  },
-  "kokoro_af_kore": {
-    "engine": "kokoro",
-    "voice": "af_kore",
-    "lang": "en-us",
-    "label": "US female - firmer/more assertive tone"
-  },
-  "kokoro_am_michael": {
-    "engine": "kokoro",
-    "voice": "am_michael",
-    "lang": "en-us",
-    "label": "US male"
-  },
-  "kokoro_am_fenrir": {
-    "engine": "kokoro",
-    "voice": "am_fenrir",
-    "lang": "en-us",
-    "label": "US male - deeper/gruffer tone"
-  },
-  "kokoro_am_adam": {
-    "engine": "kokoro",
-    "voice": "am_adam",
-    "lang": "en-us",
-    "label": "US male"
-  },
-  "kokoro_bf_emma": {
-    "engine": "kokoro",
-    "voice": "bf_emma",
-    "lang": "en-gb",
-    "label": "GB female"
-  },
-  "kokoro_bf_isabella": {
-    "engine": "kokoro",
-    "voice": "bf_isabella",
-    "lang": "en-gb",
-    "label": "GB female"
-  },
-  "kokoro_bm_george": {
-    "engine": "kokoro",
-    "voice": "bm_george",
-    "lang": "en-gb",
-    "label": "GB male"
-  },
-  "kokoro_bm_fable": {
-    "engine": "kokoro",
-    "voice": "bm_fable",
-    "lang": "en-gb",
-    "label": "GB male - narrator-ish tone"
+    "_comment": "LEGACY - Kokoro model files were removed from this setup. Re-download per the README's Kokoro section before assigning any kokoro voice."
   },
   "_openrouter": {
     "api_key_env": "OPENROUTER_API_KEY",
     "model": "fish-audio/s2.1-pro-free:free",
     "endpoint": "https://openrouter.ai/api/v1/audio/speech"
+  },
+  "supertonic_m1": {
+    "engine": "supertonic",
+    "voice": "M1",
+    "lang": "en",
+    "label": "Young male lead - LIAM (main character)"
+  },
+  "supertonic_m2": {
+    "engine": "supertonic",
+    "voice": "M2",
+    "lang": "en",
+    "label": "Male authority - captains, kings"
+  },
+  "supertonic_m3": {
+    "engine": "supertonic",
+    "voice": "M3",
+    "lang": "en",
+    "label": "Male crew/soldiers - background military voices"
+  },
+  "supertonic_m4": {
+    "engine": "supertonic",
+    "voice": "M4",
+    "lang": "en",
+    "label": "Middle-aged male - butlers, past-life Liam, civilians"
+  },
+  "supertonic_m5": {
+    "engine": "supertonic",
+    "voice": "M5",
+    "lang": "en",
+    "label": "Deep/sinister male - villains, The Guide, foremen"
+  },
+  "supertonic_f1": {
+    "engine": "supertonic",
+    "voice": "F1",
+    "lang": "en",
+    "label": "Calm female - Amagi (android maid), goddesses"
+  },
+  "supertonic_f2": {
+    "engine": "supertonic",
+    "voice": "F2",
+    "lang": "en",
+    "label": "Firm female - Christiana (knight), detectives"
+  },
+  "supertonic_f3": {
+    "engine": "supertonic",
+    "voice": "F3",
+    "lang": "en",
+    "label": "Energetic female - Nias (mechanic), pirates"
+  },
+  "supertonic_f4": {
+    "engine": "supertonic",
+    "voice": "F4",
+    "lang": "en",
+    "label": "Mature female - Darcy (Liam's mother), Kanami, Iria"
+  },
+  "supertonic_f5": {
+    "engine": "supertonic",
+    "voice": "F5",
+    "lang": "en",
+    "label": "Soft female - Mika, customers, nurses"
   },
   "openrouter_test": {
     "engine": "openrouter",
