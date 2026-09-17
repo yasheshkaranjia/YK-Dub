@@ -1,17 +1,17 @@
 {
   "lessac": {
-    "model": "en_US-lessac-medium.onnx",
-    "config": "en_US-lessac-medium.onnx.json",
+    "model": "piper-voices/en/en_US/lessac/medium/en_US-lessac-medium.onnx",
+    "config": "piper-voices/en/en_US/lessac/medium/en_US-lessac-medium.onnx.json",
     "label": "US, sounds male - current default"
   },
   "amy": {
-    "model": "en_US-amy-medium.onnx",
-    "config": "en_US-amy-medium.onnx.json",
+    "model": "piper-voices/en/en_US/amy/medium/en_US-amy-medium.onnx",
+    "config": "piper-voices/en/en_US/amy/medium/en_US-amy-medium.onnx.json",
     "label": "US, sounds female"
   },
   "ryan": {
-    "model": "en_US-ryan-high.onnx",
-    "config": "en_US-ryan-high.onnx.json",
+    "model": "piper-voices/en/en_US/ryan/high/en_US-ryan-high.onnx",
+    "config": "piper-voices/en/en_US/ryan/high/en_US-ryan-high.onnx.json",
     "label": "US, sounds male - deep/narrator, high quality"
   },
   "alan": {
@@ -56,7 +56,7 @@
   },
   "_kokoro": {
     "model": "kokoro-v1.0.int8.onnx",
-    "voices": "voices-v1.0.bin",
+    "voices": "piper-voices/kokoro/voices-v1.0.bin",
     "lang": "en-us"
   },
   "kokoro_test": {

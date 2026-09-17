@@ -55,8 +55,8 @@ _load_dotenv_manual()
 
 # Fallback if voices.json/voice_map.json don't exist yet - keeps the old
 # single-voice behavior working with no setup required.
-PIPER_MODEL = "en_US-lessac-medium.onnx"
-PIPER_CONFIG = "en_US-lessac-medium.onnx.json"
+PIPER_MODEL = "piper-voices/en/en_US/lessac/medium/en_US-lessac-medium.onnx"
+PIPER_CONFIG = "piper-voices/en/en_US/lessac/medium/en_US-lessac-medium.onnx.json"
 
 
 def load_voice_lookup():

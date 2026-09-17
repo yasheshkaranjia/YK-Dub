@@ -190,7 +190,8 @@ binaries, deliberately kept out by `.gitignore`. On a fresh clone:
 
 **Base voices** — download from the Piper voices page
 (github.com/rhasspy/piper/blob/master/VOICES.md), place both the
-`.onnx` and `.onnx.json` in the repo root:
+`.onnx` and `.onnx.json` in the matching directory under
+`piper-voices/en/en_US/<voice>/<quality>/`:
 - `en_US-lessac-medium` (default voice)
 - `en_US-amy-medium` (a female US voice)
 
@@ -231,7 +232,7 @@ opt-in upgrade for a few characters rather than a blanket replacement.
    pip install -r requirements-kokoro.txt
    ```
 2. Download the two model files by hand (pip can't fetch these) and
-   place them in the repo root:
+   place them in the paths configured in `voices.json`:
    - [`kokoro-v1.0.int8.onnx`](https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.int8.onnx)
      (~88MB) — the int8-quantized version, the right default on an 8GB-RAM
      laptop. If a character voiced with it sounds noticeably worse than
@@ -239,7 +240,8 @@ opt-in upgrade for a few characters rather than a blanket replacement.
      (~169MB) instead — update the `"model"` path in `voices.json`'s
      `_kokoro` entry to match whichever you download.
    - [`voices-v1.0.bin`](https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin)
-     — the shared style-vector file every Kokoro voice reads from.
+     — the shared style-vector file every Kokoro voice reads from; place it at
+     `piper-voices/kokoro/voices-v1.0.bin`.
 3. Kokoro's phonemizer needs `espeak-ng` available at the system level
    (this is a real espeak-ng install, not a pip package):
    - **Windows**: install `espeak-ng-X64.msi` from
