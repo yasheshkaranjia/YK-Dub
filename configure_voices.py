@@ -146,7 +146,13 @@ def run(sub_path: str, vocals_path: str = None) -> None:
     print()
 
     for name, spans in speakers.items():
-        current = voice_map.get(name, f"(default: {voice_map['_default']})")
+        # Case-insensitive match against already-saved assignments - subs
+        # write the same character as "LIAM" in one episode and "Liam" in
+        # the next, and showing the saved choice as "(default)" just
+        # because the case differs invites re-doing (or breaking) it.
+        current = next((v for k, v in voice_map.items()
+                        if k.upper() == name.upper() and not k.startswith("_")),
+                       f"(default: {voice_map['_default']})")
         hint = ""
         if vocals_path:
             label, hz = guess_gender_lean(vocals_path, spans)

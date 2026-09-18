@@ -59,6 +59,15 @@ PIPER_MODEL = "piper-voices/en/en_US/lessac/medium/en_US-lessac-medium.onnx"
 PIPER_CONFIG = "piper-voices/en/en_US/lessac/medium/en_US-lessac-medium.onnx.json"
 
 
+def normalize_speaker(name: str) -> str:
+    """Canonical form of a subtitle actor name for voice-map lookups:
+    casefolded and whitespace-collapsed. The same show's subs wrote actor
+    fields UPPERCASE in some episodes ("LIAM") and mixed-case in others
+    ("Liam"), which silently broke exact-match lookups - see
+    load_voice_lookup()."""
+    return " ".join(name.upper().split())
+
+
 def load_voice_lookup():
     """Returns resolve_fn(speaker_name) -> a voice config dict, e.g.
     {"engine": "piper", "model": ..., "config": ...} or
@@ -75,8 +84,14 @@ def load_voice_lookup():
     alias_voices = {k: v for k, v in voices.items() if not k.startswith("_")}
     default_alias = voice_map.get("_default", next(iter(alias_voices)))
 
+    # Match speaker names case-insensitively - see normalize_speaker().
+    # Normalizing both sides here (instead of rewriting voice_map.json's
+    # existing keys) keeps every already-saved assignment working,
+    # whatever case it was saved under.
+    normalized_map = {normalize_speaker(k): v for k, v in voice_map.items() if not k.startswith("_")}
+
     def resolve(speaker: str) -> dict:
-        alias = voice_map.get(speaker, default_alias)
+        alias = normalized_map.get(normalize_speaker(speaker), default_alias)
         v = alias_voices.get(alias, alias_voices[default_alias])
         cfg = dict(v)
         cfg.setdefault("engine", "piper")  # older voices.json entries have no "engine" key
@@ -86,6 +101,28 @@ def load_voice_lookup():
 
 
 resolve_voice = load_voice_lookup()
+
+
+def unmapped_speaker_line_counts(segments: list) -> dict:
+    """Returns {speaker: line_count} for every speaker whose name has no
+    explicit entry in voice_map.json and is silently riding on the
+    _default voice. This is the exact failure mode that once made whole
+    episodes come out in ONE voice: a fansub group changed its actor-name
+    style between episodes, every lookup missed, and nobody found out
+    until after watching the dub. The matching itself is case-insensitive
+    now, but a genuinely NEW character name (or a renamed one) can still
+    only be caught by surfacing it - so run()'s output always says
+    plainly who is on the default voice, and how many lines."""
+    if not MAP_FILE.exists():
+        return {}
+    voice_map = json.loads(MAP_FILE.read_text(encoding="utf-8"))
+    mapped = {normalize_speaker(k) for k in voice_map if not k.startswith("_")}
+    counts = {}
+    for seg in segments:
+        speaker = (seg.get("speaker") or "").strip()
+        if speaker and normalize_speaker(speaker) not in mapped:
+            counts[speaker] = counts.get(speaker, 0) + 1
+    return counts
 
 
 def kokoro_engine_config() -> dict:
@@ -1195,6 +1232,21 @@ def run(translated_manifest_path: str, out_video: str, heartbeat_root=None, epis
     else:
         print(f"[dub] all {len(speakers_used)} speaker(s) on Piper - no one is assigned "
               f"to Kokoro/Supertonic/OpenRouter")
+
+    # Never let a voice-assignment gap pass silently again: any speaker
+    # without an explicit voice_map.json entry is riding on the _default
+    # voice, and enough of those in one episode reads as "everyone is the
+    # same voice". Say exactly who and how many lines, BEFORE the 20+
+    # minutes of synthesis - not after watching the finished dub.
+    unmapped = unmapped_speaker_line_counts(data["segments"])
+    if unmapped:
+        default_alias = resolve_voice("").get("voice") or resolve_voice("").get("model") or "_default"
+        print(f"[dub] WARNING - these speaker(s) have NO entry in voice_map.json and will all "
+              f"use the default voice ({default_alias}):")
+        for s, n in sorted(unmapped.items(), key=lambda kv: -kv[1]):
+            print(f"[dub]   {s} - {n} line(s)")
+        print(f"[dub] Assign them a real voice (python configure_voices.py) if they shouldn't "
+              f"share it.\n")
 
     track = build_vocal_track(data["segments"], work_dir, data["duration_sec"],
                                heartbeat_root=heartbeat_root, episode_label=episode_label,
