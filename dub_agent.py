@@ -267,6 +267,10 @@ def clean_honorifics(text: str) -> str:
 
 WORD_PATTERN = re.compile(r"[A-Za-z']+")
 ELLIPSIS_PATTERN = re.compile(r"\.\.\.|\u2026")  # literal '...' or a real '…' char
+EXCITED_PHRASE_PATTERN = re.compile(
+    r"\b(happy birthday|congratulations|well done|we did it|that's (?:amazing|wonderful|great))\b",
+    re.IGNORECASE,
+)
 
 # Piper's stock defaults when a voice's own .onnx.json has no opinion.
 DEFAULT_NOISE_SCALE = 0.667
@@ -338,24 +342,30 @@ def classify_tone(raw_text: str, inner_thought: bool = False) -> dict:
     words = WORD_PATTERN.findall(raw_text)
     is_shout = any(len(w) >= 3 and w.isupper() for w in words)
     stripped = raw_text.rstrip()
-    is_exclaim = stripped.endswith("!") and not is_shout
+    # Some subtitle releases punctuate celebratory lines with a plain
+    # period (episode 2's "Happy birthday, Liam." is one real example).
+    # A short, deliberately conservative phrase list catches those without
+    # pretending a text-only rule can infer arbitrary emotional context.
+    is_exclaim = (stripped.endswith("!") or EXCITED_PHRASE_PATTERN.search(stripped)) and not is_shout
     is_question = stripped.endswith("?")
     is_hesitant = bool(ELLIPSIS_PATTERN.search(raw_text)) or stripped.endswith("-")
 
     noise_mult = noise_w_mult = length_mult = 1.0
-    volume_db, sentence_silence, tags = 0.0, DEFAULT_SENTENCE_SILENCE, []
+    volume_db, pitch_semitones, sentence_silence, tags = 0.0, 0.0, DEFAULT_SENTENCE_SILENCE, []
 
     if is_shout:
         noise_mult *= 1.18
         noise_w_mult *= 1.1
         length_mult *= 0.93
         volume_db += 3.0
+        pitch_semitones += 1.5
         sentence_silence = 0.12
         tags.append("shout")
     elif is_exclaim:
         noise_mult *= 1.08
-        length_mult *= 0.97
-        volume_db += 1.5
+        length_mult *= 0.94
+        volume_db += 2.0
+        pitch_semitones += 0.8
         sentence_silence = 0.15
         tags.append("exclaim")
 
@@ -367,6 +377,7 @@ def classify_tone(raw_text: str, inner_thought: bool = False) -> dict:
 
     if is_question:
         length_mult *= 1.02
+        pitch_semitones += 0.35
         tags.append("question")
 
     if inner_thought:
@@ -383,7 +394,8 @@ def classify_tone(raw_text: str, inner_thought: bool = False) -> dict:
         # directly, and clamped to a narrower range since Kokoro's speed
         # control is more sensitive to extreme values than Piper's.
         "kokoro_speed": max(0.7, min(1.4, 1.0 / length_mult)),
-        "volume_db": volume_db, "sentence_silence": sentence_silence, "tags": tags,
+        "volume_db": volume_db, "pitch_semitones": pitch_semitones,
+        "sentence_silence": sentence_silence, "tags": tags,
     }
 
 
@@ -685,7 +697,8 @@ def synth_line(text: str, raw_path: Path, voice_cfg: dict, tone: dict, target_se
                       noise_scale=noise_scale, noise_w=noise_w, sentence_silence=tone["sentence_silence"])
 
 
-def stretch_to_duration(in_wav: str, out_wav: str, target_sec: float, volume_db: float = 0.0) -> None:
+def stretch_to_duration(in_wav: str, out_wav: str, target_sec: float, volume_db: float = 0.0,
+                        pitch_semitones: float = 0.0) -> None:
     current = AudioSegment.from_wav(in_wav).duration_seconds
     if current <= 0:
         Path(in_wav).rename(out_wav)
@@ -705,6 +718,13 @@ def stretch_to_duration(in_wav: str, out_wav: str, target_sec: float, volume_db:
     filters = []
     if abs(tempo - 1.0) > 0.01:
         filters.append(f"atempo={tempo}")
+    if abs(pitch_semitones) > 0.01:
+        # Supertonic/Kokoro expose no emotion control. A small pitch lift,
+        # with formants preserved so the character still sounds like the
+        # same person, makes punctuation-driven excitement perceptible
+        # instead of merely making the line louder.
+        pitch_ratio = 2 ** (pitch_semitones / 12)
+        filters.append(f"rubberband=pitch={pitch_ratio:.6f}:formant=preserved")
     if abs(volume_db) > 0.01:
         # A shouted or inner-thought line's volume trim, applied in the same
         # ffmpeg call as the tempo fit rather than a second subprocess call.
@@ -884,7 +904,8 @@ def build_vocal_track(segments: list, work_dir: Path, total_duration: float,
                 # voices talking at once either way - see
                 # find_overlapping_indices' docstring.
                 volume_db -= 3.0
-            stretch_to_duration(str(raw), str(fitted), target_sec, volume_db=volume_db)
+            stretch_to_duration(str(raw), str(fitted), target_sec, volume_db=volume_db,
+                                pitch_semitones=tone["pitch_semitones"])
             return i, "ok", (fitted, tone["tags"])
         except (subprocess.CalledProcessError, subprocess.TimeoutExpired, RuntimeError) as e:
             return i, str(e), None

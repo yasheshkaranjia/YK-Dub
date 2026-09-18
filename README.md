@@ -63,18 +63,22 @@ per episode, one at a time.
      Title-cased before synthesis so Piper's phonemizer doesn't mistake
      them for acronyms and spell them out letter by letter.
    - **Tone-aware delivery**: every line is read for cheap textual cues —
-     ALL CAPS or `!!!` (shouting), a trailing `!` (excitement), `...` or
+     ALL CAPS or `!!!` (shouting), a trailing `!` or an unambiguously
+     celebratory phrase such as “happy birthday” (excitement), `...` or
      a trailing `-` (hesitation/trailing off), a trailing `?` (a
      question), and whether the line is italicized in the source `.ass`
      (fansub convention for internal monologue). Each cue nudges that
      line's Piper `--noise-scale`/`--noise-w` (vocal variation),
      `--length-scale` (pace), `--sentence-silence` (pause length), and a
-     post-synthesis volume trim — all applied *relative to that specific
-     voice's own tuned defaults* (read from its `.onnx.json`), not one
-     flat setting for every voice and every line. This is a rule-based
-     approximation, not real emotional TTS — Piper has no concept of
-     emotion — but it's enough to stop every line, regardless of context,
-     from being read in an identical flat tone. Tune the multipliers in
+     post-synthesis volume trim. Excited, shouted, and questioning lines
+     also receive a small formant-preserving pitch lift, which gives the
+     text-only Supertonic/Kokoro engines a more perceptible delivery change
+     without changing the character's identity. Piper settings are applied
+     *relative to that specific voice's own tuned defaults* (read from its
+     `.onnx.json`), not one flat setting for every voice and every line.
+     This is a rule-based approximation, not real emotional TTS, but it's
+     enough to stop every line from being read in an identical flat tone.
+     Tune the multipliers in
      `classify_tone()` in `dub_agent.py` to taste; the run prints a
      summary of how many lines got each tag (e.g.
      `tone-adjusted delivery applied - exclaim: 42, hesitant: 11, shout: 3`).
@@ -93,6 +97,14 @@ per episode, one at a time.
      track's audio on every single call, which made a long episode with
      hundreds of lines take dramatically longer than it should (a real,
      confirmed bug — fixed).
+   - **Known separation limitation:** Demucs sometimes puts foley that
+     overlaps dialogue (such as clothing movement) in its vocals stem, so
+     that effect is lost when Japanese speech is removed. Mixing any of the
+     stem back also leaks spatially positioned Japanese speakers, especially
+     in multi-character scenes. The pipeline therefore prioritizes clean
+     English dialogue and does not recover that stem. A future fix needs a
+     stronger dialogue-versus-foley separation model or editable production
+     stems rather than stereo/center filtering.
    - The mix itself runs at **48 kHz stereo with the music ducked under
      speech** — an earlier version mixed at the TTS engine's own 22-24 kHz
      mono rate, which dragged the music down with it (everything above
