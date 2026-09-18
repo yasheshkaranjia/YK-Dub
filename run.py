@@ -201,9 +201,11 @@ def main():
         offer_voice_setup = False
         print(f"\nProcessing {len(pending)} episode(s) non-interactively...")
 
+    succeeded, failed = [], []
     for ep in pending:
         try:
             process_episode(ep, work_root, offer_voice_setup)
+            succeeded.append(ep.stem)
         except Exception as e:
             # One episode's failure (a Piper/Demucs/ffmpeg call finally
             # giving up after its timeout, a corrupt source file, whatever)
@@ -212,8 +214,13 @@ def main():
             # logs it and moves on to the next episode instead.
             print(f"\n[run] {ep.stem} FAILED: {e}")
             print(f"[run] continuing with the remaining episodes...")
+            failed.append(ep.stem)
 
-    print(f"\nAll done. {len(pending)} episode(s) processed -> {work_root.resolve()}")
+    # Report what ACTUALLY happened - counting every queued episode as
+    # "processed" used to mask failures in the final summary.
+    print(f"\nDone: {len(succeeded)} episode(s) dubbed -> {work_root.resolve()}")
+    if failed:
+        print(f"Failed: {len(failed)} - {', '.join(failed)} (re-run to retry them)")
     offer_collect(work_root, interactive=interactive)
 
 

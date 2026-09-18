@@ -27,6 +27,19 @@ from tqdm import tqdm
 
 MODEL_SIZE = "small"  # good accuracy/speed balance on CPU; step up to "medium" if a low-sub-quality fallback run sounds off, or down to "base" if it's painfully slow
 SIGN_STYLE_HINTS = ("sign", "op", "ed", "title", "song", "insert", "note")
+# Short hints like "op"/"ed" are only safe matched against a whole token -
+# substring matching would classify styles/actors like "top", "Hope", or
+# "Edward" as signs and silently drop their spoken lines from the dub.
+# The longer hints are distinctive enough that substring matching is what
+# catches compound fansub style names like "SIGNBLUE" or "EPTITLE".
+SIGN_EXACT_TOKEN_HINTS = ("op", "ed")
+SIGN_SUBSTRING_HINTS = tuple(h for h in SIGN_STYLE_HINTS if h not in SIGN_EXACT_TOKEN_HINTS)
+
+
+def _style_name_matches_hint(text: str) -> bool:
+    tokens = re.findall(r"[a-z]+", text.lower())
+    return (any(h in tokens for h in SIGN_EXACT_TOKEN_HINTS)
+            or any(h in text.lower() for h in SIGN_SUBSTRING_HINTS))
 # \pos() places text at an exact screen coordinate; \an1-\an9 overrides the
 # default bottom-center alignment. Both are the standard fansub convention
 # for "this is an on-screen overlay, not a spoken line" - dialogue almost
@@ -46,7 +59,7 @@ def is_sign_event(event) -> bool:
     # style name alone isn't reliable on its own).
     style = (event.style or "").lower()
     name = (event.name or "").lower()
-    if any(hint in style or hint in name for hint in SIGN_STYLE_HINTS):
+    if _style_name_matches_hint(style) or _style_name_matches_hint(name):
         return True
     return bool(POSITION_TAG.search(event.text))
 
@@ -119,7 +132,10 @@ def run(manifest_path: str) -> dict:
     if manifest.get("subtitle_path"):
         segments, signs = split_subtitles(manifest["subtitle_path"])
         if signs is not None:
-            signs_path = work_dir / "signs.ass"
+            # Resolved to an absolute path like every other manifest entry -
+            # dub_agent.py muxes from it later, possibly from a different
+            # working directory, where a bare relative path would break.
+            signs_path = (work_dir / "signs.ass").resolve()
             signs.save(str(signs_path))
         print(f"[script] read {len(segments)} dialogue lines"
               f"{f' + {len(signs)} sign lines' if signs is not None else ''} directly from subtitles")

@@ -26,7 +26,7 @@ def demucs_device_args() -> list:
     entry-level GPU is typically several times faster, so it's worth
     using despite limited VRAM - '--segment' caps how much audio Demucs
     processes in one chunk at a time, which is the main lever for staying
-    inside a small card's memory (8s keeps peak usage well under 2GB for
+    inside a small card's memory (7s keeps peak usage well under 2GB for
     htdemucs; raise it if you have more VRAM to spare, for a small
     speed/memory trade - segment length doesn't affect output quality,
     just how it's chunked internally)."""

@@ -116,10 +116,33 @@ def mark_failed_if_repeat_offender(work_root: Path, episode: str, state: dict) -
 
 
 def relaunch(video_or_folder: str, work_root: str) -> None:
+    orchestrator = Path(__file__).parent / "orchestrator.py"
     print(f"[watchdog] relaunching: python orchestrator.py \"{video_or_folder}\" \"{work_root}\"")
+    # Absolute script path: the watchdog may run from any directory, and a
+    # bare "orchestrator.py" only resolves relative to the watchdog's OWN
+    # current directory - launched from elsewhere, Python wouldn't find it.
     # Popen, not run() - the watchdog needs to keep polling while this
     # new process runs, not block waiting for it to finish.
-    subprocess.Popen([sys.executable, "orchestrator.py", video_or_folder, work_root])
+    subprocess.Popen([sys.executable, str(orchestrator), video_or_folder, work_root])
+
+
+def has_pending_episodes(video_or_folder: str, work_root: Path) -> bool:
+    """True if any episode under video_or_folder still lacks its finished
+    .dubbed.mp4 in work_root - i.e. a relaunch would have real work to do.
+    The gate against the nastiest watchdog failure mode: once a batch
+    finishes HEALTHILY, its heartbeat goes stale (nothing is running
+    anymore), and without this check the old logic killed nothing,
+    found nothing, and relaunched orchestrator.py anyway - forever."""
+    source = Path(video_or_folder)
+    videos = [source] if source.is_file() else [
+        v for ext in ("*.mkv", "*.mp4", "*.avi", "*.webm") for v in source.glob(ext)
+    ]
+    if not videos:
+        return True  # can't tell - assume there's work rather than refuse to restart
+    for v in videos:
+        if not (work_root / v.stem / f"{v.stem}.dubbed.mp4").exists():
+            return True
+    return False
 
 
 def main():
@@ -149,12 +172,19 @@ def main():
             continue
 
         age_min = (time.time() - hb["timestamp"]) / 60
+        episode = hb.get("episode") or "unknown"
         print(f"[watchdog] last heartbeat {age_min:.1f} min ago "
               f"(episode={hb.get('episode')}, step={hb.get('step')})")
         if age_min <= args.stale_after:
+            # Healthy heartbeat - this episode made progress since the last
+            # check, so an earlier watchdog kill of it no longer counts as
+            # "in a row". Without this reset, two unrelated kills spread
+            # across whole runs would permanently mark an episode FAILED.
+            state = load_state(work_root)
+            if state.get("kill_counts", {}).pop(episode, None) is not None:
+                save_state(work_root, state)
             continue
 
-        episode = hb.get("episode") or "unknown"
         print(f"[watchdog] STUCK - {age_min:.1f} min with no progress on '{episode}' "
               f"(step: {hb.get('step')}). Killing the pipeline.")
         procs = find_pipeline_processes()
@@ -173,6 +203,12 @@ def main():
         state = load_state(work_root)
         mark_failed_if_repeat_offender(work_root, episode, state)
         save_state(work_root, state)
+
+        if not has_pending_episodes(args.video_or_folder, work_root):
+            print("[watchdog] nothing left to dub - the batch actually finished. "
+                  "Not relaunching (a stale heartbeat after a healthy exit used to "
+                  "relaunch in a loop forever).")
+            break
 
         time.sleep(5)  # let the OS actually finish tearing down the killed processes
         relaunch(args.video_or_folder, args.work_root)

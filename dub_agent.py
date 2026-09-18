@@ -174,7 +174,6 @@ def check_openrouter_budget(segments: list) -> None:
     of it's already used elsewhere. Better to warn early than have the
     run silently degrade into 429s (and burned quota - failed attempts
     still count) partway through."""
-    speakers_used = {seg.get("speaker", "").strip() for seg in segments}
     openrouter_line_count = sum(
         1 for seg in segments
         if resolve_voice(seg.get("speaker", "").strip()).get("engine") == "openrouter"
@@ -232,6 +231,17 @@ def validate_voices(segments: list) -> None:
             needs_supertonic = True
             if cfg.get("voice") not in SUPERSONIC_VOICES:
                 supertonic_bad_voices.add(cfg.get("voice") or "(none set)")
+            continue
+        if engine == "openrouter":
+            # Nothing local to check for openrouter - usability means the
+            # API key is set (and at least one of voice id / reference clip
+            # exists; synth_segment_openrouter raises its own clear error
+            # at synthesis time if not). Falling through to the Piper check
+            # here used to report missing PIPER files for openrouter voices.
+            key_env = openrouter_engine_config().get("api_key_env", "OPENROUTER_API_KEY")
+            if not os.environ.get(key_env) and not any(key_env in m for m in missing):
+                missing.append(f"  {key_env} is not set - every openrouter-engine line "
+                               f"will fail (and be left silent)")
             continue
         model, config = cfg.get("model", PIPER_MODEL), cfg.get("config", PIPER_CONFIG)
         if model in checked_models:
@@ -751,10 +761,19 @@ def stretch_to_duration(in_wav: str, out_wav: str, target_sec: float, volume_db:
     MIN_TEMPO = 0.85  # don't slow below ~0.85x - deeper slowdowns sound stretched
     if tempo < MIN_TEMPO:
         tempo = 1.0
-    tempo = max(0.5, min(2.0, tempo))  # ffmpeg atempo's safe range
+    tempo = max(0.5, min(4.0, tempo))
     filters = []
     if abs(tempo - 1.0) > 0.01:
-        filters.append(f"atempo={tempo}")
+        # ffmpeg's single atempo only spans (0.5, 2.0]; a line up to 4x its
+        # window needs a CHAIN of atempo filters (each factor halves the
+        # remainder). Overruns must always be sped up - an unsped overrun
+        # collides with the next line's audio, and before chaining existed
+        # that guarantee silently broke for clips over 2x their window.
+        remaining = tempo
+        while remaining > 2.0:
+            filters.append("atempo=2.0")
+            remaining /= 2.0
+        filters.append(f"atempo={remaining:.6f}")
     if abs(pitch_semitones) > 0.01:
         # Supertonic/Kokoro expose no emotion control. A small pitch lift,
         # with formants preserved so the character still sounds like the
@@ -803,6 +822,57 @@ NONVERBAL_MIN_SEC = 0.25  # shorter than this is probably a stray blip/breath, n
 NONVERBAL_MAX_SEC = 3.5   # longer than this with no subtitle nearby is more likely a MISSED dialogue line
 NONVERBAL_PAD_SEC = 0.2   # margin kept clear around each real subtitle line's edges
 NONVERBAL_FADE_MS = 30    # a few ms fade in/out on the spliced clip avoids an audible click at the edges
+
+
+# Whisper (the same faster-whisper + model tier script_agent.py already
+# uses) loaded once per run, only if a splicable gap exists at all.
+_speech_model = None
+_speech_model_lock = threading.Lock()
+
+# Laughs/gasps that Whisper DOES transcribe come back as kana-only
+# repetitions ("ははは", "あははっ", "うわぁああ"). Collapsing consecutive
+# duplicate characters shrinks them to 1-2 chars, while real sentences
+# keep 3+ distinct characters - that's the speech/no-speech cutoff.
+_LAUGH_RUN = re.compile(r"(.)\1+")
+_JA_CHARS = re.compile(r"[\u3040-\u30ff\u4e00-\u9fff]")
+
+
+def clip_contains_speech(clip: AudioSegment) -> bool:
+    """Returns True if a short ORIGINAL-audio clip sounds like actual
+    Japanese speech (a dialogue line the subtitle file never transcribed)
+    rather than a laugh/gasp/sigh. Such clips must NOT be spliced into the
+    dub verbatim - a full Japanese sentence in the middle of the English
+    track is exactly the "some lines are still in Japanese" complaint, and
+    a beat of music-only silence reads far better.
+
+    Runs Whisper (transcribe-only, Japanese) on the clip and inspects what
+    comes back: low-confidence output (Whisper hallucinating on music/noise)
+    and laugh-shaped kana repetitions are treated as nonverbal; anything
+    else that produced real Japanese text counts as speech. Fails open
+    (returns False) on any error, keeping the previous splice-always
+    behavior rather than breaking a run."""
+    try:
+        global _speech_model
+        if _speech_model is None:
+            with _speech_model_lock:
+                if _speech_model is None:
+                    from faster_whisper import WhisperModel
+                    _speech_model = WhisperModel("small", device="cpu", compute_type="int8")
+
+        mono16k = clip.set_channels(1).set_frame_rate(16000)
+        samples = np.array(mono16k.get_array_of_samples(), dtype=np.float32) / 32768.0
+        segments, _info = _speech_model.transcribe(samples, language="ja", beam_size=1)
+        for seg in segments:
+            if seg.avg_logprob < -1.0:
+                continue  # low-confidence - likely hallucination on music/SFX
+            ja_chars = "".join(_JA_CHARS.findall(seg.text))
+            collapsed = _LAUGH_RUN.sub(r"\1", ja_chars)
+            if len(collapsed) >= 3:
+                return True
+        return False
+    except Exception as e:
+        print(f"[dub] speech check failed ({e}) - keeping the clip (splice-always behavior)")
+        return False
 
 
 def find_nonverbal_gaps(vocals_path: str, segments: list, total_duration: float) -> list:
@@ -858,11 +928,17 @@ def splice_nonverbal_gaps(buffer: np.ndarray, sample_rate: int, vocals_path: str
     """Carries over short bursts of untranslated vocal activity (laughs,
     gasps, sighs) from the original vocals track verbatim, instead of
     leaving them silent just because no subtitle line existed there for
-    Piper/Kokoro to read. Trade-off worth knowing: the spliced audio is
+    the TTS engines to read. Trade-off worth knowing: the spliced audio is
     in that character's ORIGINAL voice-actor's timbre, not their English
     dub voice - a laugh sounding like a different voice for a second is
     far less jarring than no laugh at all, but it isn't a perfectly
-    seamless match either."""
+    seamless match either.
+
+    Bursts that turn out to contain actual Japanese SPEECH (a dialogue
+    line the fansub never transcribed, not a reaction) are left out
+    instead - a full Japanese sentence in the middle of the English dub
+    is worse than a beat of silence, and no text exists to synthesize it
+    with. See clip_contains_speech()."""
     try:
         spans = find_nonverbal_gaps(vocals_path, segments, total_duration)
     except Exception as e:
@@ -879,9 +955,13 @@ def splice_nonverbal_gaps(buffer: np.ndarray, sample_rate: int, vocals_path: str
 
     total_samples = len(buffer)
     spliced = 0
+    speech_skipped = 0
     for start_sec, end_sec in spans:
         clip = audio[int(start_sec * 1000):int(end_sec * 1000)]
         if len(clip) < 10:
+            continue
+        if clip_contains_speech(clip):
+            speech_skipped += 1
             continue
         fade = min(NONVERBAL_FADE_MS, len(clip) // 4)
         clip = clip.fade_in(fade).fade_out(fade)
@@ -893,12 +973,16 @@ def splice_nonverbal_gaps(buffer: np.ndarray, sample_rate: int, vocals_path: str
         buffer[start_sample:end_sample] += samples[: end_sample - start_sample]
         spliced += 1
 
+    if speech_skipped:
+        print(f"[dub] left out {speech_skipped} gap burst(s) that contain actual Japanese "
+              f"speech - likely dialogue lines the subtitle file never transcribed. These "
+              f"play as (music-only) silence rather than untranslated Japanese.")
     if spliced:
         timestamps = ", ".join(f"{s:.1f}s" for s, _ in spans[:15])
         more = "" if len(spans) <= 15 else f" (+{len(spans) - 15} more)"
         print(f"[dub] carried over {spliced} untranslated vocal burst(s) (laughs/gasps/sighs) "
               f"from the original audio - no subtitle line existed for these, so there was "
-              f"nothing for Piper/Kokoro to read. Original-voice timestamps: {timestamps}{more}")
+              f"nothing for the TTS engines to read. Original-voice timestamps: {timestamps}{more}")
     return buffer
 
 
@@ -974,7 +1058,6 @@ def build_vocal_track(segments: list, work_dir: Path, total_duration: float,
             continue
         fitted, tags = payload
         tone_tag_counts.update(tags)
-
         clip = AudioSegment.from_wav(fitted)
         if sample_rate is None:
             # First successful line sets the working rate for the whole
@@ -997,6 +1080,16 @@ def build_vocal_track(segments: list, work_dir: Path, total_duration: float,
 
     if skipped:
         print(f"[dub] {skipped}/{len(segments)} lines left silent (untranslated or synth failure)")
+    if skipped and skipped >= max(1, len(segments) // 2):
+        # Half the episode failing to synthesize is not a dub - muxing it
+        # anyway used to certify a mostly-silent video as ".dubbed.mp4",
+        # which both runners then skipped forever as "already done". Fail
+        # loudly instead; the resume logic retries this episode next run.
+        raise RuntimeError(
+            f"{skipped}/{len(segments)} lines failed to synthesize - refusing to mux a "
+            f"mostly-silent track. Read the per-line errors above (a missing voice file, "
+            f"a dead API key, an exhausted quota), fix the cause, and re-run this episode."
+        )
     if tone_tag_counts:
         summary = ", ".join(f"{tag}: {n}" for tag, n in tone_tag_counts.most_common())
         print(f"[dub] tone-adjusted delivery applied - {summary}")

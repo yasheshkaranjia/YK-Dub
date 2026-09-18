@@ -82,9 +82,11 @@ def main():
     else:
         videos = [path]
 
+    succeeded, failed = [], []
     for v in videos:
         try:
             process_episode(str(v), work_root)
+            succeeded.append(v.stem)
         except Exception as e:
             # One episode's failure (a Piper/Demucs/ffmpeg call finally
             # giving up after its timeout, a corrupt source file, whatever)
@@ -93,6 +95,13 @@ def main():
             # logs it and moves on to the next episode instead.
             print(f"\n[orchestrator] {v.stem} FAILED: {e}")
             print(f"[orchestrator] continuing with the remaining episodes...")
+            failed.append(v.stem)
+
+    # Report what ACTUALLY happened - counting every queued episode as
+    # "processed" used to mask failures in the final summary.
+    print(f"\nDone: {len(succeeded)} episode(s) dubbed -> {work_root}")
+    if failed:
+        print(f"Failed: {len(failed)} - {', '.join(failed)} (re-run to retry them)")
 
     # Non-interactive (this is what watchdog.py relaunches into, and what
     # a Colab/unattended run uses) - so this collects automatically rather
