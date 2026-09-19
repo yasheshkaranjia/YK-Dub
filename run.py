@@ -72,6 +72,64 @@ def find_episodes(target: Path) -> list:
     return sorted(videos)
 
 
+def parse_selection(raw: str, count: int):
+    """Turns '1,3,4-6' (or 'all') into a sorted list of 0-based indices.
+    Returns None if the text isn't a valid selection for `count` items."""
+    raw = raw.strip().lower().replace(" ", "")
+    if raw in ("a", "all"):
+        return list(range(count))
+    picked = set()
+    for part in raw.split(","):
+        if not part:
+            continue
+        lo, sep, hi = part.partition("-")
+        if not lo.isdigit() or (sep and not hi.isdigit()):
+            return None
+        lo, hi = int(lo), int(hi) if sep else int(lo)
+        if lo < 1 or hi > count or lo > hi:
+            return None
+        picked.update(range(lo - 1, hi))
+    return sorted(picked) or None
+
+
+def choose_episodes(episodes: list, work_root: Path):
+    """Shows every episode found (numbered, with done/pending status) and
+    lets the user pick which to dub: '1,3,4-6', or just Enter for every
+    episode not dubbed yet. Picking an already-dubbed episode re-dubs it
+    (after a confirmation), which is how you redo one after changing a
+    character's voice. Returns the list of episodes to process."""
+    def is_done(ep):
+        return (work_root / ep.stem / f"{ep.stem}.dubbed.mp4").exists()
+
+    print(f"\nFound {len(episodes)} episode(s):")
+    for i, ep in enumerate(episodes, 1):
+        print(f"  {i}. {ep.name}" + ("  [already dubbed]" if is_done(ep) else ""))
+
+    pending = [ep for ep in episodes if not is_done(ep)]
+    hint = f"Enter = all {len(pending)} not yet dubbed" if pending else "nothing left to dub - pick numbers to re-dub"
+    while True:
+        raw = input(f"\nWhich episodes to dub? e.g. 1,3,4-6 or 'all' ({hint}): ").strip()
+        if not raw:
+            return pending
+        idx = parse_selection(raw, len(episodes))
+        if idx is not None:
+            break
+        print(f"  didn't understand '{raw}' - use numbers 1-{len(episodes)} like 1,3,4-6")
+
+    chosen = [episodes[i] for i in idx]
+    redo = [ep for ep in chosen if is_done(ep)]
+    if redo:
+        print("\nThese are already dubbed and would be dubbed again (the existing file is replaced):")
+        for ep in redo:
+            print(f"  - {ep.name}")
+        if not ask_yes_no("Re-dub them?"):
+            chosen = [ep for ep in chosen if ep not in redo]
+        else:
+            for ep in redo:
+                (work_root / ep.stem / f"{ep.stem}.dubbed.mp4").unlink()
+    return chosen
+
+
 def process_episode(video_path: Path, work_root: Path, offer_voice_setup: bool) -> None:
     stem = video_path.stem
     work_dir = work_root / stem
@@ -167,25 +225,26 @@ def main():
     # watchdog kill, a closed laptop lid, or just "did last night's run
     # actually finish?" all used to mean starting the whole flow blind and
     # watching it silently skip already-done episodes one by one.
-    done, pending = [], []
-    for ep in episodes:
-        work_dir = work_root / ep.stem
-        if (work_dir / f"{ep.stem}.dubbed.mp4").exists():
-            done.append(ep)
-        else:
-            pending.append(ep)
+    def is_done(ep):
+        return (work_root / ep.stem / f"{ep.stem}.dubbed.mp4").exists()
 
-    if done:
-        print(f"\n{len(done)}/{len(episodes)} already dubbed:")
-        for e in done:
-            print(f"  [done] {e.name}")
+    if interactive and (len(episodes) > 1 or is_done(episodes[0])):
+        # Numbered list + pick which ones (Enter = everything not done yet).
+        pending = choose_episodes(episodes, work_root)
+    else:
+        done = [ep for ep in episodes if is_done(ep)]
+        pending = [ep for ep in episodes if not is_done(ep)]
+        if done:
+            print(f"\n{len(done)}/{len(episodes)} already dubbed:")
+            for e in done:
+                print(f"  [done] {e.name}")
 
     if not pending:
-        print("\nEverything here is already dubbed - nothing to do.")
+        print("\nNothing to dub.")
         offer_collect(work_root, interactive=interactive)
         return
 
-    print(f"\n{len(pending)} remaining:")
+    print(f"\n{len(pending)} to dub:")
     for e in pending:
         print(f"  - {e.name}")
 
