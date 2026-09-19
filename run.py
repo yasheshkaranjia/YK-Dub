@@ -25,7 +25,10 @@ doesn't change how any agent works, it just replaces typing long paths
 on the command line with a couple of prompts (or skips them entirely
 in scripted mode).
 """
+import importlib.util
 import json
+import os
+import subprocess
 import sys
 from pathlib import Path
 
@@ -38,6 +41,7 @@ import heartbeat
 import collect_dubbed
 
 VIDEO_EXTENSIONS = (".mkv", ".mp4", ".avi", ".webm")
+WATCHDOG_MIN_EPISODES = 3  # batches of this many episodes or more get the watchdog automatically
 
 
 def ask_path(prompt: str) -> Path:
@@ -128,6 +132,58 @@ def choose_episodes(episodes: list, work_root: Path):
             for ep in redo:
                 (work_root / ep.stem / f"{ep.stem}.dubbed.mp4").unlink()
     return chosen
+
+
+def _watchdog_already_running() -> bool:
+    try:
+        import psutil
+    except ImportError:
+        return False
+    for proc in psutil.process_iter(["cmdline"]):
+        try:
+            if any(str(a).endswith("watchdog.py") for a in (proc.info["cmdline"] or [])):
+                return True
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            continue
+    return False
+
+
+def start_watchdog(episodes: list, work_root: Path):
+    """Starts watchdog.py in its own terminal window, watching just the
+    episodes about to be dubbed. Returns the process (so run.py can stop it
+    when the batch ends) or None if it wasn't started. Never raises - a
+    watchdog that can't start must not stop the dub itself."""
+    if importlib.util.find_spec("psutil") is None:
+        print("[watchdog] not started - it needs psutil. Run:  pip install psutil")
+        return None
+    if _watchdog_already_running():
+        print("[watchdog] one is already running - not starting another")
+        return None
+    script = Path(__file__).resolve().parent / "watchdog.py"
+    cmd = [sys.executable, str(script), str(episodes[0].resolve().parent),
+           str(work_root.resolve()), "--only", *[str(e.resolve()) for e in episodes]]
+    try:
+        if os.name == "nt":
+            proc = subprocess.Popen(cmd, creationflags=subprocess.CREATE_NEW_CONSOLE)
+            where = "in a separate window"
+        else:  # no portable "new terminal" - log to a file instead
+            log = open(work_root / "watchdog.log", "a", encoding="utf-8")
+            proc = subprocess.Popen(cmd, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
+            where = f"in the background (log: {work_root / 'watchdog.log'})"
+    except OSError as e:
+        print(f"[watchdog] couldn't start ({e}) - continuing without it")
+        return None
+    print(f"[watchdog] {len(episodes)} episodes queued - started the watchdog {where}. "
+          f"It stops by itself when the batch finishes.")
+    return proc
+
+
+def stop_watchdog(proc) -> None:
+    if proc is not None and proc.poll() is None:
+        try:
+            proc.terminate()
+        except OSError:
+            pass
 
 
 def process_episode(video_path: Path, work_root: Path, offer_voice_setup: bool) -> None:
@@ -261,19 +317,24 @@ def main():
         print(f"\nProcessing {len(pending)} episode(s) non-interactively...")
 
     succeeded, failed = [], []
-    for ep in pending:
-        try:
-            process_episode(ep, work_root, offer_voice_setup)
-            succeeded.append(ep.stem)
-        except Exception as e:
-            # One episode's failure (a Piper/Demucs/ffmpeg call finally
-            # giving up after its timeout, a corrupt source file, whatever)
-            # used to take the ENTIRE overnight batch down with it - every
-            # episode after the failed one never even got attempted. This
-            # logs it and moves on to the next episode instead.
-            print(f"\n[run] {ep.stem} FAILED: {e}")
-            print(f"[run] continuing with the remaining episodes...")
-            failed.append(ep.stem)
+    watchdog_proc = (start_watchdog(pending, work_root)
+                     if len(pending) >= WATCHDOG_MIN_EPISODES else None)
+    try:
+        for ep in pending:
+            try:
+                process_episode(ep, work_root, offer_voice_setup)
+                succeeded.append(ep.stem)
+            except Exception as e:
+                # One episode's failure (a Piper/Demucs/ffmpeg call finally
+                # giving up after its timeout, a corrupt source file, whatever)
+                # used to take the ENTIRE overnight batch down with it - every
+                # episode after the failed one never even got attempted. This
+                # logs it and moves on to the next episode instead.
+                print(f"\n[run] {ep.stem} FAILED: {e}")
+                print(f"[run] continuing with the remaining episodes...")
+                failed.append(ep.stem)
+    finally:
+        stop_watchdog(watchdog_proc)
 
     # Report what ACTUALLY happened - counting every queued episode as
     # "processed" used to mask failures in the final summary.

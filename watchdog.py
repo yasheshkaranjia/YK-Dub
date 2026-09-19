@@ -32,8 +32,14 @@ retry), an episode that gets killed twice in a row is marked as FAILED
 the next relaunch, same as a normal failure - the batch moves on
 instead of retrying that one episode all night.
 
+run.py starts this automatically (in its own window) when a batch has 3 or
+more episodes to dub, and stops it when the batch finishes - you only need
+to run it by hand for a scripted/orchestrator.py run, or a 1-2 episode run
+you want guarded anyway. It also exits by itself once nothing is left to dub.
+
 Usage:
     python watchdog.py <video_or_folder> <work_root> [--interval 10] [--stale-after 60] [--no-restart]
+                       [--only <video> [<video> ...]]
 
 Requires: pip install psutil
 """
@@ -115,18 +121,20 @@ def mark_failed_if_repeat_offender(work_root: Path, episode: str, state: dict) -
     return False
 
 
-def relaunch(video_or_folder: str, work_root: str) -> None:
+def relaunch(video_or_folder: str, work_root: str, only=None) -> None:
     orchestrator = Path(__file__).parent / "orchestrator.py"
-    print(f"[watchdog] relaunching: python orchestrator.py \"{video_or_folder}\" \"{work_root}\"")
+    extra = ["--only", *only] if only else []
+    print(f"[watchdog] relaunching: python orchestrator.py \"{video_or_folder}\" \"{work_root}\""
+          + (f" (just the {len(only)} selected episode(s))" if only else ""))
     # Absolute script path: the watchdog may run from any directory, and a
     # bare "orchestrator.py" only resolves relative to the watchdog's OWN
     # current directory - launched from elsewhere, Python wouldn't find it.
     # Popen, not run() - the watchdog needs to keep polling while this
     # new process runs, not block waiting for it to finish.
-    subprocess.Popen([sys.executable, str(orchestrator), video_or_folder, work_root])
+    subprocess.Popen([sys.executable, str(orchestrator), video_or_folder, work_root, *extra])
 
 
-def has_pending_episodes(video_or_folder: str, work_root: Path) -> bool:
+def has_pending_episodes(video_or_folder: str, work_root: Path, only=None) -> bool:
     """True if any episode under video_or_folder still lacks its finished
     .dubbed.mp4 in work_root - i.e. a relaunch would have real work to do.
     The gate against the nastiest watchdog failure mode: once a batch
@@ -134,12 +142,17 @@ def has_pending_episodes(video_or_folder: str, work_root: Path) -> bool:
     anymore), and without this check the old logic killed nothing,
     found nothing, and relaunched orchestrator.py anyway - forever."""
     source = Path(video_or_folder)
-    videos = [source] if source.is_file() else [
-        v for ext in ("*.mkv", "*.mp4", "*.avi", "*.webm") for v in source.glob(ext)
-    ]
+    if only:  # the episodes that were picked - ignore the rest of the folder
+        videos = [Path(v) for v in only]
+    else:
+        videos = [source] if source.is_file() else [
+            v for ext in ("*.mkv", "*.mp4", "*.avi", "*.webm") for v in source.glob(ext)
+        ]
     if not videos:
         return True  # can't tell - assume there's work rather than refuse to restart
     for v in videos:
+        if (work_root / v.stem / f"{v.stem}.FAILED").exists():
+            continue  # given up on - a relaunch would just skip it
         if not (work_root / v.stem / f"{v.stem}.dubbed.mp4").exists():
             return True
     return False
@@ -153,18 +166,31 @@ def main():
     ap.add_argument("--stale-after", type=float, default=60,
                      help="Minutes with no heartbeat update before treating the pipeline as stuck "
                           "(default 60 - see the Demucs caveat in this file's docstring)")
+    ap.add_argument("--only", nargs="+", metavar="VIDEO",
+                     help="Watch/relaunch just these episode files instead of the whole folder "
+                          "(run.py passes the episodes you picked). Must come last.")
     ap.add_argument("--no-restart", action="store_true",
                      help="Kill a stuck run but don't relaunch it - just alert and stop watching")
     args = ap.parse_args()
 
     work_root = Path(args.work_root)
     work_root.mkdir(parents=True, exist_ok=True)
+    if sys.platform == "win32":  # name the window run.py opened for us
+        try:
+            import ctypes
+            ctypes.windll.kernel32.SetConsoleTitleW("YK-Dub watchdog")
+        except Exception:
+            pass
     print(f"[watchdog] watching {heartbeat.path_for(work_root)}")
     print(f"[watchdog] checking every {args.interval} min, treating "
           f"{args.stale_after}+ min of silence as stuck")
 
     while True:
         time.sleep(args.interval * 60)
+        if not has_pending_episodes(args.video_or_folder, work_root, args.only):
+            print("[watchdog] every episode is dubbed (or given up on) - nothing left to guard, "
+                  "stopping.")
+            break
         hb = heartbeat.read(work_root)
         if hb is None:
             print("[watchdog] no heartbeat yet - pipeline may not have started, or hasn't "
@@ -204,14 +230,14 @@ def main():
         mark_failed_if_repeat_offender(work_root, episode, state)
         save_state(work_root, state)
 
-        if not has_pending_episodes(args.video_or_folder, work_root):
+        if not has_pending_episodes(args.video_or_folder, work_root, args.only):
             print("[watchdog] nothing left to dub - the batch actually finished. "
                   "Not relaunching (a stale heartbeat after a healthy exit used to "
                   "relaunch in a loop forever).")
             break
 
         time.sleep(5)  # let the OS actually finish tearing down the killed processes
-        relaunch(args.video_or_folder, args.work_root)
+        relaunch(args.video_or_folder, args.work_root, args.only)
 
 
 if __name__ == "__main__":

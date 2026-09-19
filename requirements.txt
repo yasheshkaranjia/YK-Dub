@@ -12,3 +12,4 @@ soundfile
 
 # Supertonic TTS support
 supertonic>=1.3
+psutil

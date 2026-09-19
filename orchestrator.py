@@ -71,13 +71,24 @@ def process_episode(video_path: str, work_root: str) -> None:
 
 
 def main():
-    if len(sys.argv) < 3:
-        print("Usage: python orchestrator.py <video_or_folder> <work_root>")
+    argv = sys.argv[1:]
+    # Optional "--only <video> [<video> ...]" (must come last): dub just
+    # those files instead of everything in the folder. run.py's episode
+    # picker + watchdog.py use this so a relaunch after a kill resumes the
+    # episodes you PICKED, not every other episode sitting in the folder.
+    only = None
+    if "--only" in argv:
+        i = argv.index("--only")
+        only, argv = argv[i + 1:], argv[:i]
+    if len(argv) < 2:
+        print("Usage: python orchestrator.py <video_or_folder> <work_root> [--only <video> ...]")
         sys.exit(1)
-    target, work_root = sys.argv[1], sys.argv[2]
+    target, work_root = argv[0], argv[1]
     path = Path(target)
 
-    if path.is_dir():
+    if only:
+        videos = [Path(v) for v in only]
+    elif path.is_dir():
         videos = sorted(path.glob("*.mkv")) + sorted(path.glob("*.mp4"))
     else:
         videos = [path]
