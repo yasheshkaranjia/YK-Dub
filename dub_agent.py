@@ -285,6 +285,9 @@ def validate_voices(segments: list) -> None:
 
 
 STUTTER_PATTERN = re.compile(r"\b([A-Za-z])-([A-Za-z]+)\b")
+# 'I-I-It' / 'A-A-All': the same fragment letter repeated before the word.
+# Handled before STUTTER_PATTERN so it collapses to ONE hesitation.
+REPEATED_STUTTER_PATTERN = re.compile(r"\b([A-Za-z])-(?:\1-)+([A-Za-z]+)\b", re.IGNORECASE)
 HONORIFIC_PATTERN = re.compile(r"\b(\w+)-(sama|san|kun|chan|senpai|sensei|dono)\b", re.IGNORECASE)
 
 
@@ -292,14 +295,25 @@ def clean_stutter_text(text: str) -> str:
     """Official subs write a character stammering as e.g. 'A-All' or
     'O-Oh' - Piper has no idea that's a speech hesitation and just tries
     to pronounce the literal text, hyphen included, which comes out
-    broken/robotic. Swapping the hyphen for '...' when the first letter
-    matches the start of the following word reads as a natural pause
-    instead, without touching genuinely hyphenated words like
-    'self-aware' (where the halves don't share a first letter)."""
+    broken/robotic. Rewriting it as a short comma-separated hesitation
+    ('A-All' -> 'A, All') when the first letter matches the start of the
+    following word reads as a natural stutter instead, without touching
+    genuinely hyphenated words like 'self-aware' (where the halves don't
+    share a first letter)."""
+    # Collapse a repeated stutter ('I-I-It', 'A-A-All') into ONE short
+    # hesitation first - two commas in a row would read as two separate
+    # pauses, which sounds stammering in a different, worse way.
+    text = REPEATED_STUTTER_PATTERN.sub(r"\1, \2", text)
     def replace(match):
         first_letter, word = match.group(1), match.group(2)
+        # Comma, NOT ellipsis: an ellipsis makes Piper voice the lone letter
+        # as a full letter NAME ("Ay", "En") with a long pause, reading as
+        # spelling-out rather than stammering - and it also trips
+        # classify_tone()'s hesitant check, slowing the whole line down and
+        # adding a further long pause on top of the stutter. A comma keeps
+        # the fragment clipped and quick.
         if word[0].lower() == first_letter.lower():
-            return f"{first_letter}... {word}"
+            return f"{first_letter}, {word}"
         return match.group(0)
     return STUTTER_PATTERN.sub(replace, text)
 
