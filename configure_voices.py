@@ -39,6 +39,7 @@ import pysubs2
 from pydub import AudioSegment
 from tqdm import tqdm
 
+import voice_suggest
 from pitch_worker import clip_pitch_task
 from script_agent import is_sign_event
 
@@ -195,6 +196,86 @@ def compute_pitch_hints(audio: AudioSegment, speakers: dict, workers: int = None
     return hints
 
 
+def _lookup_suggestions(sub_path: str, speakers: dict, voices: dict, alias_list: list,
+                        voice_map: dict):
+    """Optional extra: look the anime up online (AniList) and suggest a voice
+    per character. Purely additive - returns ({}, {}) (and the normal prompts
+    run exactly as before) if you say no or you're offline. Returns
+    (suggestions, info): suggestions = {speaker: {"alias", "reason"}},
+    info = {speaker: AniList facts (role/gender/age)} for every speaker AniList
+    knows, so main vs supporting is visible even where no voice is suggested.
+    May also pre-fill voice_map for characters with no saved voice yet if you
+    say yes to that."""
+    guess = voice_suggest.guess_series_title(Path(sub_path).stem)
+    cast = voice_suggest.load_cached_cast(guess)
+    if cast:
+        print(f'Using the saved cast list for "{cast["title"]}" (from an earlier lookup).')
+    else:
+        answer = input(f'Look up "{guess}" online (AniList) to suggest voices? '
+                       f'[Y/n, or type a different anime name]: ').strip()
+        if answer.lower() in ("n", "no"):
+            return {}, {}
+        query = guess if answer.lower() in ("", "y", "yes") else answer
+        for _attempt in range(3):
+            print(f'Searching AniList for "{query}"...')
+            cast, err, offline = voice_suggest.fetch_cast(query)
+            if cast is None:
+                print(f"  {err}")
+                if offline:
+                    print("  Skipping suggestions - continuing the normal way.")
+                    return {}, {}
+                query = input("  Type another name to try (Enter to skip): ").strip()
+                if not query:
+                    return {}, {}
+                continue
+            print(f'  Found: {cast["title"]} ({len(cast["characters"])} characters listed)')
+            if input("  Is that the right anime? [Y/n]: ").strip().lower() in ("n", "no"):
+                query = input("  Type another name to try (Enter to skip): ").strip()
+                if not query:
+                    return {}, {}
+                cast = None
+                continue
+            break
+        else:
+            return {}, {}
+        if cast is None:
+            return {}, {}
+        voice_suggest.save_cached_cast(guess, cast)
+
+    print("\nCast listed on AniList:")
+    for line in voice_suggest.cast_overview(cast):
+        print(f"  {line}")
+    info = voice_suggest.match_speakers(cast, speakers)
+    suggestions = voice_suggest.suggest_voices(cast, speakers, voices)
+    print(f"  -> {len(info)} of this episode's {len(speakers)} speakers are on that list.")
+    if not suggestions:
+        print("  No voice suggestions could be made - continuing the normal way "
+              "(AniList info is still shown next to each name).\n")
+        return {}, info
+
+    print(f"\nSuggested voices ({len(suggestions)} of {len(speakers)} speakers - based on each "
+          f"character's gender, age, role and description):")
+    for name in speakers:
+        if name in suggestions:
+            sg = suggestions[name]
+            print(f"  {name:<20} -> {sg['alias']}  ({sg['reason']})")
+    print("  (openrouter voices are never auto-suggested; speakers not listed had no match.)")
+
+    def has_saved_voice(n):
+        return any(k.upper() == n.upper() and not k.startswith("_") for k in voice_map)
+
+    fresh = [n for n in suggestions if not has_saved_voice(n)]
+    kept = len(suggestions) - len(fresh)
+    if fresh and input(f"\nApply these to the {len(fresh)} character(s) with no saved voice yet"
+                       f"{f' (the other {kept} keep their saved voice)' if kept else ''}? "
+                       f"You can still change any of them below. [y/N]: ").strip().lower() in ("y", "yes"):
+        for n in fresh:
+            voice_map[n] = suggestions[n]["alias"]
+        print(f"  Applied {len(fresh)}.")
+    print()
+    return suggestions, info
+
+
 def run(sub_path: str, vocals_path: str = None) -> None:
     voices = load_json(VOICES_FILE, {})
     if not voices:
@@ -226,12 +307,26 @@ def run(sub_path: str, vocals_path: str = None) -> None:
                 _save_cached_hints(sub_path, vocals_path, hints)
         print()
 
+    # Step 1b (optional): online lookup -> per-character voice suggestions.
+    # Shown next to the normal prompts below; never replaces them.
+    suggestions, info = {}, {}
+    try:
+        suggestions, info = _lookup_suggestions(sub_path, speakers, voices, alias_list, voice_map)
+    except KeyboardInterrupt:
+        raise
+    except Exception as e:  # a lookup problem must never block voice setup
+        print(f"  (voice suggestions unavailable: {e}) - continuing the normal way.\n")
+
     # Step 2: the interactive part - instant now.
     print("Available voices:")
     for i, alias in enumerate(alias_list, 1):
         print(f"  {i}. {alias} - {voices[alias].get('label', '')}")
     print(f"\nFound {len(speakers)} speaking characters. Press Enter to keep a "
-          f"character's current/default voice, or type a number to change it.")
+          f"character's current/default voice, or type a number to change it"
+          + (", or 's' to take the suggested voice." if suggestions else "."))
+    if info:
+        print("('AniList:' notes below say whether the character is a main or supporting "
+              "character on the anime's AniList page.)")
     if hints:
         print("(pitch hints below are a rough lean from the original audio, not a "
               "verdict - anime has plenty of exceptions, use your judgment)")
@@ -252,8 +347,26 @@ def run(sub_path: str, vocals_path: str = None) -> None:
                 hint = f" - pitch inconclusive (~{hz:.0f}Hz)"
             else:
                 hint = f" - voice sounds {label}, ~{hz:.0f}Hz"
+        fact = info.get(name)
+        if fact:
+            bits = [voice_suggest.ROLE_TEXT.get(fact["role"], "character")]
+            if fact["gender"]:
+                bits.append(fact["gender"])
+            if fact["age"]:
+                bits.append(f"age {fact['age']}")
+            hint += (f" - AniList: {', '.join(bits)}"
+                     + (f" (as {fact['name']}, similar spelling)" if fact["fuzzy"] else ""))
+        sg = suggestions.get(name)
+        if sg and sg["alias"] != current:
+            hint += f" - suggested: {alias_list.index(sg['alias']) + 1} ({sg['alias']}, 's' to take)"
         choice = input(f"{name} [{current}]{hint}: ").strip()
         if not choice:
+            continue
+        if choice.lower() == "s":
+            if sg:
+                voice_map[name] = sg["alias"]
+            else:
+                print(f"  no suggestion for {name} - leaving it unchanged")
             continue
         try:
             idx = int(choice) - 1

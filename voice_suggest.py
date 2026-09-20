@@ -13,10 +13,14 @@ personality words from the description (villain, leader, cheerful, ...) pick
 the closest label. Main characters get first pick of the best voices, and
 voices already handed out are slightly penalised so the cast doesn't all
 collapse onto one voice. Speakers AniList doesn't know (Guard, Villager A...)
-only get a suggestion if their NAME says a gender (Father, Queen, Girl...).
+only get a suggestion if their NAME says a gender (Father, Queen, Girl...),
+and a character whose gender AniList doesn't give gets no suggestion (a
+coin-flip helps nobody) - configure_voices still shows their main/supporting
+role so you can judge yourself.
 
 Standard library only - nothing new to install.
 """
+import difflib
 import json
 import re
 import urllib.error
@@ -272,6 +276,63 @@ def _reason(c: dict, matched: str, via_name: bool) -> str:
     return "name suggests " + (c["gender"] or "?") + (f", {c['age']}" if c["age"] else "")
 
 
+ROLE_TEXT = {"MAIN": "main character", "SUPPORTING": "supporting character",
+             "BACKGROUND": "minor character"}
+
+
+def _build_lookup(cast: dict) -> dict:
+    """normalised name -> character (AniList lists main characters first, so
+    the first one wins when two characters share a name)."""
+    lookup = {}
+    for ch in cast.get("characters", []):
+        for n in ch.get("names", []):
+            lookup.setdefault(_norm(n), ch)
+    return lookup
+
+
+def _find_character(lookup: dict, speaker: str):
+    """(character, is_fuzzy). Exact name first; then a close spelling match
+    (subtitle romanisation often differs from AniList's by a letter, e.g.
+    Lizel/Rizel) - flagged so the user knows it's a guess."""
+    key = _norm(speaker)
+    if key in lookup:
+        return lookup[key], False
+    if len(key) >= 5:
+        close = difflib.get_close_matches(key, list(lookup), n=1, cutoff=0.8)
+        if close:
+            return lookup[close[0]], True
+    return None, False
+
+
+def match_speakers(cast: dict, speakers: dict) -> dict:
+    """{speaker: {"name", "role", "gender", "age", "fuzzy"}} for every subtitle
+    speaker that is a character AniList knows - so the user can see who is a
+    main/supporting character even where no voice can be suggested."""
+    lookup = _build_lookup(cast)
+    out = {}
+    for speaker in speakers:
+        ch, fuzzy = _find_character(lookup, speaker)
+        if ch:
+            out[speaker] = {"name": ch["names"][0], "role": ch.get("role", "SUPPORTING"),
+                            "gender": (ch.get("gender") or "").lower() or None,
+                            "age": ch.get("age") or None, "fuzzy": fuzzy}
+    return out
+
+
+def cast_overview(cast: dict, main_limit: int = 8, support_limit: int = 10) -> list:
+    """Printable lines: the main and supporting characters AniList lists."""
+    def fmt(ch):
+        bits = [b for b in [(ch.get("gender") or "").lower(), str(ch["age"]) if ch.get("age") else ""] if b]
+        return ch["names"][0] + (f" ({', '.join(bits)})" if bits else "")
+    lines = []
+    for role, label, limit in (("MAIN", "Main", main_limit), ("SUPPORTING", "Supporting", support_limit)):
+        chars = [c for c in cast.get("characters", []) if c.get("role") == role]
+        if chars:
+            more = f" (+{len(chars) - limit} more)" if len(chars) > limit else ""
+            lines.append(f"{label}: " + ", ".join(fmt(c) for c in chars[:limit]) + more)
+    return lines
+
+
 def suggest_voices(cast: dict, speakers: dict, voices: dict) -> dict:
     """{speaker_name: {"alias", "reason"}} for the speakers we can say
     something about. `speakers` is configure_voices.find_speakers() output
@@ -282,18 +343,18 @@ def suggest_voices(cast: dict, speakers: dict, voices: dict) -> dict:
     if not profiles:
         return {}
 
-    lookup = {}  # normalised name -> character (AniList lists main characters first)
-    for ch in cast.get("characters", []):
-        for n in ch.get("names", []):
-            lookup.setdefault(_norm(n), ch)
+    lookup = _build_lookup(cast)
 
     todo = []  # (rank, -line_count, name, traits, matched_label, via_name)
     for name, spans in speakers.items():
-        ch = lookup.get(_norm(name))
+        ch, fuzzy = _find_character(lookup, name)
         if ch:
             tr = _char_traits(ch)
+            if tr["gender"] is None:
+                continue  # gender unknown -> any voice would be a coin flip; the
+                          # role/age note is still shown, just no suggestion
             todo.append(({"MAIN": 0, "SUPPORTING": 1}.get(tr["role"], 2), -len(spans),
-                         name, tr, ch["names"][0], False))
+                         name, tr, ch["names"][0] + (" ~similar name" if fuzzy else ""), False))
             continue
         words = set(re.findall(r"[a-z]+", name.lower()))
         for g, ws in _GENDER_WORDS.items():
