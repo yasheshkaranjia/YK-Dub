@@ -332,6 +332,15 @@ def main():
                 # logs it and moves on to the next episode instead.
                 print(f"\n[run] {ep.stem} FAILED: {e}")
                 print(f"[run] continuing with the remaining episodes...")
+                # Persist the failure so the next run skips it instead of
+                # re-attempting (and re-failing) it - process_episode()
+                # above already checks for this exact marker on entry.
+                try:
+                    (work_root / ep.stem / f"{ep.stem}.FAILED").write_text(
+                        f"failed during dub: {e}\n", encoding="utf-8"
+                    )
+                except OSError:
+                    pass
                 failed.append(ep.stem)
     finally:
         stop_watchdog(watchdog_proc)

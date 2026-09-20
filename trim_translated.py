@@ -38,7 +38,6 @@ def main():
     if not kept:
         print("\nNo lines found in that window - try a larger N.")
         sys.exit(1)
-
     data["segments"] = kept
     out_stem = src.stem.replace(".translated", "") + f".first{int(seconds)}s"
     out_path = src.with_name(out_stem + ".translated.json")
@@ -46,7 +45,8 @@ def main():
     test_video_path = src.with_name(out_stem + ".TEST.mp4")
 
     print(f"\nwrote {out_path}")
-    print("Assign ONE of the speakers listed above to \"kokoro_test\" in voice_map.json, then run:")
+    print("Assign ONE of the speakers listed above to a voice in voice_map.json "
+          "(any alias from voices.json - e.g. supertonic_m1 by default), then run:")
     print(f'  python dub_agent.py "{out_path}" "{test_video_path}"')
 
 

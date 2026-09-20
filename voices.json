@@ -14,7 +14,7 @@
     "engine": "supertonic",
     "voice": "M1",
     "lang": "en",
-    "label": "Young male lead - LIAM (main character)"
+    "label": "Young male lead"
   },
   "supertonic_m2": {
     "engine": "supertonic",
@@ -32,57 +32,42 @@
     "engine": "supertonic",
     "voice": "M4",
     "lang": "en",
-    "label": "Middle-aged male - butlers, past-life Liam, civilians"
+    "label": "Middle-aged male - butlers, civilians"
   },
   "supertonic_m5": {
     "engine": "supertonic",
     "voice": "M5",
     "lang": "en",
-    "label": "Deep/sinister male - villains, The Guide, foremen"
+    "label": "Deep/sinister male - villains, foremen"
   },
   "supertonic_f1": {
     "engine": "supertonic",
     "voice": "F1",
     "lang": "en",
-    "label": "Calm female - Amagi (android maid), goddesses"
+    "label": "Calm female - android maid, goddesses"
   },
   "supertonic_f2": {
     "engine": "supertonic",
     "voice": "F2",
     "lang": "en",
-    "label": "Firm female - Christiana (knight), detectives"
+    "label": "Firm female - knights, detectives"
   },
   "supertonic_f3": {
     "engine": "supertonic",
     "voice": "F3",
     "lang": "en",
-    "label": "Energetic female - Nias (mechanic), pirates"
+    "label": "Energetic female - mechanics, pirates"
   },
   "supertonic_f4": {
     "engine": "supertonic",
     "voice": "F4",
     "lang": "en",
-    "label": "Mature female - Darcy (Liam's mother), Kanami, Iria"
+    "label": "Mature female - mother figure, older women"
   },
   "supertonic_f5": {
     "engine": "supertonic",
     "voice": "F5",
     "lang": "en",
-    "label": "Soft female - Mika, customers, nurses"
-  },
-  "openrouter_test": {
-    "engine": "openrouter",
-    "reference_clip": "reference_clip.wav",
-    "label": "Fish Audio S2.1 cloned voice - test"
-  },
-  "openrouter_male_villain": {
-    "engine": "openrouter",
-    "voice": "afd997bbf2764e798c4e106ba8063a11",
-    "label": "Fish Audio library - deep villain male, generic (not cloned)"
-  },
-  "openrouter_female_commander": {
-    "engine": "openrouter",
-    "voice": "61e30f92a0cd456982c7bd2e4e4f0922",
-    "label": "Fish Audio library - commanding sci-fi female, generic (not cloned)"
+    "label": "Soft female - customers, nurses"
   }
 }

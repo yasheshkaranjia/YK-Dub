@@ -514,9 +514,12 @@ itself is bad — re-download rather than debugging the pipeline.
   It's still opt-in per character rather than a blanket replacement:
   test it on one or two speaking roles before converting more of
   `voice_map.json` over to it.
-- `dub_agent.py`'s remaining `atempo` correction is capped to ffmpeg's
-  single-filter range (0.5x-2x); combined with the length-scale
-  pre-correction above, this should rarely be hit hard in practice now.
+- `dub_agent.py`'s remaining `atempo` correction CHAINS multiple atempo
+  filters to exceed ffmpeg's single-filter range - each factor beyond 2x
+  is split into another `atempo=2.0` (e.g. a 4x overrun becomes
+  2.0 x 2.0), rather than silently breaking for clips over 2x their
+  window. Combined with the length-scale pre-correction above, this
+  should rarely be hit hard in practice now.
 - A dialogue line that fails to synthesize for any reason prints a
   `left it silent` or `failed to synthesize` warning and is skipped
   rather than crashing the whole run — check the terminal output after

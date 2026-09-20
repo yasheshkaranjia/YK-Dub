@@ -1009,8 +1009,6 @@ def build_vocal_track(segments: list, work_dir: Path, total_duration: float,
     overlapping_indices = find_overlapping_indices(segments)
 
     def synth_one(i: int, seg: dict):
-        if seg.get("japanese_text") and seg["final_text"] == seg["japanese_text"]:
-            return i, "untranslated", None
         raw = work_dir / f"seg_{i:04d}_raw.wav"
         fitted = work_dir / f"seg_{i:04d}_fit.wav"
         target_sec = max(seg["end"] - seg["start"], 0.3)
@@ -1048,10 +1046,6 @@ def build_vocal_track(segments: list, work_dir: Path, total_duration: float,
 
     for i, seg in enumerate(segments):
         status, payload = results[i]
-        if status == "untranslated":
-            tqdm.write(f"[dub] segment {i} was never translated - leaving it silent")
-            skipped += 1
-            continue
         if status != "ok":
             tqdm.write(f"[dub] segment {i} failed to synthesize ({status}) - leaving it silent")
             skipped += 1

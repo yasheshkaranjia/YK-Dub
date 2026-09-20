@@ -29,9 +29,11 @@ from pathlib import Path
 
 ANILIST_URL = "https://graphql.anilist.co"
 CACHE_FILE = Path(__file__).resolve().parent / "anime_cache.json"
-# Voices on these engines are never auto-suggested: they use an online API
-# with its own budget/limits (see dub_agent.check_openrouter_budget), so
-# spending it should be a deliberate manual choice.
+# Voices on these engines are never auto-suggested: they use an online
+# API with its own budget/limits (see dub_agent.check_openrouter_budget),
+# so spending it should be a deliberate manual choice. The local engines
+# (piper/kokoro/supertonic) carry no such cost, so they ARE suggestible -
+# only the metered online engine is excluded here.
 SKIP_ENGINES = {"openrouter"}
 
 QUERY = """

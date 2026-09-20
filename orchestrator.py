@@ -106,6 +106,15 @@ def main():
             # logs it and moves on to the next episode instead.
             print(f"\n[orchestrator] {v.stem} FAILED: {e}")
             print(f"[orchestrator] continuing with the remaining episodes...")
+            # Persist the failure so the next run skips it instead of
+            # re-attempting (and re-failing) it - process_episode() above
+            # already checks for this exact marker on entry.
+            try:
+                (Path(work_root) / v.stem / f"{v.stem}.FAILED").write_text(
+                    f"failed during dub: {e}\n", encoding="utf-8"
+                )
+            except OSError:
+                pass
             failed.append(v.stem)
 
     # Report what ACTUALLY happened - counting every queued episode as
