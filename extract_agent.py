@@ -6,9 +6,12 @@ embedded subtitle stream if there is one. Writes a manifest for agent 2.
 """
 import json
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
+
+import pysubs2
 
 DEMUCS_MODEL = "htdemucs"  # good quality, CPU-only capable (just slower)
 # htdemucs was trained on 7.8s segments - anything longer is a FATAL error
@@ -94,22 +97,232 @@ def separate_vocals(audio_path: str, work_dir: Path, duration_sec: float):
     return sep_dir / "vocals.wav", sep_dir / "no_vocals.wav"
 
 
-def extract_subtitles(video_path: str, ass_out: str, srt_out: str) -> str:
+# Language tags that mean "this track is English". ISO 639-2/B ("eng") is
+# what ffmpeg/mkv muxers usually write, but hand-muxed releases show up with
+# the 639-1 two-letter code, or the full word in a title tag instead, so all
+# three spellings are accepted.
+ENGLISH_LANGUAGE_TAGS = ("eng", "en", "english")
+# Titles that mark a track as signs/songs/forced only. These are the tracks
+# that LOOK like a valid English subtitle track but contain almost no spoken
+# dialogue - picking one produces a dub with a handful of lines and long
+# stretches of silence. Checked against the title tag AND the stream's own
+# "forced" disposition, since a forced track is often untitled.
+SIGNS_ONLY_HINTS = ("sign", "song", "forced", "karaoke", "op", "ed",
+                    "title", "credit", "lyric")
+SIGNS_ONLY_EXACT_TOKENS = ("op", "ed")
+
+
+def probe_subtitle_streams(video_path: str) -> list:
+    """Lists every subtitle stream in the container with its language and
+    title tags, via one ffprobe call. Returns [] if there are none (or if
+    ffprobe fails - the caller treats that the same as "no subtitles", and
+    the existing ffmpeg path then reports no track, rather than crashing)."""
+    try:
+        result = subprocess.run(
+            ["ffprobe", "-v", "error", "-select_streams", "s",
+             "-show_entries",
+             "stream=index:stream_tags=language,title:stream_disposition=forced",
+             "-of", "json", video_path],
+            capture_output=True, text=True, check=True, timeout=60,
+        )
+        return json.loads(result.stdout).get("streams", [])
+    except (subprocess.CalledProcessError, subprocess.TimeoutExpired,
+            json.JSONDecodeError, OSError):
+        return []
+
+
+def _stream_language(stream: dict) -> str:
+    return (stream.get("tags") or {}).get("language", "").strip().lower()
+
+
+def _stream_title(stream: dict) -> str:
+    return (stream.get("tags") or {}).get("title", "").strip().lower()
+
+
+def _is_english(stream: dict) -> bool:
+    """True if the track's language tag or title says English. A stream
+    with NO language tag at all is deliberately not counted as English -
+    treating "unknown" as English is how a Japanese track gets picked."""
+    language = _stream_language(stream)
+    if language in ENGLISH_LANGUAGE_TAGS:
+        return True
+    # Untagged tracks from some fansub releases put the language only in the
+    # title ("English Subs"). Match the language words as whole tokens so a
+    # title like "Signs/English" still counts, without "en" matching every
+    # title that merely contains those two letters.
+    title = _stream_title(stream)
+    return any(re.search(rf"\b{re.escape(tag)}\b", title) for tag in ENGLISH_LANGUAGE_TAGS)
+
+
+def _is_signs_only(stream: dict) -> bool:
+    """True if the track is a signs/songs/forced/karaoke track rather than a
+    full dialogue track. Short hints (op/ed) are whole-token matched only -
+    substring matching would flag a title like "English (Hope subs)" as
+    signs, and dropping the real dialogue track over that has already been a
+    bug in script_agent.py's style hints."""
+    disposition = stream.get("disposition") or {}
+    if disposition.get("forced"):
+        return True
+    title = _stream_title(stream)
+    tokens = re.findall(r"[a-z]+", title)
+    if any(hint in tokens for hint in SIGNS_ONLY_EXACT_TOKENS):
+        return True
+    return any(hint in title for hint in SIGNS_ONLY_HINTS
+               if hint not in SIGNS_ONLY_EXACT_TOKENS)
+
+
+def _count_dialogue_lines(stream_path: Path) -> int:
+    """Counts real spoken-dialogue lines in an already-extracted subtitle
+    file, using the SAME sign-vs-dialogue split script_agent.py dubs with -
+    importing it rather than duplicating the rule, so a tiebreak can never
+    disagree with what actually ends up in the dub. A track whose lines are
+    nearly all signs scores near zero no matter how many events it has."""
+    try:
+        import script_agent
+        subs = pysubs2.load(str(stream_path))
+        return sum(1 for e in subs
+                   if not e.is_comment
+                   and e.plaintext.strip()
+                   and not script_agent.is_sign_event(e))
+    except Exception:
+        # A malformed/unsupported track just scores 0 and loses the tiebreak
+        # to a readable one - it must not abort the whole episode.
+        return 0
+
+
+def select_subtitle_stream(video_path: str, work: Path, stem: str) -> tuple:
+    """Picks which subtitle stream to dub, returning (stream_index, why).
+
+    Rule, in order:
+      1. Only English tracks are candidates at all.
+      2. Signs/songs/forced-only tracks are dropped from the candidates.
+      3. If that leaves more than one, the one with the most dialogue lines
+         wins - that is the "two English tracks, take the one with all the
+         character lines" case (e.g. a full-timeline track vs a signs-only
+         track that also happens to be tagged English).
+      4. If nothing survives (no English at all), fall back to the container's
+         first subtitle stream, which is the old hardcoded 0:s:0 behaviour -
+         a non-English original still beats no dub at all.
+
+    Returns (None, reason) when the file has no subtitle streams whatsoever.
+    """
+    streams = probe_subtitle_streams(video_path)
+    if not streams:
+        return None, "no subtitle streams in the container"
+
+    english = [s for s in streams if _is_english(s)]
+    if not english:
+        first = streams[0]
+        language = _stream_language(first) or "untagged"
+        return first.get("index"), (f"no English track found among {len(streams)} "
+                                    f"subtitle stream(s) - using stream "
+                                    f"{first.get('index')} ({language})")
+
+    dialogue_tracks = [s for s in english if not _is_signs_only(s)]
+    if not dialogue_tracks:
+        # Every English track looks like signs/songs. Better to use one of
+        # them than to fall back to a possibly-Japanese track.
+        dialogue_tracks = english
+
+    if len(dialogue_tracks) == 1:
+        chosen = dialogue_tracks[0]
+        title = _stream_title(chosen) or _stream_language(chosen)
+        return chosen.get("index"), f"only English dialogue track ({title})"
+
+    # Genuine tiebreak: count real dialogue lines in each candidate. Each
+    # candidate is temporarily extracted as .ass purely to be counted; these
+    # are throwaway files rewritten by the real extraction right after.
+    scored = []
+    for stream in dialogue_tracks:
+        probe_out = work / f"{stem}.subprobe{stream.get('index')}.ass"
+        try:
+            duration = subprocess.run(
+                ["ffmpeg", "-y", "-i", video_path, "-map", f"0:{stream.get('index')}",
+                 "-c:s", "copy", str(probe_out)],
+                capture_output=True, text=True, timeout=120,
+            )
+            if duration.returncode != 0:
+                # copy failed (not ASS) - retry as srt, which pysubs2 also reads
+                probe_out = work / f"{stem}.subprobe{stream.get('index')}.srt"
+                duration = subprocess.run(
+                    ["ffmpeg", "-y", "-i", video_path, "-map", f"0:{stream.get('index')}",
+                     str(probe_out)],
+                    capture_output=True, text=True, timeout=120,
+                )
+            lines = _count_dialogue_lines(probe_out) if duration.returncode == 0 else 0
+        except (FileNotFoundError, subprocess.TimeoutExpired):
+            # Can't read this candidate - score it 0 and let a readable one
+            # win, rather than letting the tiebreak crash the episode.
+            lines = 0
+        scored.append((lines, stream, probe_out))
+
+    scored.sort(key=lambda item: item[0], reverse=True)
+    best_lines, best_stream, _ = scored[0]
+    ignored = ", ".join(
+        f"stream {s.get('index')} ({_stream_title(s) or _stream_language(s) or 'untitled'}"
+        f": {n} lines)" for n, s, _ in scored[1:]
+    )
+
+    # The probe files were only needed for counting - leaving them in the
+    # work folder would show up as stray subtitles next to the episode's
+    # real ones, so they're removed (best-effort: a locked file on Windows
+    # shouldn't fail the run over a temp file).
+    for _, _, path in scored:
+        try:
+            path.unlink()
+        except OSError:
+            pass
+
+    return best_stream.get("index"), (
+        f"{len(scored)} English tracks - chose stream {best_stream.get('index')} "
+        f"with most dialogue lines ({best_lines}); ignored {ignored}"
+    )
+
+
+def extract_subtitles(video_path: str, ass_out: str, srt_out: str,
+                      work: Path = None, stem: str = None) -> str:
     """Tries to copy the subtitle stream exactly as .ass (keeps styles,
     position tags, and the actor/name field intact). Falls back to a
-    plain .srt conversion only if the source track isn't ASS/SSA."""
-    result = subprocess.run(
-        ["ffmpeg", "-y", "-i", video_path, "-map", "0:s:0", "-c:s", "copy", ass_out],
-        capture_output=True, text=True, timeout=120,
-    )
-    if result.returncode == 0 and Path(ass_out).exists():
-        return ass_out
+    plain .srt conversion only if the source track isn't ASS/SSA.
 
-    result = subprocess.run(
-        ["ffmpeg", "-y", "-i", video_path, "-map", "0:s:0", srt_out],
-        capture_output=True, text=True, timeout=120,
-    )
-    return srt_out if result.returncode == 0 and Path(srt_out).exists() else None
+    Uses select_subtitle_stream() to choose WHICH stream, instead of the
+    first one in the container."""
+    if work is not None and stem is not None:
+        stream_index, reason = select_subtitle_stream(video_path, work, stem)
+    else:
+        stream_index, reason = 0, "no work dir given - defaulting to stream 0:s:0"
+
+    if stream_index is None:
+        print(f"[extract] {reason}")
+        return None
+
+    print(f"[extract] subtitle track: {reason}")
+    stream_map = f"0:{stream_index}"
+
+    try:
+        result = subprocess.run(
+            ["ffmpeg", "-y", "-i", video_path, "-map", stream_map, "-c:s", "copy", ass_out],
+            capture_output=True, text=True, timeout=120,
+        )
+        if result.returncode == 0 and Path(ass_out).exists():
+            return ass_out
+
+        result = subprocess.run(
+            ["ffmpeg", "-y", "-i", video_path, "-map", stream_map, srt_out],
+            capture_output=True, text=True, timeout=120,
+        )
+        return srt_out if result.returncode == 0 and Path(srt_out).exists() else None
+    except FileNotFoundError:
+        # ffmpeg missing from PATH. Previously this raised out of run() and
+        # killed the whole episode; returning None instead lets script_agent
+        # fall back to its Whisper translation, so one missing tool degrades
+        # to a lower-quality dub rather than no output at all.
+        print("[extract] ffmpeg not found on PATH - cannot read embedded "
+              "subtitles (script_agent will fall back to Whisper)")
+        return None
+    except subprocess.TimeoutExpired:
+        print("[extract] reading the subtitle track timed out - skipping subs")
+        return None
 
 
 def run(video_path: str, work_dir: str, external_srt: str = None) -> dict:
@@ -129,7 +342,8 @@ def run(video_path: str, work_dir: str, external_srt: str = None) -> dict:
     if external_srt:
         sub_path = Path(external_srt)
     else:
-        found = extract_subtitles(video_path, str(work / f"{stem}.ass"), str(work / f"{stem}.srt"))
+        found = extract_subtitles(video_path, str(work / f"{stem}.ass"),
+                                  str(work / f"{stem}.srt"), work, stem)
         sub_path = Path(found) if found else None
 
     manifest = {

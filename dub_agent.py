@@ -4,9 +4,17 @@ Turns each translated line into English speech - with Piper TTS, Kokoro
 (kokoro-onnx), or a mix of both depending on how each character is
 configured in voices.json - time-stretches every clip to fit its subtitle
 window so it lands where the original timestamp says it should, assembles
-a full-length audio track, and muxes it onto the source video. The video
-stream is copied (not re-encoded), so this step stays fast even on
-modest hardware.
+a full-length audio track, and muxes it onto the source video.
+
+On the video side there are two cases, and they are NOT equivalent:
+
+- When the episode has no sign text to burn in, the video stream is copied
+  verbatim - no re-encode, fast, and visually identical to the source.
+- When it DOES have sign text (the usual case for a fansub release), that
+  text has to be rendered into the frames, which means the whole episode is
+  decoded and re-encoded with a lossy codec. That is slower and it does
+  cost some visual quality versus the source; the target quality is set by
+  DEFAULT_VIDEO_CRF / the YKDUB_VIDEO_CRF environment variable. See mux().
 """
 import base64
 import functools
@@ -57,6 +65,43 @@ _load_dotenv_manual()
 # single-voice behavior working with no setup required.
 PIPER_MODEL = "piper-voices/en/en_US/lessac/medium/en_US-lessac-medium.onnx"
 PIPER_CONFIG = "piper-voices/en/en_US/lessac/medium/en_US-lessac-medium.onnx.json"
+
+# Quality target for the ONLY re-encode in this pipeline (burning sign text
+# onto frames - see mux()). Lower = better quality and a bigger file; this is
+# a CRF-style quality target, not a bitrate, so the encoder spends only the
+# bits it needs to hit it.
+#
+# Why 16 and not 20: a real episode came out at 1.88 Mbps against an 8 Mbps
+# source - a ~4.25x bitrate drop that was visible as softness in detailed
+# scenes. Anime compresses very efficiently at flat colors, so CRF 20 chose
+# a much lower bitrate than the source's author did, and the loss showed.
+# 16 keeps the output far closer to the source without ballooning the file
+# the way a near-lossless CRF (10-12) would. Override without editing code
+# by setting YKDUB_VIDEO_CRF in the environment (e.g. in .env).
+DEFAULT_VIDEO_CRF = 16
+
+
+def video_crf() -> int:
+    """Reads the sign-burn-in quality target from YKDUB_VIDEO_CRF if it is
+    set to a sane integer, else falls back to DEFAULT_VIDEO_CRF. A bad value
+    (typo, empty string, out-of-range) falls back rather than being passed
+    through to ffmpeg, where it would fail the whole mux after the episode
+    has already spent 20+ minutes being synthesized."""
+    raw = os.environ.get("YKDUB_VIDEO_CRF", "").strip()
+    if not raw:
+        return DEFAULT_VIDEO_CRF
+    try:
+        value = int(raw)
+    except ValueError:
+        print(f"[dub] YKDUB_VIDEO_CRF='{raw}' isn't a whole number - using {DEFAULT_VIDEO_CRF}")
+        return DEFAULT_VIDEO_CRF
+    # x264's own CRF range is 0-51; 0 is lossless (enormous files) and the
+    # high end is visibly bad. Clamp to a range that is actually useful for
+    # this job instead of accepting a value that would waste an encode.
+    if not 0 <= value <= 30:
+        print(f"[dub] YKDUB_VIDEO_CRF={value} is outside 0-30 - using {DEFAULT_VIDEO_CRF}")
+        return DEFAULT_VIDEO_CRF
+    return value
 
 
 def normalize_speaker(name: str) -> str:
@@ -1211,11 +1256,21 @@ def detect_hw_video_encoder() -> str:
     return ""
 
 
-def hw_video_encode_args(encoder: str, quality: int = 20) -> list:
-    """Per-encoder flags aimed at roughly matching libx264's -crf 20
-    visual quality target - each hardware vendor's ffmpeg wrapper uses a
-    different rate-control scheme, so 'equivalent to CRF' isn't a single
-    flag name across all three."""
+def hw_video_encode_args(encoder: str, quality: int = None) -> list:
+    """Per-encoder flags aimed at a libx264 -crf quality target - each
+    hardware vendor's ffmpeg wrapper uses a different rate-control scheme,
+    so 'equivalent to CRF' isn't a single flag name across all three.
+
+    `quality` defaults to video_crf() (see DEFAULT_VIDEO_CRF) rather than a
+    hardcoded number, so the sign-burn-in quality is tunable from the
+    environment without editing this function.
+
+    Note that for the libx264 path the preset is 'medium', not 'fast': the
+    burn-in is already the slowest step in the pipeline and is dominated by
+    the subtitle compositing, so a slower preset buys real compression
+    efficiency for a comparatively small share of the total time."""
+    if quality is None:
+        quality = video_crf()
     if encoder == "h264_nvenc":
         # -rc vbr -cq N -b:v 0 is nvenc's closest analog to x264's -crf:
         # quality-driven variable bitrate with no hard bitrate cap.
@@ -1227,11 +1282,36 @@ def hw_video_encode_args(encoder: str, quality: int = 20) -> list:
     if encoder == "h264_amf":
         return ["-c:v", "h264_amf", "-quality", "quality", "-rc", "cqp",
                 "-qp_i", str(quality), "-qp_p", str(quality), "-pix_fmt", "yuv420p"]
-    return ["-c:v", "libx264", "-preset", "fast", "-crf", str(quality), "-pix_fmt", "yuv420p"]
+    return ["-c:v", "libx264", "-preset", "medium", "-crf", str(quality), "-pix_fmt", "yuv420p"]
 
 
 def mux(video_path: str, audio_path: Path, out_path: str, signs_path: str = None,
         subtitle_path: str = None) -> None:
+    """Combines the source video, the new dub audio, and the subtitles into
+    the final file.
+
+    IMPORTANT - this function has TWO quite different paths, and only one
+    of them is lossless:
+
+      * signs_path is None  -> the video stream is COPIED (-c:v copy). No
+        re-encode, no quality loss, and the step is fast. The original
+        frames come through bit-for-bit.
+
+      * signs_path is set   -> the sign text has to become part of the
+        PIXELS, so every frame is decoded, the text is composited onto it,
+        and the result is re-encoded with a lossy codec. That is a genuine
+        generation-loss on the video, and it is the slowest step in the
+        pipeline.
+
+    This distinction is why an episode's output can be far smaller than its
+    source even though only the audio was meant to change: a soft subtitle
+    is a stream a player draws over untouched frames, but a burned-in one
+    cannot exist without re-encoding those frames.
+
+    (An earlier version of this comment claimed the video stream is always
+    copied. That was only ever true of the no-signs path, and it read as a
+    guarantee of zero video loss on runs that were heavily re-encoding.)
+    """
     # mp4 can't hold .ass subtitles directly - mov_text is the mp4-native
     # soft-subtitle format, and ffmpeg converts .ass -> mov_text on the fly.
     sub_inputs = ["-i", subtitle_path] if subtitle_path else []
@@ -1291,9 +1371,11 @@ def mux(video_path: str, audio_path: Path, out_path: str, signs_path: str = None
         hw_encoder = detect_hw_video_encoder()
         encode_args = hw_video_encode_args(hw_encoder)
         encoder_note = f"hardware encoder {hw_encoder}" if hw_encoder else "software libx264 (no usable hardware encoder found)"
-        print(f"[dub] burning sign text onto the video with {encoder_note} - this re-encodes "
-              f"the whole episode and is the slowest step here. Let it finish; "
-              f"ffmpeg's own progress will print below.")
+        print(f"[dub] burning sign text onto the video with {encoder_note} at CRF "
+              f"{video_crf()} - this re-encodes the whole episode (a real quality "
+              f"cost vs the source; lower YKDUB_VIDEO_CRF = closer to source) and is "
+              f"the slowest step here. Let it finish; ffmpeg's own progress will "
+              f"print below.")
         subprocess.run(
             ["ffmpeg", "-y", "-i", video_path, "-i", str(audio_path), *sub_inputs,
              "-filter_complex", f"[0:v]{filt}[v]",

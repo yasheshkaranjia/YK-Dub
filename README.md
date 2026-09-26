@@ -10,6 +10,12 @@ original Japanese audio
 and English subtitles kept as switchable tracks, and background
 music/SFX preserved underneath the dub.
 
+Point it at a release with a dozen subtitle languages and it picks the
+right one by itself, assigns a distinct voice to every named character,
+and can produce either a self-contained file or a **lossless** one that
+keeps the original video untouched (see "Why the output is smaller than
+the source", which also explains how to avoid ever re-encoding the video).
+
 This README covers everything: how it works, how to set it up from
 scratch, and every real bug we hit and fixed along the way — read this
 once and you shouldn't need to rediscover any of it.
@@ -26,12 +32,46 @@ per episode, one at a time.
 1. **extract_agent.py**
    - Pulls audio out of the video, splits it into a **vocals-only**
      track and an **instrumental** (music/SFX) track using Demucs.
-   - Grabs the subtitle track in its **original `.ass` format**
+   - **Chooses WHICH subtitle track to use** instead of blindly taking
+     the first one (see "Subtitle track selection" below) — a real
+     release carries a dozen language tracks, and the old hardcoded
+     `-map 0:s:0` picked whichever the muxer happened to write first.
+   - Grabs the chosen subtitle track in its **original `.ass` format**
      (`-c:s copy`, no conversion) — this matters because `.ass` carries
      the Actor/speaker-name field, styles, and position tags that
      `.srt` simply doesn't have. Falls back to `.srt` only if the
      source track isn't ASS/SSA.
    - Writes `<name>.manifest.json`.
+
+### Subtitle track selection (`extract_agent.py`)
+
+Real WEB-DL releases ship **one subtitle stream per language** — the
+episode this was built against has **14** (Arabic, German, Spanish x2,
+French, Indonesian, Italian, Portuguese, Russian, Thai, Vietnamese,
+Chinese x2, English). `select_subtitle_stream()` picks one, in this order:
+
+1. **Only English tracks are candidates.** Recognised from the stream's
+   `language` tag (`eng`/`en`) or its `title` ("English Subs"). A track
+   with **no** language tag is deliberately *not* treated as English —
+   that is exactly how a Japanese track gets picked.
+2. **Signs/songs/forced-only tracks are dropped.** These look like a
+   valid English subtitle but contain almost no spoken dialogue, so
+   picking one yields a dub with a handful of lines and long silences.
+   Detected from the title, and from the stream's own `forced`
+   disposition. Short hints (`op`/`ed`) are matched as **whole tokens
+   only** — substring matching reads a title like "Hope subs" as signs
+   and throws away the real dialogue track.
+3. **If several English tracks survive, the one with the most dialogue
+   lines wins.** Each candidate is temporarily extracted and counted with
+   the *same* sign-vs-dialogue rule `script_agent.py` dubs with, so the
+   count can never disagree with what actually ends up in the dub.
+4. **Nothing English found → falls back to the first subtitle stream**
+   (the old behaviour), with a printed note. A non-English original still
+   beats no dub at all.
+
+The choice is always printed, e.g.
+`subtitle track: 2 English tracks - chose stream 3 with most dialogue lines (334); ignored stream 2 (Signs: 0 lines)`,
+so a wrong pick is visible during the run rather than after watching it.
 
 2. **script_agent.py** — reads the subtitle directly, no ASR/LLM
    needed when subs exist:
@@ -138,6 +178,13 @@ per episode, one at a time.
        the terminal (deliberately not captured/hidden) — this used to
        look identical to a hang with no way to tell it was still
        working.
+   - **`mux()` has two very different paths and only one is lossless.**
+     With no signs, the video is stream-copied (`-c:v copy`) and is
+     bit-for-bit the source. With signs, the whole episode is decoded
+     and re-encoded (see "Why the output is smaller than the source"
+     below). The quality target for that re-encode is
+     `DEFAULT_VIDEO_CRF` (16), overridable without editing code via the
+     `YKDUB_VIDEO_CRF` environment variable.
    - **Preflight voice check**: before synthesis starts, every voice
      file a given episode actually needs is checked to exist on disk.
      A missing `.onnx`/`.onnx.json` used to only surface as one silent
@@ -158,9 +205,203 @@ per episode, one at a time.
 from `voices.json`, interactively. Saves to `voice_map.json`, which
 `dub_agent.py` reads automatically. Remembers earlier choices.
 
+**`voice_map.json` is cumulative and matched case-insensitively**
+(`normalize_speaker()` upper-cases both sides), so the same show's later
+episodes reuse every earlier assignment automatically. Running
+dub_agent without an entry for a speaker is not silent: the run prints a
+`WARNING - these speaker(s) have NO entry in voice_map.json` block with
+the line count for each one, **before** the synthesis, so a whole
+episode coming out in one voice is caught up front instead of after
+watching it. A quick pre-assignment check for one episode:
+```python
+# every speaker in the episode's English subtitle, and whether it is mapped
+import pysubs2, script_agent, json
+subs = pysubs2.load("probe.ass")
+names = {(e.name or "").strip() for e in subs
+         if not e.is_comment and e.plaintext.strip()
+         and not script_agent.is_sign_event(e)}
+mapped = {k.upper() for k in json.load(open("voice_map.json")) if not k.startswith("_")}
+print("unmapped:", sorted(n for n in names if n and n.upper() not in mapped))
+```
+Beware **compound actor names** — some releases write `Dylan/Zoey` or
+`Jessie/Anna/Evelyn` for a shared line. These match nothing unless given
+their own explicit entry, so add one (it takes the voice of the character
+speaking first).
+
 **collect_dubbed.py** gathers every episode's `*.dubbed.mp4` out of its
 own subfolder into one flat folder, once a whole season is done, so you
 can copy the whole thing to a phone or USB drive in one go.
+
+**work/final_pack.py** (created during a run) builds the **lossless**
+final file for an episode: the original video stream-copied untouched,
+plus the new English dub, the original Japanese audio, and only the
+English subtitle track. See "Why the output is smaller than the source"
+above — it exists because the normal mux re-encodes the video whenever
+there is sign text to burn in. It reads the episode's `.dubbed.json`,
+so it only works after the dub stage has finished.
+
+---
+
+## Why the output is smaller than the source (and how to avoid it)
+
+An episode can come out **far smaller** than the file it started from —
+we hit 386 MB from a 1431 MB source. The audio was the only thing meant
+to change, so this looks like something went wrong. It is worth
+understanding exactly why, because the answer is not obvious and two
+different causes can stack.
+
+### 1. Burning signs forces a full video re-encode
+
+`dub_agent.mux()` has **two** paths, and only one of them is lossless:
+
+| Condition | What happens to the video |
+| --- | --- |
+| No sign text | `-c:v copy` — **bit-for-bit identical**, fast |
+| Sign text present | every frame decoded, text composited, whole video re-encoded |
+
+A **soft subtitle is a stream** the player draws over untouched frames.
+A **burned-in subtitle is pixels** — you cannot copy frames that don't
+contain text into frames that do. So flattening sign text into the image
+is a destructive operation on the video by definition.
+
+The measured result on a real episode: source video **7.99 Mbps**, output
+**1.88 Mbps** — a **4.25x** drop, because the burn-in ran at CRF 20 and
+anime compresses very efficiently at flat colours. The source author's
+8 Mbps was generous for this content, so it was not visibly destroyed,
+but it *was* a genuine quality reduction.
+
+**Fixes applied:**
+- `DEFAULT_VIDEO_CRF` raised 20 → **16**, and exposed as the
+  `YKDUB_VIDEO_CRF` environment variable (validated — a bad value falls
+  back to the default with a warning rather than failing the mux after
+  the episode has already been synthesized).
+- libx264 preset `fast` → `medium`. The burn-in is dominated by the
+  subtitle compositing, not the encoder, so the slower preset buys real
+  compression efficiency for a small share of the total time.
+- The run now prints the CRF it is using, so the quality target is
+  visible instead of implicit.
+
+### 2. Dropped subtitle languages and font attachments
+
+The mux keeps only the English subtitle stream, so a 14-language release
+loses 13 subtitle tracks and its embedded fonts. Small next to the video,
+but non-zero.
+
+### The better approach: keep the original video, add only the audio
+
+Because audio and video are independent streams, you can add a dub
+**without touching the video at all**:
+
+```
+ffmpeg -i original.mkv -i dub_mix.wav \
+  -map 0:v:0 -c:v copy \
+  -map 1:a:0 -map 0:a:0 \
+  -c:a:0 aac -b:a:0 192k -c:a:1 copy \
+  -metadata:s:a:0 language=eng -disposition:a:0 default \
+  -metadata:s:a:1 language=jpn -disposition:a:1 0 \
+  -map 0:s:2 -c:s copy \
+  output.mkv
+```
+
+This gives **zero video loss**, keeps all the original subtitle tracks and
+fonts you choose to map, and takes seconds instead of ~5 minutes because
+nothing is re-encoded. `work/final_pack.py` in this repo does exactly
+this (video copied, English dub added, Japanese kept, English subs kept,
+other languages dropped) — verified with an MD5 of the raw video stream,
+which matched the source exactly.
+
+**The one trade-off:** signs become a *toggleable soft subtitle* rather
+than being always visible. With burned-in signs they show even with
+subtitles off; as a soft track, turning subtitles off also hides them.
+
+### 3. A silent bug this exposed: lost `PlayResX`/`PlayResY`
+
+This is the most important lesson in this README, because it produced a
+**visibly broken** frame that no amount of extra bitrate could fix, and it
+was only caught by actually looking at the output.
+
+The symptom: sign text landed in the wrong place and **overlapped
+itself** — "Fire"/"Water"/"Wind" and a column of letters all stacked on
+top of each other. It looked exactly like severe compression damage.
+
+**The actual cause:** ASS positioning is **resolution-relative**, not
+absolute pixels. `\pos(168, 102)` means "168/PlayResX across, 102/PlayResY
+down". The source subtitle declares `PlayResX: 640 / PlayResY: 360`, so
+that point is 26% across and 28% down.
+
+`script_agent.split_subtitles()` built its `signs.ass` from fresh
+`pysubs2.SSAFile()` objects and copied `subs.styles` — but **`PlayResX`
+and `PlayResY` live in `.info`, not `.styles`**, and `.info` was left
+empty. Without them, libass falls back to its own default of **384x288**,
+so every `\pos()` was measured against the wrong coordinate space and
+landed in the wrong place, rescaled, overlapping.
+
+There was already a comment warning that the sign file would "lose its
+font/color/position info" if styles weren't copied — but it only
+addressed styles, and **PlayRes is the coordinate space those positions
+are relative to.**
+
+**Fix:** copy `.info` across too, falling back to the source's own values:
+```python
+dialogue.info = dict(subs.info)
+signs.info = dict(subs.info)
+for f in (dialogue, signs):
+    f.info.setdefault("PlayResX", "640")
+    f.info.setdefault("PlayResY", "360")
+```
+
+**If you see signs in the wrong place or overlapping:** check that the
+generated `signs.ass` has `PlayResX`/`PlayResY` in its `[Script Info]`
+section, and that they match the source subtitle. Missing = wrong
+layout, guaranteed.
+
+---
+
+## Running a long dub unattended (Windows)
+
+Two problems bite when a full episode run (30-60 minutes) is started from
+a terminal:
+
+1. **The run dies when its shell window closes.** Launching the pipeline
+   as a child of an interactive shell means the process is killed with
+   that shell. It must be detached — a Windows Scheduled Task works.
+2. **`forrtl: error (200): program aborting due to window-CLOSE event`.**
+   The Intel Fortran runtime inside torch/MKL (used by Demucs) aborts
+   when its console disappears, which is exactly what a windowless
+   scheduled task causes. Setting these in the runner fixes it:
+   ```
+   set KMP_DUPLICATE_LIB_OK=TRUE
+   set OMP_NUM_THREADS=4
+   set MKL_NUM_THREADS=4
+   set PYTHONUNBUFFERED=1
+   set PYTHONIOENCODING=utf-8
+   ```
+
+**Hardware encoding is also lost under a hidden task.** A run that logged
+`software libx264 (no usable hardware encoder found)` was doing the same
+job its normal shell did with `h264_qsv` — measured at **5.0x realtime
+vs 0.53x**, i.e. ~4 minutes instead of ~45 for one episode. If a burn-in
+step is far slower than the timings in section 4 suggest, check which
+encoder the run actually reported.
+
+**Piping answers into the interactive `run.py`:** PowerShell prepends a
+BOM to piped input, which corrupts the first line (the path becomes
+`\ufeffC:\...` and `Path.exists()` fails). Write the answers to a file
+with a BOM-less encoding and redirect it in:
+```powershell
+[System.IO.File]::WriteAllLines("$PWD\answers.txt", $lines,
+    (New-Object System.Text.UTF8Encoding $false))
+```
+then `venv\Scripts\python.exe run.py < answers.txt`. For unattended runs,
+`orchestrator.py` is the better entry point anyway — it is fully
+non-interactive.
+
+**A locked output file fails the mux with `Permission denied`.** If a
+player (VLC, Windows Films & TV) has the previous output open, ffmpeg
+cannot overwrite it and the run fails at the very last step. Close the
+player before re-running.
+
+---
 
 **check_translation.py** prints each dialogue line's timing, speaker,
 and final text from a `.translated.json` — a quick way to catch a
@@ -193,6 +434,19 @@ sudo apt update
 sudo apt install ffmpeg python3-venv python3-pip
 ```
 (Windows: `winget install ffmpeg`. Mac: `brew install ffmpeg`.)
+
+**Windows: verify `ffmpeg` is actually on PATH** after installing. A
+winget install can succeed without adding its `bin` folder to PATH, and
+the pipeline then fails at the first extract step. Confirm with
+`Get-Command ffmpeg`; if it is missing, add the winget package's `bin`
+folder to your user PATH:
+```powershell
+$bin = (Get-ChildItem "$env:LOCALAPPDATA\Microsoft\WinGet\Packages\Gyan.FFmpeg*" `
+        -Recurse -Filter ffmpeg.exe | Select-Object -First 1).DirectoryName
+[Environment]::SetEnvironmentVariable("Path", "$bin;" + `
+    [Environment]::GetEnvironmentVariable("Path","User"), "User")
+```
+(Open a new terminal afterwards.)
 
 **Python environment**
 ```
@@ -266,8 +520,6 @@ but won't let you pick a specific speaker inside the file.
 > voices. Kokoro still works if you re-download both files into
 > `piper-voices/kokoro/` per the steps below. For a default setup,
 > Supertonic (previous section) is faster and needs no downloads.
-
-### Optional: Kokoro TTS engine (more natural than Piper)
 
 `dub_agent.py` can synthesize a line with either Piper or Kokoro-82M,
 per character — set per speaker in `voice_map.json` the same way as any
@@ -444,14 +696,31 @@ faster than CPU, e.g. a 5-minute clip separated in 59s vs 554s):
 - Supertonic synthesis: about 5 minutes (Piper took 15-27; a bit more for episodes with
   several outlier-tempo lines needing the two-pass length-scale
   correction)
-- Final mux: about 1-2 minutes for plain episodes; about 15 minutes for
-  episodes with sign lines, since those need a video re-encode (this
-  step took 6 to over 12 hours before the 8-bit fix below — if a
-  burn-in step is taking dramatically longer than 15-20 minutes,
-  something has regressed)
+- **Nonverbal-gap analysis: about 13-30 minutes.** The slowest CPU step
+  after Demucs, and the one people mistake for a hang. It scans the
+  original vocals for laughs/gasps/sighs that no subtitle line covers,
+  and each candidate clip is transcribed by Whisper ("small", CPU,
+  int8) **one at a time** to check it isn't actually untranscribed
+  Japanese speech. An episode with more speakers has more of these
+  gaps, so the time scales with cast size, not just episode length.
+  Verify it is working, not stuck, by watching the process's CPU time
+  climb — it holds ~3 cores busy — and remember the log goes quiet for
+  long stretches here.
+- Final mux: about 1-2 minutes for plain episodes; about 4-6 minutes for
+  episodes with sign lines when a hardware encoder (QSV/NVENC) is used,
+  since those need a video re-encode (10-30+ minutes on software
+  libx264; this step took 6 to over 12 hours before the 8-bit fix
+  below — if a burn-in step is taking dramatically longer than this,
+  check which encoder the run reported)
+- Packing the lossless alternative (video stream-copied, see "Why the
+  output is smaller than the source"): **seconds**, not minutes.
 - Verify: under a minute
 
 A full 12-episode season: roughly 9-11 hours, run back to back.
+
+Real measured run, one 23:42 episode, demucs on GPU, 330 dialogue lines,
+36 characters (total wall time roughly 50 minutes):
+Demucs 3:30 / synthesis 5:14 / gap analysis ~30:00 / burn-in 4:00.
 
 Before a long run: pause Windows Update (Settings, Windows Update,
 Pause updates) and disable sleep while plugged in. An auto-restart
@@ -499,11 +768,28 @@ itself is bad — re-download rather than debugging the pipeline.
   folder — including large `.dubbed.mp4` files — will get swept into
   `git add .`. This repo's `.gitignore` excludes `work/`, `final/`,
   `*.mp4`, and `*.mkv` to cover this.
+- `git` is not always on PATH after a Windows install either. If `git`
+  is not recognised, use the full path (usually
+  `"C:\Program Files\Git\cmd\git.exe"`).
+- **VLC holds an open handle on a file it is playing.** Re-running a dub
+  while the previous output is open in a player makes ffmpeg fail with
+  `Permission denied` on the output file — at the very end of the run.
+  Close the player first.
 
 ---
 
 ## Notes
 
+- **Reading the verify report.** A finished episode's
+  `.verification.json` (and `verify_agent.py`'s output) lists segments
+  whose speech onset does not match the subtitle start, plus overlap
+  info. On a real 358-line episode the numbers looked like: **286
+  segments over the 0.3s threshold**, most only 0.3-0.6s (normal TTS
+  alignment, not audible), and **24 overlapping lines** that were mixed
+  together with each ducked ~3 dB. A handful of lines hit the **-0.75s
+  clamp floor**, meaning they start noticeably late — those are the ones
+  worth listening to if something sounds off. Presence of drift entries
+  is not by itself a failure; look at the magnitude.
 - **Ceiling on how expressive Piper alone can get**: Piper is a fast,
   offline, CPU-friendly TTS engine, but it has no real emotion model —
   the tone-aware delivery in `dub_agent.py` (see above) is a rule-based

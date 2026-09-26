@@ -79,6 +79,21 @@ def split_subtitles(sub_path: str):
     # pysubs2.SSAFile() starts empty, styles included.
     dialogue.styles = subs.styles
     signs.styles = subs.styles
+    # .info has to be carried over as well, NOT just .styles. It holds
+    # PlayResX/PlayResY - the coordinate space that every \pos(x,y) in the
+    # file is measured against. Without it libass falls back to its own
+    # default (384x288), so a sign authored for 640x360 gets repositioned
+    # and rescaled: text lands in the wrong place and overlaps itself. That
+    # is a real, visible break (two text layers on top of each other, wrong
+    # corner), not a cosmetic metadata loss - and it cannot be fixed by
+    # re-encoding at a higher bitrate, because the error is in the layout.
+    # Falls back to the source's own values if a release omits them, matching
+    # the numbers the original subtitle was authored against.
+    dialogue.info = dict(subs.info)
+    signs.info = dict(subs.info)
+    for f in (dialogue, signs):
+        f.info.setdefault("PlayResX", "640")
+        f.info.setdefault("PlayResY", "360")
 
     dialogue_segments = []
     for e in subs:
