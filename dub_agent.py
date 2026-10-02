@@ -107,8 +107,8 @@ def video_crf() -> int:
 def normalize_speaker(name: str) -> str:
     """Canonical form of a subtitle actor name for voice-map lookups:
     casefolded and whitespace-collapsed. The same show's subs wrote actor
-    fields UPPERCASE in some episodes ("ALICE") and mixed-case in others
-    ("Alice"), which silently broke exact-match lookups - see
+    fields UPPERCASE in some episodes ("<CHARACTER>") and mixed-case in others
+    ("<Character>"), which silently broke exact-match lookups - see
     load_voice_lookup()."""
     return " ".join(name.upper().split())
 
@@ -391,7 +391,7 @@ def clean_stutter_text(text: str) -> str:
 
 def clean_honorifics(text: str) -> str:
     """Names sometimes keep a Japanese honorific attached with a hyphen
-    (e.g. 'Alice-sama') - Piper reads the hyphen literally rather than as
+    (e.g. '<Name>-sama') - Piper reads the hyphen literally rather than as
     a natural break between name and title. A plain space reads far
     better without changing what's actually said."""
     return HONORIFIC_PATTERN.sub(r"\1 \2", text)
@@ -513,7 +513,7 @@ def classify_tone(raw_text: str, inner_thought: bool = False) -> dict:
     is_shout = any(len(w) >= 3 and w.isupper() for w in words)
     stripped = raw_text.rstrip()
     # Some subtitle releases punctuate celebratory lines with a plain
-    # period ("Happy birthday, Alice." is one real example).
+    # period ("Happy birthday, <Character>." is one real example).
     # A short, deliberately conservative phrase list catches those without
     # pretending a text-only rule can infer arbitrary emotional context.
     is_exclaim = (stripped.endswith("!") or EXCITED_PHRASE_PATTERN.search(stripped)) and not is_shout

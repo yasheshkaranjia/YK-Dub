@@ -229,7 +229,8 @@ def process_episode(video_path: Path, work_root: Path, offer_voice_setup: bool) 
     # so no speaker names exist to assign voices to).
     if offer_voice_setup and manifest.get("subtitle_path"):
         if ask_yes_no(f"\nAssign/review character voices for '{stem}' before dubbing?"):
-            configure_voices.run(manifest["subtitle_path"], manifest.get("vocals_path"))
+            configure_voices.run(manifest["subtitle_path"], manifest.get("vocals_path"),
+                                 suggestions_path=manifest.get("suggestions_path"))
 
     heartbeat.touch(work_root, stem, "dub")
     dub_agent.run(str(translated_path), str(out_video), heartbeat_root=work_root, episode_label=stem)

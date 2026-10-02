@@ -58,7 +58,7 @@ query ($search: String) {
 
 # ---------------------------------------------------------------- title guess
 def guess_series_title(stem: str) -> str:
-    """'[Group] Lv999 no Murabito - 01 (1080p).mkv' -> 'Lv999 no Murabito'."""
+    """'[Group] <Anime Name> - 01 (1080p).mkv' -> '<Anime Name>'."""
     t = re.sub(r"\[[^\]]*\]|\([^)]*\)", " ", stem)
     if " " not in t.strip():
         t = re.sub(r"[._]+", " ", t)
@@ -294,8 +294,8 @@ def _build_lookup(cast: dict) -> dict:
 
 def _find_character(lookup: dict, speaker: str):
     """(character, is_fuzzy). Exact name first; then a close spelling match
-    (subtitle romanisation often differs from AniList's by a letter, e.g.
-    Lizel/Rizel) - flagged so the user knows it's a guess."""
+    (subtitle romanisation often differs from AniList's by a letter,
+    e.g. <Name>/<Nyme>) - flagged so the user knows it's a guess."""
     key = _norm(speaker)
     if key in lookup:
         return lookup[key], False

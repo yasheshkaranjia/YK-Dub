@@ -9,6 +9,7 @@ import os
 import re
 import subprocess
 import sys
+import threading
 from pathlib import Path
 
 import pysubs2
@@ -335,10 +336,9 @@ def run(video_path: str, work_dir: str, external_srt: str = None) -> dict:
 
     extract_audio(video_path, str(audio_path))
 
-    print("[extract] separating vocals from music/SFX with Demucs "
-          "(slow the first time - it downloads a model, then a few minutes per episode)...")
-    vocals_path, instrumental_path = separate_vocals(str(audio_path), work, duration_sec)
-
+    # Subtitles FIRST - they're quick, and having them on disk lets the
+    # AniList voice-suggestion lookup run in parallel with the (slow) Demucs
+    # separation below, instead of after it.
     if external_srt:
         sub_path = Path(external_srt)
     else:
@@ -346,12 +346,54 @@ def run(video_path: str, work_dir: str, external_srt: str = None) -> dict:
                                   str(work / f"{stem}.srt"), work, stem)
         sub_path = Path(found) if found else None
 
+    # Demucs is a subprocess-bound task, so a plain background thread is
+    # enough to overlap it with the suggestion lookup (which is mostly
+    # network + light CPU). Errors here must not kill the lookup thread.
+    demucs_error = []
+    demucs_result = []
+
+    def _separate():
+        try:
+            print("[extract] separating vocals from music/SFX with Demucs "
+                  "(slow the first time - it downloads a model, then a few minutes per episode)...")
+            demucs_result.append(separate_vocals(str(audio_path), work, duration_sec))
+        except Exception as e:
+            demucs_error.append(e)
+
+    demucs_thread = threading.Thread(target=_separate, daemon=True)
+    demucs_thread.start()
+
+    # While Demucs runs, look up the cast on AniList and pre-compute voice
+    # suggestions from the subtitle's speaker names. Fails silently.
+    suggestions_result = {}
+    speakers = {}
+    if sub_path:
+        try:
+            import configure_voices
+            import suggest_runner
+            speakers = configure_voices.find_speakers(str(sub_path))
+            if speakers:
+                voices = configure_voices.load_json(configure_voices.VOICES_FILE, {})
+                if voices:
+                    suggestions_result = suggest_runner.fetch_suggestions_blocking(
+                        stem, str(sub_path), speakers, voices,
+                        suggestion_path=work / f"{stem}.suggestions.json")
+        except Exception as e:
+            print(f"[extract] voice-suggestion lookup skipped ({e})")
+
+    demucs_thread.join()
+    if demucs_error:
+        raise demucs_error[0]
+    vocals_path, instrumental_path = demucs_result[0]
+
     manifest = {
         "video_path": str(Path(video_path).resolve()),
         "audio_path": str(audio_path.resolve()),
         "vocals_path": str(vocals_path.resolve()),
         "instrumental_path": str(instrumental_path.resolve()),
         "subtitle_path": str(sub_path.resolve()) if sub_path else None,
+        "suggestions_path": str((work / f"{stem}.suggestions.json").resolve())
+                            if suggestions_result else None,
         "duration_sec": duration_sec,
     }
     manifest_path = work / f"{stem}.manifest.json"

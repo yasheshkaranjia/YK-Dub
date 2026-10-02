@@ -13,7 +13,7 @@ fansub's own tagging is more authoritative than an inferred one.
 
 --unlabelled decides what happens to lines Groq could not decide. Default
 is to leave them empty, which routes them to the _default voice. Passing a
-name (e.g. --unlabelled Alice) assigns them to that character instead,
+name (e.g. --unlabelled <CharacterName>) assigns them to that character instead,
 which is usually better than a character nobody has heard.
 """
 import argparse

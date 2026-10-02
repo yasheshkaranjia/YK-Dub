@@ -6,7 +6,7 @@ Saves your choices to voice_map.json, which dub_agent.py reads at runtime.
 
 If a vocals.wav path is available (extract_agent.py's Demucs output - the
 isolated ORIGINAL-language vocal track), each prompt is annotated with a
-rough male/female pitch lean, e.g. "ALICE [(default: lessac) - voice
+rough male/female pitch lean, e.g. "<CHARACTER> [(default: lessac) - voice
 sounds male, ~118Hz]:" - meant to save you from having to listen to every
 character before picking, not to replace your judgment. It's a simple
 autocorrelation pitch estimate over a handful of that character's lines,
@@ -197,7 +197,7 @@ def compute_pitch_hints(audio: AudioSegment, speakers: dict, workers: int = None
 
 
 def _lookup_suggestions(sub_path: str, speakers: dict, voices: dict, alias_list: list,
-                        voice_map: dict):
+                        voice_map: dict, pre_fetched: dict = None):
     """Optional extra: look the anime up online (AniList) and suggest a voice
     per character. Purely additive - returns ({}, {}) (and the normal prompts
     run exactly as before) if you say no or you're offline. Returns
@@ -205,48 +205,60 @@ def _lookup_suggestions(sub_path: str, speakers: dict, voices: dict, alias_list:
     info = {speaker: AniList facts (role/gender/age)} for every speaker AniList
     knows, so main vs supporting is visible even where no voice is suggested.
     May also pre-fill voice_map for characters with no saved voice yet if you
-    say yes to that."""
-    guess = voice_suggest.guess_series_title(Path(sub_path).stem)
-    cast = voice_suggest.load_cached_cast(guess)
-    if cast:
-        print(f'Using the saved cast list for "{cast["title"]}" (from an earlier lookup).')
-    else:
-        answer = input(f'Look up "{guess}" online (AniList) to suggest voices? '
-                       f'[Y/n, or type a different anime name]: ').strip()
-        if answer.lower() in ("n", "no"):
-            return {}, {}
-        query = guess if answer.lower() in ("", "y", "yes") else answer
-        for _attempt in range(3):
-            print(f'Searching AniList for "{query}"...')
-            cast, err, offline = voice_suggest.fetch_cast(query)
-            if cast is None:
-                print(f"  {err}")
-                if offline:
-                    print("  Skipping suggestions - continuing the normal way.")
-                    return {}, {}
-                query = input("  Type another name to try (Enter to skip): ").strip()
-                if not query:
-                    return {}, {}
-                continue
-            print(f'  Found: {cast["title"]} ({len(cast["characters"])} characters listed)')
-            if input("  Is that the right anime? [Y/n]: ").strip().lower() in ("n", "no"):
-                query = input("  Type another name to try (Enter to skip): ").strip()
-                if not query:
-                    return {}, {}
-                cast = None
-                continue
-            break
-        else:
-            return {}, {}
-        if cast is None:
-            return {}, {}
-        voice_suggest.save_cached_cast(guess, cast)
+    say yes to that.
 
-    print("\nCast listed on AniList:")
-    for line in voice_suggest.cast_overview(cast):
-        print(f"  {line}")
-    info = voice_suggest.match_speakers(cast, speakers)
-    suggestions = voice_suggest.suggest_voices(cast, speakers, voices)
+    pre_fetched: when the pipeline already fetched everything during
+    extraction (extraction runs the lookup in parallel with Demucs), pass the
+    suggestions.json contents here and the interactive lookup is skipped
+    entirely - no "do you want to look up" prompt, ever."""
+    if pre_fetched:
+        cast = pre_fetched.get("cast")
+        info = pre_fetched.get("info", {})
+        suggestions = pre_fetched.get("suggestions", {})
+        print(f'Using the online cast results fetched during extraction '
+              f'("{cast.get("title") if cast else "?"}").')
+    else:
+        guess = voice_suggest.guess_series_title(Path(sub_path).stem)
+        cast = voice_suggest.load_cached_cast(guess)
+        if cast:
+            print(f'Using the saved cast list for "{cast["title"]}" (from an earlier lookup).')
+        else:
+            answer = input(f'Look up "{guess}" online (AniList) to suggest voices? '
+                           f'[Y/n, or type a different anime name]: ').strip()
+            if answer.lower() in ("n", "no"):
+                return {}, {}
+            query = guess if answer.lower() in ("", "y", "yes") else answer
+            for _attempt in range(3):
+                print(f'Searching AniList for "{query}"...')
+                cast, err, offline = voice_suggest.fetch_cast(query)
+                if cast is None:
+                    print(f"  {err}")
+                    if offline:
+                        print("  Skipping suggestions - continuing the normal way.")
+                        return {}, {}
+                    query = input("  Type another name to try (Enter to skip): ").strip()
+                    if not query:
+                        return {}, {}
+                    continue
+                print(f'  Found: {cast["title"]} ({len(cast["characters"])} characters listed)')
+                if input("  Is that the right anime? [Y/n]: ").strip().lower() in ("n", "no"):
+                    query = input("  Type another name to try (Enter to skip): ").strip()
+                    if not query:
+                        return {}, {}
+                    cast = None
+                    continue
+                break
+            else:
+                return {}, {}
+            if cast is None:
+                return {}, {}
+            voice_suggest.save_cached_cast(guess, cast)
+
+        print("\nCast listed on AniList:")
+        for line in voice_suggest.cast_overview(cast):
+            print(f"  {line}")
+        info = voice_suggest.match_speakers(cast, speakers)
+        suggestions = voice_suggest.suggest_voices(cast, speakers, voices)
     print(f"  -> {len(info)} of this episode's {len(speakers)} speakers are on that list.")
     if not suggestions:
         print("  No voice suggestions could be made - continuing the normal way "
@@ -276,7 +288,7 @@ def _lookup_suggestions(sub_path: str, speakers: dict, voices: dict, alias_list:
     return suggestions, info
 
 
-def run(sub_path: str, vocals_path: str = None) -> None:
+def run(sub_path: str, vocals_path: str = None, suggestions_path=None) -> None:
     voices = load_json(VOICES_FILE, {})
     if not voices:
         print(f"No {VOICES_FILE.name} found, or it's empty - list your available "
@@ -308,10 +320,14 @@ def run(sub_path: str, vocals_path: str = None) -> None:
         print()
 
     # Step 1b (optional): online lookup -> per-character voice suggestions.
-    # Shown next to the normal prompts below; never replaces them.
+    # Shown next to the normal prompts below; never replaces them. When the
+    # pipeline pre-fetched the lookup during extraction, use that result -
+    # the user is never asked anything here.
+    pre_fetched = suggestions_path and load_json(Path(suggestions_path), {}) or {}
     suggestions, info = {}, {}
     try:
-        suggestions, info = _lookup_suggestions(sub_path, speakers, voices, alias_list, voice_map)
+        suggestions, info = _lookup_suggestions(sub_path, speakers, voices, alias_list,
+                                                voice_map, pre_fetched=pre_fetched)
     except KeyboardInterrupt:
         raise
     except Exception as e:  # a lookup problem must never block voice setup
@@ -334,7 +350,7 @@ def run(sub_path: str, vocals_path: str = None) -> None:
 
     for name in speakers:
         # Case-insensitive match against already-saved assignments - subs
-        # write the same character as "ALICE" in one episode and "Alice" in
+        # write the same character as "CHARACTER" in one episode and "Character" in
         # the next, and showing the saved choice as "(default)" just
         # because the case differs invites re-doing (or breaking) it.
         current = next((v for k, v in voice_map.items()
