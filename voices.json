@@ -1,0 +1,137 @@
+{
+  "_kokoro": {
+    "model": "piper-voices/kokoro/kokoro-v1.0.int8.onnx",
+    "voices": "piper-voices/kokoro/voices-v1.0.bin",
+    "lang": "en-us",
+    "_comment": "LEGACY - Kokoro model files were removed from this setup. Re-download per the README's Kokoro section before assigning any kokoro voice."
+  },
+  "_openrouter": {
+    "api_key_env": "OPENROUTER_API_KEY",
+    "model": "deepgram/flux-tts:free",
+    "endpoint": "https://openrouter.ai/api/v1/audio/speech"
+  },
+  "supertonic_m1": {
+    "engine": "supertonic",
+    "voice": "M1",
+    "lang": "en",
+    "label": "Young male lead"
+  },
+  "supertonic_m2": {
+    "engine": "supertonic",
+    "voice": "M2",
+    "lang": "en",
+    "label": "Male authority - captains, kings"
+  },
+  "supertonic_m3": {
+    "engine": "supertonic",
+    "voice": "M3",
+    "lang": "en",
+    "label": "Male crew/soldiers - background military voices"
+  },
+  "supertonic_m4": {
+    "engine": "supertonic",
+    "voice": "M4",
+    "lang": "en",
+    "label": "Middle-aged male - butlers, civilians"
+  },
+  "supertonic_m5": {
+    "engine": "supertonic",
+    "voice": "M5",
+    "lang": "en",
+    "label": "Deep/sinister male - villains, foremen"
+  },
+  "supertonic_f1": {
+    "engine": "supertonic",
+    "voice": "F1",
+    "lang": "en",
+    "label": "Calm female - android maid, goddesses"
+  },
+  "supertonic_f2": {
+    "engine": "supertonic",
+    "voice": "F2",
+    "lang": "en",
+    "label": "Firm female - knights, detectives"
+  },
+  "supertonic_f3": {
+    "engine": "supertonic",
+    "voice": "F3",
+    "lang": "en",
+    "label": "Energetic female - mechanics, pirates"
+  },
+  "supertonic_f4": {
+    "engine": "supertonic",
+    "voice": "F4",
+    "lang": "en",
+    "label": "Mature female - mother figure, older women"
+  },
+  "supertonic_f5": {
+    "engine": "supertonic",
+    "voice": "F5",
+    "lang": "en",
+    "label": "Soft female - customers, nurses"
+  },
+  "openrouter_clone": {
+    "engine": "openrouter",
+    "reference_clip": "reference_clip.wav",
+    "label": "OpenRouter (Fish Audio S2.1 Pro) - stateless voice cloning from reference_clip.wav"
+  },
+  "openrouter_preset": {
+    "engine": "openrouter",
+    "voice": "d13c6a91f6add1eff3a7a2b4c0f97e4a",
+    "label": "OpenRouter preset library voice (no cloning, no reference audio)"
+  },
+  "dg_flux-jack-en": {
+    "engine": "openrouter",
+    "voice": "flux-jack-en",
+    "lang": "en",
+    "label": "Deepgram Flux TTS - flux-jack-en"
+  },
+  "dg_flux-donovan-en": {
+    "engine": "openrouter",
+    "voice": "flux-donovan-en",
+    "lang": "en",
+    "label": "Deepgram Flux TTS - flux-donovan-en"
+  },
+  "dg_flux-miles-en": {
+    "engine": "openrouter",
+    "voice": "flux-miles-en",
+    "lang": "en",
+    "label": "Deepgram Flux TTS - flux-miles-en"
+  },
+  "dg_flux-colin-en": {
+    "engine": "openrouter",
+    "voice": "flux-colin-en",
+    "lang": "en",
+    "label": "Deepgram Flux TTS - flux-colin-en"
+  },
+  "dg_flux-rufus-en": {
+    "engine": "openrouter",
+    "voice": "flux-rufus-en",
+    "lang": "en",
+    "label": "Deepgram Flux TTS - flux-rufus-en"
+  },
+  "dg_flux-marcus-en": {
+    "engine": "openrouter",
+    "voice": "flux-marcus-en",
+    "lang": "en",
+    "label": "Deepgram Flux TTS - flux-marcus-en"
+  },
+  "dg_flux-cliff-en": {
+    "engine": "openrouter",
+    "voice": "flux-cliff-en",
+    "lang": "en",
+    "label": "Deepgram Flux TTS - flux-cliff-en"
+  },
+  "dg_flux-meena-en": {
+    "engine": "openrouter",
+    "voice": "flux-meena-en",
+    "lang": "en",
+    "label": "Deepgram Flux TTS - flux-meena-en"
+  },
+  "dg_flux-tanner-en": {
+    "engine": "openrouter",
+    "voice": "flux-tanner-en",
+    "lang": "en",
+    "label": "Deepgram Flux TTS - flux-tanner-en"
+  }
+}

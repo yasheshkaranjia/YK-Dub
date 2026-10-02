@@ -1,0 +1,50 @@
+# Python / environment
+venv/
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+
+# Media, models and archives (large / generated)
+*.mp4
+*.mkv
+*.wav
+*.mp3
+*.srt
+*.ass
+*.onnx
+*.onnx.json
+*.zip
+piper-voices/
+
+# Pipeline working data and output
+work/
+collected/
+logs/
+*.dubbed.json
+*.manifest.json
+*.translated.json
+*.verification.json
+*.FAILED
+heartbeat.json
+watchdog_state.json
+
+# Scratch / probe files
+*_probe.ass
+probe_tmp.ass
+probe_subs/
+clone_samples/
+voice_samples/
+/reference_*.transcript.txt
+
+# Per-show data: character names and voice assignments stay LOCAL, never in git
+voice_map.json
+voice_maps/
+voice_map.*.bak.json
+voice_map*.bak.json
+anime_cache.json
+
+# Editor settings
+.vscode/
