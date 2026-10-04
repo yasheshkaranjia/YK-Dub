@@ -116,6 +116,18 @@ Existing intermediate stages are reused where possible. Set `YKDUB_RESUME_SYNTH=
 - `speaker_id_groq.py` can identify speakers when subtitle actor names are missing; it requires `GROQ_API_KEY`. `apply_speakers.py` writes its labels back into the episode data.
 - `trim_translated.py` creates a shorter test segment from translated episode data.
 - `redub.py` re-runs synthesis for finished episodes (e.g. after changing voices).
+- `build_voice_map.py` builds a full voice map with NO manual input: it reads every
+  episode's speaker names, looks the show up on AniList, and assigns each character
+  (and every unnamed background speaker) a fitting local Supertonic voice:
+
+  ```powershell
+  python build_voice_map.py "D:\Shows\Season 1"            # title guessed from the filename
+  python build_voice_map.py "D:\Shows\Season 1" --anime "Anime Name"   # if the guess fails
+  ```
+
+  It writes `voice_map.json`, saves a per-show copy under `voice_maps/`, and reports
+  voice coverage (matched dialogue lines / total). Every assignment can still be
+  fine-tuned afterwards with `configure_voices.py`.
 - `replace_dub_audio.py` swaps the dub track in a finished video.
 - `voicemaps.py` manages per-show voice maps (see above).
 
